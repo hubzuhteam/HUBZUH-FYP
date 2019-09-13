@@ -75,7 +75,12 @@ class SupplierController extends Controller
                         // Store image name in products table
                         // $product->image = $filename;
                     }
+                }else if(!empty($data['store_image'])){
+                    $filename = $data['store_image'];
+                }else{
+                    $filename = '';
                 }
+
                 Supplier::where('email',Session::get('supplierSession'))->update(['last_name'=>$data['last_name']
                 ,'name'=>$data['name'],
                 'store_name'=>$data['store_name'],

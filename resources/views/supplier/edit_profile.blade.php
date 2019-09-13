@@ -109,7 +109,37 @@
                                     <div class="form-group row m-b-10">
                                         <label class="col-md-3 text-md-right col-form-label">Store Image</label>
                                         <div class="col-md-6" id="uniform-undefined" >
-                                            <input type="file" name="store_image" id="store_image"/>
+                                            {{-- <input type="file" name="store_image" id="store_image"/> --}}
+                                            <table>
+                                                <tr>
+                                                  <td>
+                                                    <input name="store_image" id="store_image" type="file">
+                                                    @if(!empty($supplierDetails->store_image))
+                                                      <input type="hidden" name="current_image" value="{{ $supplierDetails->store_image }}">
+                                                    @endif
+                                                  </td>
+                                                  <td>
+                                                    @if(!empty($supplierDetails->store_name))
+                                                      <img style="width:30px;" src="{{ asset('/images/supplierend_images/store_images/small/'.$supplierDetails->store_image) }}">
+                                                    @endif
+                                                  </td>
+                                                </tr>
+                                              </table>
+                                              <table>
+                                                <tr>
+                                                  <td>
+                                                    <input name="store_image" id="store_image" type="file">
+                                                    @if(!empty($supplierDetails->store_image))
+                                                      <input type="hidden" name="current_image" value="{{ $supplierDetails->store_image }}">
+                                                    @endif
+                                                  </td>
+                                                  <td>
+                                                    @if(!empty($supplierDetails->store_name))
+                                                      <img style="width:30px;" src="{{ asset('/images/supplierend_images/store_images/small/'.$supplierDetails->store_image) }}">
+                                                    @endif
+                                                  </td>
+                                                </tr>
+                                              </table>
                                         </div>
                                     </div>
                                     <!-- end form-group row -->
