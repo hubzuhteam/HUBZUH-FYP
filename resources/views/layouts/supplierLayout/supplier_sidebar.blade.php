@@ -51,6 +51,18 @@
                             <li class="active"><a href="{{ url('/supplier/view-categories') }}">View Categories</a></li>
 
 						</ul>
+                    </li>
+                    <li class="has-sub active">
+						<a href="javascript:;">
+					        <b class="caret"></b>
+						    <i class="fa fa-th-large"></i>
+						    <span>Products</span>
+					    </a>
+						<ul class="sub-menu">
+						    <li class="active"><a href="{{ url('/supplier/add-product') }}">Add Product</a></li>
+                            <li class="active"><a href="{{ url('/supplier/view-products') }}">View Products</a></li>
+
+						</ul>
 					</li>
 				</ul>
 				<!-- end sidebar nav -->

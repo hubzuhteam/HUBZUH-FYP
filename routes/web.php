@@ -66,6 +66,25 @@ Route::group(['middleware'=>['supplierlogin']],function(){
 
 	Route::match(['get','post'],'/supplier/delete-category/{id}','CategoryController@deleteCategorySupplier');
 
+    // Supplier Products Routes
+    Route::match(['get','post'],'/supplier/add-product','ProductsController@addProductSupplier');
+    Route::match(['get','post'],'/supplier/edit-product/{id}','ProductsController@editProductSupplier');
+    Route::get('/supplier/delete-product/{id}','ProductsController@deleteProductSupplier');
+    Route::get('/supplier/view-products','ProductsController@viewProductsSupplier');
+    Route::get('/supplier/delete-product-image/{id}','ProductsController@deleteProductImageSupplier');
+    Route::get('/supplier/delete-alt-image/{id}','ProductsController@deleteAltImageSupplier');
+    Route::get('/supplier/delete-product-video/{id}','ProductsController@deleteProductVideoSupplier');
+
+        	// Supplier Product Attributes Routes
+	Route::match(['get', 'post'], '/supplier/add-attributes/{id}','ProductsController@addAttributesSupplier');
+    Route::match(['get', 'post'], '/supplier/edit-attributes/{id}','ProductsController@editAttributesSupplier');
+    Route::get('/supplier/delete-attribute/{id}','ProductsController@deleteAttributeSupplier');
+
+    //supplier add images
+    Route::match(['get', 'post'], '/supplier/add-images/{id}','ProductsController@addImagesSupplier');
+
+    // supplier delete alt image
+    Route::get('/admin/delete-alt-image/{id}','ProductsController@deleteAltImageSupplier');
 
 
 });
@@ -206,7 +225,7 @@ Route::group(['middleware' => ['adminlogin']], function () {
 	Route::match(['get', 'post'], '/admin/add-attributes/{id}','ProductsController@addAttributes');
     Route::match(['get', 'post'], '/admin/edit-attributes/{id}','ProductsController@editAttributes');
     Route::get('/admin/delete-attribute/{id}','ProductsController@deleteAttribute');
-    Route::match(['get', 'post'], '/admin/edit-attributes/{id}','ProductsController@editAttributes');
+    // Route::match(['get', 'post'], '/admin/edit-attributes/{id}','ProductsController@editAttributes');
 
     	// Admin Coupon Routes
     Route::match(['get','post'],'/admin/add-coupon','CouponsController@addCoupon');

@@ -66,7 +66,7 @@ class SupplierController extends Controller
                         $filename = rand(111,99999).'.'.$extension;
                         $large_image_path = 'images/supplierend_images/store_images/large/'.$filename;
                         $medium_image_path = 'images/supplierend_images/store_images/medium/'.$filename;
-                        $small_image_path = 'images/supplierend_images/store_images/small/'.$filename;
+                        $small_image_path = '`images/supplierend_images/store_images/small/`'.$filename;
                         // Resize Images
                         Image::make($image_tmp)->save($large_image_path);
                         Image::make($image_tmp)->resize(600,600)->save($medium_image_path);

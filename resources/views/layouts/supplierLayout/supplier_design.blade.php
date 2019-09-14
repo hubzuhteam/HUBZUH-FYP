@@ -38,7 +38,9 @@
 
 	<!-- ================== BEGIN BASE JS ================== -->
 	<script src="{{ asset('/plugins/supplierend_plugins/pace/pace.min.js')}}"></script>
-	<!-- ================== END BASE JS ================== -->
+    <!-- ================== END BASE JS ================== -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
 </head>
 <body>
 
@@ -49,6 +51,22 @@
         @yield('content');
 
         @include('layouts.supplierLayout.supplier_footer')
+
+        <!-- ================== ADMIN JS ================== -->
+
+        <script src="{{ asset('js/backend_js/jquery.min.js') }}"></script>
+        {{-- <script src="{{ asset('js/backend_js/jquery.ui.custom.js') }}"></script> --}}
+        <script src="{{ asset('js/backend_js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('js/backend_js/jquery.uniform.js') }}"></script>
+        <script src="{{ asset('js/backend_js/select2.min.js') }}"></script>
+        <script src="{{ asset('js/backend_js/jquery.dataTables.min.js') }}"></script>
+        <script src="{{ asset('js/backend_js/jquery.validate.js') }}"></script>
+        <script src="{{ asset('js/backend_js/matrix.tables.js') }}"></script>
+        <script src="{{ asset('js/backend_js/matrix.js') }}"></script>
+        <script src="{{ asset('js/backend_js/matrix.form_validation.js') }}"></script>
+        <script src="{{ asset('js/backend_js/matrix.popover.js') }}"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 
 	<!-- ================== BEGIN BASE JS ================== -->
     <script src="{{ asset('plugins/supplierend_plugins/jquery/jquery-3.2.1.min.js') }}"></script>
@@ -76,7 +94,6 @@
 	<script src="{{ asset('plugins/supplierend_plugins/jquery-jvectormap/jquery-jvectormap-world-mill-en.js') }}"></script>
 	<script src="{{ asset('plugins/supplierend_plugins/bootstrap-datepicker/js/bootstrap-datepicker.js') }}"></script>
     <script src="{{ asset('js/supplierend_js/demo/dashboard.min.js')}}"></script>
-    <script src="{{ asset('js/supplier_js/matrix.form_validation.js') }}"></script>
 
     {{--  for supplier view categories  --}}
     <script src="{{ asset('plugins/supplierend_plugins/DataTables/media/js/jquery.dataTables.js')}}"></script>
@@ -84,6 +101,8 @@
 	<script src="{{ asset('plugins/supplierend_plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js')}}"></script>
     <script src="{{ asset('js/supplierend_js/demo/table-manage-default.demo.min.js')}}"></script>
 	<!-- ================== END PAGE LEVEL JS ================== -->
+
+
 
     {{-- Datepicker Calendar --}}
     {{-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> --}}
@@ -106,5 +125,24 @@
                 TableManageDefault.init();
             });
     </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var maxField = 10; //Input fields increment limitation
+            var addButton = $('.add_button'); //Add button selector
+            var wrapper = $('.field_wrapper'); //Input field wrapper
+            var fieldHTML = '<div class="controls field_wrapper" style="margin-left:0px;margin-top:10px"><input type="text" name="sku[]" id="sku" placeholder="SKU" style="width: 140px;height: 30px"/>&nbsp;<input type="text" name="size[]" id="size" placeholder="Size" style="width: 140px;height: 30px"/>&nbsp;<input type="text" name="price[]" id="price" placeholder="Price" style="width: 140px;height: 30px"/>&nbsp;<input type="text" name="stock[]" id="stock" placeholder="Stock" style="width: 140px;height: 30px"/><a href="javascript:void(0);" class="remove_button" title="Remove field">Remove</a></div>'; //New input field html
+            var x = 1; //Initial field counter is 1
+            $(addButton).click(function() { //Once add button is clicked
+                if (x < maxField) { //Check maximum number of input fields
+                    x++; //Increment field counter
+                    $(wrapper).append(fieldHTML); // Add field html
+                }
+            });
+            $(wrapper).on('click', '.remove_button', function(e) { //Once remove button is clicked
+                e.preventDefault();
+                $(this).parent('div').remove(); //Remove field html
+                x--; //Decrement field counter
+            });
+        });        </script>
 </body>
 </html>
