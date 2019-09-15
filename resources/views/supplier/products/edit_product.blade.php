@@ -110,7 +110,7 @@
                                 <div class="form-group row m-b-10">
                                     <label class="col-md-3 text-md-right col-form-label">Image</label>
                                     <div class="col-md-6" id="uniform-undefined" >
-                                         {{-- <input type="file" name="image" id="image"/> --}}
+                                         {{--  <input type="file" name="image" id="image"/>  --}}
                                          <div id="uniform-undefined">
                                             <table>
                                               <tr>

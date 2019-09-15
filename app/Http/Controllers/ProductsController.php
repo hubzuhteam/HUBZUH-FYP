@@ -1031,6 +1031,9 @@ class ProductsController extends Controller
         }
         // Get Product Details
         $productDetails = Product::with('attributes')->where('id',$id)->first();
+        // echo $productDetails->supplier_id;die;
+        $supplierDetails = Supplier::where('id',$productDetails->supplier_id)->first();
+        // echo $supplierDetails;die;
         $relatedProducts = Product::where('id','!=',$id)->where(['category_id' => $productDetails->category_id])->get();
         /*foreach($relatedProducts->chunk(3) as $chunk){
             foreach($chunk as $item){
@@ -1062,7 +1065,7 @@ class ProductsController extends Controller
         $meta_title = $productDetails->product_name;
         $meta_description = $productDetails->description;
         $meta_keywords = $productDetails->product_name;
-        return view('products.detail')->with(compact('productDetails','relatedProducts','categories'
+        return view('products.detail')->with(compact('productDetails','relatedProducts','categories','supplierDetails'
         ,'productAltImages','total_stock','meta_title','meta_description','meta_keywords','banners','breadcrumb'));
     }
 

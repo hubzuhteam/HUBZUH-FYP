@@ -65,8 +65,8 @@
                                 <h2>{{ $productDetails->product_name}}</h2>
                                 <p>Code: {{ $productDetails->product_code}}</p>
                                 <p>Color: {{ $productDetails->product_color}}</p>
-                                <p>Sleeve: {{ $productDetails->sleeve}}</p>
                                 <p>Pattern: {{ $productDetails->pattern}}</p>
+                                <p><span id="Availability"> @if ($productDetails->sleeve=="")@else Sleeve: {{ $productDetails->sleeve}} @endif</p>
                                 <p>
 										<select id="selSize" name="size" style="width:150px;" required>
 											<option value="">Select Size</option>
@@ -90,7 +90,7 @@
 
                                 <p><b>Availability:</b> <span id="Availability"> @if ($total_stock>0) In Stock @else Out of Stock @endif</p>
                                 <p><b>Condition:</b> New</p></span>
-                                {{-- <p><b>Brand:</b> E-SHOPPER</p> --}}
+                                <p><b>Store Name: </b>{{ $supplierDetails->store_name}}</p>
                                 <a href=""><img src="images/product-details/share.png" class="share img-responsive" alt="" /></a>
                             </div>
                     </form>
@@ -103,7 +103,7 @@
                     <div class="product-information">
                             <button type="submit" class="btn btn-default" style="background-color: cornflowerblue;color:white" id="view_store">
                                     <i class="fa fa-eye"></i>
-                        <a href="{{url('/view_store/'.$productDetails->supplier_id)}}" style="background-color: cornflowerblue;color:white">View Store</a>
+                        <a href="{{url('/view_store/'.$productDetails->supplier_id)}}" style="background-color: cornflowerblue;color:white">View {{ $supplierDetails->store_name}}</a>
                             </button>
 
                         <button type="submit" class="btn btn-default" style="background-color: tomato;color:white" id="wishlistButton">
