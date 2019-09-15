@@ -34,7 +34,7 @@
                             @foreach ($userwishlist as $wishlist)
 		    				<tr>
 		    					<td class="cart_product">
-		    						<a href="{{ url('product/'.$wishlist->product_id)}}"><img  style="width: 75px" src="{{ asset('images/backend_images/products/small/'.$wishlist->image) }}" alt=""></a>
+		    						<a href="{{ url('product/'.$wishlist->product_id)}}"><img  style="width: 75px" src="{{ asset('images/supplierend_images/products/small/'.$wishlist->image) }}" alt=""></a>
 		    					</td>
 		    					<td class="cart_description">
                                 <h4><a href="{{ url('product/'.$wishlist->product_id)}}">{{$wishlist->product_name}}</a></h4>

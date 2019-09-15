@@ -19,9 +19,9 @@
                         <div class="col-sm-5">
                             <div class="view-product">
                                 <div class="easyzoom easyzoom--overlay easyzoom--with-thumbnails">
-                                    <a href="{{ asset('images/backend_images/products/large/'.$productDetails->image) }}">
+                                    <a href="{{ asset('images/supplierend_images/products/large/'.$productDetails->image) }}">
                                         <img style="width: 300px;" class="mainImage"
-                                        src="{{ asset('images/backend_images/products/medium/'.$productDetails->image) }}"
+                                        src="{{ asset('images/supplierend_images/products/medium/'.$productDetails->image) }}"
                                          alt="" />
                                     </a>
                                 </div>
@@ -31,17 +31,17 @@
                                 <div class="carousel-inner">
 										{{-- @if(count($productAltImages)>0) --}}
 										<div class="item active thumbnails">
-                                                <a href="{{ asset('images/backend_images/products/large/'.$productDetails->image) }}"
-                                                    data-standard="{{ asset('images/backend_images/products/small/'.$productDetails->image) }}">
+                                                <a href="{{ asset('images/supplierend_images/products/large/'.$productDetails->image) }}"
+                                                    data-standard="{{ asset('images/supplierend_images/products/small/'.$productDetails->image) }}">
                                                     <img class="changeImage" style="width: 80px;" class="mainImage"
-                                                    src="{{ asset('images/backend_images/products/small/'.$productDetails->image) }}"
+                                                    src="{{ asset('images/supplierend_images/products/small/'.$productDetails->image) }}"
                                                      alt="" />
                                                 </a>
 												@foreach($productAltImages as $altimg)
-													<a href="{{ asset('images/backend_images/products/medium/'.$altimg->image) }}"
-														data-standard="{{ asset('images/backend_images/products/small/'.$altimg->image) }}">
+													<a href="{{ asset('images/supplierend_images/products/medium/'.$altimg->image) }}"
+														data-standard="{{ asset('images/supplierend_images/products/small/'.$altimg->image) }}">
                                                           <img class="changeImage" style="width:80px; cursor:pointer"
-                                                          src="{{ asset('images/backend_images/products/small/'.$altimg->image) }}" alt="">
+                                                          src="{{ asset('images/supplierend_images/products/small/'.$altimg->image) }}" alt="">
 													</a>
 												@endforeach
 										</div>
@@ -66,8 +66,7 @@
                                 <p>Code: {{ $productDetails->product_code}}</p>
                                 <p>Color: {{ $productDetails->product_color}}</p>
                                 <p>Sleeve: {{ $productDetails->sleeve}}</p>
-
-
+                                <p>Pattern: {{ $productDetails->pattern}}</p>
                                 <p>
 										<select id="selSize" name="size" style="width:150px;" required>
 											<option value="">Select Size</option>
@@ -102,6 +101,11 @@
                                 <input type="hidden" name="product_name" value="{{ $productDetails->product_name }}">
                                 <input type="hidden" name="price" id="price" value="{{ $productDetails->price }}">
                     <div class="product-information">
+                            <button type="submit" class="btn btn-default" style="background-color: cornflowerblue;color:white" id="view_store">
+                                    <i class="fa fa-eye"></i>
+                        <a href="{{url('/view_store/'.$productDetails->supplier_id)}}" style="background-color: cornflowerblue;color:white">View Store</a>
+                            </button>
+
                         <button type="submit" class="btn btn-default" style="background-color: tomato;color:white" id="wishlistButton">
                             <i class="fa fa-heart"></i>
                             Add to Wish List
@@ -199,7 +203,7 @@
                                             <div class="product-image-wrapper">
                                                 <div class="single-products">
                                                     <div class="productinfo text-center">
-                                                        <img style="width:200px;" src="{{ asset('images/backend_images/products/small/'.$item->image) }}" alt="" />
+                                                        <img style="width:200px;" src="{{ asset('images/supplierend_images/products/small/'.$item->image) }}" alt="" />
                                                         <h2>Rs. {{ $item->price }}</h2>
                                                         <p>{{ $item->product_name }}</p>
                                                         <a href="{{ url('/product/'.$item->id) }}"><button type="button" class="btn btn-default add-to-cart"><i class="fa fa-eye"></i>View</button></a>

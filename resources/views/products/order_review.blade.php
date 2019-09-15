@@ -93,7 +93,7 @@
 						@foreach($userCart as $cart)
 						<tr>
 							<td class="cart_product">
-								<a href=""><img style="width:130px;" src="{{ asset('/images/backend_images/products/small/'.$cart->image) }}" alt=""></a>
+								<a href=""><img style="width:130px;" src="{{ asset('/images/supplierend_images/products/small/'.$cart->image) }}" alt=""></a>
 							</td>
 							<td class="cart_description">
 								<h4><a href="">{{ $cart->product_name }}</a></h4>

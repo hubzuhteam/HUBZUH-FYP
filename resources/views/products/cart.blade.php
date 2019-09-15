@@ -37,7 +37,7 @@
                             @foreach ($userCart as $cart)
 		    				<tr>
 		    					<td class="cart_product">
-		    						<a href="{{ url('product/'.$cart->product_id)}}"><img  style="width: 75px" src="{{ asset('images/backend_images/products/small/'.$cart->image) }}" alt=""></a>
+		    						<a href="{{ url('product/'.$cart->product_id)}}"><img  style="width: 75px" src="{{ asset('images/supplierend_images/products/small/'.$cart->image) }}" alt=""></a>
 		    					</td>
 		    					<td class="cart_description">
                                 <h4><a href="{{ url('product/'.$cart->product_id)}}">{{$cart->product_name}}</a></h4>

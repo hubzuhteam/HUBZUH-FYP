@@ -39,6 +39,9 @@ Route::post('/supplier-login','SupplierController@login');
 //Supplier Logout
 Route::get('/supplier-logout','SupplierController@logout');
 
+//view supplier store
+Route::match(['get','post'],'/view_store/{id}','ProductsController@ViewStore');
+
 
 //all routes after supplier
 Route::group(['middleware'=>['supplierlogin']],function(){

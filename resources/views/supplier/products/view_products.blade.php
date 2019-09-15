@@ -86,9 +86,9 @@
                               <a href="  {{ url('/supplier/edit-product/'.$product->id) }}"
                               class="btn btn-primary btn-mini" title="Edit Product">Edit</a>
                               <a href="{{ url('/supplier/add-attributes/'.$product->id) }}"
-                              class="btn btn-success btn-mini" title="Add Attributes">Add</a>
+                              class="btn btn-success btn-mini" title="Add Attributes">Add Attributes</a>
                               <a href="{{ url('/supplier/add-images/'.$product->id) }}"
-                                  class="btn btn-primary btn-mini" title="Add Images">Add</a>
+                                  class="btn btn-primary btn-mini" title="Add Images">Add Images</a>
                               <a id="delProduct"
                                href="{{ url('/supplier/delete-product/'.$product->id) }}"
                               class="btn btn-warning btn-mini deleteRecord" title="Delete Product">Delete</a>

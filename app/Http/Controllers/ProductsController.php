@@ -251,7 +251,56 @@ class ProductsController extends Controller
 		return view('supplier.products.edit_product')->with(compact('productDetails','supplierDetails','categories_drop_down','sleeveArray','patternArray' ));
     }
     public function deleteProductSupplier($id = null){
+        $productImage = Product::where('id',$id)->first();
+
+        //echo $productImage;die;
+        //echo "<pre>"; print_r($productImage); die;
+
         Product::where(['id'=>$id])->delete();
+        ProductsAttribute::where(['product_id'=>$id])->delete();
+
+
+        // Get Product Image Paths
+		$large_image_path = 'images/supplierend_images/products/large/';
+		$medium_image_path = 'images/supplierend_images/products/medium/';
+		$small_image_path = 'images/supplierend_images/products/small/';
+
+		// Delete Large Image if  exists in Folder
+        if(file_exists($large_image_path.$productImage->image)){
+            unlink($large_image_path.$productImage->image);
+        }
+
+        // Delete Medium Image if  exists in Folder
+        if(file_exists($medium_image_path.$productImage->image)){
+            unlink($medium_image_path.$productImage->image);
+        }
+
+        // Delete Small Image if exists in Folder
+        if(file_exists($small_image_path.$productImage->image)){
+            unlink($small_image_path.$productImage->image);
+        }
+        $productImage = ProductsImage::where('product_id',$id)->first();
+        // Get Product Image Paths
+        $large_image_path = 'images/supplierend_images/products/large/';
+        $medium_image_path = 'images/supplierend_images/products/medium/';
+        $small_image_path = 'images/supplierend_images/products/small/';
+
+        // Delete Large Image if not exists in Folder
+        if(file_exists($large_image_path.$productImage->image)){
+            unlink($large_image_path.$productImage->image);
+        }
+
+        // Delete Medium Image if not exists in Folder
+        if(file_exists($medium_image_path.$productImage->image)){
+            unlink($medium_image_path.$productImage->image);
+        }
+
+        // Delete Small Image if not exists in Folder
+        if(file_exists($small_image_path.$productImage->image)){
+            unlink($small_image_path.$productImage->image);
+        }
+        ProductsImage::where(['product_id'=>$id])->delete();
+
         return redirect()->back()->with('flash_message_success', 'Product has been deleted successfully');
     }
     public function viewProductsSupplier(){
@@ -450,6 +499,11 @@ class ProductsController extends Controller
        return view('supplier.products.add_images')->with(compact('productDetails','productImages','supplierDetails'));
    }
 
+    public function viewStore($id=null){
+
+        return view('products.view_store');
+
+    }
 
 
      ////////////ADMIN////////////
@@ -512,9 +566,9 @@ class ProductsController extends Controller
     	 		if($image_tmp->isValid()){
     	 			$extension = $image_tmp->getClientOriginalExtension();
     	 			$filename = rand(111,99999).'.'.$extension;
-    	 			$large_image_path = 'images/backend_images/products/large/'.$filename;
-    	 			$medium_image_path = 'images/backend_images/products/medium/'.$filename;
-    	 			$small_image_path = 'images/backend_images/products/small/'.$filename;
+    	 			$large_image_path = 'images/supplierend_images/products/large/'.$filename;
+    	 			$medium_image_path = 'images/supplierend_images/products/medium/'.$filename;
+    	 			$small_image_path = 'images/supplierend_images/products/small/'.$filename;
     	 			// Resize Images
     	 			Image::make($image_tmp)->save($large_image_path);
     	 			Image::make($image_tmp)->resize(600,600)->save($medium_image_path);
@@ -602,9 +656,9 @@ class ProductsController extends Controller
                     // Upload Images after Resize
                     $extension = $image_tmp->getClientOriginalExtension();
 	                $fileName = rand(111,99999).'.'.$extension;
-                    $large_image_path = 'images/backend_images/products/large'.'/'.$fileName;
-                    $medium_image_path = 'images/backend_images/products/medium'.'/'.$fileName;
-                    $small_image_path = 'images/backend_images/products/small'.'/'.$fileName;
+                    $large_image_path = 'images/supplierend_images/products/large'.'/'.$fileName;
+                    $medium_image_path = 'images/supplierend_images/products/medium'.'/'.$fileName;
+                    $small_image_path = 'images/supplierend_images/products/small'.'/'.$fileName;
 
 	                Image::make($image_tmp)->save($large_image_path);
  					Image::make($image_tmp)->resize(600, 600)->save($medium_image_path);
@@ -696,9 +750,9 @@ class ProductsController extends Controller
 		$productImage = Product::where('id',$id)->first();
 
 		// Get Product Image Paths
-		$large_image_path = 'images/backend_images/products/large/';
-		$medium_image_path = 'images/backend_images/products/medium/';
-		$small_image_path = 'images/backend_images/products/small/';
+		$large_image_path = 'images/supplierend_images/products/large/';
+		$medium_image_path = 'images/supplierend_images/products/medium/';
+		$small_image_path = 'images/supplierend_images/products/small/';
 
 		// Delete Large Image if not exists in Folder
         if(file_exists($large_image_path.$productImage->image)){
@@ -728,9 +782,9 @@ class ProductsController extends Controller
         $productImage = ProductsImage::where('id',$id)->first();
 
         // Get Product Image Paths
-        $large_image_path = 'images/backend_images/products/large/';
-        $medium_image_path = 'images/backend_images/products/medium/';
-        $small_image_path = 'images/backend_images/products/small/';
+        $large_image_path = 'images/supplierend_images/products/large/';
+        $medium_image_path = 'images/supplierend_images/products/medium/';
+        $small_image_path = 'images/supplierend_images/products/small/';
 
         // Delete Large Image if not exists in Folder
         if(file_exists($large_image_path.$productImage->image)){
@@ -846,9 +900,9 @@ class ProductsController extends Controller
                     $image = new ProductsImage;
                     $extension = $file->getClientOriginalExtension();
                     $fileName = rand(111,99999).'.'.$extension;
-                    $large_image_path = 'images/backend_images/products/large'.'/'.$fileName;
-                    $medium_image_path = 'images/backend_images/products/medium'.'/'.$fileName;
-                    $small_image_path = 'images/backend_images/products/small'.'/'.$fileName;
+                    $large_image_path = 'images/supplierend_images/products/large'.'/'.$fileName;
+                    $medium_image_path = 'images/supplierend_images/products/medium'.'/'.$fileName;
+                    $small_image_path = 'images/supplierend_images/products/small'.'/'.$fileName;
                     Image::make($file)->save($large_image_path);
                     Image::make($file)->resize(600, 600)->save($medium_image_path);
                     Image::make($file)->resize(300, 300)->save($small_image_path);
