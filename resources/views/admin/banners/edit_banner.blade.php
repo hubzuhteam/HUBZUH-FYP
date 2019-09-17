@@ -34,7 +34,8 @@
                 <div class="controls">
                   <div class="uploader" id="uniform-undefined">
                       <input name="image" id="image" type="file" size="19" style="opacity: 0;" required>
-                      <span class="filename">No file selected</span><span class="action">Choose File</span></div>
+                      <span class="filename">No file selected</span><span class="action">Choose File</span>
+                  </div>
                   @if(!empty($bannerDetails->image))
                     <input type="hidden" name="current_image" value="{{ $bannerDetails->image }}">
                   @endif

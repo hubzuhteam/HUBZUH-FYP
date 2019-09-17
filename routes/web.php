@@ -89,6 +89,20 @@ Route::group(['middleware'=>['supplierlogin']],function(){
     // supplier delete alt image
     Route::get('/admin/delete-alt-image/{id}','ProductsController@deleteAltImageSupplier');
 
+    //Supplier Orders
+	Route::get('/supplier/view-orders','ProductsController@viewOrdersSupplier');
+
+    // Supplier Order Details Route
+    Route::get('/supplier/view-order/{id}','ProductsController@viewOrderDetailsSupplier');
+
+    // Supplier Order Details Route
+    Route::get('/supplier/view-order-invoice/{id}','ProductsController@viewOrderInvoiceSupplier');
+
+        // Supplier Banners Routes
+	Route::match(['get','post'],'/supplier/add-banner','BannersController@addBannerSupplier');
+	Route::match(['get','post'],'/supplier/edit-banner/{id}','BannersController@editBannerSupplier');
+	Route::get('supplier/view-banners','BannersController@viewBannersSupplier');
+    // Route::get('/supplier/delete-banner/{id}','BannersController@deleteBanner');
 
 });
 

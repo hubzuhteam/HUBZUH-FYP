@@ -63,7 +63,29 @@
                             <li class="active"><a href="{{ url('/supplier/view-products') }}">View Products</a></li>
 
 						</ul>
-					</li>
+                    </li>
+                    <li class="has-sub active">
+                            <a href="javascript:;">
+                                <b class="caret"></b>
+                                <i class="fa fa-th-large"></i>
+                                <span>Banners</span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li class="active"><a href="{{ url('/supplier/add-banner') }}">Add Banner</a></li>
+                                <li class="active"><a href="{{ url('/supplier/view-banners') }}">View Banners</a></li>
+
+                            </ul>
+                        </li>
+					<li class="has-sub active">
+							<a href="javascript:;">
+								<b class="caret"></b>
+								<i class="fa fa-th-large"></i>
+								<span>Orders</span>
+							</a>
+							<ul class="sub-menu">
+								<li class="active"><a href="{{ url('/supplier/view-orders') }}">View Orders</a></li>
+							</ul>
+						</li>
 				</ul>
 				<!-- end sidebar nav -->
 			</div>

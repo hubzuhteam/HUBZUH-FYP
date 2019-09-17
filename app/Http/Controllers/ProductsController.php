@@ -25,6 +25,41 @@ use App\Banner;
 
 class ProductsController extends Controller
 {
+    public function viewOrderInvoiceSupplier($order_id){
+        $orderDetails = Order::with('orders')->where('id',$order_id)->first();
+        // $orderDetails = json_decode(json_encode($orderDetails));
+        /*echo "<pre>"; print_r($orderDetails); die;*/
+        $user_id = $orderDetails->user_id;
+        $userDetails = User::where('id',$user_id)->first();
+        /*$userDetails = json_decode(json_encode($userDetails));
+        echo "<pre>"; print_r($userDetails);*/
+        $supplierDetails = Supplier::where(['email'=>Session::get('supplierSession')])->first();
+
+        return view('supplier.orders.order_invoice')->with(compact('orderDetails','userDetails','supplierDetails'));
+    }
+    public function viewOrderDetailsSupplier($order_id){
+
+        $orderDetails = Order::with('orders')->where('id',$order_id)->first();
+        $orderDetails = json_decode(json_encode($orderDetails));
+        /*echo "<pre>"; print_r($orderDetails); die;*/
+        $user_id = $orderDetails->user_id;
+        $userDetails = User::where('id',$user_id)->first();
+        /*$userDetails = json_decode(json_encode($userDetails));
+        echo "<pre>"; print_r($userDetails);*/
+        $supplierDetails = Supplier::where(['email'=>Session::get('supplierSession')])->first();
+
+        return view('supplier.orders.order_details')->with(compact('orderDetails','userDetails','supplierDetails'));
+    }
+    public function viewOrdersSupplier(){
+
+        $orders = Order::with('orders')->orderBy('id','Desc')->get();
+        $orders = json_decode(json_encode($orders));
+        /*echo "<pre>"; print_r($orders); die;*/
+
+        $supplierDetails = Supplier::where(['email'=>Session::get('supplierSession')])->first();
+
+        return view('supplier.orders.view_orders')->with(compact('orders','supplierDetails'));
+    }
     public function addProductSupplier(Request $request){
     	 if($request->isMethod('post')){
     	 	$data = $request->all();
@@ -501,6 +536,7 @@ class ProductsController extends Controller
 
     public function viewStore($id=null){
 
+
         return view('products.view_store');
 
     }
@@ -943,9 +979,7 @@ class ProductsController extends Controller
     //================================================================================
     //================================================================================
     public function products($url=null){
-        if (Session::get('adminDetails')['products_access']==0){
-            return redirect('/admin/dashboard')->with('flash_message_error','You have no access for this module');
-        }
+
         // Show 404 Page if Category does not exists
         //,'status'=>1
     	 $categoryCount = Category::where(['url'=>$url,'status'=>1])->count();
@@ -1435,6 +1469,8 @@ class ProductsController extends Controller
 
             $order_id = DB::getPdo()->lastInsertId();
 
+            $supplierDetails = Supplier::where(['email'=>Session::get('supplierSession')])->first();
+
             $cartProducts = DB::table('cart')->where(['user_email'=>$user_email])->get();
             foreach($cartProducts as $pro){
                 $cartPro = new OrdersProduct;
@@ -1447,6 +1483,7 @@ class ProductsController extends Controller
                 $cartPro->product_size = $pro->size;
                 $cartPro->product_price = $pro->price;
                 $cartPro->product_qty = $pro->quantity;
+                $cartPro->supplier_id=$supplierDetails->id;
                 $cartPro->save();
 
 
@@ -1536,13 +1573,16 @@ class ProductsController extends Controller
         if (Session::get('adminDetails')['orders_access']==0){
             return redirect('/admin/dashboard')->with('flash_message_error','You have no access for this module');
         }
+        // echo "check";die;
         $orderDetails = Order::with('orders')->where('id',$order_id)->first();
-        $orderDetails = json_decode(json_encode($orderDetails));
-        /*echo "<pre>"; print_r($orderDetails); die;*/
+        // $orderDetails = json_decode(json_encode($orderDetails    ));
+        // echo "<pre>"; print_r($orderDetails); die;
         $user_id = $orderDetails->user_id;
+        // echo $user_id;die;
         $userDetails = User::where('id',$user_id)->first();
-        /*$userDetails = json_decode(json_encode($userDetails));
-        echo "<pre>"; print_r($userDetails);*/
+        // echo $userDetails;die;
+        // $userDetails = json_decode(json_encode($userDetails));
+        // echo "<pre>"; print_r($userDetails);
         return view('admin.orders.order_details')->with(compact('orderDetails','userDetails'));
     }
     public function updateOrderStatus(Request $request){
