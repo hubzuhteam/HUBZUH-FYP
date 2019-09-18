@@ -65,6 +65,18 @@
 						</ul>
                     </li>
                     <li class="has-sub active">
+						<a href="javascript:;">
+							<b class="caret"></b>
+							<i class="fa fa-th-large"></i>
+							<span>Coupons</span>
+						</a>
+						<ul class="sub-menu">
+							<li class="active"><a href="{{ url('/supplier/add-coupon') }}">Add Coupons</a></li>
+							<li class="active"><a href="{{ url('/supplier/view-coupons') }}">View Coupons</a></li>
+
+						</ul>
+					</li>
+                    <li class="has-sub active">
                             <a href="javascript:;">
                                 <b class="caret"></b>
                                 <i class="fa fa-th-large"></i>

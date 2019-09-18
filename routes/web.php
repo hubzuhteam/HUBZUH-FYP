@@ -104,8 +104,16 @@ Route::group(['middleware'=>['supplierlogin']],function(){
 	Route::get('supplier/view-banners','BannersController@viewBannersSupplier');
     // Route::get('/supplier/delete-banner/{id}','BannersController@deleteBanner');
 
+    //Supplier Coupon add
+    Route::match(['get','post'],'/supplier/add-coupon','CouponsController@addCouponSupplier');
 
+    //Supplier Coupon View
+    Route::get('/supplier/view-coupons','CouponsController@viewCouponsSupplier');
 
+    //Supplier Coupon Edit
+    Route::match(['get','post'],'/supplier/edit-coupon/{id}','CouponsController@editCouponSupplier');
+    // Supplier delete Coupon
+    Route::match(['get','post'],'/supplier/delete-coupon/{id}','CouponsController@deleteCouponSupplier');
 });
 
 //________________________________________________//

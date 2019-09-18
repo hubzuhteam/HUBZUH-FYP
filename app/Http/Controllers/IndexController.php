@@ -23,10 +23,10 @@ class IndexController extends Controller
         // $suppliers = Supplier::where(['active'=>1])->get();
 
         $productsAll = Product::whereHas('supplier', function ($query) {
-            $query->where('active', '=', '1%');
+            $query->where('active', '=', '1');
         })->where('status',1)->paginate(12);
 
-        // $products = Product::with('supplier')->where('status',1)->get();
+         $products = Product::with('supplier')->where('status',1)->get();
         // $products = Supplier::all()->products;
         // echo "<pre>"; print_r($productsAll); die;
         // echo $products;die;
