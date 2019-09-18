@@ -40,7 +40,7 @@ Route::post('/supplier-login','SupplierController@login');
 Route::get('/supplier-logout','SupplierController@logout');
 
 //view supplier store
-Route::match(['get','post'],'/view_store/{id}','ProductsController@ViewStore');
+Route::match(['get','post'],'/view_store/{id}','ProductsController@viewStore');
 
 
 //all routes after supplier

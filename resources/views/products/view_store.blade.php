@@ -1,442 +1,903 @@
-{{--  @extends('layouts.frontLayout.front_design')
-@section('content')  --}}
 <!DOCTYPE html>
-<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
-<!--[if !IE]><!-->
 <html lang="en">
-<!--<![endif]-->
 <head>
-	<meta charset="utf-8" />
-	<title>Store Profile</title>
-	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
-	<meta content="" name="description" />
-	<meta content="" name="author" />
+  <meta charset="utf-8">
+  <title>BizPage Bootstrap Template</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
 
-	<!-- ================== BEGIN BASE CSS STYLE ================== -->
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
-	<link href="{{ asset('plugins/supplierend_plugins/jquery-ui/jquery-ui.min.css') }}" rel="stylesheet" />
-	<link href="{{ asset('plugins/supplierend_plugins/animate/animate.min.css')}}" rel="stylesheet'" />
-	<link href="{{ asset('css/supplierend_css/default/style.min.css') }}" rel="stylesheet" />
-	<link href="{{ asset('css/supplierend_css/default/style-responsive.min.css') }}" rel="stylesheet" />
-    <link href="{{ asset('css/supplierend_css/default/theme/default.css') }}" rel="stylesheet" id="theme" />
-    {{--  for table  --}}
-    <link href="{{ asset('plugins/supplierend_plugins/DataTables/media/css/dataTables.bootstrap.min.css')}}" rel="stylesheet" />
-    <link href="{{ asset('plugins/supplierend_plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css')}}" rel="stylesheet" />
-    <script src="{{ asset('plugins/supplierend_plugins/pace/pace.min.js')}}"></script>
-    {{-- calendar datepicker --}}
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <!-- ================== END BASE CSS STYLE ================== -->
+  <!-- Favicons -->
+  <link href="img/favicon.png" rel="icon">
+  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
 
-	<!-- ================== BEGIN PAGE LEVEL CSS STYLE ================== -->
-	<link href="{{ asset('plugins/supplierend_plugins/superbox/css/superbox.min.css')}}" rel="stylesheet" />
-	<link href="{{ asset('plugins/supplierend_plugins/lity/dist/lity.min.css')}}" rel="stylesheet" />
-	<!-- ================== END PAGE LEVEL CSS STYLE ================== -->
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
 
-	<!-- ================== BEGIN BASE JS ================== -->
-    <script src="{{ asset('plugins/supplierend_plugins/pace/pace.min.js')}}"></script>
-	<!-- ================== END BASE JS ================== -->
+  <!-- Bootstrap CSS File -->
+  <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Libraries CSS Files -->
+  {{ asset('css/frontend_css/bootstrap.min.css') }}
+  <link href="{{ asset('lib/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('lib/ionicons/css/ionicons.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('lib/lightbox/css/lightbox.min.css') }}" rel="stylesheet">
+
+
+  <!-- Main Stylesheet File -->
+  <link href="css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+    Theme Name: BizPage
+    Theme URL: https://bootstrapmade.com/bizpage-bootstrap-business-template/
+    Author: BootstrapMade.com
+    License: https://bootstrapmade.com/license/
+  ======================================================= -->
 </head>
+
 <body>
-	<link href="{{ asset('plugins/supplierend_plugins/bootstrap/4.0.0/css/bootstrap.min.css') }}" rel="stylesheet" />
 
-        {{--  $('head').append('<link rel="stylesheet"  href="{{ asset('plugins/supplierend_plugins/bootstrap/4.0.0/css/bootstrap.min.css') }}">');  --}}
-	<!-- begin #page-loader -->
-	<div id="page-loader" class="fade show"><span class="spinner"></span></div>
-	<!-- end #page-loader -->
+  <!--==========================
+    Header
+  ============================-->
+  <header id="header">
+    <div class="container-fluid">
 
-	<!-- begin #page-container -->
-	<div id="page-container" class="fade page-sidebar-fixed page-header-fixed">
-		<!-- begin #header -->
-		<div id="header" class="header navbar-default">
-			<!-- begin navbar-header -->
-			<div class="navbar-header">
-				<a href="index.html" class="navbar-brand"><span class="navbar-logo"></span> <b>Color</b> Admin</a>
-				<button type="button" class="navbar-toggle" data-click="sidebar-toggled">
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-			</div>
-			<!-- end navbar-header -->
+      <div id="logo" class="pull-left">
+        <h1><a href="#intro" class="scrollto">BizPage</a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="#intro"><img src="img/logo.png" alt="" title="" /></a>-->
+      </div>
 
-			<!-- begin header-nav -->
-			<ul class="navbar-nav navbar-right">
-				<li>
-					<form class="navbar-form">
-						<div class="form-group">
-							<input type="text" class="form-control" placeholder="Enter keyword" />
-							<button type="submit" class="btn btn-search"><i class="fa fa-search"></i></button>
-						</div>
-					</form>
-				</li>
-				<li class="dropdown">
-					<a href="javascript:;" data-toggle="dropdown" class="dropdown-toggle f-s-14">
-						<i class="fa fa-bell"></i>
-						<span class="label">5</span>
-					</a>
-					<ul class="dropdown-menu media-list dropdown-menu-right">
-						<li class="dropdown-header">NOTIFICATIONS (5)</li>
-						<li class="media">
-							<a href="javascript:;">
-								<div class="media-left">
-									<i class="fa fa-bug media-object bg-silver-darker"></i>
-								</div>
-								<div class="media-body">
-									<h6 class="media-heading">Server Error Reports <i class="fa fa-exclamation-circle text-danger"></i></h6>
-									<div class="text-muted f-s-11">3 minutes ago</div>
-								</div>
-							</a>
-						</li>
-						<li class="media">
-							<a href="javascript:;">
-								<div class="media-left">
-									<img src="../assets/img/user/user-1.jpg" class="media-object" alt="" />
-									<i class="fab fa-facebook-messenger text-primary media-object-icon"></i>
-								</div>
-								<div class="media-body">
-									<h6 class="media-heading">John Smith</h6>
-									<p>Quisque pulvinar tellus sit amet sem scelerisque tincidunt.</p>
-									<div class="text-muted f-s-11">25 minutes ago</div>
-								</div>
-							</a>
-						</li>
-						<li class="media">
-							<a href="javascript:;">
-								<div class="media-left">
-									<img src="../assets/img/user/user-2.jpg" class="media-object" alt="" />
-									<i class="fab fa-facebook-messenger text-primary media-object-icon"></i>
-								</div>
-								<div class="media-body">
-									<h6 class="media-heading">Olivia</h6>
-									<p>Quisque pulvinar tellus sit amet sem scelerisque tincidunt.</p>
-									<div class="text-muted f-s-11">35 minutes ago</div>
-								</div>
-							</a>
-						</li>
-						<li class="media">
-							<a href="javascript:;">
-								<div class="media-left">
-									<i class="fa fa-plus media-object bg-silver-darker"></i>
-								</div>
-								<div class="media-body">
-									<h6 class="media-heading"> New User Registered</h6>
-									<div class="text-muted f-s-11">1 hour ago</div>
-								</div>
-							</a>
-						</li>
-						<li class="media">
-							<a href="javascript:;">
-								<div class="media-left">
-									<i class="fa fa-envelope media-object bg-silver-darker"></i>
-									<i class="fab fa-google text-warning media-object-icon f-s-14"></i>
-								</div>
-								<div class="media-body">
-									<h6 class="media-heading"> New Email From John</h6>
-									<div class="text-muted f-s-11">2 hour ago</div>
-								</div>
-							</a>
-						</li>
-						<li class="dropdown-footer text-center">
-							<a href="javascript:;">View more</a>
-						</li>
-					</ul>
-				</li>
-				<li class="dropdown navbar-user">
-					<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-						<img src="../assets/img/user/user-13.jpg" alt="" />
-						<span class="d-none d-md-inline">Adam Schwartz</span> <b class="caret"></b>
-					</a>
-					<div class="dropdown-menu dropdown-menu-right">
-						<a href="javascript:;" class="dropdown-item">Edit Profile</a>
-						<a href="javascript:;" class="dropdown-item"><span class="badge badge-danger pull-right">2</span> Inbox</a>
-						<a href="javascript:;" class="dropdown-item">Calendar</a>
-						<a href="javascript:;" class="dropdown-item">Setting</a>
-						<div class="dropdown-divider"></div>
-						<a href="javascript:;" class="dropdown-item">Log Out</a>
-					</div>
-				</li>
-			</ul>
-			<!-- end header navigation right -->
-		</div>
-		<!-- end #header -->
+      <nav id="nav-menu-container">
+        <ul class="nav-menu">
+          <li class="menu-active"><a href="#intro">Home</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#team">Team</a></li>
+          <li class="menu-has-children"><a href="">Drop Down</a>
+            <ul>
+              <li><a href="#">Drop Down 1</a></li>
+              <li><a href="#">Drop Down 3</a></li>
+              <li><a href="#">Drop Down 4</a></li>
+              <li><a href="#">Drop Down 5</a></li>
+            </ul>
+          </li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav><!-- #nav-menu-container -->
+    </div>
+  </header><!-- #header -->
 
-		<!-- begin #content -->
-		<div id="content" class="content content-full-width">
-			<!-- begin profile -->
-			<div class="profile">
-				<div class="profile-header">
-					<!-- BEGIN profile-header-cover -->
-					<div class="profile-header-cover"></div>
-					<!-- END profile-header-cover -->
-					<!-- BEGIN profile-header-content -->
-					<div class="profile-header-content">
-						<!-- BEGIN profile-header-img -->
-						<div class="profile-header-img">
-							<img src="../assets/img/user/user-13.jpg" alt="">
-						</div>
-						<!-- END profile-header-img -->
-						<!-- BEGIN profile-header-info -->
-						<div class="profile-header-info">
-							<h4 class="m-t-10 m-b-5">Sean Ngu</h4>
-							<p class="m-b-10">UXUI + Frontend Developer</p>
-							<a href="#" class="btn btn-xs btn-yellow">Edit Profile</a>
-						</div>
-						<!-- END profile-header-info -->
-					</div>
-					<!-- END profile-header-content -->
-					<!-- BEGIN profile-header-tab -->
-					<ul class="profile-header-tab nav nav-tabs">
-						<li class="nav-item"><a href="#profile-post" class="nav-link active" data-toggle="tab">POSTS</a></li>
-						<li class="nav-item"><a href="#profile-about" class="nav-link" data-toggle="tab">ABOUT</a></li>
-					</ul>
-					<!-- END profile-header-tab -->
-				</div>
-			</div>
-			<!-- end profile -->
-			<!-- begin profile-content -->
-            <div class="profile-content">
-            	<!-- begin tab-content -->
-            	<div class="tab-content p-0">
-            		<!-- begin #profile-about tab -->
-            		<div class="tab-pane fade in" id="profile-about">
-						<!-- begin table -->
-						<div class="table-responsive">
-							<table class="table table-profile">
-								<thead>
-									<tr>
-										<th></th>
-										<th>
-											<h4>Micheal	Meyer <small>Lorraine Stokes</small></h4>
-										</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr class="highlight">
-										<td class="field">Mood</td>
-										<td><a href="javascript:;">Add Mood Message</a></td>
-									</tr>
-									<tr class="divider">
-										<td colspan="2"></td>
-									</tr>
-									<tr>
-										<td class="field">Mobile</td>
-										<td><i class="fa fa-mobile fa-lg m-r-5"></i> +1-(847)- 367-8924 <a href="javascript:;" class="m-l-5">Edit</a></td>
-									</tr>
-									<tr>
-										<td class="field">Home</td>
-										<td><a href="javascript:;">Add Number</a></td>
-									</tr>
-									<tr>
-										<td class="field">Office</td>
-										<td><a href="javascript:;">Add Number</a></td>
-									</tr>
-									<tr class="divider">
-										<td colspan="2"></td>
-									</tr>
-									<tr class="highlight">
-										<td class="field">About Me</td>
-										<td><a href="javascript:;">Add Description</a></td>
-									</tr>
-									<tr class="divider">
-										<td colspan="2"></td>
-									</tr>
-									<tr>
-										<td class="field">Country/Region</td>
-										<td>
-											<select class="form-control input-inline input-xs" name="region">
-												<option value="US" selected>United State</option>
-												<option value="AF">Afghanistan</option>
-												<option value="AL">Albania</option>
-												<option value="DZ">Algeria</option>
-												<option value="AS">American Samoa</option>
-												<option value="AD">Andorra</option>
-												<option value="AO">Angola</option>
-												<option value="AI">Anguilla</option>
-												<option value="AQ">Antarctica</option>
-												<option value="AG">Antigua and Barbuda</option>
-											</select>
-										</td>
-									</tr>
-									<tr>
-										<td class="field">City</td>
-										<td>Los Angeles</td>
-									</tr>
-									<tr>
-										<td class="field">State</td>
-										<td><a href="javascript:;">Add State</a></td>
-									</tr>
-									<tr>
-										<td class="field">Website</td>
-										<td><a href="javascript:;">Add Webpage</a></td>
-									</tr>
-									<tr>
-										<td class="field">Gender</td>
-										<td>
-											<select class="form-control input-inline input-xs" name="gender">
-												<option value="male">Male</option>
-												<option value="female">Female</option>
-											</select>
-										</td>
-									</tr>
-									<tr>
-										<td class="field">Birthdate</td>
-										<td>
-											<select class="form-control input-inline input-xs" name="day">
-												<option value="04" selected>04</option>
-											</select>
-											-
-											<select class="form-control input-inline input-xs" name="month">
-												<option value="11" selected>11</option>
-											</select>
-											-
-											<select class="form-control input-inline input-xs" name="year">
-												<option value="1989" selected>1989</option>
-											</select>
-										</td>
-									</tr>
-									<tr>
-										<td class="field">Language</td>
-										<td>
-											<select class="form-control input-inline input-xs" name="language">
-												<option value="" selected>English</option>
-											</select>
-										</td>
-									</tr>
-									<tr class="divider">
-										<td colspan="2"></td>
-									</tr>
-									<tr class="highlight">
-										<td class="field">&nbsp;</td>
-										<td class="p-t-10 p-b-10">
-											<button type="submit" class="btn btn-primary width-150">Update</button>
-											<button type="submit" class="btn btn-white btn-white-without-border width-150 m-l-5">Cancel</button>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-						<!-- end table -->
-					</div>
-            		<!-- end #profile-about tab -->
-				</div>
-            	<!-- end tab-content -->
+  <!--==========================
+    Intro Section
+  ============================-->
+  <section id="intro">
+    <div class="intro-container">
+      <div id="introCarousel" class="carousel  slide carousel-fade" data-ride="carousel">
+
+        <ol class="carousel-indicators"></ol>
+
+        <div class="carousel-inner" role="listbox">
+
+          <div class="carousel-item active">
+            <div class="carousel-background"><img src="img/intro-carousel/1.jpg" alt=""></div>
+            <div class="carousel-container">
+              <div class="carousel-content">
+                <h2>We are professional</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                <a href="#featured-services" class="btn-get-started scrollto">Get Started</a>
+              </div>
             </div>
-			<!-- end profile-content -->
-		</div>
-		<!-- end #content -->
+          </div>
 
-        <!-- begin theme-panel -->
-        <div class="theme-panel">
-            <a href="javascript:;" data-click="theme-panel-expand" class="theme-collapse-btn"><i class="fa fa-cog"></i></a>
-            <div class="theme-panel-content">
-                <h5 class="m-t-0">Color Theme</h5>
-                <ul class="theme-list clearfix">
-                    <li class="active"><a href="javascript:;" class="bg-green" data-theme="default" data-theme-file="{{ asset('css/supplierend_css/default/theme/default.css')}}" data-click="theme-selector" data-toggle="tooltip" data-trigger="hover" data-container="body" data-title="Default">&nbsp;</a></li>
-                    <li><a href="javascript:;" class="bg-red" data-theme="red" data-theme-file="{{ asset('css/supplierend_css/default/theme/red.css')}}" data-click="theme-selector" data-toggle="tooltip" data-trigger="hover" data-container="body" data-title="Red">&nbsp;</a></li>
-                    <li><a href="javascript:;" class="bg-blue" data-theme="blue" data-theme-file="{{ asset('css/supplierend_css/default/theme/blue.css')}}" data-click="theme-selector" data-toggle="tooltip" data-trigger="hover" data-container="body" data-title="Blue">&nbsp;</a></li>
-                    <li><a href="javascript:;" class="bg-purple" data-theme="purple" data-theme-file="{{ asset('css/supplierend_css/default/theme/purple.css')}}" data-click="theme-selector" data-toggle="tooltip" data-trigger="hover" data-container="body" data-title="Purple">&nbsp;</a></li>
-                    <li><a href="javascript:;" class="bg-orange" data-theme="orange" data-theme-file="{{ asset('css/supplierend_css/default/theme/orange.css')}}" data-click="theme-selector" data-toggle="tooltip" data-trigger="hover" data-container="body" data-title="Orange">&nbsp;</a></li>
-                    <li><a href="javascript:;" class="bg-black" data-theme="black" data-theme-file="{{ asset('css/supplierend_css/default/theme/black.css')}}" data-click="theme-selector" data-toggle="tooltip" data-trigger="hover" data-container="body" data-title="Black">&nbsp;</a></li>
-                </ul>
-                <div class="divider"></div>
-                <div class="row m-t-10">
-                    <div class="col-md-5 control-label double-line">Header Styling</div>
-                    <div class="col-md-7">
-                        <select name="header-styling" class="form-control form-control-sm">
-                            <option value="1">default</option>
-                            <option value="2">inverse</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row m-t-10">
-                    <div class="col-md-5 control-label">Header</div>
-                    <div class="col-md-7">
-                        <select name="header-fixed" class="form-control form-control-sm">
-                            <option value="1">fixed</option>
-                            <option value="2">default</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row m-t-10">
-                    <div class="col-md-5 control-label double-line">Sidebar Styling</div>
-                    <div class="col-md-7">
-                        <select name="sidebar-styling" class="form-control form-control-sm">
-                            <option value="1">default</option>
-                            <option value="2">grid</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row m-t-10">
-                    <div class="col-md-5 control-label">Sidebar</div>
-                    <div class="col-md-7">
-                        <select name="sidebar-fixed" class="form-control form-control-sm">
-                            <option value="1">fixed</option>
-                            <option value="2">default</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row m-t-10">
-                    <div class="col-md-5 control-label double-line">Sidebar Gradient</div>
-                    <div class="col-md-7">
-                        <select name="content-gradient" class="form-control form-control-sm">
-                            <option value="1">disabled</option>
-                            <option value="2">enabled</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row m-t-10">
-                    <div class="col-md-5 control-label double-line">Content Styling</div>
-                    <div class="col-md-7">
-                        <select name="content-styling" class="form-control form-control-sm">
-                            <option value="1">default</option>
-                            <option value="2">black</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row m-t-10">
-                    <div class="col-md-12">
-                        <a href="javascript:;" class="btn btn-inverse btn-block btn-sm" data-click="reset-local-storage">Reset Local Storage</a>
-                    </div>
-                </div>
+          <div class="carousel-item">
+            <div class="carousel-background"><img src="img/intro-carousel/2.jpg" alt=""></div>
+            <div class="carousel-container">
+              <div class="carousel-content">
+                <h2>At vero eos et accusamus</h2>
+                <p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut.</p>
+                <a href="#featured-services" class="btn-get-started scrollto">Get Started</a>
+              </div>
             </div>
+          </div>
+
+          <div class="carousel-item">
+            <div class="carousel-background"><img src="img/intro-carousel/3.jpg" alt=""></div>
+            <div class="carousel-container">
+              <div class="carousel-content">
+                <h2>Temporibus autem quibusdam</h2>
+                <p>Beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt omnis iste natus error sit voluptatem accusantium.</p>
+                <a href="#featured-services" class="btn-get-started scrollto">Get Started</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <div class="carousel-background"><img src="img/intro-carousel/4.jpg" alt=""></div>
+            <div class="carousel-container">
+              <div class="carousel-content">
+                <h2>Nam libero tempore</h2>
+                <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum.</p>
+                <a href="#featured-services" class="btn-get-started scrollto">Get Started</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <div class="carousel-background"><img src="img/intro-carousel/5.jpg" alt=""></div>
+            <div class="carousel-container">
+              <div class="carousel-content">
+                <h2>Magnam aliquam quaerat</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                <a href="#featured-services" class="btn-get-started scrollto">Get Started</a>
+              </div>
+            </div>
+          </div>
+
         </div>
-        <!-- end theme-panel -->
 
-		<!-- begin scroll to top btn -->
-		<a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
-		<!-- end scroll to top btn -->
-	</div>
-	<!-- end page container -->
+        <a class="carousel-control-prev" href="#introCarousel" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon ion-chevron-left" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
 
-	<!-- ================== BEGIN BASE JS ================== -->
-	<script src="{{ asset('plugins/supplierend_plugins/jquery/jquery-3.2.1.min.js')}}"></script>
-	<script src="{{ asset('plugins/supplierend_plugins/jquery-ui/jquery-ui.min.js')}}"></script>
-	<script src="{{ asset('plugins/supplierend_plugins/bootstrap/4.0.0/js/bootstrap.bundle.min.js')}}"></script>
-	<!--[if lt IE 9]>
-		<script src="{{ asset('/crossbrowserjs/supplierend_crossbrowserjs/html5shiv.js')}}"></script>
-		<script src="{{ asset('/crossbrowserjs/supplierend_crossbrowserjs/respond.min.js')}}"></script>
-		<script src="{{ asset('/crossbrowserjs/supplierend_crossbrowserjs/excanvas.min.js')}}"></script>
-	<![endif]-->
-	<script src="{{ asset('plugins/supplierend_plugins/slimscroll/jquery.slimscroll.min.js')}}"></script>
-	<script src="{{ asset('plugins/supplierend_plugins/js-cookie/js.cookie.js')}}"></script>
-	<script src="{{ asset('js/supplierend_js/theme/default.min.js')}}"></script>
-	<script src="{{ asset('js/supplierend_js/apps.min.js')}}"></script>
-	<!-- ================== END BASE JS ================== -->
+        <a class="carousel-control-next" href="#introCarousel" role="button" data-slide="next">
+          <span class="carousel-control-next-icon ion-chevron-right" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
 
-	<!-- ================== BEGIN PAGE LEVEL JS ================== -->
-	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false"></script>
-	<script src="{{ asset('plugins/supplierend_plugins/superbox/js/jquery.superbox.min.js')}}"></script>
-	<script src="{{ asset('plugins/supplierend_plugins/lity/dist/lity.min.js')}}"></script>
-	<script src="{{ asset('js/supplierend_js/demo/profile.demo.min.js')}}"></script>
-	<!-- ================== END PAGE LEVEL JS ================== -->
+      </div>
+    </div>
+  </section><!-- #intro -->
 
-	<script>
-		$(document).ready(function() {
-			App.init();
-			Profile.init();
-		});
-	</script>
+  <main id="main">
+
+    <!--==========================
+      Featured Services Section
+    ============================-->
+    <section id="featured-services">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-4 box">
+            <i class="ion-ios-bookmarks-outline"></i>
+            <h4 class="title"><a href="">Lorem Ipsum Delino</a></h4>
+            <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
+          </div>
+
+          <div class="col-lg-4 box box-bg">
+            <i class="ion-ios-stopwatch-outline"></i>
+            <h4 class="title"><a href="">Dolor Sitema</a></h4>
+            <p class="description">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat tarad limino ata</p>
+          </div>
+
+          <div class="col-lg-4 box">
+            <i class="ion-ios-heart-outline"></i>
+            <h4 class="title"><a href="">Sed ut perspiciatis</a></h4>
+            <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
+          </div>
+
+        </div>
+      </div>
+    </section><!-- #featured-services -->
+
+    <!--==========================
+      About Us Section
+    ============================-->
+    <section id="about">
+      <div class="container">
+
+        <header class="section-header">
+          <h3>About Us</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        </header>
+
+        <div class="row about-cols">
+
+          <div class="col-md-4 wow fadeInUp">
+            <div class="about-col">
+              <div class="img">
+                <img src="img/about-mission.jpg" alt="" class="img-fluid">
+                <div class="icon"><i class="ion-ios-speedometer-outline"></i></div>
+              </div>
+              <h2 class="title"><a href="#">Our Mission</a></h2>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-4 wow fadeInUp" data-wow-delay="0.1s">
+            <div class="about-col">
+              <div class="img">
+                <img src="img/about-plan.jpg" alt="" class="img-fluid">
+                <div class="icon"><i class="ion-ios-list-outline"></i></div>
+              </div>
+              <h2 class="title"><a href="#">Our Plan</a></h2>
+              <p>
+                Sed ut perspiciatis unde omnis iste natus error sit voluptatem  doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-4 wow fadeInUp" data-wow-delay="0.2s">
+            <div class="about-col">
+              <div class="img">
+                <img src="img/about-vision.jpg" alt="" class="img-fluid">
+                <div class="icon"><i class="ion-ios-eye-outline"></i></div>
+              </div>
+              <h2 class="title"><a href="#">Our Vision</a></h2>
+              <p>
+                Nemo enim ipsam voluptatem quia voluptas sit aut odit aut fugit, sed quia magni dolores eos qui ratione voluptatem sequi nesciunt Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- #about -->
+
+    <!--==========================
+      Services Section
+    ============================-->
+    <section id="services">
+      <div class="container">
+
+        <header class="section-header wow fadeInUp">
+          <h3>Services</h3>
+          <p>Laudem latine persequeris id sed, ex fabulas delectus quo. No vel partiendo abhorreant vituperatoribus, ad pro quaestio laboramus. Ei ubique vivendum pro. At ius nisl accusam lorenta zanos paradigno tridexa panatarel.</p>
+        </header>
+
+        <div class="row">
+
+          <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-duration="1.4s">
+            <div class="icon"><i class="ion-ios-analytics-outline"></i></div>
+            <h4 class="title"><a href="">Lorem Ipsum</a></h4>
+            <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
+          </div>
+          <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-duration="1.4s">
+            <div class="icon"><i class="ion-ios-bookmarks-outline"></i></div>
+            <h4 class="title"><a href="">Dolor Sitema</a></h4>
+            <p class="description">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat tarad limino ata</p>
+          </div>
+          <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-duration="1.4s">
+            <div class="icon"><i class="ion-ios-paper-outline"></i></div>
+            <h4 class="title"><a href="">Sed ut perspiciatis</a></h4>
+            <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
+          </div>
+          <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
+            <div class="icon"><i class="ion-ios-speedometer-outline"></i></div>
+            <h4 class="title"><a href="">Magni Dolores</a></h4>
+            <p class="description">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+          </div>
+          <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
+            <div class="icon"><i class="ion-ios-barcode-outline"></i></div>
+            <h4 class="title"><a href="">Nemo Enim</a></h4>
+            <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque</p>
+          </div>
+          <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
+            <div class="icon"><i class="ion-ios-people-outline"></i></div>
+            <h4 class="title"><a href="">Eiusmod Tempor</a></h4>
+            <p class="description">Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi</p>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- #services -->
+
+    <!--==========================
+      Call To Action Section
+    ============================-->
+    <section id="call-to-action" class="wow fadeIn">
+      <div class="container text-center">
+        <h3>Call To Action</h3>
+        <p> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <a class="cta-btn" href="#">Call To Action</a>
+      </div>
+    </section><!-- #call-to-action -->
+
+    <!--==========================
+      Skills Section
+    ============================-->
+    <section id="skills">
+      <div class="container">
+
+        <header class="section-header">
+          <h3>Our Skills</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip</p>
+        </header>
+
+        <div class="skills-content">
+
+          <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+              <span class="skill">HTML <i class="val">100%</i></span>
+            </div>
+          </div>
+
+          <div class="progress">
+            <div class="progress-bar bg-info" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
+              <span class="skill">CSS <i class="val">90%</i></span>
+            </div>
+          </div>
+
+          <div class="progress">
+            <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+              <span class="skill">JavaScript <i class="val">75%</i></span>
+            </div>
+          </div>
+
+          <div class="progress">
+            <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100">
+              <span class="skill">Photoshop <i class="val">55%</i></span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!--==========================
+      Facts Section
+    ============================-->
+    <section id="facts"  class="wow fadeIn">
+      <div class="container">
+
+        <header class="section-header">
+          <h3>Facts</h3>
+          <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque</p>
+        </header>
+
+        <div class="row counters">
+
+  				<div class="col-lg-3 col-6 text-center">
+            <span data-toggle="counter-up">274</span>
+            <p>Clients</p>
+  				</div>
+
+          <div class="col-lg-3 col-6 text-center">
+            <span data-toggle="counter-up">421</span>
+            <p>Projects</p>
+  				</div>
+
+          <div class="col-lg-3 col-6 text-center">
+            <span data-toggle="counter-up">1,364</span>
+            <p>Hours Of Support</p>
+  				</div>
+
+          <div class="col-lg-3 col-6 text-center">
+            <span data-toggle="counter-up">18</span>
+            <p>Hard Workers</p>
+  				</div>
+
+  			</div>
+
+        <div class="facts-img">
+          <img src="img/facts-img.png" alt="" class="img-fluid">
+        </div>
+
+      </div>
+    </section><!-- #facts -->
+
+    <!--==========================
+      Portfolio Section
+    ============================-->
+    <section id="portfolio"  class="section-bg" >
+      <div class="container">
+
+        <header class="section-header">
+          <h3 class="section-title">Our Portfolio</h3>
+        </header>
+
+        <div class="row">
+          <div class="col-lg-12">
+            <ul id="portfolio-flters">
+              <li data-filter="*" class="filter-active">All</li>
+              <li data-filter=".filter-app">App</li>
+              <li data-filter=".filter-card">Card</li>
+              <li data-filter=".filter-web">Web</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="row portfolio-container">
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app wow fadeInUp">
+            <div class="portfolio-wrap">
+              <figure>
+                <img src="img/portfolio/app1.jpg" class="img-fluid" alt="">
+                <a href="img/portfolio/app1.jpg" data-lightbox="portfolio" data-title="App 1" class="link-preview" title="Preview"><i class="ion ion-eye"></i></a>
+                <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
+              </figure>
+
+              <div class="portfolio-info">
+                <h4><a href="#">App 1</a></h4>
+                <p>App</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-web wow fadeInUp" data-wow-delay="0.1s">
+            <div class="portfolio-wrap">
+              <figure>
+                <img src="img/portfolio/web3.jpg" class="img-fluid" alt="">
+                <a href="img/portfolio/web3.jpg" class="link-preview" data-lightbox="portfolio" data-title="Web 3" title="Preview"><i class="ion ion-eye"></i></a>
+                <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
+              </figure>
+
+              <div class="portfolio-info">
+                <h4><a href="#">Web 3</a></h4>
+                <p>Web</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app wow fadeInUp" data-wow-delay="0.2s">
+            <div class="portfolio-wrap">
+              <figure>
+                <img src="img/portfolio/app2.jpg" class="img-fluid" alt="">
+                <a href="img/portfolio/app2.jpg" class="link-preview" data-lightbox="portfolio" data-title="App 2" title="Preview"><i class="ion ion-eye"></i></a>
+                <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
+              </figure>
+
+              <div class="portfolio-info">
+                <h4><a href="#">App 2</a></h4>
+                <p>App</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-card wow fadeInUp">
+            <div class="portfolio-wrap">
+              <figure>
+                <img src="img/portfolio/card2.jpg" class="img-fluid" alt="">
+                <a href="img/portfolio/card2.jpg" class="link-preview" data-lightbox="portfolio" data-title="Card 2" title="Preview"><i class="ion ion-eye"></i></a>
+                <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
+              </figure>
+
+              <div class="portfolio-info">
+                <h4><a href="#">Card 2</a></h4>
+                <p>Card</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-web wow fadeInUp" data-wow-delay="0.1s">
+            <div class="portfolio-wrap">
+              <figure>
+                <img src="img/portfolio/web2.jpg" class="img-fluid" alt="">
+                <a href="img/portfolio/web2.jpg" class="link-preview" data-lightbox="portfolio" data-title="Web 2" title="Preview"><i class="ion ion-eye"></i></a>
+                <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
+              </figure>
+
+              <div class="portfolio-info">
+                <h4><a href="#">Web 2</a></h4>
+                <p>Web</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app wow fadeInUp" data-wow-delay="0.2s">
+            <div class="portfolio-wrap">
+              <figure>
+                <img src="img/portfolio/app3.jpg" class="img-fluid" alt="">
+                <a href="img/portfolio/app3.jpg" class="link-preview" data-lightbox="portfolio" data-title="App 3" title="Preview"><i class="ion ion-eye"></i></a>
+                <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
+              </figure>
+
+              <div class="portfolio-info">
+                <h4><a href="#">App 3</a></h4>
+                <p>App</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-card wow fadeInUp">
+            <div class="portfolio-wrap">
+              <figure>
+                <img src="img/portfolio/card1.jpg" class="img-fluid" alt="">
+                <a href="img/portfolio/card1.jpg" class="link-preview" data-lightbox="portfolio" data-title="Card 1" title="Preview"><i class="ion ion-eye"></i></a>
+                <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
+              </figure>
+
+              <div class="portfolio-info">
+                <h4><a href="#">Card 1</a></h4>
+                <p>Card</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-card wow fadeInUp" data-wow-delay="0.1s">
+            <div class="portfolio-wrap">
+              <figure>
+                <img src="img/portfolio/card3.jpg" class="img-fluid" alt="">
+                <a href="img/portfolio/card3.jpg" class="link-preview" data-lightbox="portfolio" data-title="Card 3" title="Preview"><i class="ion ion-eye"></i></a>
+                <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
+              </figure>
+
+              <div class="portfolio-info">
+                <h4><a href="#">Card 3</a></h4>
+                <p>Card</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-web wow fadeInUp" data-wow-delay="0.2s">
+            <div class="portfolio-wrap">
+              <figure>
+                <img src="img/portfolio/web1.jpg" class="img-fluid" alt="">
+                <a href="img/portfolio/web1.jpg" class="link-preview" data-lightbox="portfolio" data-title="Web 1" title="Preview"><i class="ion ion-eye"></i></a>
+                <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
+              </figure>
+
+              <div class="portfolio-info">
+                <h4><a href="#">Web 1</a></h4>
+                <p>Web</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- #portfolio -->
+
+    <!--==========================
+      Clients Section
+    ============================-->
+    <section id="clients" class="wow fadeInUp">
+      <div class="container">
+
+        <header class="section-header">
+          <h3>Our Clients</h3>
+        </header>
+
+        <div class="owl-carousel clients-carousel">
+          <img src="img/clients/client-1.png" alt="">
+          <img src="img/clients/client-2.png" alt="">
+          <img src="img/clients/client-3.png" alt="">
+          <img src="img/clients/client-4.png" alt="">
+          <img src="img/clients/client-5.png" alt="">
+          <img src="img/clients/client-6.png" alt="">
+          <img src="img/clients/client-7.png" alt="">
+          <img src="img/clients/client-8.png" alt="">
+        </div>
+
+      </div>
+    </section><!-- #clients -->
+
+    <!--==========================
+      Clients Section
+    ============================-->
+    <section id="testimonials" class="section-bg wow fadeInUp">
+      <div class="container">
+
+        <header class="section-header">
+          <h3>Testimonials</h3>
+        </header>
+
+        <div class="owl-carousel testimonials-carousel">
+
+          <div class="testimonial-item">
+            <img src="img/testimonial-1.jpg" class="testimonial-img" alt="">
+            <h3>Saul Goodman</h3>
+            <h4>Ceo &amp; Founder</h4>
+            <p>
+              <img src="img/quote-sign-left.png" class="quote-sign-left" alt="">
+              Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
+              <img src="img/quote-sign-right.png" class="quote-sign-right" alt="">
+            </p>
+          </div>
+
+          <div class="testimonial-item">
+            <img src="img/testimonial-2.jpg" class="testimonial-img" alt="">
+            <h3>Sara Wilsson</h3>
+            <h4>Designer</h4>
+            <p>
+              <img src="img/quote-sign-left.png" class="quote-sign-left" alt="">
+              Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.
+              <img src="img/quote-sign-right.png" class="quote-sign-right" alt="">
+            </p>
+          </div>
+
+          <div class="testimonial-item">
+            <img src="img/testimonial-3.jpg" class="testimonial-img" alt="">
+            <h3>Jena Karlis</h3>
+            <h4>Store Owner</h4>
+            <p>
+              <img src="img/quote-sign-left.png" class="quote-sign-left" alt="">
+              Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.
+              <img src="img/quote-sign-right.png" class="quote-sign-right" alt="">
+            </p>
+          </div>
+
+          <div class="testimonial-item">
+            <img src="img/testimonial-4.jpg" class="testimonial-img" alt="">
+            <h3>Matt Brandon</h3>
+            <h4>Freelancer</h4>
+            <p>
+              <img src="img/quote-sign-left.png" class="quote-sign-left" alt="">
+              Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.
+              <img src="img/quote-sign-right.png" class="quote-sign-right" alt="">
+            </p>
+          </div>
+
+          <div class="testimonial-item">
+            <img src="img/testimonial-5.jpg" class="testimonial-img" alt="">
+            <h3>John Larson</h3>
+            <h4>Entrepreneur</h4>
+            <p>
+              <img src="img/quote-sign-left.png" class="quote-sign-left" alt="">
+              Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.
+              <img src="img/quote-sign-right.png" class="quote-sign-right" alt="">
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- #testimonials -->
+
+    <!--==========================
+      Team Section
+    ============================-->
+    <section id="team">
+      <div class="container">
+        <div class="section-header wow fadeInUp">
+          <h3>Team</h3>
+          <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque</p>
+        </div>
+
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6 wow fadeInUp">
+            <div class="member">
+              <img src="img/team-1.jpg" class="img-fluid" alt="">
+              <div class="member-info">
+                <div class="member-info-content">
+                  <h4>Walter White</h4>
+                  <span>Chief Executive Officer</span>
+                  <div class="social">
+                    <a href=""><i class="fa fa-twitter"></i></a>
+                    <a href=""><i class="fa fa-facebook"></i></a>
+                    <a href=""><i class="fa fa-google-plus"></i></a>
+                    <a href=""><i class="fa fa-linkedin"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+            <div class="member">
+              <img src="img/team-2.jpg" class="img-fluid" alt="">
+              <div class="member-info">
+                <div class="member-info-content">
+                  <h4>Sarah Jhonson</h4>
+                  <span>Product Manager</span>
+                  <div class="social">
+                    <a href=""><i class="fa fa-twitter"></i></a>
+                    <a href=""><i class="fa fa-facebook"></i></a>
+                    <a href=""><i class="fa fa-google-plus"></i></a>
+                    <a href=""><i class="fa fa-linkedin"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
+            <div class="member">
+              <img src="img/team-3.jpg" class="img-fluid" alt="">
+              <div class="member-info">
+                <div class="member-info-content">
+                  <h4>William Anderson</h4>
+                  <span>CTO</span>
+                  <div class="social">
+                    <a href=""><i class="fa fa-twitter"></i></a>
+                    <a href=""><i class="fa fa-facebook"></i></a>
+                    <a href=""><i class="fa fa-google-plus"></i></a>
+                    <a href=""><i class="fa fa-linkedin"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+            <div class="member">
+              <img src="img/team-4.jpg" class="img-fluid" alt="">
+              <div class="member-info">
+                <div class="member-info-content">
+                  <h4>Amanda Jepson</h4>
+                  <span>Accountant</span>
+                  <div class="social">
+                    <a href=""><i class="fa fa-twitter"></i></a>
+                    <a href=""><i class="fa fa-facebook"></i></a>
+                    <a href=""><i class="fa fa-google-plus"></i></a>
+                    <a href=""><i class="fa fa-linkedin"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- #team -->
+
+    <!--==========================
+      Contact Section
+    ============================-->
+    <section id="contact" class="section-bg wow fadeInUp">
+      <div class="container">
+
+        <div class="section-header">
+          <h3>Contact Us</h3>
+          <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque</p>
+        </div>
+
+        <div class="row contact-info">
+
+          <div class="col-md-4">
+            <div class="contact-address">
+              <i class="ion-ios-location-outline"></i>
+              <h3>Address</h3>
+              <address>A108 Adam Street, NY 535022, USA</address>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="contact-phone">
+              <i class="ion-ios-telephone-outline"></i>
+              <h3>Phone Number</h3>
+              <p><a href="tel:+155895548855">+1 5589 55488 55</a></p>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="contact-email">
+              <i class="ion-ios-email-outline"></i>
+              <h3>Email</h3>
+              <p><a href="mailto:info@example.com">info@example.com</a></p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="form">
+          <div id="sendmessage">Your message has been sent. Thank you!</div>
+          <div id="errormessage"></div>
+          <form action="" method="post" role="form" class="contactForm">
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                <div class="validation"></div>
+              </div>
+              <div class="form-group col-md-6">
+                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+                <div class="validation"></div>
+              </div>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+              <div class="validation"></div>
+            </div>
+            <div class="form-group">
+              <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
+              <div class="validation"></div>
+            </div>
+            <div class="text-center"><button type="submit">Send Message</button></div>
+          </form>
+        </div>
+
+      </div>
+    </section><!-- #contact -->
+
+  </main>
+
+  <!--==========================
+    Footer
+  ============================-->
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6 footer-info">
+            <h3>BizPage</h3>
+            <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus. Scelerisque felis imperdiet proin fermentum leo. Amet volutpat consequat mauris nunc congue.</p>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="ion-ios-arrow-right"></i> <a href="#">Home</a></li>
+              <li><i class="ion-ios-arrow-right"></i> <a href="#">About us</a></li>
+              <li><i class="ion-ios-arrow-right"></i> <a href="#">Services</a></li>
+              <li><i class="ion-ios-arrow-right"></i> <a href="#">Terms of service</a></li>
+              <li><i class="ion-ios-arrow-right"></i> <a href="#">Privacy policy</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <h4>Contact Us</h4>
+            <p>
+              A108 Adam Street <br>
+              New York, NY 535022<br>
+              United States <br>
+              <strong>Phone:</strong> +1 5589 55488 55<br>
+              <strong>Email:</strong> info@example.com<br>
+            </p>
+
+            <div class="social-links">
+              <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+              <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+              <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
+              <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
+              <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+            </div>
+
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-newsletter">
+            <h4>Our Newsletter</h4>
+            <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna veniam enim veniam illum dolore legam minim quorum culpa amet magna export quem marada parida nodela caramase seza.</p>
+            <form action="" method="post">
+              <input type="email" name="email"><input type="submit"  value="Subscribe">
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong>BizPage</strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        <!--
+          All the links in the footer should remain intact.
+          You can delete the links only if you purchased the pro version.
+          Licensing information: https://bootstrapmade.com/license/
+          Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=BizPage
+        -->
+        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+      </div>
+    </div>
+  </footer><!-- #footer -->
+
+  <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+  <!-- Uncomment below i you want to use a preloader -->
+  <!-- <div id="preloader"></div> -->
+
+  <!-- JavaScript Libraries -->
+  <script src="lib/jquery/jquery.min.js"></script>
+  <script src="lib/jquery/jquery-migrate.min.js"></script>
+  <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="lib/easing/easing.min.js"></script>
+  <script src="lib/superfish/hoverIntent.js"></script>
+  <script src="lib/superfish/superfish.min.js"></script>
+  <script src="lib/wow/wow.min.js"></script>
+  <script src="lib/waypoints/waypoints.min.js"></script>
+  <script src="lib/counterup/counterup.min.js"></script>
+  <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+  <script src="lib/isotope/isotope.pkgd.min.js"></script>
+  <script src="lib/lightbox/js/lightbox.min.js"></script>
+  <script src="lib/touchSwipe/jquery.touchSwipe.min.js"></script>
+  <!-- Contact Form JavaScript File -->
+  <script src="contactform/contactform.js"></script>
+
+  <!-- Template Main Javascript File -->
+  <script src="js/main.js"></script>
+
 </body>
 </html>
-
-{{--  @endsection  --}}
