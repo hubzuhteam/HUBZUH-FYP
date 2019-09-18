@@ -48,9 +48,9 @@ class Adminlogin
             if ($currentPath=="admin/view-orders" && Session::get('adminDetails')['orders_access']==0) {
                 return redirect('/admin/dashboard')->with('flash_message_error','You have no access for this module');
             }
-            if ($currentPath=="admin/view-users" && Session::get('adminDetails')['orders_users']==0) {
-                return redirect('/admin/dashboard')->with('flash_message_error','You have no access for this module');
-            }
+            // if ($currentPath=="admin/view-users" && Session::get('adminDetails')['users_users']==0) {
+            //     return redirect('/admin/dashboard')->with('flash_message_error','You have nooo access for this module');
+            // }
 
         }
         return $next($request);

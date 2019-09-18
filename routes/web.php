@@ -104,6 +104,8 @@ Route::group(['middleware'=>['supplierlogin']],function(){
 	Route::get('supplier/view-banners','BannersController@viewBannersSupplier');
     // Route::get('/supplier/delete-banner/{id}','BannersController@deleteBanner');
 
+
+
 });
 
 //________________________________________________//
@@ -218,6 +220,10 @@ Route::group(['middleware' => ['adminlogin']], function () {
      Route::get('/admin/check-pwd','AdminController@chkPassword');
      Route::match(['get','post'],'/admin/update-pwd','AdminController@updatePassword');
 
+    //for supplier edit
+	Route::match(['get','post'],'/admin/edit-supplier/{id}','SupplierController@editSupplier');
+
+
      //for category
      Route::match(['get','post'],'/admin/add-category','CategoryController@addCategory');
 	Route::match(['get','post'],'/admin/edit-category/{id}','CategoryController@editCategory');
@@ -270,6 +276,9 @@ Route::group(['middleware' => ['adminlogin']], function () {
 
 	// Admin Users Route
     Route::get('/admin/view-users','UsersController@viewUsers');
+
+    // Admin Suppliers Route
+    Route::get('/admin/view-suppliers   ','UsersController@viewSupplier');
 
     // Admin/Subadmin  Route
     Route::get('/admin/view-admins','AdminController@viewAdmins');

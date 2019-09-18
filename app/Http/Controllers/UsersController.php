@@ -10,6 +10,7 @@ use App\Country;
 use Illuminate\Support\Facades\Hash;
 use DB;
 use Mail;
+use App\Supplier;
 class UsersController extends Controller
 {
     public function login(Request $request){
@@ -218,6 +219,12 @@ class UsersController extends Controller
         }
         $users = User::get();
         return view('admin.users.view_users')->with(compact('users'));
+    }
+
+    public function viewSupplier(){
+
+        $suppliers = Supplier::get();
+        return view('admin.suppliers.view_suppliers')->with(compact('suppliers'));
     }
 
     public function confirmAccount($email){

@@ -68,7 +68,7 @@ class CategoryController extends Controller
     }
 
     public function editCategorySupplier(Request $request, $id = null){
-         if($request->isMethod('post')){
+        if($request->isMethod('post')){
              $data = $request->all();
         //     //echo "<pre>"; print_r($data); die;
         if(empty($data['status'])){

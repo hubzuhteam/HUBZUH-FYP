@@ -10,6 +10,11 @@ class Product extends Model
     public function attributes(){
         return $this->hasMany('App\ProductsAttribute','product_id');
     }
+
+    public function supplier(){
+        return $this->belongsTo(Supplier::class);
+    }
+
     public static function cartCount(){
     	if(Auth::check()){
     		// User is logged in; We will use Auth

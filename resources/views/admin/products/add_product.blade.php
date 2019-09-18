@@ -121,12 +121,7 @@
                         <input type="checkbox" name="feature_item" id="feature_item" value="1">
                     </div>
               </div>
-              {{-- <div class="control-group">
-                <label class="control-label">File upload input</label>
-                <div class="controls">
-                  <div class="uploader" id="uniform-undefined"><input type="file" size="19" style="opacity: 0;"><span class="filename">No file selected</span><span class="action">Choose File</span></div>
-                </div>
-              </div> --}}
+
               <div class="form-actions">
                 <input type="submit" value="Add Product" class="btn btn-success">
               </div>

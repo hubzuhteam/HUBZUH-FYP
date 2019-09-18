@@ -1,19 +1,19 @@
 @extends('layouts.adminLayout.admin_design')
 @section('content')
-  
+
 <div id="content">
   <div id="content-header">
     <div id="breadcrumb"> <a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#">Banners</a> <a href="#" class="current">View Banners</a> </div>
     <h1>Banners</h1>
     @if(Session::has('flash_message_error'))
             <div class="alert alert-error alert-block">
-                <button type="button" class="close" data-dismiss="alert">×</button> 
+                <button type="button" class="close" data-dismiss="alert">×</button>
                     <strong>{!! session('flash_message_error') !!}</strong>
             </div>
-        @endif   
+        @endif
         @if(Session::has('flash_message_success'))
             <div class="alert alert-success alert-block">
-                <button type="button" class="close" data-dismiss="alert">×</button> 
+                <button type="button" class="close" data-dismiss="alert">×</button>
                     <strong>{!! session('flash_message_success') !!}</strong>
             </div>
         @endif
@@ -34,6 +34,8 @@
                   <th>Title</th>
                   <th>Link</th>
                   <th>Image</th>
+                  <th>Supplier ID</th>
+                  <th>Store Name</th>
                   <th>Actions</th>
                 </tr>
               </thead>
@@ -48,8 +50,10 @@
                     <img src="{{ asset('/images/frontend_images/banners/'.$banner->image) }}" style="width:250px;">
                     @endif
                   </td>
+                  <td class="center">{{ $supplierDetails->id }}</td>
+                  <td class="center">{{ $supplierDetails->store_name }}</td>
                   <td class="center">
-                    <a href="{{ url('/admin/edit-banner/'.$banner->id) }}" class="btn btn-primary btn-mini">Edit</a> 
+                    <a href="{{ url('/admin/edit-banner/'.$banner->id) }}" class="btn btn-primary btn-mini">Edit</a>
                     <a id="delBanner" rel="{{ $banner->id }}" rel1="delete-banner" href="javascript:" <?php /* href="{{ url('/admin/delete-banner/'.$banner->id) }}" */ ?> class="btn btn-danger btn-mini deleteRecord">Delete</a>
                   </td>
                 </tr>

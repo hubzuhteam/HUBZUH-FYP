@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Category;
 use App\Product;
 use App\Banner;
+use App\Supplier;
 
 class IndexController extends Controller
 {
@@ -17,8 +18,36 @@ class IndexController extends Controller
         // $productsAll = Product::orderBy('id','DESC')->get();
 
         //in radnom order
-        $productsAll = Product::inRandomOrder()->where('status',1)->paginate(6);
+        // $productsAll = Product::inRandomOrder()->where('status',1)->paginate(12);
         //->where('feature_item',1)
+        // $suppliers = Supplier::where(['active'=>1])->get();
+
+        $productsAll = Product::whereHas('supplier', function ($query) {
+            $query->where('active', '=', '1%');
+        })->where('status',1)->paginate(12);
+
+        // $products = Product::with('supplier')->where('status',1)->get();
+        // $products = Supplier::all()->products;
+        // echo "<pre>"; print_r($productsAll); die;
+        // echo $products;die;
+        //echo "<pre>"; print_r($productDetails); die;
+        // echo dump($suppliers);die;
+        // foreach ($suppliers as  $value) {
+        //     // $productsAll = Product::where('supplier_id',$value->id);
+        //     //
+        // echo $value->id;
+        //     echo "   ";
+        // }
+        // die;
+        // $productsAll = Product::where('supplier_id',$suppliers->id)->paginate(12);
+        // echo $productsAll;die;
+
+        // $n = Supplier::find(14)->products;
+        // // echo $n;die;
+        // foreach ($suppliers as  $value) {
+        //     echo $value;die;
+        // }
+
 
     	// Get All Categories and Sub Categories
 

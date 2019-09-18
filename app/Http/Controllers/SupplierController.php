@@ -16,6 +16,26 @@ use DB;
 use Mail;
 class SupplierController extends Controller
 {
+
+    public function editSupplier(Request $request, $id = null){
+        if($request->isMethod('post')){
+            $data = $request->all();
+       //     //echo "<pre>"; print_r($data); die;
+       if(empty($data['active'])){
+           $active='0';
+       }else{
+           $active='1';
+       }
+
+       Supplier::where(['id'=>$id])->update(['active'=>$active]);
+            return redirect('/admin/view-suppliers')->with('flash_message_success',
+            'Supplier updated Successfully!');
+        }
+
+       $supplierDetails = Supplier::where(['email'=>Session::get('supplierSession')])->first();
+
+       return view('admin.suppliers.view_suppliers')->with(compact('supplierDetails'));
+    }
     public function login(Request $request){
 
         if($request->isMethod('POST')){

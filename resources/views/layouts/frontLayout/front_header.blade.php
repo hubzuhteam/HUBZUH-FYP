@@ -36,14 +36,29 @@ $wishlistCount = Product::wishlistCount();
         </div>
         <!--/header_top-->
 
-        <div class="header-middle">
+        <div class="header-middle" >
             <!--header-middle-->
             <div class="container">
-                <div class="row">
-                    <div class="col-sm-4">
-                        <div class="logo pull-left">
-                        <a href="{{ asset('/')}}"><img src="{{asset('/images/logo1.jpeg')}}" alt="" /></a>
+                <div class="row" style="border:none;">
+{{--                    style="border:2px solid black;"--}}
+                    <div class="col-sm-2" >
+                        <div class="lo" height="100px"  width="100px">
+                        <a href="{{ asset('/')}}"><img height="40px"  width="120px" src="{{asset('/images/logo1.jpeg')}}" alt="" /></a>
                         </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                         {{-- <div class="btn-group pull-right">
                             <div class="btn-group">
                                 <button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
@@ -68,8 +83,23 @@ $wishlistCount = Product::wishlistCount();
                             </div>
                         </div> --}}
                     </div>
-                    <div class="col-sm-8">
+                    <div class="col-sm-4" >
+                        <form action="{{ url('/search-products') }}" method="post">{{ csrf_field() }}
+                            <div class="search" style="align-content: center">
+                                <input type="text" class="searchTerm" name="product" placeholder="    Search    ">
+                                <button type="submit" class="searchButton">
+                                    <i class="fa fa-search"></i>
+                                </button>
+
+                            </div>
+                        </form>
+
+                    </div>
+                    <div class="col-sm-6" >
+
                         <div class="shop-menu pull-right">
+
+
                             <ul class="nav navbar-nav">
                             <li><a href="{{url('/wishlist')}}"><i class="fa fa-star">
                                 </i> Wishlist ({{$wishlistCount}})</a></li>
@@ -92,10 +122,10 @@ $wishlistCount = Product::wishlistCount();
         </div>
         <!--/header-middle-->
 
-        <div class="header-bottom">
+        <div class="header-bottom" style=" padding:2px; ">
             <!--header-bottom-->
-            <div class="container">
-                <div class="row">
+            <div class="container"  >
+                <div class="row"   >
                     <div class="col-sm-9">
                         <div class="navbar-header">
                             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -135,17 +165,24 @@ $wishlistCount = Product::wishlistCount();
 								<button type="submit" style="border:0px; height:33px; margin-left:-3px">Go</button>
 							</form>
                     </div > --}}
-                    <div class="wrap" >
-                        <form action="{{ url('/search-products') }}" method="post">{{ csrf_field() }}
-                        <div class="search" style="align-content: center">
-                               <input type="text" class="searchTerm" name="product" placeholder="What are you looking for?">
-                               <button type="submit" class="searchButton">
-                                 <i class="fa fa-search"></i>
-                               </button>
 
-                            </div>
-                        </form>
-                         </div>
+
+{{--                    /////////////////////////////////////////////////searchbar--}}
+{{--                    <div class="wrap" >--}}
+{{--                        <form action="{{ url('/search-products') }}" method="post">{{ csrf_field() }}--}}
+{{--                        <div class="search" style="align-content: center">--}}
+{{--                               <input type="text" class="searchTerm" name="product" placeholder="What are you looking for?">--}}
+{{--                               <button type="submit" class="searchButton">--}}
+{{--                                 <i class="fa fa-search"></i>--}}
+{{--                               </button>--}}
+
+{{--                            </div>--}}
+{{--                        </form>--}}
+{{--                         </div>--}}
+{{--                    --}}
+{{--                    //////////////////--}}
+
+
                 </div>
             </div>
         </div>

@@ -8,8 +8,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Supplier extends Authenticatable
 {
-    use Notifiable;
 
+    use Notifiable;
+    public function products(){
+    	return $this->hasMany('App\Product');
+    }
     /**
      * The attributes that are mass assignable.
      *

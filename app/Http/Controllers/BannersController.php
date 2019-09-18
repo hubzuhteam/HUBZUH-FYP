@@ -191,7 +191,10 @@ class BannersController extends Controller
 
     public function viewBanners(){
         $banners = Banner::get();
-        return view('admin.banners.view_banners')->with(compact('banners'));
+        $supplierDetails = Supplier::where(['email'=>Session::get('supplierSession')])->first();
+
+
+        return view('admin.banners.view_banners')->with(compact('banners','supplierDetails'));
     }
 
     public function deleteBanner($id = null){
