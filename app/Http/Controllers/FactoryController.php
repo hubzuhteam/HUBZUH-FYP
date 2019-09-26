@@ -19,6 +19,7 @@ class FactoryController extends Controller
 
     public function edit_profile(Request $request){
         $factoryDetails = Factory::where(['email'=>Session::get('factorySession')])->first();
+        // echo $factoryDetails;die;
         return view('factory.edit_profile')->with(compact('factoryDetails'));
     }
 
