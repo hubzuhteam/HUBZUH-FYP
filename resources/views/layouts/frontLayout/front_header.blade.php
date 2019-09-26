@@ -45,20 +45,6 @@ $wishlistCount = Product::wishlistCount();
                         <div class="lo" height="100px"  width="100px">
                         <a href="{{ asset('/')}}"><img height="40px"  width="120px" src="{{asset('/images/logo1.jpeg')}}" alt="" /></a>
                         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                         {{-- <div class="btn-group pull-right">
                             <div class="btn-group">
                                 <button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
@@ -86,7 +72,7 @@ $wishlistCount = Product::wishlistCount();
                     <div class="col-sm-4" >
                         <form action="{{ url('/search-products') }}" method="post">{{ csrf_field() }}
                             <div class="search" style="align-content: center">
-                                <input type="text" class="searchTerm" name="product" placeholder="    Search    ">
+                                <input id="search" name="search" type="text" class="searchTerm" name="product" placeholder="    Search    ">
                                 <button type="submit" class="searchButton">
                                     <i class="fa fa-search"></i>
                                 </button>
@@ -167,20 +153,6 @@ $wishlistCount = Product::wishlistCount();
                     </div > --}}
 
 
-{{--                    /////////////////////////////////////////////////searchbar--}}
-{{--                    <div class="wrap" >--}}
-{{--                        <form action="{{ url('/search-products') }}" method="post">{{ csrf_field() }}--}}
-{{--                        <div class="search" style="align-content: center">--}}
-{{--                               <input type="text" class="searchTerm" name="product" placeholder="What are you looking for?">--}}
-{{--                               <button type="submit" class="searchButton">--}}
-{{--                                 <i class="fa fa-search"></i>--}}
-{{--                               </button>--}}
-
-{{--                            </div>--}}
-{{--                        </form>--}}
-{{--                         </div>--}}
-{{--                    --}}
-{{--                    //////////////////--}}
 
 
                 </div>

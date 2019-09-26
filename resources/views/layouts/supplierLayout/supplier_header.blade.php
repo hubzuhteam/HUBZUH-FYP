@@ -27,7 +27,7 @@
                     <span class="label">5</span>
                 </a>
                 <ul class="dropdown-menu media-list dropdown-menu-right">
-                    <li class="dropdown-header">NOTIFICATIONS (5)</li>
+                    <li class="dropdown-header">NOTIFICATIONS (3)</li>
                     <li class="media">
                         <a href="javascript:;">
                             <div class="media-left">

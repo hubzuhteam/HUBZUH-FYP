@@ -536,8 +536,19 @@ class ProductsController extends Controller
 
     public function viewStore($id=null){
 
+        $productsAll = Product::whereHas('supplier', function ($query) {
+            $query->where('active', '=', '1');
+        })->where('status',1)->paginate(12);
 
-        return view('products.view_store');
+        $supplierDetails = Supplier::where(['id'=>$id])->first();
+        // echo "$supplierDetails";die;
+         $products = Product::with('supplier')->where('status',1)->get();
+        $categories = Category::with('categories')->where(['parent_id' => 0])->get();
+        $categories_menu = "";
+
+		$banners = Banner::where(['status'=>'1','supplier_id'=>$id])->get();
+        // echo "$banners";
+        return view('products.view_store_2')->with(compact('banners','supplierDetails','productsAll','products','categories','categories_menu'));
 
     }
 
@@ -1649,7 +1660,7 @@ class ProductsController extends Controller
         if($request->isMethod('post')){
             $data = $request->all();
             $categories = Category::with('categories')->where(['parent_id' => 0])->get();
-            $search_product = $data['product'];
+            $search_product = $data['search'];
             /*$productsAll = Product::where('product_name','like','%'.$search_product.'%')->orwhere('product_code',$search_product)->where('status',1)->paginate();*/
 
             $productsAll = Product::where(function($query) use($search_product){
@@ -1666,6 +1677,8 @@ class ProductsController extends Controller
             return view('products.listing')->with(compact('categories','productsAll','search_product','breadcrumb','banners'));
         }
     }
+
+
     public function viewOrderInvoice($order_id){
         if (Session::get('adminDetails')['orders_access']==0){
             return redirect('/admin/dashboard')->with('flash_message_error','You have no access for this module');

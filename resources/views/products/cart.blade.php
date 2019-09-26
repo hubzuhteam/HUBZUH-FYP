@@ -78,7 +78,7 @@
 		<div class="container">
 			<div class="heading">
 				<h3>What would you like to do next?</h3>
-				<p>Choose if you have a coupon code you want to use.</p>
+				<p>Choose if you have a coupon code you want to usee.</p>
 			</div>
 			<div class="row">
 				<div class="col-sm-6">
@@ -111,5 +111,6 @@
 				</div>
 			</div>
 		</div>
-	</section><!--/#do_action-->
+    </section>
+    <!--/#do_action-->
 @endsection

@@ -1,5 +1,34 @@
 @section('content')
 @extends('layouts.frontLayout.front_design')
+ <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+    <script>
+     $(document).ready(function() {
+        $( "#search" ).autocomplete({
+            source: function(request, response) {
+                $.ajax({
+                url: "{{url('autocomplete')}}",
+                data: {
+                        term : request.term
+                 },
+                dataType: "json",
+                success: function(data){
+                   var resp = $.map(data,function(obj){
+                        //console.log(obj.city_name);
+                        return obj.product_name;
+                   });
+
+                   response(resp);
+                }
+            });
+        },
+        minLength: 1
+     });
+    });
+
+    </script>
 <section id="slider">
             <!--slider-->
             <div class="container">
@@ -90,4 +119,30 @@
         </div>
     </section>
 
+    <script>
+            $(document).ready(function() {
+               $( "#search" ).autocomplete({
+
+                   source: function(request, response) {
+                       $.ajax({
+                       url: "{{url('autocomplete')}}",
+                       data: {
+                               term : request.term
+                        },
+                       dataType: "json",
+                       success: function(data){
+                          var resp = $.map(data,function(obj){
+                               //console.log(obj.city_name);
+                               return obj.name;
+                          });
+
+                          response(resp);
+                       }
+                   });
+               },
+               minLength: 1
+            });
+           });
+
+    </script>
 @endsection

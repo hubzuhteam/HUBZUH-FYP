@@ -24,7 +24,7 @@ class IndexController extends Controller
 
         $productsAll = Product::whereHas('supplier', function ($query) {
             $query->where('active', '=', '1');
-        })->where('status',1)->paginate(12);
+        })->where('status',1)->paginate(6);
 
          $products = Product::with('supplier')->where('status',1)->get();
         // $products = Supplier::all()->products;

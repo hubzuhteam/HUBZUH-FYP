@@ -21,6 +21,33 @@
 //     return view('supplier.index');
 // });
 
+
+/////////////factory dashboard
+//factory Dashboard
+Route::get('/factory/dashboard','FactoryController@dashboard');
+
+//Fcatory Login
+Route::match(['get','post'],'/factory/login','FactoryController@FactoryLoginPage');
+
+//Fcatory Register page
+Route::get('/factory/register','FactoryController@FactoryRegisterPage');
+
+//Factory register form submit
+Route::post('/factory/factory-register','FactoryController@register');
+
+// Confirm Factory Account
+Route::get('/factory/confirm/{code}','FactoryController@confirmAccount');
+
+//factory login from submit
+Route::post('/factory-login','FactoryController@login');
+
+//profile of Factory
+Route::get('/factory/edit-profile','FactoryController@edit_profile');
+/////////////////////////////////////////////////////////////////////////////////////////////
+//////facebook Social login
+Route::get('login/facebook', 'Auth\LoginController@redirectToProvider');
+Route::get('login/facebook/callback', 'Auth\LoginController@handleProviderCallback');
+
 //Supplier Login
 Route::match(['get','post'],'/supplier','SupplierController@SupplierLoginPage');
 
@@ -48,6 +75,7 @@ Route::group(['middleware'=>['supplierlogin']],function(){
 
     //Supplier Dashboard
     Route::get('/supplier/dashboard','SupplierController@dashboard');
+
 
     //profile of supplier
     Route::get('/supplier/edit-profile','SupplierController@edit_profile');
@@ -128,6 +156,7 @@ Route::match(['get','post'],'/admin','AdminController@login');
 // Route::get('/admin/dashboard','AdminController@dashboard');
 
 // Products Filters Route
+
 Route::match(['get', 'post'],'/products-filter', 'ProductsController@filter');
 
 // Category/Listing Page
@@ -167,6 +196,10 @@ Route::get('/user-logout','UsersController@logout');
 Route::post('user-login','UsersController@login');
 // Search Products
 Route::post('/search-products','ProductsController@searchProducts');
+
+// ////CHECKING AUTO COMPLETE
+// Route::get('search', 'AutoCompleteController@index');
+//  Route::get('autocomplete', 'AutoCompleteController@search');
 
 //all routes after login
 Route::group(['middleware'=>['frontlogin']],function(){

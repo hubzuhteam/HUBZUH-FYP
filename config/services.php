@@ -44,4 +44,9 @@ return [
         ],
     ],
 
+    'facebook' => [
+        'client_id'     => 'your-app-id',
+        'client_secret' => 'your-app-secret',
+        'redirect'      => 'http://localhost/login/facebook/callback',
+    ],
 ];
