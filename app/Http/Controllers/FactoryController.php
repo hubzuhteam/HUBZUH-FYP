@@ -18,8 +18,8 @@ class FactoryController extends Controller
 {
 
     public function edit_profile(Request $request){
-        $supplierDetails = Factory::where(['email'=>Session::get('factorySession')])->first();
-        return view('supplier.edit_profile')->with(compact('factoryDetails'));
+        $factoryDetails = Factory::where(['email'=>Session::get('factorySession')])->first();
+        return view('factory.edit_profile')->with(compact('factoryDetails'));
     }
 
     public function login(Request $request){
