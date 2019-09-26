@@ -12,7 +12,6 @@ class CategoryController extends Controller
     /////////CATEGORY FOR SUPPLIER/////////////////////////////////////////////////////////////////////////
 
     public function addCategorySupplier(Request $request){
-
     	if($request->isMethod('post')){
     		$data = $request->all();
             //echo "<pre>"; print_r($data); die;

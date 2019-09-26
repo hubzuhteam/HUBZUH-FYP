@@ -16,6 +16,58 @@ use DB;
 use Mail;
 class FactoryController extends Controller
 {
+    
+    public function updateProfile(Request $request){
+        if($request->isMethod('post')){
+            $data = $request->all();
+            //echo "<pre>"; print_r($data); die;
+            $factoryCount = Factory::where(['email' => Session::get('factorySession')])->count();
+            //echo $supplierCount;die;
+            if ($factoryCount == 1) {
+
+                //for image upploading
+                if($request->hasFile('factory_image')){
+                    $image_tmp = Input::file('factory_image');
+                    if($image_tmp->isValid()){
+                        $extension = $image_tmp->getClientOriginalExtension();
+                        $filename = rand(111,99999).'.'.$extension;
+                        $large_image_path = 'images/factoryend_images/factory_images/large/'.$filename;
+                        $medium_image_path = 'images/factoryend_images/factory_images/medium/'.$filename;
+                        $small_image_path = 'images/factoryend_images/factory_images/small/'.$filename;
+                        // Resize Images
+                        Image::make($image_tmp)->save($large_image_path);
+                        Image::make($image_tmp)->resize(600,600)->save($medium_image_path);
+                        Image::make($image_tmp)->resize(300,300)->save($small_image_path);
+
+                        // Store image name in products table
+                        // $product->image = $filename;
+                    }
+                }else if(!empty($data['factory_image'])){
+                    $filename = $data['factory_image'];
+                }else{
+                    $filename = '';
+                }
+
+                Factory::where('email',Session::get('factorySession'))->update(['last_name'=>$data['last_name']
+                ,'name'=>$data['name'],
+                'factory_name'=>$data['factory_name'],
+                'cnic'=>$data['cnic'],
+                'address'=>$data['address'],
+                'mobile'=>$data['mobile'],
+                'factory_mobile'=>$data['factory_mobile'],
+                'factory_email'=>$data['factory_email'],
+                'deals_in'=>$data['deals_in'],
+                'dob'=>$data['dob_date'],
+                'factory_image'=>$filename,
+                'factory_address'=>$data['factory_address']
+            ]);
+
+                return redirect('/factory/edit-profile')->with('flash_message_success', 'Profile updated successfully.');
+            }else{
+                return redirect('/factory/edit-profile')->with('flash_message_error', 'An error occured..Try again');
+            }
+        }
+    }
 
     public function edit_profile(Request $request){
         $factoryDetails = Factory::where(['email'=>Session::get('factorySession')])->first();

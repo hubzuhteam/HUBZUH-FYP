@@ -548,7 +548,7 @@ class ProductsController extends Controller
 
 		$banners = Banner::where(['status'=>'1','supplier_id'=>$id])->get();
         // echo "$banners";
-        return view('products.view_store_2')->with(compact('banners','supplierDetails','productsAll','products','categories','categories_menu'));
+        return view('products.view_store')->with(compact('banners','supplierDetails','productsAll','products','categories','categories_menu'));
 
     }
 

@@ -43,6 +43,11 @@ Route::post('/factory-login','FactoryController@login');
 
 //profile of Factory
 Route::get('/factory/edit-profile','FactoryController@edit_profile');
+
+ //update factory profile
+ Route::match(['get','post'],'/factory/update-profile','FactoryController@updateProfile');
+
+
 /////////////////////////////////////////////////////////////////////////////////////////////
 //////facebook Social login
 Route::get('login/facebook', 'Auth\LoginController@redirectToProvider');

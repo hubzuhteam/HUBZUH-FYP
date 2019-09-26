@@ -9,9 +9,8 @@
               <div id="mainContent">
                  <div class="row gap-20 masonry pos-r">
                     <div class="masonry-sizer col-md-6"></div>
-                    <div class="masonry-item w-100">
-                           
-<form enctype="multipart/form-data"  action="{{ url('/factory/update-profile') }}" method="POST" class="form-control-with-bg" style="margin-top: 250dp">{{ csrf_field() }}
+                    <div class="masonry-item w-100">      
+<form enctype="multipart/form-data"  action="{{ url('/factory/update-profile') }}" method="POST" class="form-control-with-bg" >{{ csrf_field() }}
     <!-- begin wizard -->
     <div id="wizard">
         <!-- begin wizard-content -->
@@ -80,31 +79,31 @@
                         {{-- end personal info --}}
                         {{-- begin factory info --}}
                         <div class="col-md-8 offset-md-2">
-                                <legend class="no-border f-w-700 p-b-0 m-t-0 m-b-20 f-s-16 text-inverse">Information Regarding Store</legend>
+                                <legend class="no-border f-w-700 p-b-0 m-t-0 m-b-20 f-s-16 text-inverse">Information Regarding Factory</legend>
                                 <!-- begin form-group row -->
                                 <div class="form-group row m-b-10">
-                                    <label class="col-md-3 text-md-right col-form-label">Store Name</label>
+                                    <label class="col-md-3 text-md-right col-form-label">Factory Name</label>
                                     <div class="col-md-6">
-                                        <input type="text" name="store_name" placeholder="Store Name" value="{{ $factoryDetails->store_name }}" class="form-control" />
+                                        <input type="text" name="factory_name" placeholder="Factory Name" value="{{ $factoryDetails->factory_name }}" class="form-control" />
                                     </div>
-                                </div>
+                                </div>s
                                 <!-- end form-group row -->
                                 <!-- begin form-group row -->
                                 <div class="form-group row m-b-10">
-                                    <label class="col-md-3 text-md-right col-form-label">Store Image</label>
+                                    <label class="col-md-3 text-md-right col-form-label">Factory Image</label>
                                     <div class="col-md-6" id="uniform-undefined" >
-                                        {{-- <input type="file" name="store_image" id="store_image"/> --}}
+                                        {{-- <input type="file" name="factory_image" id="factory_image"/> --}}
                                         <table>
                                             <tr>
                                               <td>
-                                                <input name="store_image" id="store_image" type="file">
-                                                @if(!empty($factoryDetails->store_image))
-                                                  <input type="hidden" name="store_image" value="{{ $factoryDetails->store_image }}">
+                                                <input name="factory_image" id="factory_image" type="file">
+                                                @if(!empty($factoryDetails->factory_image))
+                                                  <input type="hidden" name="factory_image" value="{{ $factoryDetails->factory_image }}">
                                                 @endif
                                               </td>
                                               <td>
-                                                @if(!empty($factoryDetails->store_name))
-                                                <img style="width:30px;" src="{{ asset('/images/supplierend_images/store_images/small/'.$factoryDetails->store_image) }}">
+                                                @if(!empty($factoryDetails->factory_name))
+                                                <img style="width:30px;" src="{{ asset('/images/factoryend_images/factory_images/small/'.$factoryDetails->factory_image) }}">
                                                 @endif
                                               </td>
                                             </tr>
@@ -123,23 +122,23 @@
 
                                 <!-- begin form-group row -->
                                 <div class="form-group row m-b-10">
-                                    <label class="col-md-3 text-md-right col-form-label">Store Contact No</label>
+                                    <label class="col-md-3 text-md-right col-form-label">Factory Contact No</label>
                                     <div class="col-md-6">
-                                        <input type="text" name="store_mobile" placeholder="Store Contact No" value="{{ $factoryDetails->store_mobile }}"  class="form-control" required/>
+                                        <input type="text" name="factory_mobile" placeholder="Factory Contact No" value="{{ $factoryDetails->factory_mobile }}"  class="form-control" required/>
                                     </div>
                                 </div>
                                 <div class="form-group row m-b-10">
-                                        <label class="col-md-3 text-md-right col-form-label">Store Email Address</label>
+                                        <label class="col-md-3 text-md-right col-form-label">Factory Email Address</label>
                                         <div class="col-md-6">
-                                            <input type="text" name="store_email" placeholder="Store Email Address" value="{{ $factoryDetails->store_email }}" class="form-control" required />
+                                            <input type="text" name="factory_email" placeholder="Factory Email Address" value="{{ $factoryDetails->factory_email }}" class="form-control" required />
                                         </div>
                                 </div>
                                 <!-- end form-group row -->
                                 <!-- begin form-group row -->
                                 <div class="form-group row m-b-10">
-                                    <label class="col-md-3 text-md-right col-form-label">Store Address</label>
+                                    <label class="col-md-3 text-md-right col-form-label">Factory Address</label>
                                     <div class="col-md-6">
-                                        <input type="text" name="store_address" placeholder="Store Address" value="{{ $factoryDetails->store_address }}" class="form-control m-b-10" required />
+                                        <input type="text" name="factory_address" placeholder="Factory Address" value="{{ $factoryDetails->factory_address }}" class="form-control m-b-10" required />
                                     </div>
                                 </div>
                                 <!-- end form-group row -->
@@ -148,7 +147,7 @@
                                             <input type="submit" value="Update Profile" class="btn btn-primary btn-lg">
                                 </div>
                         </div>
-                        {{-- end store info --}}
+                        {{-- end Factory info --}}
                         <!-- end col-8 -->
                     </div>
                     <!-- end row -->
