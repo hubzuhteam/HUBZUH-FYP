@@ -106,13 +106,13 @@
 
     {{-- Datepicker Calendar --}}
     {{-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> --}}
-    <script>
+    {{--  <script>
         $(function(){
             $("#dob_date").datepicker({
             	dateFormat: 'yy-mm-dd'
             });
         });
-    </script>
+    </script>  --}}
 	<script>
 		$(document).ready(function() {
 			App.init();

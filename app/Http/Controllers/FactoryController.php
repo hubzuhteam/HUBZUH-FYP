@@ -17,10 +17,16 @@ use Mail;
 class FactoryController extends Controller
 {
     
+    public function logout(){
+        Auth::logout();
+        Session::forget('factorySession');
+        return redirect('/factory/login');
+    }
+
     public function updateProfile(Request $request){
         if($request->isMethod('post')){
             $data = $request->all();
-            //echo "<pre>"; print_r($data); die;
+            // echo "<pre>"; print_r($data);die;
             $factoryCount = Factory::where(['email' => Session::get('factorySession')])->count();
             //echo $supplierCount;die;
             if ($factoryCount == 1) {
@@ -39,7 +45,7 @@ class FactoryController extends Controller
                         Image::make($image_tmp)->resize(600,600)->save($medium_image_path);
                         Image::make($image_tmp)->resize(300,300)->save($small_image_path);
 
-                        // Store image name in products table
+                        // Factory image name in products table
                         // $product->image = $filename;
                     }
                 }else if(!empty($data['factory_image'])){
@@ -103,9 +109,9 @@ class FactoryController extends Controller
 
     public function dashboard(){
 
-        ///$supplierDetails = Supplier::where(['email'=>Session::get('supplierSession')])->first();
-        //echo $supplierDetails;die;
-    return view('factory.dashboard');
+        $factoryDetails = Factory::where(['email'=>Session::get('factorySession')])->first();
+        // echo $factoryDetails;die;
+    return view('factory.dashboard')->with(compact('factoryDetails'));
     }
     public function FactoryRegisterPage(){
         // echo "test";die;
@@ -121,13 +127,17 @@ class FactoryController extends Controller
             //echo "<pre";print_r($data);die;
             //checking if user already exist
             $factoryCount=Factory::where('email',$data['email'])->count();
-            $factoryCount=Factory::where('factory_name',$data['factory_name'])->count();
+            // echo $factoryCount;die;
+            $factoryCount2=Factory::where('factory_name',$data['factory_name'])->count();
             if($factoryCount>0)
-            {   return redirect()->back()->with('flash_message_error','Email Already Exists!');
+            {   
+                return redirect()->back()->with('flash_message_error','Email Already Exists!');
             }
-            if($factoryCount>0)
-            {   return redirect()->back()->with('flash_message_error','factory Name Already Exists!');
-            }else{
+            if($factoryCount2>0)
+            {   
+                return redirect()->back()->with('flash_message_error','factory Name Already Exists!');
+            }
+            else{
                 $Factory = new Factory();
                 $Factory->name=$data['name'];
                 $Factory->factory_name=$data['factory_name'];

@@ -1,86 +1,59 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
-    <title>Sign In</title>
-    <style>
-        #loader {
-            transition: all .3s ease-in-out;
-            opacity: 1;
-            visibility: visible;
-            position: fixed;
-            height: 100vh;
-            width: 100%;
-            background: #fff;
-            z-index: 90000
-        }
-        
-        #loader.fadeOut {
-            opacity: 0;
-            visibility: hidden
-        }
-        
-        .spinner {
-            width: 40px;
-            height: 40px;
-            position: absolute;
-            top: calc(50% - 20px);
-            left: calc(50% - 20px);
-            background-color: #333;
-            border-radius: 100%;
-            -webkit-animation: sk-scaleout 1s infinite ease-in-out;
-            animation: sk-scaleout 1s infinite ease-in-out
-        }
-        
-        @-webkit-keyframes sk-scaleout {
-            0% {
-                -webkit-transform: scale(0)
-            }
-            100% {
-                -webkit-transform: scale(1);
-                opacity: 0
-            }
-        }
-        
-        @keyframes sk-scaleout {
-            0% {
-                -webkit-transform: scale(0);
-                transform: scale(0)
-            }
-            100% {
-                -webkit-transform: scale(1);
-                transform: scale(1);
-                opacity: 0
-            }
-        }
-    </style>
-    <link href="style.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" name="viewport">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta content="" name="author" />
+    <meta content="atlas is Bootstrap 4 based admin panel.It comes with 100's widgets,charts and icons" name="description" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="atlas is Bootstrap 4 based admin panel.It comes with 100's widgets,charts and icons" />
+    <meta property="og:description" content="atlas is Bootstrap 4 based admin panel.It comes with 100's widgets,charts and icons" />
+    <meta property="og:image" content="../../cdn.dribbble.com/users/180706/screenshots/5424805/the_sceens_-_mobile_perspective_mockup_3_-_by_tranmautritam.jpg" />
+    <meta property="og:site_name" content="atlas " />
+    <title>HUBZUH Factory Login</title>
+    <link rel="icon" type="image/x-icon" href="assets/img/logo.png" />
+    <link rel="icon" href="assets/img/logo.png" type="image/png" sizes="16x16">
+    <link rel='stylesheet' href='../factory/d33wubrfki0l68.cloudfront.net/css/478ccdc1892151837f9e7163badb055b8a1833a5/crisp/assets/vendor/pace/pace.css' />
+    <script src='../factory/d33wubrfki0l68.cloudfront.net/js/3d1965f9e8e63c62b671967aafcad6603deec90c/js/pace.min.js'></script>
+    <!--vendors-->
+    <link rel='stylesheet' type='text/css' href='../factory/d33wubrfki0l68.cloudfront.net/bundles/291bbeead57f19651f311362abe809b67adc3fb5.css' />
+
+    <link rel='stylesheet' href='../factory/d33wubrfki0l68.cloudfront.net/bundles/30bc673ce76f73ecf02568498f6b139269f6e4c7.css' />
+
+    <link href="https://fonts.googleapis.com/css?family=Hind+Vadodara:400,500,600" rel="stylesheet">
+    <link rel='stylesheet' href='../factory/d33wubrfki0l68.cloudfront.net/css/04cc97dcdd1c8f6e5b9420845f0fac26b54dab84/default/assets/fonts/jost/jost.css' />
+    <!--Material Icons-->
+    <link rel='stylesheet' type='text/css' href='../factory/d33wubrfki0l68.cloudfront.net/css/548117a22d5d22545a0ab2dddf8940a2e32c04ed/default/assets/fonts/materialdesignicons/materialdesignicons.min.css' />
+    <!--Bootstrap + Admin CSS-->
+    <link rel='stylesheet' type='text/css' href='../factory/d33wubrfki0l68.cloudfront.net/css/ed18bd005cf8b05f329fad0688d122e0515499ff/default/assets/css/atmos.min.css' />
+    <!-- Additional library for page -->
+
 </head>
 
-<body class="app">
-    <div id="loader">
-        <div class="spinner"></div>
-    </div>
-    <script>
-        window.addEventListener('load', function load() {
-            const loader = document.getElementById('loader');
-            setTimeout(function() { loader.classList.add('fadeOut');
-            }, 300);
-        });
-    </script>
-    <div class="peers ai-s fxw-nw h-100vh">
-        <div class="d-n@sm- peer peer-greed h-100 pos-r bgr-n bgpX-c bgpY-c bgsz-cv" style="background-image:url(assets/static/images/pexels-photo-298863.jpeg)">
-            {{--  <div class="pos-a centerXY">
-                <div class="bgc-white bdrs-50p pos-r" style="width:120px;height:120px"><img class="pos-a centerXY" src="assets/static/images/logo.jpeg" alt=""></div>
-            </div>  --}}
-        </div>
-        <div class="col-12 col-md-4 peer pX-40 pY-80 h-100 bgc-white scrollable pos-r" style="min-width:320px">
-                {{--  <img class="fw-300 c-grey-900 mB-40" src="assets/static/images/logo.jpeg"></img>  --}}
-            <h1><strong>HUBZUH</strong></h1>
-            <h4 class="fw-300 c-grey-900 mB-40">Factory Login</h4>
-                @if(Session::has('flash_message_error'))
+<body class="jumbo-page">
+    <main class="admin-main">
+        <div class="container-fluid">
+            <div class="row ">
+                <div class="col-lg-4  bg-white">
+                    <div class="row align-items-center m-h-100">
+                        <div class="mx-auto col-md-8">
+                            <div class="p-b-20 text-center">
+                                <p>
+                                    <img src="{{asset('/images/logo1.jpeg')}}" width="190" height="60" alt="">
+                                </p>
+                                <p class="admin-brand-content">
+                                    HUBZUH Factory Site
+                                </p>
+                            </div>
+                            <h3 class="text-center p-b-20 fw-400">Login</h3>
+                            @if(Session::has('flash_message_error'))
                     <div class="alert alert-block alert-danger">
                         <button type="button" class="close" data-dismiss="alert">×</button>
                             <strong>{!! session('flash_message_error') !!}</strong>
@@ -92,36 +65,162 @@
                            <strong>{!! session('flash_message_success') !!}</strong>
                   </div>
                 @endif
-                <form action="{{url('/factory-login')}}" method="POST" class="margin-bottom-0">{{ csrf_field() }}            
-                <div class="form-group">
-                    <label class="text-normal text-dark">Email</label>
-                    <input type="email" name="email" class="form-control" placeholder="Your Email">
-                </div>
-                <div class="form-group">
-                    <label class="text-normal text-dark">Password</label>
-                    <input type="password" name="password" class="form-control" placeholder="Password">
-                </div>
-                <div class="form-group">
-                    <div class="peers ai-c jc-sb fxw-nw">
-                        <div class="peer">
-                            <div class="checkbox checkbox-circle checkbox-info peers ai-c">
-                                <input type="checkbox" id="inputCall1" name="inputCheckboxesCall" class="peer">
-                                <label for="inputCall1" class="peers peer-greed js-sb ai-c"><span class="peer peer-greed">Remember Me</span></label>
-                            </div>
+                            <form class="needs-validation" action="{{url('/factory-login')}}" method="POST" >{{ csrf_field() }}   
+                                <div class="form-row">
+                                    <div class="form-group floating-label col-md-12">
+                                        <label>Email</label>
+                                        <input type="email" name="email" required class="form-control" placeholder="Email">
+                                    </div>
+                                    <div class="form-group floating-label col-md-12">
+                                        <label>Password</label>
+                                        <input type="password" name="password" required class="form-control ">
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary btn-block btn-lg">Login</button>
+
+                            </form>
+                            <p class="text-right p-t-10">
+                            <a href="{{ url('/factory/register')}}" class="text-underline">Want to Join? Sign Up Here.</a>
+                            </p>
                         </div>
-                        <div class="peer">
-                            <button class="btn btn-primary">Login</button>
-                        </div>
+
                     </div>
                 </div>
-                <div class="m-t-20">
-                        Not a member yet? Click <a href="{{ url('/factory/register')}}">here</a> to register.
+                <div class="col-lg-8 d-none d-md-block bg-cover" style="background-image: url('assets/static/images/pexels-photo-298863.jpeg');">
+
                 </div>
-            </form>
+            </div>
+        </div>
+    </main>
+
+    <div class="modal modal-slide-left  fade" id="siteSearchModal" tabindex="-1" role="dialog" aria-labelledby="siteSearchModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+
+                <div class="modal-body p-all-0" id="site-search">
+                    <button type="button" class="close light" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                    <div class="form-dark bg-dark text-white p-t-60 p-b-20 bg-dots">
+                        <h3 class="text-uppercase    text-center  fw-300 "> Search</h3>
+
+                        <div class="container-fluid">
+                            <div class="col-md-10 p-t-10 m-auto">
+                                <input type="search" placeholder="Search Something" class=" search form-control form-control-lg">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="">
+                        <div class="bg-dark text-muted container-fluid p-b-10 text-center text-overline">
+                            results
+                        </div>
+                        <div class="list-group list  ">
+
+
+                            <div class="list-group-item d-flex  align-items-center">
+                                <div class="m-r-20">
+                                    <div class="avatar avatar-sm "><img class="avatar-img rounded-circle" src="assets/img/users/user-3.jpg" alt="user-image"></div>
+                                </div>
+                                <div class="">
+                                    <div class="name">Eric Chen</div>
+                                    <div class="text-muted">Developer</div>
+                                </div>
+
+
+                            </div>
+                            <div class="list-group-item d-flex  align-items-center">
+                                <div class="m-r-20">
+                                    <div class="avatar avatar-sm "><img class="avatar-img rounded-circle" src="assets/img/users/user-4.jpg" alt="user-image"></div>
+                                </div>
+                                <div class="">
+                                    <div class="name">Sean Valdez</div>
+                                    <div class="text-muted">Marketing</div>
+                                </div>
+
+
+                            </div>
+                            <div class="list-group-item d-flex  align-items-center">
+                                <div class="m-r-20">
+                                    <div class="avatar avatar-sm "><img class="avatar-img rounded-circle" src="assets/img/users/user-8.jpg" alt="user-image"></div>
+                                </div>
+                                <div class="">
+                                    <div class="name">Marie Arnold</div>
+                                    <div class="text-muted">Developer</div>
+                                </div>
+
+
+                            </div>
+                            <div class="list-group-item d-flex  align-items-center">
+                                <div class="m-r-20">
+                                    <div class="avatar avatar-sm ">
+                                        <div class="avatar-title bg-dark rounded"><i class="mdi mdi-24px mdi-file-pdf"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="">
+                                    <div class="name">SRS Document</div>
+                                    <div class="text-muted">25.5 Mb</div>
+                                </div>
+
+
+                            </div>
+                            <div class="list-group-item d-flex  align-items-center">
+                                <div class="m-r-20">
+                                    <div class="avatar avatar-sm ">
+                                        <div class="avatar-title bg-dark rounded"><i class="mdi mdi-24px mdi-file-document-box"></i></div>
+                                    </div>
+                                </div>
+                                <div class="">
+                                    <div class="name">Design Guide.pdf</div>
+                                    <div class="text-muted">9 Mb</div>
+                                </div>
+
+
+                            </div>
+                            <div class="list-group-item d-flex  align-items-center">
+                                <div class="m-r-20">
+                                    <div class="avatar avatar-sm ">
+                                        <div class="avatar avatar-sm  ">
+                                            <div class="avatar-title bg-primary rounded"><i class="mdi mdi-24px mdi-code-braces"></i></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="">
+                                    <div class="name">response.json</div>
+                                    <div class="text-muted">15 Kb</div>
+                                </div>
+
+
+                            </div>
+                            <div class="list-group-item d-flex  align-items-center">
+                                <div class="m-r-20">
+                                    <div class="avatar avatar-sm ">
+                                        <div class="avatar avatar-sm ">
+                                            <div class="avatar-title bg-info rounded"><i class="mdi mdi-24px mdi-file-excel"></i></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="">
+                                    <div class="name">June Accounts.xls</div>
+                                    <div class="text-muted">6 Mb</div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
         </div>
     </div>
-    <script type="text/javascript" src="vendor.js"></script>
-    <script type="text/javascript" src="bundle.js"></script>
+
+
+    <script src='../factory/d33wubrfki0l68.cloudfront.net/bundles/9556cd6744b0b19628598270bd385082cda6a269.js'></script>
+
 </body>
 
 </html>

@@ -23,8 +23,7 @@
 
 
 /////////////factory dashboard
-//factory Dashboard
-Route::get('/factory/dashboard','FactoryController@dashboard');
+
 
 //Fcatory Login
 Route::match(['get','post'],'/factory/login','FactoryController@FactoryLoginPage');
@@ -41,12 +40,22 @@ Route::get('/factory/confirm/{code}','FactoryController@confirmAccount');
 //factory login from submit
 Route::post('/factory-login','FactoryController@login');
 
+
+//Factory Logout
+Route::get('/factory-logout','FactoryController@logout');
+
+Route::group(['middleware'=>['factorylogin']],function(){
+
+    //factory Dashboard
+Route::get('/factory/dashboard','FactoryController@dashboard');
+
 //profile of Factory
 Route::get('/factory/edit-profile','FactoryController@edit_profile');
 
  //update factory profile
- Route::match(['get','post'],'/factory/update-profile','FactoryController@updateProfile');
+Route::match(['get','post'],'/factory/update-profile','FactoryController@updateProfile');
 
+});
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 //////facebook Social login

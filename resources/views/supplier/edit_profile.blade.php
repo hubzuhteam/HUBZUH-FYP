@@ -66,7 +66,7 @@
                                 <div class="form-group row m-b-10">
                                     <label class="col-md-3 text-md-right col-form-label">Date of Birth</label>
                                     <div class="col-md-6">
-                                        <input type="text" id="dob_date" name="dob_date" placeholder="Year-Month-Date" value="{{ $supplierDetails->dob }}" class="form-control" />
+                                        <input type="date" id="dob_date" name="dob_date" placeholder="Year-Month-Date" value="{{ $supplierDetails->dob }}" class="form-control" />
                                     </div>
                                 </div>
                                 <!-- end form-group row -->

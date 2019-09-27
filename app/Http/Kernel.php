@@ -63,6 +63,7 @@ class Kernel extends HttpKernel
         'frontlogin' => \App\Http\Middleware\Frontlogin::class,
         'adminlogin' => \App\Http\Middleware\Adminlogin::class,
         'supplierlogin' => \App\Http\Middleware\Supplierlogin::class,
+        'factorylogin' => \App\Http\Middleware\Factorylogin::class,
     ];
 
     /**
