@@ -55,6 +55,21 @@ Route::get('/factory/edit-profile','FactoryController@edit_profile');
  //update factory profile
 Route::match(['get','post'],'/factory/update-profile','FactoryController@updateProfile');
 
+// Factory Products Routes
+Route::match(['get','post'],'/factory/add-product','ProductsController@addProductFactory');
+Route::match(['get','post'],'/factory/edit-product/{id}','ProductsController@editProductFactory');
+Route::get('/factory/delete-product/{id}','ProductsController@deleteProductFactory');
+Route::get('/factory/view-products','ProductsController@viewProductsFactory');
+Route::get('/factory/delete-product-image/{id}','ProductsController@deleteProductImageFactory');
+Route::get('/factory/delete-alt-image/{id}','ProductsController@deleteAltImageFactory');
+Route::get('/factory/delete-product-video/{id}','ProductsController@deleteProductVideoFactory');
+
+
+// Factory Product Attributes Routes
+Route::match(['get', 'post'], '/factory/add-attributes/{id}','ProductsController@addAttributesFactory');
+Route::match(['get', 'post'], '/factory/edit-attributes/{id}','ProductsController@editAttributesFactory');
+Route::get('/factory/delete-attribute/{id}','ProductsController@deleteAttributeFactory');
+        
 });
 
 /////////////////////////////////////////////////////////////////////////////////////////////

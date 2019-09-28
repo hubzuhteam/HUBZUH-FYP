@@ -22,9 +22,452 @@ use App\OrdersProduct;
 use App\Supplier;
 use DB;
 use App\Banner;
+use App\Factory;
 
 class ProductsController extends Controller
 {
+    ///////////////////////////////FACTORY START///////////////////////////////////////
+
+    public function addProductFactory(Request $request){
+        if($request->isMethod('post')){
+            $data = $request->all();
+            //echo "<pre>"; print_r($data); die;
+            if(empty($data['category_id'])){
+                return redirect()->back()->with('flash_message_error','Under Category is missing!');
+            }
+           $product = new Product;
+           $product->category_id = $data['category_id'];
+           $product->product_name = $data['product_name'];
+           $product->product_code = $data['product_code'];
+           $product->product_color = $data['product_color'];
+           if(!empty($data['description'])){
+               $product->description = $data['description'];
+           }else{
+               $product->description = '';
+           }
+           if(!empty($data['sleeve'])){
+               $product->sleeve = $data['sleeve'];
+           }else{
+               $product->sleeve = '';
+           }
+           if(!empty($data['pattern'])){
+               $product->pattern = $data['pattern'];
+           }else{
+               $product->pattern = '';
+           }
+           if(!empty($data['care'])){
+               $product->care = $data['care'];
+           }else{
+               $product->care = '';
+           }
+            $product->price = $data['price'];
+       //  	$product->price = '';
+            // Upload Image
+            if(empty($data['feature_item'])){
+               $feature_item='0';
+           }else{
+               $feature_item='1';
+           }
+           if (empty($data['status'])) {
+               $status=0;
+           } else {
+              $status=1;
+           }
+           if(!empty($data['video'])){
+               $product->video = $data['video'];
+           }else{
+               $product->video = '';
+           }
+            if($request->hasFile('image')){
+                $image_tmp = Input::file('image');
+                if($image_tmp->isValid()){
+                    $extension = $image_tmp->getClientOriginalExtension();
+                    $filename = rand(111,99999).'.'.$extension;
+                    $large_image_path = 'images/factoryend_images/products/large/'.$filename;
+                    $medium_image_path = 'images/factoryend_images/products/medium/'.$filename;
+                    $small_image_path = 'images/factoryend_images/products/small/'.$filename;
+                    // Resize Images
+                    Image::make($image_tmp)->save($large_image_path);
+                    Image::make($image_tmp)->resize(600,600)->save($medium_image_path);
+                    Image::make($image_tmp)->resize(300,300)->save($small_image_path);
+
+                    // Store image name in products table
+                    $product->image = $filename;
+                }
+            }
+            // Upload Video
+           if($request->hasFile('video')){
+               $video_tmp = Input::file('video');
+               $video_name = $video_tmp->getClientOriginalName();
+               $video_path = 'videos/';
+               $video_tmp->move($video_path,$video_name);
+               $product->video = $video_name;
+           }
+            $product->feature_item = $feature_item;
+            $product->status=$status;
+            $factoryDetails = Factory::where(['email'=>Session::get('factorySession')])->first();
+           $product->factory_id=$factoryDetails->id;
+            $product->save();
+            //return redirect()->back()->with('flash_message_success','Product has been added successfully!');
+               return redirect('/factory/view-products')->with('flash_message_success','Product has been added successfully!');
+        }
+
+        //categories drop down start
+        $categories = Category::where(['parent_id'=>0])->get();
+        $categories_dropdown = "<option value='' selected disabled>Select</option>";
+        foreach($categories as $cat){
+            $categories_dropdown .= "<option value='".$cat->id."'>".$cat->name."</option>";
+            $sub_categories = Category::where(['parent_id'=>$cat->id])->get();
+            foreach ($sub_categories as $sub_cat) {
+                $categories_dropdown .= "<option value = '".$sub_cat->id."'>&nbsp;--&nbsp;".$sub_cat->name."</option>";
+            }
+        }
+        //categories drop down end
+
+        $sleeveArray = array('Full Sleeve','Half Sleeve','Short Sleeve','Sleeveless');
+
+        $patternArray = array('Checked','Plain','Printed','Self','Solid');
+        $factoryDetails = Factory::where(['email'=>Session::get('factorySession')])->first();
+
+        return view('factory.products.add_product')->with(compact('categories_dropdown','factoryDetails','sleeveArray','patternArray'));
+       //return view('admin.products.add_product');
+   }
+
+    public function editProductFactory(Request $request,$id=null){
+
+        $factoryDetails = Factory::where(['email'=>Session::get('factorySession')])->first();
+        $productDetails = Product::where(['id'=>$id])->first();
+
+        if($factoryDetails->id!=$productDetails->factory_id){
+         $products = Product::where(['factory_id'=>$factoryDetails->id])->orderBy('id','Desc')->get();
+            return view('factory.products.view_products')->with(compact('products','factoryDetails'));
+        }
+
+		if($request->isMethod('post')){
+
+			$data = $request->all();
+			//echo "<pre>"; print_r($data); die;
+            if(empty($data['status'])){
+                $status='0';
+            }else{
+                $status='1';
+            }
+            if(!empty($data['sleeve'])){
+                $sleeve = $data['sleeve'];
+            }else{
+                $sleeve = '';
+            }
+
+            if(!empty($data['pattern'])){
+                $pattern = $data['pattern'];
+            }else{
+                $pattern = '';
+            }
+
+			// Upload Image
+            if($request->hasFile('image')){
+            	$image_tmp = Input::file('image');
+                if ($image_tmp->isValid()) {
+                    // Upload Images after Resize
+                    $extension = $image_tmp->getClientOriginalExtension();
+	                $fileName = rand(111,99999).'.'.$extension;
+                    $large_image_path = 'images/factoryend_images/products/large'.'/'.$fileName;
+                    $medium_image_path = 'images/factoryend_images/products/medium'.'/'.$fileName;
+                    $small_image_path = 'images/factoryend_images/products/small'.'/'.$fileName;
+
+	                Image::make($image_tmp)->save($large_image_path);
+ 					Image::make($image_tmp)->resize(600, 600)->save($medium_image_path);
+     				Image::make($image_tmp)->resize(300, 300)->save($small_image_path);
+
+                }
+            }else if(!empty($data['current_image'])){
+            	$fileName = $data['current_image'];
+            }else{
+            	$fileName = '';
+            }
+
+            // Upload Video
+            if($request->hasFile('video')){
+                $video_tmp = Input::file('video');
+                $video_name = $video_tmp->getClientOriginalName();
+                $video_path = 'videos/';
+                $video_tmp->move($video_path,$video_name);
+                $videoName = $video_name;
+            }else if(!empty($data['current_video'])){
+                $videoName = $data['current_video'];
+            }else{
+                $videoName = '';
+            }
+
+
+            if(empty($data['description'])){
+            	$data['description'] = '';
+            }
+
+            if(empty($data['care'])){
+                $data['care'] = '';
+            }
+            Product::where(['id'=>$id])->update(['category_id'=>$data['category_id'],
+            'product_name'=>$data['product_name'],'status'=>$status,
+                'product_code'=>$data['product_code'],'product_color'=>$data['product_color'],
+                'description'=>$data['description'],'care'=>$data['care'],'price'=>$data['price'],
+                'image'=>$fileName,'video'=>$videoName,'sleeve'=>$sleeve,'pattern'=>$pattern]);
+
+			return redirect()->back()->with('flash_message_success', 'Product has been edited successfully');
+		}
+
+		// Get Product Details start //
+		$productDetails = Product::where(['id'=>$id])->first();
+		// Get Product Details End //
+
+		// Categories drop down start //
+		$categories = Category::where(['parent_id' => 0])->get();
+
+		$categories_drop_down = "<option value='' disabled>Select</option>";
+		foreach($categories as $cat){
+			if($cat->id==$productDetails->category_id){
+				$selected = "selected";
+			}else{
+				$selected = "";
+			}
+			$categories_drop_down .= "<option value='".$cat->id."' ".$selected.">".$cat->name."</option>";
+			$sub_categories = Category::where(['parent_id' => $cat->id])->get();
+			foreach($sub_categories as $sub_cat){
+				if($sub_cat->id==$productDetails->category_id){
+					$selected = "selected";
+				}else{
+					$selected = "";
+				}
+				$categories_drop_down .= "<option value='".$sub_cat->id."' ".$selected.">&nbsp;&nbsp;--&nbsp;".$sub_cat->name."</option>";
+			}
+		}
+        // Categories drop down end //
+
+
+        $sleeveArray = array('Full Sleeve','Half Sleeve','Short Sleeve','Sleeveless');
+        $patternArray = array('Checked','Plain','Printed','Self','Solid');
+
+
+		return view('factory.products.edit_product')->with(compact('productDetails','factoryDetails','categories_drop_down','sleeveArray','patternArray' ));
+    }
+    public function deleteProductFactory($id = null){
+        $productImage = Product::where('id',$id)->first();
+        //echo $productImage;die;
+        //echo "<pre>"; print_r($productImage); die;
+        Product::where(['id'=>$id])->delete();
+        ProductsAttribute::where(['product_id'=>$id])->delete();
+
+
+        // Get Product Image Paths
+		$large_image_path = 'images/factoryend_images/products/large/';
+		$medium_image_path = 'images/factoryend_images/products/medium/';
+		$small_image_path = 'images/factoryend_images/products/small/';
+
+		// Delete Large Image if  exists in Folder
+        if(file_exists($large_image_path.$productImage->image)){
+            unlink($large_image_path.$productImage->image);
+        }
+
+        // Delete Medium Image if  exists in Folder
+        if(file_exists($medium_image_path.$productImage->image)){
+            unlink($medium_image_path.$productImage->image);
+        }
+
+        // Delete Small Image if exists in Folder
+        if(file_exists($small_image_path.$productImage->image)){
+            unlink($small_image_path.$productImage->image);
+        }
+        $productImage = ProductsImage::where('product_id',$id)->first();
+        // Get Product Image Paths
+        $large_image_path = 'images/factoryend_images/products/large/';
+        $medium_image_path = 'images/factoryend_images/products/medium/';
+        $small_image_path = 'images/factoryend_images/products/small/';
+
+        // Delete Large Image if not exists in Folder
+        if(file_exists($large_image_path.$productImage->image)){
+            unlink($large_image_path.$productImage->image);
+        }
+
+        // Delete Medium Image if not exists in Folder
+        if(file_exists($medium_image_path.$productImage->image)){
+            unlink($medium_image_path.$productImage->image);
+        }
+
+        // Delete Small Image if not exists in Folder
+        if(file_exists($small_image_path.$productImage->image)){
+            unlink($small_image_path.$productImage->image);
+        }
+        ProductsImage::where(['product_id'=>$id])->delete();
+
+        return redirect()->back()->with('flash_message_success', 'Product has been deleted successfully');
+    }
+    public function viewProductsFactory(){
+
+        $factoryDetails = Factory::where(['email'=>Session::get('factorySession')])->first();
+
+         $products = Product::where(['factory_id'=>$factoryDetails->id])->orderBy('id','Desc')->get();
+         $products = json_decode(json_encode($products));
+         foreach($products as $key => $val){
+             $category_name = Category::where(['id'=>$val->category_id])->first();
+             $products[$key]->category_name = $category_name->name;
+         }
+        //     //echo "<pre>"; print_r($products); die;
+
+        return view('factory.products.view_products')->with(compact('products','factoryDetails'));
+    }
+
+    public function deleteProductImageFactory($id=null){
+		// Get Product Image
+		$productImage = Product::where('id',$id)->first();
+
+        $factoryDetails = Factory::where(['email'=>Session::get('factorySession')])->first();
+        $productDetails = Product::where(['id'=>$id])->first();
+
+        if($factoryDetails->id!=$productDetails->factory_id){
+         $products = Product::where(['factory_id'=>$factoryDetails->id])->orderBy('id','Desc')->get();
+            return view('factory.products.view_products')->with(compact('products','factoryDetails'));
+        }
+		// Get Product Image Paths
+		$large_image_path = 'images/factoryend_images/products/large/';
+		$medium_image_path = 'images/factoryend_images/products/medium/';
+		$small_image_path = 'images/factoryend_images/products/small/';
+
+		// Delete Large Image if not exists in Folder
+        if(file_exists($large_image_path.$productImage->image)){
+            unlink($large_image_path.$productImage->image);
+        }
+
+        // Delete Medium Image if not exists in Folder
+        if(file_exists($medium_image_path.$productImage->image)){
+            unlink($medium_image_path.$productImage->image);
+        }
+
+        // Delete Small Image if not exists in Folder
+        if(file_exists($small_image_path.$productImage->image)){
+            unlink($small_image_path.$productImage->image);
+        }
+
+        // Delete Image from Products table
+        Product::where(['id'=>$id])->update(['image'=>'']);
+
+        return redirect()->back()->with('flash_message_success', 'Product image has been deleted successfully');
+	}
+    public function deleteAltImageFactory($id=null){
+		// Get Product Image
+        $productImage = ProductsImage::where('id',$id)->first();
+
+        // Get Product Image Paths
+        $large_image_path = 'images/factoryend_images/products/large/';
+        $medium_image_path = 'images/factoryend_images/products/medium/';
+        $small_image_path = 'images/factoryend_images/products/small/';
+
+        // Delete Large Image if not exists in Folder
+        if(file_exists($large_image_path.$productImage->image)){
+            unlink($large_image_path.$productImage->image);
+        }
+
+        // Delete Medium Image if not exists in Folder
+        if(file_exists($medium_image_path.$productImage->image)){
+            unlink($medium_image_path.$productImage->image);
+        }
+
+        // Delete Small Image if not exists in Folder
+        if(file_exists($small_image_path.$productImage->image)){
+            unlink($small_image_path.$productImage->image);
+        }
+
+        // Delete Image from Products Images table
+        ProductsImage::where(['id'=>$id])->delete();
+
+        return redirect()->back()->with('flash_message_success', 'Product alternate image(s) has been deleted successfully');
+    }
+
+    public function deleteProductVideoFactory($id){
+        if (Session::get('adminDetails')['products_access']==0){
+            return redirect('/admin/dashboard')->with('flash_message_error','You have no access for this module');
+        }
+        // Get Video Name
+        $productVideo = Product::select('video')->where('id',$id)->first();
+
+        // Get Video Path
+        $video_path = 'videos/';
+
+        // Delete Video if exists in videos folder
+        if(file_exists($video_path.$productVideo->video)){
+            unlink($video_path.$productVideo->video);
+        }
+
+        // Delete Video from Products table
+        Product::where('id',$id)->update(['video'=>'']);
+
+        return redirect()->back()->with('flash_message_success','Product Video has been deleted successfully');
+    }
+
+    public function addAttributesFactory(Request $request, $id=null){
+        $productDetails = Product::with('attributes')->where(['id' => $id])->first();
+
+        //echo "a";die;
+        //$productDetails = json_decode(json_encode($productDetails));
+        //echo "<pre>"; print_r($productDetails); die;
+        //$categoryDetails = Category::where(['id'=>$productDetails->category_id])->first();
+        //$category_name = $categoryDetails->name;
+        if($request->isMethod('post')){
+            $data = $request->all();
+             //  echo "<pre>"; print_r($data); die;
+            foreach($data['sku'] as $key => $val){
+                //Sku check preveting duplicate
+                if(!empty($val)){
+                      $attrCountSKU = ProductsAttribute::where(['sku'=>$val])->count();
+                    if($attrCountSKU>0){
+                        return redirect('factory/add-attributes/'.$id)->with('flash_message_error', 'SKU already exists. Please add another SKU.');
+                    }
+                    //size check preventing duplicate
+                      $attrCountSizes = ProductsAttribute::where(['product_id'=>$id,'size'=>$data['size'][$key]])->count();
+                      if($attrCountSizes>0){
+                       return redirect('factory/add-attributes/'.$id)->with('flash_message_error',
+                        '"'.$data['size'][$key].'" Size already exists. Please add another Attribute.');
+                      }
+                    $attr=new ProductsAttribute;
+                       $attr->product_id = $id;
+                       $attr->sku = $val;
+                       $attr->size = $data['size'][$key];
+                       $attr->price = $data['price'][$key];
+                       $attr->stock = $data['stock'][$key];
+                       $attr->save();
+                  }
+               }
+            return redirect('factory/add-attributes/'.$id)->with('flash_message_success', 'Product Attributes has been added successfully');
+          }
+       // $title = "Add Attributes";
+       //->with(compact('title','productDetails','category_name'))
+       $factoryDetails = Factory::where(['email'=>Session::get('factorySession')])->first();
+
+       return view('factory.products.add_attributes')->with(compact('productDetails','factoryDetails'));
+   }
+   public function editAttributesFactory(Request $request, $id=null){
+
+       if($request->isMethod('post')){
+           $data = $request->all();
+           /*echo "<pre>"; print_r($data); die;*/
+           foreach($data['idAttr'] as $key=> $attr){
+               if(!empty($attr)){
+                   ProductsAttribute::where(['id' => $data['idAttr'][$key]])
+                   ->update(['price' => $data['price'][$key], 'stock' => $data['stock'][$key]]);
+               }
+           }
+           return redirect('factory/add-attributes/'.$id)->with('flash_message_success', 'Product Attributes has been updated successfully');
+       }
+   }
+   public function deleteAttributeFactory($id = null){
+       ProductsAttribute::where(['id'=>$id])->delete();
+       return redirect()->back()->with('flash_message_success', 'Product Attribute has been deleted successfully');
+   }
+
+
+
+
+
+    /////////////////////////////////END OF FACTORY//////////////////////////////////
     public function viewOrderInvoiceSupplier($order_id){
         $orderDetails = Order::with('orders')->where('id',$order_id)->first();
         // $orderDetails = json_decode(json_encode($orderDetails));
