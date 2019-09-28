@@ -89,55 +89,61 @@
         <!-- end wizard -->
     </form>
     <!-- end wizard-form -->
-    <!-- begin panel -->
-    <div class="panel panel-inverse">
-        <!-- begin panel-heading -->
-        <div class="panel-heading">
-            <div class="panel-heading-btn">
-                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
-                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo"></i></a>
-                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
-            </div>
-            <h4 class="panel-title">Categories</h4>
-        </div>
-        <!-- end panel-heading -->
-        <!-- begin panel-body -->
-        <div class="panel-body">
-                <form action="{{ url('factory/edit-attributes/'.$productDetails->id) }}" method="post">{{csrf_field()}}
-            <table id="data-table-default" class="table table-striped table-bordered">
-                <thead>
-                    <tr>
-                        <th class="text-nowrap">Attribute ID</th>
-                        <th class="text-nowrap">SKU</th>
-                        <th class="text-nowrap">Size</th>
-                        <th class="text-nowrap">Price</th>
-                        <th class="text-nowrap">Stock</th>
-                        <th class="text-nowrap">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                        @foreach($productDetails['attributes'] as $attribute)
-                        <tr class="gradeX">
-                          <td><input type="hidden" name="idAttr[]" value="{{ $attribute->id }}"></td>
-                          <td>{{ $attribute->sku }}</td>
-                          <td>{{ $attribute->size }}</td>
-                          <td><input type="text"  name="price[]" value="{{ $attribute->price }}"></td>
-                          <td><input type="text" name="stock[]" value="{{ $attribute->stock }}"></td>
-                          <td class="center">
-                              <input type="submit" value="Update" class="btn btn-info btn-mini">
-                            <a id="delProduct"
-                             href="{{ url('/factory/delete-attribute/'.$attribute->id) }}"
-                            class="btn btn-warning btn-mini deleteRecord">Delete</a>
-                        </td>
-                        </tr>
-                        @endforeach
+    
+    <div class="container  pull-up" style="margin-top: -1%">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
 
-                </tbody>
-            </table>
-        </div>
-        <!-- end panel-body -->
+                        <div class="card-body">
+                            <div class="table-responsive p-t-10">
+                                    <form action="{{ url('factory/edit-attributes/'.$productDetails->id) }}" method="post">{{csrf_field()}}
+                                <table id="example" class="table   " style="width:100%">
+                                        <thead>
+                                                <tr>
+                                                    <th class="text-nowrap">Attribute ID</th>
+                                                    <th class="text-nowrap">SKU</th>
+                                                    <th class="text-nowrap">Size</th>
+                                                    <th class="text-nowrap">Price</th>
+                                                    <th class="text-nowrap">Stock</th>
+                                                    <th class="text-nowrap">Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    @foreach($productDetails['attributes'] as $attribute)
+                                                    <tr class="gradeX">
+                                                      <td><input type="hidden" name="idAttr[]" value="{{ $attribute->id }}"></td>
+                                                      <td>{{ $attribute->sku }}</td>
+                                                      <td>{{ $attribute->size }}</td>
+                                                      <td><input type="text"  name="price[]" value="{{ $attribute->price }}"></td>
+                                                      <td><input type="text" name="stock[]" value="{{ $attribute->stock }}"></td>
+                                                      <td class="center">
+                                                          <input type="submit" value="Update" class="btn btn-info btn-mini">
+                                                        <a id="delProduct"
+                                                         href="{{ url('/factory/delete-attribute/'.$attribute->id) }}"
+                                                        class="btn btn-warning btn-mini deleteRecord">Delete</a>
+                                                    </td>
+                                                    </tr>
+                                                    @endforeach
+                                            </tbody>
+                                    <tfoot>
+                                            <tr>
+                                                    <th class="text-nowrap">Attribute ID</th>
+                                                    <th class="text-nowrap">SKU</th>
+                                                    <th class="text-nowrap">Size</th>
+                                                    <th class="text-nowrap">Price</th>
+                                                    <th class="text-nowrap">Stock</th>
+                                                    <th class="text-nowrap">Actions</th>
+                                                </tr>
+                                    </tfoot>
+                                </table>
+                                    </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
     </div>
-    <!-- end panel -->
 </div>
 <!-- end #content -->
 </form>

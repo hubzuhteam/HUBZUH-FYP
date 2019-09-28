@@ -58,7 +58,26 @@
 <script src="{{ asset('/factory/d33wubrfki0l68.cloudfront.net/js/c36248babf70a3c7ad1dcd98d4250fa60842eea9/crisp/assets/vendor/apexchart/apexcharts.min.js') }}"></script>
 <script src="{{ asset('/factory/d33wubrfki0l68.cloudfront.net/js/67749b6d46cf093e415d8107068c3c3ed64dc78e/default/assets/js/dashboard-01.js') }}"></script>
 <script src="{{ asset('/factory/d33wubrfki0l68.cloudfront.net/bundles/ba78fede76f682cd388ed2abbfd1e1568e76f8a4.js') }}"></script>
-
+<script type="text/javascript">
+    $(document).ready(function() {
+        var maxField = 10; //Input fields increment limitation
+        var addButton = $('.add_button'); //Add button selector
+        var wrapper = $('.field_wrapper'); //Input field wrapper
+        var fieldHTML = '<div class="controls field_wrapper" style="margin-left:0px;margin-top:10px"><input type="text" name="sku[]" id="sku" placeholder="SKU" style="width: 140px;height: 30px"/>&nbsp;<input type="text" name="size[]" id="size" placeholder="Size" style="width: 140px;height: 30px"/>&nbsp;<input type="text" name="price[]" id="price" placeholder="Price" style="width: 140px;height: 30px"/>&nbsp;<input type="text" name="stock[]" id="stock" placeholder="Stock" style="width: 140px;height: 30px"/><a href="javascript:void(0);" class="remove_button" title="Remove field">Remove</a></div>'; //New input field html
+        var x = 1; //Initial field counter is 1
+        $(addButton).click(function() { //Once add button is clicked
+            if (x < maxField) { //Check maximum number of input fields
+                x++; //Increment field counter
+                $(wrapper).append(fieldHTML); // Add field html
+            }
+        });
+        $(wrapper).on('click', '.remove_button', function(e) { //Once remove button is clicked
+            e.preventDefault();
+            $(this).parent('div').remove(); //Remove field html
+            x--; //Decrement field counter
+        });
+    });        
+</script>
 </body>
 
 </html>

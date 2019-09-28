@@ -1,14 +1,16 @@
 
-{{-- Supplier ADD Images  --}}
+{{-- FACTORY ADD Images  --}}
 @section('content')
 @extends('layouts.factoryLayout.factory_design')
+
+<main class="admin-main">
 
 <!-- begin #content -->
 <div id="content" class="content">
     <!-- begin breadcrumb -->
     <ol class="breadcrumb pull-right">
-        <li class="breadcrumb-item"><a href="{{ url('/supplier/dashboard') }}">Home</a></li>
-        <li class="breadcrumb-item"><a href="{{ url('/supplier/view-products') }}">View Products</a></li>
+        <li class="breadcrumb-item"><a href="{{ url('/factory/dashboard') }}">Home</a></li>
+        <li class="breadcrumb-item"><a href="{{ url('/factory/view-products') }}">View Products</a></li>
     </ol>
     <!-- end breadcrumb -->
     <!-- begin page-header -->
@@ -26,7 +28,7 @@
                 <strong>{!! session('flash_message_success') !!}</strong>
         </div>
     @endif
-    <form action="{{ url('/supplier/add-images/'.$productDetails->id) }}" enctype="multipart/form-data" method="POST" name="add_image" id="add_image" class="form-control-with-bg">{{ csrf_field() }}
+    <form action="{{ url('/factory/add-images/'.$productDetails->id) }}" enctype="multipart/form-data" method="POST" name="add_image" id="add_image" class="form-control-with-bg">{{ csrf_field() }}
         <!-- begin wizard -->
         <input type="hidden" name="product_id" value={{$productDetails->id}}>
 
@@ -40,7 +42,7 @@
                             <!-- begin col-8 -->
                             {{-- begin personal information --}}
                             <div class="col-md-8 offset-md-2">
-                                <legend class="no-border f-w-700 p-b-0 m-t-0 m-b-20 f-s-16 text-inverse">Add Attributes</legend>
+                                <legend class="no-border f-w-700 p-b-0 m-t-0 m-b-20 f-s-16 text-inverse">Add Images</legend>
                                 <div class="form-group row m-b-10">
                                     <label class="col-md-3 text-md-right col-form-label">Product Name</label>
                                     <div class="col-md-6">
@@ -81,50 +83,58 @@
         <!-- end wizard -->
     </form>
     <!-- end wizard-form -->
-    <!-- begin panel -->
-    <div class="panel panel-inverse">
-        <!-- begin panel-heading -->
-        <div class="panel-heading">
-            <div class="panel-heading-btn">
-                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
-                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo"></i></a>
-                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+    
+    <div class="container  pull-up" style="margin-top: -1%">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+
+                        <div class="card-body">
+                            <div class="table-responsive p-t-10">
+                                    <form action="{{ url('factory/edit-images/'.$productDetails->id) }}" method="post">{{csrf_field()}}
+                                <table id="example" class="table   " style="width:100%">
+                                        <thead>
+                                                <tr>
+                                                    <th class="text-nowrap">Image ID</th>
+                                                    <th class="text-nowrap">Product ID</th>
+                                                    <th class="text-nowrap">Image</th>
+                                                    <th class="text-nowrap">Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    @foreach($productImages as $image)
+                                                    <tr class="gradeX">
+                                                      <td class="center">{{ $image->id }}</td>
+                                                      <td class="center">{{ $image->product_id }}</td>
+                                                      <td class="center"><img width=130px
+                                                        src="{{ asset('images/factoryend_images/products/small/'.$image->image) }}"></td>
+                                                      <td class="center"><a id="delImage"
+                                                        href="{{ url('/factory/delete-alt-image/'.$image->id) }}"
+                                                         class="btn btn-danger btn-mini deleteRecord">Delete</a></td>
+                                                    </tr>
+                                                    @endforeach
+                                            </tbody>
+                                    <tfoot>
+                                            <tr>
+                                                <th class="text-nowrap">Image ID</th>
+                                                <th class="text-nowrap">Product ID</th>
+                                                <th class="text-nowrap">Image</th>
+                                                <th class="text-nowrap">Actions</th>
+                                            </tr>
+                                    </tfoot>
+                                </table>
+                                    </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <h4 class="panel-title">Categories</h4>
-        </div>
-        <!-- end panel-heading -->
-        <!-- begin panel-body -->
-        <div class="panel-body">
-                <form action="{{ url('supplier/edit-images/'.$productDetails->id) }}" method="post">{{csrf_field()}}
-            <table id="data-table-default" class="table table-striped table-bordered">
-                <thead>
-                    <tr>
-                        <th class="text-nowrap">Image ID</th>
-                        <th class="text-nowrap">Product ID</th>
-                        <th class="text-nowrap">Image</th>
-                        <th class="text-nowrap">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                        @foreach($productImages as $image)
-                        <tr class="gradeX">
-                          <td class="center">{{ $image->id }}</td>
-                          <td class="center">{{ $image->product_id }}</td>
-                          <td class="center"><img width=130px
-                            src="{{ asset('images/supplierend_images/products/small/'.$image->image) }}"></td>
-                          <td class="center"><a id="delImage"
-                            href="{{ url('/supplier/delete-alt-image/'.$image->id) }}"
-                             class="btn btn-danger btn-mini deleteRecord">Delete</a></td>
-                        </tr>
-                        @endforeach
-                </tbody>
-            </table>
-        </div>
-        <!-- end panel-body -->
     </div>
-    <!-- end panel -->
 </div>
 <!-- end #content -->
 </form>
 <!-- end wizard-form -->
+
+</main>
+
 @endsection

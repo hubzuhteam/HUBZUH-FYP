@@ -69,7 +69,11 @@ Route::get('/factory/delete-product-video/{id}','ProductsController@deleteProduc
 Route::match(['get', 'post'], '/factory/add-attributes/{id}','ProductsController@addAttributesFactory');
 Route::match(['get', 'post'], '/factory/edit-attributes/{id}','ProductsController@editAttributesFactory');
 Route::get('/factory/delete-attribute/{id}','ProductsController@deleteAttributeFactory');
-        
+
+//Factory add images
+Route::match(['get', 'post'], '/factory/add-images/{id}','ProductsController@addImagesFactory');
+
+
 });
 
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -142,7 +146,6 @@ Route::group(['middleware'=>['supplierlogin']],function(){
 
     //supplier add images
     Route::match(['get', 'post'], '/supplier/add-images/{id}','ProductsController@addImagesSupplier');
-
     // supplier delete alt image
     Route::get('/admin/delete-alt-image/{id}','ProductsController@deleteAltImageSupplier');
 
