@@ -12,7 +12,7 @@
                             <strong>{!! session('flash_message_error') !!}</strong>
                     </div>
                 @endif
-                <div class="col-sm-3">
+                <div class="col-sm-3" >
                     @include('layouts.frontLayout.front_sidebar')
                 </div>
                 <div class="col-sm-9 padding-right" >
@@ -47,10 +47,8 @@
 													</a>
 												@endforeach
 										</div>
-										{{-- @endif --}}
 									</div>
                             </div>
-
                         </div>
                         <div class="col-sm-7">
                             <form name="addtoCartForm" id="addtoCartForm" action="{{ url('add-cart') }}" method="post">{{ csrf_field() }}
@@ -120,8 +118,8 @@
                     </div>
                     </div>
                     <!--/product-details-->
-
-                    <div class="category-tab shop-details-tab" style="border-color: transparent">
+                </div>
+                    <div class="category-tab shop-details-tab" style=" border:1px solid white; border-top: none; ">
                         <!--category-tab-->
                         <div class="col-sm-12">
                             <ul class="nav nav-tabs" style="background-color: {{ $main_color }};">
@@ -204,7 +202,7 @@
                     <!--/recommended_items-->
                 </div>
             </div>
-        </div>
+        
 </div>
 </section>
 

@@ -46,6 +46,21 @@ Route::get('/factory-logout','FactoryController@logout');
 
 Route::group(['middleware'=>['factorylogin']],function(){
 
+    //view banner factory
+    Route::get('/factory/view-banners','BannersController@viewBannersFactory');
+
+    ///edit banner factory
+    Route::get('/factory/banners/edit-banner/{id}','BannersController@editBannerFactory');
+
+
+    //delete banner factory
+    Route::get('/factory/banners/delete-banner/{id}','BannersController@DeleteBannersFactory');
+
+
+    /////add banner factory
+    Route::match(['get', 'post'],'/factory/add-banner/','BannersController@addBannerFactory');
+
+
     //factory Dashboard
 Route::get('/factory/dashboard','FactoryController@dashboard');
 

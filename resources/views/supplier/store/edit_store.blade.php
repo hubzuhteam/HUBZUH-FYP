@@ -53,10 +53,19 @@
                                                 <input style="width: 120px; height: 35px;" type="color" name="store_name_color" value="{{ $supplierDetails->store_name_color}}">
                                             </div>
                                     </div>
-                                    <div class="jumbotron m-b-0 text-center" style="background-color: transparent">
-                                        {{-- <p><a href="javascript:;" class="btn btn-primary btn-lg">Update Profile</a></p> --}}
+                                    <div class="row">
+                                        <div class="col-sm-2">
+                                        </div>
+                                    <div class="jumbotron m-b-0 text-center col-sm-2" style="background-color: transparent">
                                         <input type="submit" value="Update Store" class="btn btn-primary btn-lg">
                                     </div>
+                                    <div class="col-sm-2">
+                                    </div>
+                                    <div class="jumbotron m-b-0 text-center col-sm-2" style="background-color: transparent; vertical-align:middle; text-align:center;">
+                                            <a style="width: 150px; height: 45px; vertical-align:middle; text-align:center; " href="{{ url('/view_store/'.$supplierDetails->id) }}"
+                                                class="btn btn-success btn-large" >View Store</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

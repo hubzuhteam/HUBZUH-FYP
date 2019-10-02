@@ -1,5 +1,5 @@
 
-{{-- factory ADD CATGEORY  --}}
+{{-- factory ADD Coupon  --}}
 @section('content')
     @extends('layouts.factoryLayout.factory_design')
     <main class="admin-main">

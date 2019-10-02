@@ -68,6 +68,73 @@
             </li>
             <li class="menu-item ">
                     <a href="#" class="open-dropdown menu-link">
+                    <span class="menu-label">
+                        <span class="menu-name">Orders
+                            <span class="menu-arrow"></span>
+                        </span>
+                    </span>
+                        <span class="menu-icon">
+                            <i class="icon-placeholder mdi mdi-apps "></i>
+                        </span>
+                    </a>
+                    <!--submenu-->
+                    <ul class="sub-menu">
+                        <li class="menu-item">
+                            <a href='{{ url('/factory/view-orders') }}' class=' menu-link'>
+                                    <span class="menu-label">
+                                            <span class="menu-name">View Orders
+                                            </span>
+                                    </span>
+                                <span class="menu-icon">
+                            <i class="icon-placeholder mdi mdi-tshirt-crew  "></i>
+                        </span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+
+                <li class="menu-item ">
+                    <a href="#" class="open-dropdown menu-link">
+                    <span class="menu-label">
+                        <span class="menu-name">Banners
+                            <span class="menu-arrow"></span>
+                        </span>
+                    </span>
+                        <span class="menu-icon">
+                            <i class="icon-placeholder mdi mdi-apps "></i>
+                        </span>
+                    </a>
+                    <!--submenu-->
+                    <ul class="sub-menu">
+                            <li class="menu-item">
+                                    <a href='{{ url('/factory/add-banner') }}' class=' menu-link'>
+                                            <span class="menu-label">
+                                                    <span class="menu-name">Add Banner
+                                                    </span>
+                                            </span>
+                                        <span class="menu-icon">
+                                    <i class="icon-placeholder mdi mdi-tshirt-crew  "></i>
+                                </span>
+                                    </a>
+                                </li>   
+                        <li class="menu-item">
+                            <a href='{{ url('/factory/view-banners') }}' class=' menu-link'>
+                                    <span class="menu-label">
+                                            <span class="menu-name">View Banners
+                                            </span>
+                                    </span>
+                                <span class="menu-icon">
+                            <i class="icon-placeholder mdi mdi-tshirt-crew  "></i>
+                        </span>
+                            </a>
+                        </li>
+                        
+
+                    </ul>
+                </li>
+            <li class="menu-item ">
+                    <a href="#" class="open-dropdown menu-link">
                             <span class="menu-label">
                                 <span class="menu-name">My Categories
                                     <span class="menu-arrow"></span>
