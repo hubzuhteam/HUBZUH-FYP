@@ -17,6 +17,26 @@ use Mail;
 class FactoryController extends Controller
 {
     
+    public function editfactory(Request $request, $id = null){
+        if($request->isMethod('post')){
+            $data = $request->all();
+       //     //echo "<pre>"; print_r($data); die;
+       if(empty($data['active'])){
+           $active='0';
+       }else{
+           $active='1';
+       }
+
+       Factory::where(['id'=>$id])->update(['active'=>$active]);
+            return redirect('/admin/view-factories')->with('flash_message_success',
+            'Factory updated Successfully!');
+        }
+
+       $factoryDetails = Factory::where(['email'=>Session::get('factorySession')])->first();
+
+       return view('admin.factories.view_factory')->with(compact('factoryDetails'));
+    }
+    
     public function viewFactory(){
 
         $factories = Factory::get();

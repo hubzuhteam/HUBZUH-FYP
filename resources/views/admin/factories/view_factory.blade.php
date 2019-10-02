@@ -47,7 +47,7 @@
               <tbody>
                   @foreach($factories as $factory)
                 <tr class="gradeX">
-            <form class="form-horizontal" method="post" action="{{ url('admin/edit-factory/'.$factory->id) }}" name="edit_factory" id="edit_factory" novalidate="novalidate">{{ csrf_field() }}
+            <form class="form-horizontal" method="post" action="{{ url('admin/edit-factories/'.$factory->id) }}" name="edit_factory" id="edit_factory" novalidate="novalidate">{{ csrf_field() }}
                   <td class="center">{{ $factory->id }}</td>
                   <td class="center">{{ $factory->name }} {{ $factory->last_name }}</td>
                   <td class="center">{{ $factory->factory_name }}</td>
@@ -71,6 +71,7 @@
                   </td>
             </form>
                 </tr>
+
                 @endforeach
               </tbody>
             </table>

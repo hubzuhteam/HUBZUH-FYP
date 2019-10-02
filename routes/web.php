@@ -322,6 +322,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 //Route::get('/admin/dashboard','AdminController@dashboard');
 
 Route::group(['middleware' => ['adminlogin']], function () {
+    //for factory edit
+    Route::match(['get','post'],'/admin/edit-factories/{id}','FactoryController@editfactory');
     
     // Admin Factory Route
     Route::get('/admin/view-factories ','FactoryController@viewFactory');

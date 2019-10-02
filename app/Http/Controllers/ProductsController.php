@@ -535,9 +535,13 @@ class ProductsController extends Controller
 
         $supplierDetails = Supplier::where(['email'=>Session::get('supplierSession')])->first();
 
-        // $orders = Order::with('orders')->orderBy('id','Desc')->where(['email'=>Session::get('supplierSession')])->get();
         $ordersproducts = OrdersProduct::orderBy('id','Desc')->where(['supplier_id'=>$supplierDetails->id])->get();
-        //  echo "<pre>"; print_r($orders); die;
+        $ordersid=[];
+        foreach ($ordersproducts as $key => $value) {
+            $ordersid[]=$value->order_id;
+        }
+         $orders = Order::with('orders')->orderBy('id','Desc')->whereIn('id',$ordersid)->get();
+        //   echo "<pre>"; print_r($orders); die;
 
         return view('supplier.orders.view_orders')->with(compact('orders','supplierDetails','ordersproducts'));
     }

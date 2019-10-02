@@ -191,11 +191,13 @@
                                     <?php $count++; ?>
                                     @endforeach
                             </div>
-                            <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
-                                <i style="color: {{ $secondary_color }};" class="fa fa-angle-left"></i>
+                            <div style="color: {{ $main_color }};">
+                            <a class="left recommended-item-control"   href="#recommended-item-carousel" data-slide="prev">
+                                <i  class="fa fa-angle-left" style="background-color: {{ $main_color }}"></i>
                             </a>
+                        </div>
                             <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
-                                <i class="fa fa-angle-right"></i>
+                                <i class="fa fa-angle-right" style="background-color: {{ $main_color }}"></i>
                             </a>
                         </div>
                     </div>
