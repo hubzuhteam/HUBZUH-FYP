@@ -131,7 +131,7 @@ class ProductsController extends Controller
 
         return view('factory.products.add_product')->with(compact('categories_dropdown','factoryDetails','sleeveArray','patternArray'));
        //return view('admin.products.add_product');
-   }
+    }
 
     public function editProductFactory(Request $request,$id=null){
 
@@ -535,7 +535,11 @@ class ProductsController extends Controller
 
         $supplierDetails = Supplier::where(['email'=>Session::get('supplierSession')])->first();
 
-        return view('supplier.orders.view_orders')->with(compact('orders','supplierDetails'));
+        // $orders = Order::with('orders')->orderBy('id','Desc')->where(['email'=>Session::get('supplierSession')])->get();
+        $ordersproducts = OrdersProduct::orderBy('id','Desc')->where(['supplier_id'=>$supplierDetails->id])->get();
+        //  echo "<pre>"; print_r($orders); die;
+
+        return view('supplier.orders.view_orders')->with(compact('orders','supplierDetails','ordersproducts'));
     }
     public function addProductSupplier(Request $request){
     	 if($request->isMethod('post')){
@@ -1354,7 +1358,7 @@ class ProductsController extends Controller
          }
         //     //echo "<pre>"; print_r($products); die;
           return view('admin.products.view_products')->with(compact('products'));
-     }
+    }
     //================================================================================
     //================================================================================
     public function deleteAttribute($id = null){
@@ -1557,12 +1561,6 @@ class ProductsController extends Controller
         $supplierDetails = Supplier::where('id',$productDetails->supplier_id)->first();
         // echo $supplierDetails;die;
         $relatedProducts = Product::where('id','!=',$id)->where(['category_id' => $productDetails->category_id])->get();
-        /*foreach($relatedProducts->chunk(3) as $chunk){
-            foreach($chunk as $item){
-                echo $item; echo "<br>";
-            }
-            echo "<br><br><br>";
-        }*/
         // Get Product Alt Images
         $productAltImages = ProductsImage::where('product_id',$id)->get();
         /*$productAltImages = json_decode(json_encode($productAltImages));
@@ -1571,12 +1569,12 @@ class ProductsController extends Controller
 
         $categoryDetails = Category::where('id',$productDetails->category_id)->first();
         if($categoryDetails->parent_id==0){
-            $breadcrumb = "<a href='/'>Home</a> / <a href='".$categoryDetails->url."'>".
+            $breadcrumb = "<a style='color:black;' href='/'>Home</a> / <a href='".$categoryDetails->url."'>".
             $categoryDetails->name."</a> / ".$productDetails->product_name;
         }else{
             $mainCategory = Category::where('id',$categoryDetails->parent_id)->first();
-            $breadcrumb = "<a style='color:#333;' href='/project1/public/'>Home</a> / <a style='color:#333;'
-            href='/project1/public/products/".$mainCategory->url."'>".$mainCategory->name."</a> / <a style='color:#333;'
+            $breadcrumb = "<a style='color:black;' href='/project1/public/'>Home</a> / <a style='color:black;'
+            href='/project1/public/products/".$mainCategory->url."'>".$mainCategory->name."</a> / <a style='color:black;'
             href='/project1/public/products/".$categoryDetails->url."'>".$categoryDetails->name."</a> / ".$productDetails->product_name;
         }
 
@@ -1584,11 +1582,18 @@ class ProductsController extends Controller
 
         $banners = Banner::where('status','1')->get();
 
+        $background_img=$supplierDetails->background_img;
+
+        $main_color=$supplierDetails->main_color;
+        $secondary_color=$supplierDetails->secondary_color;
+        $store_name_color=$supplierDetails->store_name_color;
+
         $meta_title = $productDetails->product_name;
         $meta_description = $productDetails->description;
         $meta_keywords = $productDetails->product_name;
         return view('products.detail')->with(compact('productDetails','relatedProducts','categories','supplierDetails'
-        ,'productAltImages','total_stock','meta_title','meta_description','meta_keywords','banners','breadcrumb'));
+        ,'productAltImages','total_stock','meta_title','meta_description','meta_keywords','banners','breadcrumb'
+        ,'background_img','main_color','secondary_color','store_name_color'));
     }
 
     public function getProductPrice(Request $request){

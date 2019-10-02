@@ -17,6 +17,11 @@ use Mail;
 class SupplierController extends Controller
 {
 
+    public function viewSupplier(){
+
+        $suppliers = Supplier::get();
+        return view('admin.suppliers.view_suppliers')->with(compact('suppliers'));
+    }
     public function editSupplier(Request $request, $id = null){
         if($request->isMethod('post')){
             $data = $request->all();

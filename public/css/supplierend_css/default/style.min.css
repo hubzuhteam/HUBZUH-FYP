@@ -5,7 +5,7 @@ Author: Sean Ngu
 Website: http://www.seantheme.com/color-admin-v4.0/admin/
 */
 
-.page-header-fixed #header,
+​ .page-header-fixed #header,
 .page-sidebar-fixed .sidebar,
 .page-with-two-sidebar.page-sidebar-fixed .sidebar.sidebar-right {
     position: fixed
@@ -13847,4 +13847,62 @@ a.text-lime:hover {
 
 .underline {
     border-bottom: 1px solid #e2e7eb!important
+}
+
+
+/* Image scrolling placed in edit store of supplier panel */
+
+
+/* Container needed to position the button. Adjust the width as needed */
+
+.containerr {
+    position: relative;
+    width: 30%;
+    padding-right: 0px;
+    margin-right: 0px;
+}
+
+
+/* Make the image responsive */
+
+.containerr img {
+    width: 80%;
+    height: auto;
+}
+
+
+/* Style the button and place it in the middle of the container/image */
+
+.containerr .btn {
+    position: absolute;
+    top: 30%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    background-color: #255b6c;
+    color: white;
+    font-size: 16px;
+    padding: 12px 24px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.containerr .btn:hover {
+    background-color: #24B498;
+}
+
+#wrapper-img {
+    height: 300px;
+    overflow: auto;
+    width: 90%;
+}
+
+img {
+    height: 300px;
+    width: 300px;
+}
+
+#innerwrapper {
+    width: 1200px;
 }

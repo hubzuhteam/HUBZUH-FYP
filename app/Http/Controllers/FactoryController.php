@@ -17,6 +17,13 @@ use Mail;
 class FactoryController extends Controller
 {
     
+    public function viewFactory(){
+
+        $factories = Factory::get();
+        return view('admin.factories.view_factory')->with(compact('factories'));
+    }
+
+    
     public function logout(){
         Auth::logout();
         Session::forget('factorySession');

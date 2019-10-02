@@ -73,6 +73,31 @@ Route::get('/factory/delete-attribute/{id}','ProductsController@deleteAttributeF
 //Factory add images
 Route::match(['get', 'post'], '/factory/add-images/{id}','ProductsController@addImagesFactory');
 
+/////ZAID////
+//add catagories
+Route::match(['get','post'],'/factory/add-category','CategoryController@addCategoryFactory');
+
+//view catagories
+Route::get('/factory/view-category','CategoryController@viewCategoriesFactory');
+
+//edit-category
+Route::match(['get','post'],'/factory/edit-category/{id}','CategoryController@editCategoryFactory');
+//delete-categories
+Route::match(['get','post'],'/factory/delete-category/{id}','CategoryController@deleteCategoryFactory');
+
+//Factory Coupon add
+Route::match(['get','post'],'/factory/add-coupon','CouponsController@addCouponFactory');
+
+//Factory Coupon View
+Route::get('/factory/view-coupons','CouponsController@viewCouponsFactory');
+
+//Factory Coupon Edit
+Route::match(['get','post'],'/factory/edit-coupon/{id}','CouponsController@editCouponFactory');
+
+// Factory delete Coupon
+Route::match(['get','post'],'/factory/delete-coupon/{id}','CouponsController@deleteCouponFactory');
+
+////zAID/////
 
 });
 
@@ -100,7 +125,7 @@ Route::post('/supplier-login','SupplierController@login');
 Route::get('/supplier-logout','SupplierController@logout');
 
 //view supplier store
-Route::match(['get','post'],'/view_store/{id}','ProductsController@viewStore');
+Route::match(['get','post'],'/view_store/{id}','StoreController@ViewStore');
 
 
 //all routes after supplier
@@ -174,7 +199,16 @@ Route::group(['middleware'=>['supplierlogin']],function(){
     Route::match(['get','post'],'/supplier/edit-coupon/{id}','CouponsController@editCouponSupplier');
     // Supplier delete Coupon
     Route::match(['get','post'],'/supplier/delete-coupon/{id}','CouponsController@deleteCouponSupplier');
+
+    //view supplier store Notice
+    Route::match(['get','post'],'/view_store_notice','StoreController@viewStoreNotice');
+
+    //Supplier Store Edit
+    Route::match(['get','post'],'/supplier/edit-store/{id}','StoreController@editStoreSupplier');
+    Route::match(['get','post'],'/supplier/edit-store-background/{id}','StoreController@editStoreSupplierBackground');
+
 });
+
 
 //________________________________________________//
 /////////////////////////ADMIN AND CUSTOMER////////////////////
@@ -288,6 +322,20 @@ Route::get('/home', 'HomeController@index')->name('home');
 //Route::get('/admin/dashboard','AdminController@dashboard');
 
 Route::group(['middleware' => ['adminlogin']], function () {
+    
+    // Admin Factory Route
+    Route::get('/admin/view-factories ','FactoryController@viewFactory');
+    
+    // Admin design stuff
+    Route::match(['get','post'],'/admin/add-design','DesignController@addDesign');
+
+    Route::get('/admin/view-designs','DesignController@viewDesigns');
+
+	Route::match(['get','post'],'/admin/delete-design/{id}','DesignController@deleteDesign');
+
+    // Admin  View factories Route
+ Route::get('/admin/view-factories','FactoryController@viewFactory');
+
     Route::get('/admin/dashboard','AdminController@dashboard');
      Route::get('/admin/settings','AdminController@settings');
      Route::get('/admin/check-pwd','AdminController@chkPassword');
@@ -351,7 +399,7 @@ Route::group(['middleware' => ['adminlogin']], function () {
     Route::get('/admin/view-users','UsersController@viewUsers');
 
     // Admin Suppliers Route
-    Route::get('/admin/view-suppliers   ','UsersController@viewSupplier');
+    Route::get('/admin/view-suppliers','SupplierController@viewSupplier');
 
     // Admin/Subadmin  Route
     Route::get('/admin/view-admins','AdminController@viewAdmins');

@@ -29,7 +29,7 @@
                             </span>
                         </a>
                     </li>
-                                <li class="menu-item ">
+            <li class="menu-item ">
                 <a href="#" class="open-dropdown menu-link">
                         <span class="menu-label">
                             <span class="menu-name">My Products
@@ -66,6 +66,124 @@
                         </li>
                 </ul>
             </li>
+            <li class="menu-item ">
+                    <a href="#" class="open-dropdown menu-link">
+                            <span class="menu-label">
+                                <span class="menu-name">My Categories
+                                    <span class="menu-arrow"></span>
+                                </span>
+                            </span>
+                                <span class="menu-icon">
+                                    <i class="icon-placeholder mdi mdi-folder-outline "></i>
+                                </span>
+                    </a>
+                    <!--submenu-->
+                    <ul class="sub-menu">
+                        <li class="menu-item">
+                            <a href='{{ url('/factory/add-category') }}' class=' menu-link'>
+                                            <span class="menu-label">
+                                                    <span class="menu-name">Add New Category
+                                                    </span>
+                                            </span>
+                                <span class="menu-icon">
+                                    <i class="icon-placeholder mdi mdi-import  "></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                                <a href='{{ url('/factory/view-category') }}' class=' menu-link'>
+                                                <span class="menu-label">
+                                                        <span class="menu-name">My All category
+                                                        </span>
+                                                </span>
+                                    <span class="menu-icon">
+                                        <i class="icon-placeholder mdi mdi-eye  "></i>
+                                    </span>
+                                </a>
+                            </li>
+                    </ul>
+                </li>
+    
+                <li class="menu-item ">
+                    <a href="#" class="open-dropdown menu-link">
+                            <span class="menu-label">
+                                <span class="menu-name">My Coupon
+                                    <span class="menu-arrow"></span>
+                                </span>
+                            </span>
+                                <span class="menu-icon">
+                                    <i class="icon-placeholder mdi mdi-gift"></i>
+                                </span>
+                    </a>
+                    <!--submenu-->
+                    <ul class="sub-menu">
+                        <li class="menu-item">
+                            <a href='{{ url('/factory/add-coupon') }}' class=' menu-link'>
+                                            <span class="menu-label">
+                                                    <span class="menu-name">Add New Coupon
+                                                    </span>
+                                            </span>
+                                <span class="menu-icon">
+                                    <i class="icon-placeholder mdi mdi-currency-usd  "></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                                <a href='{{ url('/factory/view-coupons') }}' class=' menu-link'>
+                                                <span class="menu-label">
+                                                        <span class="menu-name">My All coupon
+                                                        </span>
+                                                </span>
+                                    <span class="menu-icon">
+                                        <i class="icon-placeholder mdi mdi-eye  "></i>
+                                    </span>
+                                </a>
+                            </li>
+                    </ul>
+                </li>
+                            </ul>
+                        </li>
+
+            {{--  STORE BUTTON  START--}}
+            {{--  <li class="menu-item ">
+                    <a href="#" class="open-dropdown menu-link">
+                            <span class="menu-label">
+                                <span class="menu-name">My Factory
+                                    <span class="menu-arrow"></span>
+                                </span>
+                            </span>
+                                <span class="menu-icon">
+                                    <i class="icon-placeholder mdi mdi-store "></i>
+                                </span>
+                    </a>
+                    <!--submenu-->
+                    <ul class="sub-menu">
+                        <li class="menu-item">
+                            <a href='{{ url('view_store/'.$factoryDetails->id) }}' class=' menu-link'>
+                                            <span class="menu-label">
+                                                    <span class="menu-name">View Store
+                                                    </span>
+                                            </span>
+                                <span class="menu-icon">
+                                    <i class="icon-placeholder mdi mdi-eye"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                                <a href='{{ url('/factory/view-products') }}' class=' menu-link'>
+                                                <span class="menu-label">
+                                                        <span class="menu-name">Edit Store
+                                                        </span>
+                                                </span>
+                                    <span class="menu-icon">
+                                        <i class="icon-placeholder mdi mdi-grease-pencil"></i>
+                                    </span>
+                                </a>
+                            </li>
+                    </ul>
+            </li>  --}}
+            {{--  STORE BUTTON  END--}}
+
                         </ul>
                     </li>
                 </ul>

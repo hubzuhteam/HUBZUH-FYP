@@ -8,7 +8,7 @@
 
         @if (Session::get('adminDetails')['categories_access']==1)
 
-        <li class="submenu"> <a href="#"><i class="icon icon-th-list"></i> <span>Categories</span>
+        <li class="submenu"> <a href="#"><i class="icon icon-list-alt"></i> <span>Categories</span>
         <span class="label label-important">2</span></a>
       <ul <?php if(preg_match("/categor/i",$url)){?> style="display: block;" <?php } ?>>
         <li <?php if(preg_match("/add-category/i",$url)){?> class="active" <?php } ?>><a
@@ -21,7 +21,7 @@
 
       @if (Session::get('adminDetails')['products_access']==1)
 
-      <li class="submenu"> <a href="#"><i class="icon icon-th-list"></i> <span>Products</span> <span class="label label-important">2</span></a>
+      <li class="submenu"> <a href="#"><i class="icon icon-table"></i> <span>Products</span> <span class="label label-important">2</span></a>
         <ul <?php if(preg_match("/product/i",$url)){?> style="display: block;" <?php } ?>>
         <li <?php if(preg_match("/add-product/i",$url)){?> class="active" <?php } ?>><a href="{{ url('/admin/add-product')}}">Add Product</a></li>
           <li <?php if(preg_match("/view-products/i",$url)){?> class="active" <?php } ?>><a href="{{ url('/admin/view-products')}}">View Products</a></li>
@@ -47,7 +47,7 @@
 
       @if (Session::get('adminDetails')['orders_access']==1)
 
-      <li class="submenu"> <a href="#"><i class="icon icon-th-list"></i> <span>Orders</span>
+      <li class="submenu"> <a href="#"><i class="icon icon-shopping-cart"></i> <span>Orders</span>
         <span class="label label-important">2</span></a>
         <ul <?php if(preg_match("/orders/i",$url)){?> style="display: block;" <?php } ?>>
           <li <?php if(preg_match("/view-orders/i",$url)){?> class="active" <?php } ?>><a
@@ -57,9 +57,20 @@
 
       @endif
 
+      {{--  /////Design stuff for Supplier and Factory  --}}
+      <li class="submenu"> <a href="#"><i class="icon icon-picture"></i> <span>Design Stuff</span>
+        <span class="label label-important">2</span></a>
+        <ul <?php if(preg_match("/designs/i",$url)){?> style="display: block;" <?php } ?>>
+          <li <?php if(preg_match("/add-Design/i",$url)){?> class="active" <?php } ?>><a
+            href="{{ url('/admin/add-design')}}">Add Designs Stuff</a></li>
+            <li <?php if(preg_match("/view-Designs/i",$url)){?> class="active" <?php } ?>><a
+                href="{{ url('/admin/view-designs')}}">View Designs Stuff</a></li>
+        </ul>
+      </li>
+
       @if (Session::get('adminDetails')['type']=="Admin")
 
-      <li class="submenu"> <a href="#"><i class="icon icon-th-list"></i> <span>Banners</span>
+      <li class="submenu"> <a href="#"><i class="icon icon-picture"></i> <span>Banners</span>
         <span class="label label-important">2</span></a>
         <ul <?php if(preg_match("/banner/i",$url)){?> style="display: block;" <?php } ?>>
         <li <?php if(preg_match("/add-banner/i",$url)){?> class="active" <?php } ?>><a href="{{ url('/admin/add-banner')}}">Add Banner</a></li>
@@ -117,6 +128,14 @@
 
       @endif
 
+      <li class="submenu"> <a href="#"><i class="icon icon-th-list"></i> <span>Factories</span>
+        <span class="label label-important">2</span></a>
+        <ul <?php if(preg_match("/factories/i",$url)){?> style="display: block;" <?php } ?>>
+          <li <?php if(preg_match("/view-factories/i",$url)){?> class="active" <?php } ?>><a
+            href="{{ url('/admin/view-factories')}}">View Factories</a></li>
+        </ul>
+      </li>
+      
     </ul>
   </div>
   <!--sidebar-menu-->

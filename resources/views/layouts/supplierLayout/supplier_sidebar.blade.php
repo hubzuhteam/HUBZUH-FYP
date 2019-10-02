@@ -75,7 +75,19 @@
 							<li class="active"><a href="{{ url('/supplier/view-coupons') }}">View Coupons</a></li>
 
 						</ul>
-					</li>
+                    </li>
+                    <li class="has-sub active">
+                            <a href="javascript:;">
+                                <b class="caret"></b>
+                                <i class="fa fa-th-large"></i>
+                                <span>Store</span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li class="active"><a href="{{ url('/view_store_notice') }}">View Store</a></li>
+                                <li class="active"><a href="{{ url('/supplier/edit-store/'.$supplierDetails->id) }}">Edit Store</a></li>
+    
+                            </ul>
+                        </li>
                     <li class="has-sub active">
                             <a href="javascript:;">
                                 <b class="caret"></b>

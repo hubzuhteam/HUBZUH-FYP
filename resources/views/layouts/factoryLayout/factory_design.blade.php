@@ -19,7 +19,7 @@
 <meta property="og:image"
       content="../../cdn.dribbble.com/users/180706/screenshots/5424805/the_sceens_-_mobile_perspective_mockup_3_-_by_tranmautritam.jpg"/>
 <meta property="og:site_name" content="atlas "/>
-<title>Atmos Admin Panel- Bootstrap 4 Based Admin Panel</title>
+<title>HUBZUH Factory Site</title>
 <link rel="icon" type="image/x-icon" href="assets/img/logo.png"/>
 <link rel="icon" href="assets/img/logo.png" type="image/png" sizes="16x16">
 <link rel='stylesheet' href="{{ asset('/factory/d33wubrfki0l68.cloudfront.net/css/478ccdc1892151837f9e7163badb055b8a1833a5/crisp/assets/vendor/pace/pace.css') }}"/>
@@ -41,6 +41,9 @@
 <!-- Additional library for page -->
 <!-- Additional library for page -->
     <link rel='stylesheet' href="{{ asset('/factory/d33wubrfki0l68.cloudfront.net/bundles/13fc3abb600e389b43865b1fa1697fc8f5ebf063.css') }}"/>
+
+
+	{{--  <link href="{{ asset('css/factoryend_css/default/style.min.css')}}" rel="stylesheet" />     --}}
 
 </head>
 
@@ -78,6 +81,11 @@
         });
     });        
 </script>
+
+
+<script src="{{ asset('js/supplierend_js/demo/login-v2.demo.min.js')}}"></script>
+<script src="{{ asset('js/supplierend_js/demo/login-v2.demo.js')}}"></script>
+
 </body>
 
 </html>

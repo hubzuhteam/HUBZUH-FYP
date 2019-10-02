@@ -11,6 +11,9 @@ use App\Admin;
 
 class AdminController extends Controller
 {
+
+    
+
     public function login(Request $request){
     	if($request->isMethod('post')){
     		$data = $request->input();

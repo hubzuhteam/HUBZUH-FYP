@@ -2463,3 +2463,10 @@
                                                                                 .contact-info .social-networks ul li a:hover {
                                                                                     color: steelblue;
                                                                                 }
+                                                                                
+                                                                                .admin-brand-content {
+                                                                                    font-weight: 600;
+                                                                                    display: inline-block;
+                                                                                    letter-spacing: 3px;
+                                                                                    text-transform: uppercase;
+                                                                                }

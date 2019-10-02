@@ -6,8 +6,74 @@ use Illuminate\Http\Request;
 use App\Coupon;
 use App\Supplier;
 use Session;
+use App\Factory;
 class CouponsController extends Controller
 {
+
+
+    /////////////////FACTORY////////////
+    public function addCouponFactory(Request $request){
+        if($request->isMethod('post')){
+            $data = $request->all();
+            //echo "<pre>"; print_r($data); die;
+            $coupon = new Coupon;
+            $coupon->coupon_code = $data['coupon_code'];
+            $factoryDetails = Factory::where(['email'=>Session::get('factorySession')])->first();
+          //  echo $supplierDetails->id;die;
+            $coupon->factory_id=$factoryDetails->id;
+            $coupon->amount_type = $data['amount_type'];
+            $coupon->expiry_date = $data['expiry_date'];
+            //$coupon->expiry_date=Carbon::createFromFormat('m/d/Y', $data['expiry_date'])->format('Y-m-d');
+//            $coupon->expiry_date  = date('Y-m-d');
+
+            $coupon->amount = $data['amount'];
+            //echo $coupon->expiry_date;die;
+            if(empty($data['status'])){
+                $data['status'] = 0;
+            }
+            $coupon->status = $data['status'];
+            $coupon->save();
+            return redirect()->action('CouponsController@addCouponFactory')->with('flash_message_success', 'Coupon has been added successfully');
+        }
+        $factoryDetails = Factory::where(['email'=>Session::get('factorySession')])->first();
+
+        return view('factory.coupons.add_coupons')->with(compact('factoryDetails'));
+    }
+    public function viewCouponsFactory(){
+        $factoryDetails = Factory::where(['email'=>Session::get('factorySession')])->first();
+//        $coupons = Coupon::orderBy('id','DESC')->get();
+//        echo $coupons;  die;
+
+        $coupons = Coupon::get();
+       // echo $supplierDetails->id;die;
+$sup_id=$factoryDetails->id;
+
+        return view('Factory.coupons.view_coupons')->with(compact('coupons','factoryDetails','sup_id'));
+    }
+
+
+    public function editCouponFactory(Request $request, $id = null){
+        if($request->isMethod('post')){
+            $data = $request->all();
+            //     //echo "<pre>"; print_r($data); die;
+
+            Coupon::where(['id'=>$id])->update(['coupon_code'=>$data['coupon_code'],'amount'=>$data['amount'],'amount_type'=>$data['amount_type'],
+                'expiry_date'=>$data['expiry_date']]);
+            return redirect('/factory/view-coupons')->with('flash_message_success',
+                'Coupon updated Successfully!');
+        }
+
+        $coupon =Coupon::where(['id'=>$id])->first();
+        $factoryDetails = Factory::where(['email'=>Session::get('factorySession')])->first();
+        return view('factory.coupons.edit_coupon')->with(compact('coupon','factoryDetails'));
+    }
+
+    public function deleteCouponFactory(Request $request, $id = null){
+        if(!empty($id)){
+            Coupon::where(['id'=>$id])->delete();
+            return redirect('/factory/view-coupons')->with('flash_message_success','Coupon deleted Successfully!');
+        }
+    }
     //////Supplier/////////
     public function addCouponSupplier(Request $request){
         if($request->isMethod('post')){

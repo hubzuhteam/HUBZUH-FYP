@@ -192,9 +192,10 @@
 	<!-- ================== END BASE JS ================== -->
 
 	<!-- ================== BEGIN PAGE LEVEL JS ================== -->
-	<script src="{{ asset('js/supplierend_js/demo/login-v2.demo.min.js')}}"></script>
+    <script src="{{ asset('js/supplierend_js/demo/login-v2.demo.min.js')}}"></script>
+    
 	<!-- ================== END PAGE LEVEL JS ================== -->
-
+s
 	<script>
 		$(document).ready(function() {
 			App.init();

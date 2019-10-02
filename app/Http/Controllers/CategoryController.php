@@ -6,9 +6,109 @@ use Illuminate\Http\Request;
 use App\Category;
 use Session;
 use App\Supplier;
+use App\Factory;
 
 class CategoryController extends Controller
 {
+    //////CATEGORY FOR FACTORY
+    public function addCategoryFactory(Request $request){
+    	if($request->isMethod('post')){
+    		$data = $request->all();
+            //echo "<pre>"; print_r($data); die;
+
+            if(empty($data['status'])){
+                $status='0';
+            }else{
+                $status='1';
+            }
+            if(empty($data['meta_title'])){
+                $data['meta_title'] = "";
+            }
+            if(empty($data['meta_description'])){
+                $data['meta_description'] = "";
+            }
+            if(empty($data['meta_keywords'])){
+                $data['meta_keywords'] = "";
+            }
+    		$category = new Category;
+    		$category->name = $data['category_name'];
+            $category->parent_id = $data['parent_id'];
+            $category->meta_title = $data['meta_title'];
+            $category->meta_description = $data['meta_description'];
+            $category->meta_keywords = $data['meta_keywords'];
+    		$category->description = $data['description'];
+            $category->url = $data['url'];
+            $category->status = $status;
+            $factoryDetails = Factory::where(['email'=>Session::get('factorySession')])->first();
+            $category->factory_id=$factoryDetails->id;
+            $category->save();
+    		return redirect('/factory/add-category')->with('flash_message_success','Category added Successfully!');
+    	}
+
+        $levels = Category::where(['parent_id'=>0])->get();
+
+        $factoryDetails = Factory::where(['email'=>Session::get('factorySession')])->first();
+        // echo $supplierDetails->id; die;
+    	return view('factory.categories.add_category')->with(compact('levels','factoryDetails'));
+    }
+
+
+    public function viewCategoriesFactory(){
+
+
+        $categories = Category::get();
+
+    	//$categories = json_decode(json_encode($categories));
+        // /echo "<pre>"; print_r($categories); die;/
+
+        $factoryDetails = Factory::where(['email'=>Session::get('factorySession')])->first();
+
+    	return view('factory.categories.view_categories')->with(compact('categories','factoryDetails'));
+    }
+
+    public function editCategoryFactory(Request $request, $id = null){
+        if($request->isMethod('post')){
+             $data = $request->all();
+        //     //echo "<pre>"; print_r($data); die;
+        if(empty($data['status'])){
+            $status='0';
+        }else{
+            $status='1';
+        }
+        if(empty($data['meta_title'])){
+            $data['meta_title'] = "";
+        }
+        if(empty($data['meta_description'])){
+            $data['meta_description'] = "";
+        }
+        if(empty($data['meta_keywords'])){
+            $data['meta_keywords'] = "";
+        }
+        Category::where(['id'=>$id])->update(['status'=>$status,'name'=>$data['category_name'],
+        'parent_id'=>$data['parent_id'],'description'=>$data['description'],
+        'url'=>$data['url'],'meta_title'=>$data['meta_title'],
+        'meta_description'=>$data['meta_description'],
+        'meta_keywords'=>$data['meta_keywords']]);
+             return redirect('/factory/view-category')->with('flash_message_success',
+             'Category updated Successfully!');
+         }
+         $categoryDetails = Category::where(['id'=>$id])->first();
+         $levels = Category::where(['parent_id'=>0])->get();
+//        return view('admin.categories.edit_category')->with(compact('categoryDetails','levels'));
+
+        $factoryDetails = Factory::where(['email'=>Session::get('factorySession')])->first();
+
+        return view('factory.categories.edit_category')->with(compact('categoryDetails','levels','factoryDetails'));
+    }
+
+    public function deleteCategoryFactory(Request $request, $id = null){
+
+
+        if(!empty($id)){
+            Category::where(['id'=>$id])->delete();
+            return redirect()->back()->with('flash_message_success','Category deleted Successfully!');
+        }
+    }
     /////////CATEGORY FOR SUPPLIER/////////////////////////////////////////////////////////////////////////
 
     public function addCategorySupplier(Request $request){

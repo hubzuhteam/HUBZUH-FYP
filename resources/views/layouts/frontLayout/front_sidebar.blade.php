@@ -3,9 +3,9 @@
     @if(!empty($url))
 	<input name="url" value="{{ $url }}" type="hidden">
 	@endif
-<div class="left-sidebar">
+<div class="left-sidebar" style="padding-top: 6%"> 
     <h2>Category</h2>
-        <div class="panel-group category-products" id="accordian">
+        <div class="panel-group category-products" id="accordian" style="border-color: transparent">
             <!--category-productsr-->
             <div class="panel panel-default">
                 @foreach ($categories as $cat)
@@ -117,7 +117,7 @@
     <div>&nbsp;</div>
 
     <h2>Size</h2>
-    <div class="panel-group">
+    <div class="panel-group" style="padding-bottom: 5%">
         @foreach($sizesArray as $size)
             @if(!empty($_GET['size']))
                 <?php $sizeArr = explode('-',$_GET['size']) ?>

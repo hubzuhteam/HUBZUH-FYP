@@ -221,11 +221,6 @@ class UsersController extends Controller
         return view('admin.users.view_users')->with(compact('users'));
     }
 
-    public function viewSupplier(){
-
-        $suppliers = Supplier::get();
-        return view('admin.suppliers.view_suppliers')->with(compact('suppliers'));
-    }
 
     public function confirmAccount($email){
         $email = base64_decode($email);
