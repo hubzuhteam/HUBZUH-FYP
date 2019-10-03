@@ -123,7 +123,7 @@
                                                 </td>
                                                 <td>
                                                   @if(!empty($productDetails->image))
-                                                    <img style="width:30px;" src="{{ asset('/images/factoryend_images/products/small/'.$productDetails->image) }}"> | <a href="{{ url('/factory/delete-product-image/'.$productDetails->id) }}">Delete</a>
+                                                    <img style="width:30px;" src="{{ asset('/images/supplierend_images/products/small/'.$productDetails->image) }}"> | <a href="{{ url('/factory/delete-product-image/'.$productDetails->id) }}">Delete</a>
                                                   @endif
                                                 </td>
                                               </tr>

@@ -83,9 +83,9 @@ class ProductsController extends Controller
                 if($image_tmp->isValid()){
                     $extension = $image_tmp->getClientOriginalExtension();
                     $filename = rand(111,99999).'.'.$extension;
-                    $large_image_path = 'images/factoryend_images/products/large/'.$filename;
-                    $medium_image_path = 'images/factoryend_images/products/medium/'.$filename;
-                    $small_image_path = 'images/factoryend_images/products/small/'.$filename;
+                    $large_image_path = 'images/supplierend_images/products/large/'.$filename;
+                    $medium_image_path = 'images/supplierend_images/products/medium/'.$filename;
+                    $small_image_path = 'images/supplierend_images/products/small/'.$filename;
                     // Resize Images
                     Image::make($image_tmp)->save($large_image_path);
                     Image::make($image_tmp)->resize(600,600)->save($medium_image_path);
@@ -171,9 +171,9 @@ class ProductsController extends Controller
                     // Upload Images after Resize
                     $extension = $image_tmp->getClientOriginalExtension();
 	                $fileName = rand(111,99999).'.'.$extension;
-                    $large_image_path = 'images/factoryend_images/products/large'.'/'.$fileName;
-                    $medium_image_path = 'images/factoryend_images/products/medium'.'/'.$fileName;
-                    $small_image_path = 'images/factoryend_images/products/small'.'/'.$fileName;
+                    $large_image_path = 'images/supplierend_images/products/large'.'/'.$fileName;
+                    $medium_image_path = 'images/supplierend_images/products/medium'.'/'.$fileName;
+                    $small_image_path = 'images/supplierend_images/products/small'.'/'.$fileName;
 
 	                Image::make($image_tmp)->save($large_image_path);
  					Image::make($image_tmp)->resize(600, 600)->save($medium_image_path);
@@ -259,9 +259,9 @@ class ProductsController extends Controller
 
 
         // Get Product Image Paths
-		$large_image_path = 'images/factoryend_images/products/large/';
-		$medium_image_path = 'images/factoryend_images/products/medium/';
-		$small_image_path = 'images/factoryend_images/products/small/';
+		$large_image_path = 'images/supplierend_images/products/large/';
+		$medium_image_path = 'images/supplierend_images/products/medium/';
+		$small_image_path = 'images/supplierend_images/products/small/';
 
 		// Delete Large Image if  exists in Folder
         if(file_exists($large_image_path.$productImage->image)){
@@ -279,9 +279,9 @@ class ProductsController extends Controller
         }
         $productImage = ProductsImage::where('product_id',$id)->first();
         // Get Product Image Paths
-        $large_image_path = 'images/factoryend_images/products/large/';
-        $medium_image_path = 'images/factoryend_images/products/medium/';
-        $small_image_path = 'images/factoryend_images/products/small/';
+        $large_image_path = 'images/supplierend_images/products/large/';
+        $medium_image_path = 'images/supplierend_images/products/medium/';
+        $small_image_path = 'images/supplierend_images/products/small/';
 
         // Delete Large Image if not exists in Folder
         if(file_exists($large_image_path.$productImage->image)){
@@ -328,9 +328,9 @@ class ProductsController extends Controller
             return view('factory.products.view_products')->with(compact('products','factoryDetails'));
         }
 		// Get Product Image Paths
-		$large_image_path = 'images/factoryend_images/products/large/';
-		$medium_image_path = 'images/factoryend_images/products/medium/';
-		$small_image_path = 'images/factoryend_images/products/small/';
+		$large_image_path = 'images/supplierend_images/products/large/';
+		$medium_image_path = 'images/supplierend_images/products/medium/';
+		$small_image_path = 'images/supplierend_images/products/small/';
 
 		// Delete Large Image if not exists in Folder
         if(file_exists($large_image_path.$productImage->image)){
@@ -357,9 +357,9 @@ class ProductsController extends Controller
         $productImage = ProductsImage::where('id',$id)->first();
 
         // Get Product Image Paths
-        $large_image_path = 'images/factoryend_images/products/large/';
-        $medium_image_path = 'images/factoryend_images/products/medium/';
-        $small_image_path = 'images/factoryend_images/products/small/';
+        $large_image_path = 'images/supplierend_images/products/large/';
+        $medium_image_path = 'images/supplierend_images/products/medium/';
+        $small_image_path = 'images/supplierend_images/products/small/';
 
         // Delete Large Image if not exists in Folder
         if(file_exists($large_image_path.$productImage->image)){
@@ -475,9 +475,9 @@ class ProductsController extends Controller
                 $image = new ProductsImage;
                 $extension = $file->getClientOriginalExtension();
                 $fileName = rand(111,99999).'.'.$extension;
-                $large_image_path = 'images/factoryend_images/products/large'.'/'.$fileName;
-                $medium_image_path = 'images/factoryend_images/products/medium'.'/'.$fileName;
-                $small_image_path = 'images/factoryend_images/products/small'.'/'.$fileName;
+                $large_image_path = 'images/supplierend_images/products/large'.'/'.$fileName;
+                $medium_image_path = 'images/supplierend_images/products/medium'.'/'.$fileName;
+                $small_image_path = 'images/supplierend_images/products/small'.'/'.$fileName;
                 Image::make($file)->save($large_image_path);
                 Image::make($file)->resize(600, 600)->save($medium_image_path);
                 Image::make($file)->resize(300, 300)->save($small_image_path);
@@ -1553,7 +1553,6 @@ class ProductsController extends Controller
     }
 
     public function product($id = null){
-
         // Show 404 Page if Product is disabled
         $productCount = Product::where(['id'=>$id,'status'=>1])->count();
         if($productCount==0){
@@ -1564,6 +1563,9 @@ class ProductsController extends Controller
         // echo $productDetails->supplier_id;die;
         $supplierDetails = Supplier::where('id',$productDetails->supplier_id)->first();
         // echo $supplierDetails;die;
+        $factoryDetails = Factory::where('id',$productDetails->factory_id)->first();
+        //  echo $factoryDetails;die;
+
         $relatedProducts = Product::where('id','!=',$id)->where(['category_id' => $productDetails->category_id])->get();
         // Get Product Alt Images
         $productAltImages = ProductsImage::where('product_id',$id)->get();
@@ -1586,18 +1588,40 @@ class ProductsController extends Controller
 
         $banners = Banner::where('status','1')->get();
 
-        $background_img=$supplierDetails->background_img;
+        // default varaibles
+        $background_img="";
+        $main_color="";
+        $secondary_color="";
+        $store_name_color="";
+        $outlet_name="";
+        $outlet_title="";
 
-        $main_color=$supplierDetails->main_color;
-        $secondary_color=$supplierDetails->secondary_color;
-        $store_name_color=$supplierDetails->store_name_color;
+        if ($supplierDetails!=null) {
+            $background_img=$supplierDetails->background_img;   
+            $main_color=$supplierDetails->main_color;
+            $secondary_color=$supplierDetails->secondary_color;
+            $store_name_color=$supplierDetails->store_name_color;    
+            $outlet_name=$supplierDetails->store_name;
+            $outlet_title="Store Name:";
+            $outlet_id=$supplierDetails->id;
+            $store=true;
+            $factory=false;
 
+        }else
+        {
+            $outlet_name=$factoryDetails->factory_name;        
+            $outlet_title="Factory Name:";    
+            $outlet_id=$factoryDetails->id;
+            $store=false;
+            $factory=true;
+        }
         $meta_title = $productDetails->product_name;
         $meta_description = $productDetails->description;
         $meta_keywords = $productDetails->product_name;
         return view('products.detail')->with(compact('productDetails','relatedProducts','categories','supplierDetails'
         ,'productAltImages','total_stock','meta_title','meta_description','meta_keywords','banners','breadcrumb'
-        ,'background_img','main_color','secondary_color','store_name_color'));
+        ,'background_img','main_color','secondary_color','store_name_color','outlet_name','outlet_title'
+        ,'outlet_id','store','factory'));
     }
 
     public function getProductPrice(Request $request){
@@ -1653,13 +1677,6 @@ class ProductsController extends Controller
                 'price' => $data['price'],'size' => $sizeArr[1],'quantity' => $data['quantity'],
                 'user_email' => $data['user_email'],'session_id' => $session_id]);
          }
-
-        // $product_size = $sizeIDArr[1];
-
-
-        //$getSKU
-
-
         return redirect('cart')->with('flash_message_success','Product has been added in Cart!');
 
     }

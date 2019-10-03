@@ -107,7 +107,7 @@
                                                       <td class="center">{{ $image->id }}</td>
                                                       <td class="center">{{ $image->product_id }}</td>
                                                       <td class="center"><img width=130px
-                                                        src="{{ asset('images/factoryend_images/products/small/'.$image->image) }}"></td>
+                                                        src="{{ asset('images/supplierend_images/products/small/'.$image->image) }}"></td>
                                                       <td class="center"><a id="delImage"
                                                         href="{{ url('/factory/delete-alt-image/'.$image->id) }}"
                                                          class="btn btn-danger btn-mini deleteRecord">Delete</a></td>

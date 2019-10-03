@@ -40,7 +40,7 @@ class StoreController extends Controller
         // $secondary_color="black";
         // $store_name_color="black";
         
-        return view('products.view_store')->with(compact('productsAll','categories_menu',
+        return view('products.view_store_2')->with(compact('productsAll','categories_menu',
             'categories','banners','supplier','store','background_img','background_color','main_color','secondary_color','store_name_color'));
     }
     // STORE EDIT

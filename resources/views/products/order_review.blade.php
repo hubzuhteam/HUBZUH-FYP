@@ -14,7 +14,6 @@
 				<div class="row">
 				</div>
 			</div>
-
 			<div class="row">
 				<div class="col-sm-4 col-sm-offset-1">
 					<div class="login-form">
@@ -93,7 +92,7 @@
 						@foreach($userCart as $cart)
 						<tr>
 							<td class="cart_product">
-								<a href=""><img style="width:130px;" src="{{ asset('/images/supplierend_images/products/small/'.$cart->image) }}" alt=""></a>
+								<a href=""><img style="width:130px; padding-right: 25px" src="{{ asset('/images/supplierend_images/products/small/'.$cart->image) }}" alt=""></a>
 							</td>
 							<td class="cart_description">
 								<h4><a href="">{{ $cart->product_name }}</a></h4>

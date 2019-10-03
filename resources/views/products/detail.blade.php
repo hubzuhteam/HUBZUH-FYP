@@ -63,7 +63,7 @@
                                 <!--/product-information-->
                                 <img src="images/product-details/new.jpg" class="newarrival" alt="" />
                                 <h2 class="admin-brand-content" style="color: {{ $main_color }}"><strong>{{ $productDetails->product_name}}</strong></h2>
-                                <h2 style="color: {{ $main_color }}"><strong>Product By: </strong>{{ $supplierDetails->store_name}}</h2>
+                                <h2 style="color: {{ $main_color }}"><strong>Product By: </strong>{{ $outlet_name }}</h2>
                                 <br>
                                 <br>
                                 <p style="color: black; font-size: 17px;">Code: {{ $productDetails->product_code}}</p>
@@ -92,7 +92,7 @@
                                 </span>
                                 <p style="color: black; font-size: 17px;"><b>Availability:</b> <span id="Availability"> @if ($total_stock>0) In Stock @else Out of Stock @endif</p>
                                 <p style="color: black; font-size: 17px;"><b>Condition:</b> New</p></span>
-                                <p style="color: black; font-size: 17px;"><b>Store Name: </b>{{ $supplierDetails->store_name}}</p>
+                                <p style="color: black; font-size: 17px;"><b>{{ $outlet_title }} </b>{{ $outlet_name }}</p>
                                 <a href=""><img src="images/product-details/share.png" class="share img-responsive" alt="" /></a>
                             </div>
                     </form>
@@ -103,10 +103,19 @@
                                 <input type="hidden" name="product_name" value="{{ $productDetails->product_name }}">
                                 <input type="hidden" name="price" id="price" value="{{ $productDetails->price }}">
                     <div class="product-information" style="border-color: transparent">
+                            @if ($store==true)
                             <button type="submit" class="btn btn-default" style="background-color: cornflowerblue;color:white" id="view_store">
                                     <i class="fa fa-eye"></i>
-                        <a href="{{url('/view_store/'.$productDetails->supplier_id)}}" style="background-color: cornflowerblue;color:white">View {{ $supplierDetails->store_name}}</a>
+                                    <a href="{{url('/view_store/'.$outlet_id)}}" style="background-color: cornflowerblue;color:white">View {{ $outlet_name }}</a>
                             </button>
+                            @else
+                            <button type="submit" class="btn btn-default" style="background-color: cornflowerblue;color:white" id="view_store">
+                                    <i class="fa fa-eye"></i>
+                                    <a href="{{url('/view_factory/'.$outlet_id)}}" style="background-color: cornflowerblue;color:white">View {{ $outlet_name }}</a>
+                            </button>
+                            @endif
+                            
+                            
 
                         <button type="submit" class="btn btn-default" style="background-color: tomato;color:white" id="wishlistButton">
                             <i class="fa fa-heart"></i>

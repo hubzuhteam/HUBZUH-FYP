@@ -1,3 +1,4 @@
+{{--  View Store 2nd Template  --}}
 @section('content')
 @extends('layouts.frontLayout.front_design')
 
@@ -28,7 +29,7 @@
 			</div>
 
 
-				<img align="left" onerror="imgError(this);"  class="fb-image-profile thumbnail" src="{{ asset('images/supplierend_images/store_images/small/'.$supplier->store_image)}} " alt="Profile image example"/>
+				<img align="left" style="border-radius: 0%;" onerror="imgError(this);"  class="fb-image-profile thumbnail" src="{{ asset('images/supplierend_images/store_images/small/'.$supplier->store_image)}} " alt="Profile image example"/>
 
 
 			<div class="fb-profile-text">
@@ -53,23 +54,23 @@
 				<li><a href="#branches" data-toggle="tab">Branches</a></li>                
 			</ul>
 		</div>
-		<div class="tab-content" >
-			<div class="tab-pane fade active in" id="description">
+		<div class="tab-content"  >
+			<div class="tab-pane fade active in" id="description" >
 				<div class="col-sm-12">
-					<div class="container" >
+					<div class="container" style="width:100%;" >
 						<div class="row">
-							<div class="col-sm-0">
-							</div>
-							<div class="col-sm-12 padding-right">
+							
+							<div class="col-sm-12">
 								<div class="features_items">
 									<!--features_items-->
 									@foreach ($productsAll as $product)
-										<div class="col-sm-3" >
+                                        
+                                    <div class="col-sm-3" >
 											<a class="product_click" >
-												<div class="product-image-wrapper" style="border-color: transparent">
+												<div class="product-image-wrapper" style=" border-color:transparent ">
 													<div class="single-products">
 														<div  class="productinfo text-center">
-															<img src="{{ asset('images/supplierend_images/products/small/'.$product->image) }}" alt="" />
+															<img style="border-radius: 0%;" src="{{ asset('images/supplierend_images/products/small/'.$product->image) }}" alt="" />
 															<h2 style="color: {{ $main_color }}">Rs {{$product->price}}</h2>
 															<p style="color: {{ $secondary_color }};"><strong>{{$product->product_name}}</strong></p>
 															<a href="{{ url('product/'.$product->id)}}" class="btn btn-default add-to-cart"><i class="fa fa-eye"></i>View</a>
@@ -92,7 +93,8 @@
 
 
 
-										</div>
+                                       
+                                    </div>
 									@endforeach
 									<div align="center">{{ $productsAll->links() }}</div>
 								</div>
@@ -138,30 +140,10 @@
 					</h4>
 				</div>
 			</div>
-
-
-{{--			@if(!empty($productDetails->video))--}}
-{{--				<div class="tab-pane fade" id="video" >--}}
-{{--					<div class="col-sm-12">--}}
-{{--						<video controls width="640" height="480">--}}
-{{--							<source src="{{ url('videos/'.$productDetails->video)}}" type="video/mp4">--}}
-{{--						</video>--}}
-{{--					</div>--}}
-{{--				</div>--}}
-{{--			@endif--}}
-
 		</div>
 	</div>
 </div>
 </div>
-
-
-
-
-
-
-
-
 	<section>
 
 	</section>

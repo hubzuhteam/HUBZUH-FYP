@@ -7,6 +7,7 @@ use App\Category;
 use App\Product;
 use App\Banner;
 use App\Supplier;
+use App\Factory;
 
 class IndexController extends Controller
 {
@@ -22,33 +23,13 @@ class IndexController extends Controller
         //->where('feature_item',1)
         // $suppliers = Supplier::where(['active'=>1])->get();
 
-        $productsAll = Product::whereHas('supplier', function ($query) {
+        $productsAll = Product::inRandomOrder()->whereHas('supplier', function ($query) {
             $query->where('active', '=', '1');
-        })->where('status',1)->paginate(6);
+        })->orwhereHas('factory', function ($query) {
+            $query->where('active', '=', '1');
+        })->where('status',1)->paginate(21);
 
-         $products = Product::with('supplier')->where('status',1)->get();
-        // $products = Supplier::all()->products;
-        // echo "<pre>"; print_r($productsAll); die;
-        // echo $products;die;
-        //echo "<pre>"; print_r($productDetails); die;
-        // echo dump($suppliers);die;
-        // foreach ($suppliers as  $value) {
-        //     // $productsAll = Product::where('supplier_id',$value->id);
-        //     //
-        // echo $value->id;
-        //     echo "   ";
-        // }
-        // die;
-        // $productsAll = Product::where('supplier_id',$suppliers->id)->paginate(12);
-        // echo $productsAll;die;
-
-        // $n = Supplier::find(14)->products;
-        // // echo $n;die;
-        // foreach ($suppliers as  $value) {
-        //     echo $value;die;
-        // }
-
-
+        //  $products = Product::with('supplier')->where('status',1)->get();
     	// Get All Categories and Sub Categories
 
         $categories = Category::with('categories')->where(['parent_id' => 0])->get();

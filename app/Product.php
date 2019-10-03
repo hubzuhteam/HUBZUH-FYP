@@ -15,6 +15,10 @@ class Product extends Model
         return $this->belongsTo(Supplier::class);
     }
 
+    public function factory(){
+        return $this->belongsTo(Factory::class);
+    }
+
     public static function cartCount(){
     	if(Auth::check()){
     		// User is logged in; We will use Auth
