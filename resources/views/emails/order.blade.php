@@ -8,7 +8,8 @@
 		<tr><td>&nbsp;</td></tr>
 		<tr><td>Thank you for placing your Order. Your order details are as below :-</td></tr>
 		<tr><td>&nbsp;</td></tr>
-		<tr><td>Order No: {{ $order_id }}</td></tr>
+        <tr><td>Order No: {{ $order_id }}</td></tr>
+		<tr><td>Purchased From: {{ $outletname }}</td></tr>        
 		<tr><td>&nbsp;</td></tr>
 		<tr><td>
 			<table width='95%' cellpadding="5" cellspacing="5" bgcolor="#f7f4f4">
@@ -16,7 +17,8 @@
 					<td>Product Name</td>
 					<td>Product Code</td>
 					<td>Size</td>
-					<td>Color</td>
+                    <td>Color</td>
+                    <td>Purchased From</td>
 					<td>Quantity</td>
 					<td>Unit Price</td>
 				</tr>

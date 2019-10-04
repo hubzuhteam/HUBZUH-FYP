@@ -1982,11 +1982,16 @@ class ProductsController extends Controller
             $order->save();
 
             $order_id = DB::getPdo()->lastInsertId();
-
-            $supplierDetails = Supplier::where(['email'=>Session::get('supplierSession')])->first();
-
+            
             $cartProducts = DB::table('cart')->where(['user_email'=>$user_email])->get();
             foreach($cartProducts as $pro){
+
+
+                $product=Product::where(['id'=>$pro->product_id])->first();
+                // echo "<pre>"; print_r($p); die;
+
+
+
                 $cartPro = new OrdersProduct;
                 $cartPro->order_id = $order_id;
                 $cartPro->user_id = $user_id;
@@ -1997,7 +2002,18 @@ class ProductsController extends Controller
                 $cartPro->product_size = $pro->size;
                 $cartPro->product_price = $pro->price;
                 $cartPro->product_qty = $pro->quantity;
-                $cartPro->supplier_id=$supplierDetails->id;
+
+                if ($product->supplier_id!=null) {
+                    $outletDetails = Supplier::where(['id'=>$product->supplier_id])->first();
+                    $cartPro->supplier_id=$outletDetails->id;
+                    $outletname=$outletDetails->store_name;
+                }
+                else{
+                    $outletDetails = Factory::where(['id'=>$product->factory_id])->first();
+                    $cartPro->factory_id=$outletDetails->id;
+                    $outletname=$outletDetails->factory_name;
+                }
+
                 $cartPro->save();
 
 
@@ -2027,7 +2043,6 @@ class ProductsController extends Controller
                 /*echo "<pre>"; print_r($userDetails); die;
                 */
 
-
                 // Email of order
                 $email = $user_email;
                 $messageData = [
@@ -2035,19 +2050,15 @@ class ProductsController extends Controller
                     'name' => $shippingDetails->name,
                     'order_id' => $order_id,
                     'productDetails' => $productDetails,
-                    'userDetails' => $userDetails
+                    'userDetails' => $userDetails,
+                    'outletname' => $outletname
                 ];
                 Mail::send('emails.order',$messageData,function($message) use($email){
                     $message->to($email)->subject('Order Placed - HUBZUH Team');
                 });
-
-
-
                 // COD - Redirect user to thanks page after saving order
                 return redirect('/thanks');
             }
-
-
         }
     }
 
