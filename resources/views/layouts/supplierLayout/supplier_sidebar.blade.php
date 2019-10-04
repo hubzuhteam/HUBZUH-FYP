@@ -32,7 +32,7 @@
 					<li class="has-sub active">
 						<a href="javascript:;">
 					        <b class="caret"></b>
-						    <i class="fa fa-th-large"></i>
+						    <i class="fa fa-desktop"></i>
 						    <span>Dashboard</span>
 					    </a>
 						<ul class="sub-menu">
@@ -43,7 +43,7 @@
 					<li class="has-sub active">
 						<a href="javascript:;">
 					        <b class="caret"></b>
-						    <i class="fa fa-th-large"></i>
+						    <i class="fa fa fa-list"></i>
 						    <span>Categories</span>
 					    </a>
 						<ul class="sub-menu">
@@ -55,7 +55,7 @@
                     <li class="has-sub active">
 						<a href="javascript:;">
 					        <b class="caret"></b>
-						    <i class="fa fa-th-large"></i>
+						    <i class="fa fa-archive"></i>
 						    <span>Products</span>
 					    </a>
 						<ul class="sub-menu">
@@ -91,7 +91,7 @@
                     <li class="has-sub active">
                             <a href="javascript:;">
                                 <b class="caret"></b>
-                                <i class="fa fa-th-large"></i>
+                                <i class="fa fa-image"></i>
                                 <span>Banners</span>
                             </a>
                             <ul class="sub-menu">

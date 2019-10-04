@@ -63,13 +63,11 @@
             <!-- end brand -->
             <!-- begin login-content -->
             <div class="login-content">
-                <form action="{{url('/supplier-login')}}" method="POST" class="margin-bottom-0">{{ csrf_field() }}
+                <form action="{{url('/supplier/forgetpassword')}}" method="POST" class="margin-bottom-0">{{ csrf_field() }}
                     <div class="form-group m-b-20">
                         <input id="email" name="email" type="text" class="form-control form-control-lg" placeholder="Email Address" required />
                     </div>
-                    <div class="form-group m-b-20">
-                        <input id="password" name="password" type="password" class="form-control form-control-lg" placeholder="Password" required />
-                    </div>
+               
                     <div class="checkbox checkbox-css m-b-20">
                         <input type="checkbox" id="remember_checkbox" />
                         <label for="remember_checkbox">
@@ -77,14 +75,14 @@
                         </label>
                     </div>
                     <div class="login-buttons">
-                        <button type="submit" class="btn btn-success btn-block btn-lg">Sign me in</button>
+                        <button type="submit" class="btn btn-success btn-block btn-lg">Submit</button>
                     </div>
                     <div class="m-t-20">
                         Not a member yet? Click <a href="{{ url('/supplier/register')}}">here</a> to register.
                     </div>
                     <p class="text-right p-t-10">
-                            <a href="{{ url('/supplier/forgetpassword') }}"class="text-underline" >Forgot Password?</a>
-                            </p>
+                        <a href="{{ url('/supplier/dashboard') }}"class="text-underline" >Do you want to login again?</a>
+                        </p> 
                 </form>
             </div>
             <!-- end login-content -->
@@ -195,10 +193,9 @@
 	<!-- ================== END BASE JS ================== -->
 
 	<!-- ================== BEGIN PAGE LEVEL JS ================== -->
-    <script src="{{ asset('js/supplierend_js/demo/login-v2.demo.min.js')}}"></script>
-    
+	<script src="{{ asset('js/supplierend_js/demo/login-v2.demo.min.js')}}"></script>
 	<!-- ================== END PAGE LEVEL JS ================== -->
-s
+
 	<script>
 		$(document).ready(function() {
 			App.init();

@@ -1,13 +1,14 @@
 
-{{-- Supplier ADD CATGEORY  --}}
-@section('content')
-@extends('layouts.supplierLayout.supplier_design')
+{{-- factory ADD CATGEORY  --}}
 
-<!-- begin #content -->
+@section('content')
+    @extends('layouts.factoryLayout.factory_design')
+
+    <!-- begin #content -->
 <div id="content" class="content">
     <!-- begin breadcrumb -->
     <ol class="breadcrumb pull-right">
-        <li class="breadcrumb-item"><a href="{{ url('/supplier/dashboard') }}">Home</a></li>
+        <li class="breadcrumb-item"><a href="{{ url('/factory/dashboard') }}">Home</a></li>
     </ol>
     <!-- end breadcrumb -->
     <!-- begin page-header -->
@@ -133,7 +134,7 @@
                                     <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
                                     <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
                                 </div>
-                                <h4 class="panel-title">Supplier Details</h4>
+                                <h4 class="panel-title">Factory Details</h4>
                             </div>
                             <!-- end panel-heading -->
                             <!-- begin panel-body -->
@@ -143,20 +144,20 @@
                                     <table class="table m-b-0">
                             <tbody>
                                     <tr class="info">
-                                      <td class="taskDesc">Store ID</td>
-                                      <td class="taskStatus">{{ $supplierDetails->id }}</td>
+                                      <td class="taskDesc">Factory ID</td>
+                                      <td class="taskStatus">{{ $factoryDetails->id }}</td>
                                     </tr>
                                     <tr class="danger">
-                                      <td class="taskDesc">Store Name</td>
-                                      <td class="taskStatus">{{ $supplierDetails->store_name }}</td>
+                                      <td class="taskDesc">Factory Name</td>
+                                      <td class="taskStatus">{{ $factoryDetails->factory_name }}</td>
                                     </tr>
                                     <tr class="info">
                                       <td class="taskDesc">Deals In</td>
-                                      <td class="taskStatus">{{ $supplierDetails->deals_in }}</td>
+                                      <td class="taskStatus">{{ $factoryDetails->deals_in }}</td>
                                     </tr>
                                     <tr class="danger">
-                                      <td class="taskDesc">Store Email</td>
-                                      <td class="taskStatus">{{ $supplierDetails->store_email }}</td>
+                                      <td class="taskDesc">Factory Email</td>
+                                      <td class="taskStatus">{{ $factoryDetails->factory_email }}</td>
                                     </tr>
                                   </tbody>
                                     </table>

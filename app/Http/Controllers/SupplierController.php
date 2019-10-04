@@ -17,6 +17,48 @@ use Mail;
 class SupplierController extends Controller
 {
 
+    public function forgetpassword(Request $request){
+        if($request->isMethod('post')){
+            $data = $request->all();
+            // /echo "<pre>"; print_r($data); die;/
+            $userCount = Supplier::where('email',$data['email'])->count();
+            if($userCount == 0){
+                return redirect()->back()->with('flash_message_error','Email does not exists!');
+            }
+
+            //Get factory Details
+            $userDetails = Supplier::where('email',$data['email'])->first();
+
+            //Generate Random Password
+            $random_password = str_random(8);
+
+            //Encode/Secure Password
+            $new_password = bcrypt($random_password);
+
+            //Update Password
+            Supplier::where('email',$data['email'])->update(['password'=>$new_password]);
+
+            //Send Forgot Password Email Code
+            $email = $data['email'];
+            $name = $userDetails->name;
+            $messageData = [
+                'email'=>$email,
+                'name'=>$name,
+                'password'=>$random_password
+            ];
+            Mail::send('emails.forgotpassword',$messageData,function($message)use($email){
+                $message->to($email)->subject('New Password - HUBZUH Team');
+            });
+
+            return redirect('/supplier/forgetpassword')->with('flash_message_success','Please check your email for new password!');
+
+        }
+
+
+        return view('supplier.supplier_forgot_password');
+
+
+    }
     public function viewSupplier(){
 
         $suppliers = Supplier::get();

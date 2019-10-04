@@ -44,8 +44,19 @@ Route::post('/factory-login','FactoryController@login');
 //Factory Logout
 Route::get('/factory-logout','FactoryController@logout');
 
+Route::match(['get','post'],'/factory/forgetpassword','FactoryController@forgetpassword');
+
 Route::group(['middleware'=>['factorylogin']],function(){
 
+    //Supplier Orders
+    Route::get('/factory/view-orders','ProductsController@viewOrdersFactory');
+
+    //view order details factory
+    Route::get('/factory/view-order-details/{id}','ProductsController@viewOrderDetailsFactory');
+
+    //view order invoice factory
+    Route::get('/factory/view-order-invoice/{id}','ProductsController@viewOrderInvoiceFactory');
+    
     //view banner factory
     Route::get('/factory/view-banners','BannersController@viewBannersFactory');
 
@@ -142,6 +153,8 @@ Route::get('/supplier-logout','SupplierController@logout');
 //view supplier store
 Route::match(['get','post'],'/view_store/{id}','StoreController@ViewStore');
 
+//forgot password supplier
+Route::match(['get','post'],'/supplier/forgetpassword','SupplierController@forgetpassword');
 
 //all routes after supplier
 Route::group(['middleware'=>['supplierlogin']],function(){

@@ -28,6 +28,46 @@ class ProductsController extends Controller
 {
     ///////////////////////////////FACTORY START///////////////////////////////////////
 
+    public function viewOrderDetailsFactory($order_id){
+
+        $factoryDetails = Factory::where(['email'=>Session::get('factorySession')])->first();
+        $orderDetails = Order::with('orders')->where('id',$order_id)->first();
+
+        $user_id = $factoryDetails->user_id;
+        $userDetails = User::where('id',$user_id)->first();
+
+        return view('factory.orders.order_details')->with(compact('orderDetails','userDetails','factoryDetails'));
+    }
+    public function viewOrderInvoiceFactory($order_id){
+        $orderDetails = Order::with('orders')->where('id',$order_id)->first();
+        // $orderDetails = json_decode(json_encode($orderDetails));
+        // /echo "<pre>"; print_r($orderDetails); die;/
+        $user_id = $orderDetails->user_id;
+        $userDetails = User::where('id',$user_id)->first();
+        /*$userDetails = json_decode(json_encode($userDetails));
+        echo "<pre>"; print_r($userDetails);*/
+        $factoryDetails = Factory::where(['email'=>Session::get('factorySession')])->first();
+
+        return view('factory.orders.order_invoice')->with(compact('orderDetails','userDetails','factoryDetails'));
+    }
+    public function viewOrdersFactory(){
+
+        $orders = Order::with('orders')->orderBy('id','Desc')->get();
+        $orders = json_decode(json_encode($orders));
+        /*echo "<pre>"; print_r($orders); die;*/
+
+        $factoryDetails = Factory::where(['email'=>Session::get('factorySession')])->first();
+
+        $ordersproducts = OrdersProduct::orderBy('id','Desc')->where(['factory_id'=>$factoryDetails->id])->get();
+        $ordersid=[];
+        foreach ($ordersproducts as $key => $value) {
+            $ordersid[]=$value->order_id;
+        }
+         $orders = Order::with('orders')->orderBy('id','Desc')->whereIn('id',$ordersid)->get();
+        //   echo "<pre>"; print_r($orders); die;
+
+        return view('factory.orders.view_orders')->with(compact('orders','factoryDetails','ordersproducts'));
+    }
     public function addProductFactory(Request $request){
         if($request->isMethod('post')){
             $data = $request->all();

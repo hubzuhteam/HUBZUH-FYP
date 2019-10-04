@@ -15,7 +15,7 @@
     <meta property="og:type" content="website" />
     <meta property="og:title" content="atlas is Bootstrap 4 based admin panel.It comes with 100's widgets,charts and icons" />
     <meta property="og:description" content="atlas is Bootstrap 4 based admin panel.It comes with 100's widgets,charts and icons" />
-    <meta property="og:image" content="../../cdn.dribbble.com/users/180706/screenshots/5424805/the_sceens_-_mobile_perspective_mockup_3_-_by_tranmautritam.jpg" />
+    <meta property="og:image" content="../../cdn.dribbble.com/users/180706/screenshots/5424805/the_sceens_-mobile_perspective_mockup_3-_by_tranmautritam.jpg" />
     <meta property="og:site_name" content="atlas " />
     <title>HUBZUH Factory Login</title>
     <link rel="icon" type="image/x-icon" href="assets/img/logo.png" />
@@ -52,7 +52,7 @@
                                     HUBZUH Factory Site
                                 </p>
                             </div>
-                            <h3 class="text-center p-b-20 fw-400">Login</h3>
+                            <h3 class="text-center p-b-20 fw-400">Forgot Password ?</h3>
                             @if(Session::has('flash_message_error'))
                     <div class="alert alert-block alert-danger">
                         <button type="button" class="close" data-dismiss="alert">×</button>
@@ -65,27 +65,37 @@
                            <strong>{!! session('flash_message_success') !!}</strong>
                   </div>
                 @endif
-                            <form class="needs-validation" action="{{url('/factory-login')}}" method="POST" >{{ csrf_field() }}   
+                            <form class="needs-validation" action="{{url('/factory/forgetpassword')}}" method="POST" >{{ csrf_field() }}   
                                 <div class="form-row">
                                     <div class="form-group floating-label col-md-12">
                                         <label>Email</label>
                                         <input type="email" name="email" required class="form-control" placeholder="Email">
                                     </div>
-                                    <div class="form-group floating-label col-md-12">
+                                    {{-- <div class="form-group floating-label col-md-12">
                                         <label>Password</label>
                                         <input type="password" name="password" required class="form-control ">
-                                    </div>
+                                    </div> --}}
                                 </div>
 
-                                <button type="submit" class="btn btn-primary btn-block btn-lg">Login</button>
+                                <button type="submit" class="btn btn-primary btn-block btn-lg">Submit</button>
+
+                                <p class="text-right p-t-10">
+                                    <a href="{{ url('factory/login') }}"class="text-underline" >Do you want to login again?</a>
+                                    </p> 
+                                 <p class="text-right p-t-10">
+                                     <a href="{{ url('/factory/register') }}"class="text-underline" >Want to Join? Sign Up Here.</a>
+                                     </p>     
 
                             </form>
-                            <p class="text-right p-t-10">
-                                    <a href="{{ url('factory/forgetpassword') }}"class="text-underline" >Forgot Password?</a>
-                                    </p>
-                            <p class="text-right p-t-10">
-                            <a href="{{ url('/factory/register')}}" class="text-underline">Want to Join? Sign Up Here.</a>
-                            </p>
+                              
+                        
+                               {{-- <p class="text-right p-t-10">
+                                 <a href="{{ url('factory/forgetpassword') }}"class="text-underline" >Forgot Password?</a>
+                                 </p> 
+
+                                <a href="{{ url('/factory/register')}}" >Want to Join? Sign Up Here.</a> --}}
+                            
+                          
                         </div>
 
                     </div>
