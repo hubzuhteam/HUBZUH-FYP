@@ -28,13 +28,24 @@ class ProductsController extends Controller
 {
     ///////////////////////////////FACTORY START///////////////////////////////////////
 
+    public function updateOrderStatusFactory(Request $request){
+        
+        if($request->isMethod('post')){
+            $data = $request->all();
+            Order::where('id',$data['order_id'])->update(['order_status'=>$data['order_status']]);
+            return redirect()->back()->with('flash_message_success','Order Status has been updated successfully!');
+        }
+    }
     public function viewOrderDetailsFactory($order_id){
 
-        $factoryDetails = Factory::where(['email'=>Session::get('factorySession')])->first();
         $orderDetails = Order::with('orders')->where('id',$order_id)->first();
-
-        $user_id = $factoryDetails->user_id;
+        $orderDetails = json_decode(json_encode($orderDetails));
+        /*echo "<pre>"; print_r($orderDetails); die;*/
+        $user_id = $orderDetails->user_id;
         $userDetails = User::where('id',$user_id)->first();
+        /*$userDetails = json_decode(json_encode($userDetails));
+        echo "<pre>"; print_r($userDetails);*/
+        $factoryDetails = Factory::where(['email'=>Session::get('factorySession')])->first();
 
         return view('factory.orders.order_details')->with(compact('orderDetails','userDetails','factoryDetails'));
     }
@@ -542,6 +553,15 @@ class ProductsController extends Controller
 
 
     /////////////////////////////////END OF FACTORY//////////////////////////////////
+
+    public function updateOrderStatusSupplier(Request $request){
+        
+        if($request->isMethod('post')){
+            $data = $request->all();
+            Order::where('id',$data['order_id'])->update(['order_status'=>$data['order_status']]);
+            return redirect()->back()->with('flash_message_success','Order Status has been updated successfully!');
+        }
+    }
     public function viewOrderInvoiceSupplier($order_id){
         $orderDetails = Order::with('orders')->where('id',$order_id)->first();
         // $orderDetails = json_decode(json_encode($orderDetails));

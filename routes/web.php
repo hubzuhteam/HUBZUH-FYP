@@ -48,6 +48,9 @@ Route::match(['get','post'],'/factory/forgetpassword','FactoryController@forgetp
 
 Route::group(['middleware'=>['factorylogin']],function(){
 
+    // Update Order Status
+    Route::post('/factory/update-order-status','ProductsController@updateOrderStatusFactory');
+
     //Supplier Orders
     Route::get('/factory/view-orders','ProductsController@viewOrdersFactory');
 
@@ -158,6 +161,9 @@ Route::match(['get','post'],'/supplier/forgetpassword','SupplierController@forge
 
 //all routes after supplier
 Route::group(['middleware'=>['supplierlogin']],function(){
+
+    // Update Order Status
+    Route::post('/supplier/update-order-status','ProductsController@updateOrderStatusFactory');
 
     //Supplier Dashboard
     Route::get('/supplier/dashboard','SupplierController@dashboard');

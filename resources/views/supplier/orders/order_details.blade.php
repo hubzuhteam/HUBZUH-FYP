@@ -185,7 +185,7 @@
                                     <!-- end panel-heading -->
                                     <!-- begin panel-body -->
                                     <div class="panel-body">
-                                            <form action="{{ url('admin/update-order-status') }}" method="post">{{ csrf_field() }}
+                                            <form action="{{ url('supplier/update-order-status') }}" method="post">{{ csrf_field() }}
                                                 <input type="hidden" name="order_id" value="{{ $orderDetails->id }}">
                                             <div class="form-group row m-b-10">
                                                     <div class="col-md-6">
@@ -200,7 +200,7 @@
                                                                 <option value="Paid" @if($orderDetails->order_status == "Paid") selected @endif>Paid</option>
                                                           </select>
                                                     </div>
-                                                    <input type="submit" value="Add Product" class="btn btn-primary btn-lg">
+                                                    <input type="submit" value="Update Order Status" class="btn btn-primary btn-lg">
                                             </div>
                                             </form>
                                     </div>
