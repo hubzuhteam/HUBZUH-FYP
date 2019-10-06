@@ -30,6 +30,62 @@
                     <div>
                         <div id="step-1">
                             <div class="row" style="background-color:">
+                                    <!-- begin #content -->
+    <div id="content" class="col-md-8 offset-md-2" >
+
+        <!-- begin page-header -->
+        <legend class="no-border f-w-700 p-b-0 m-t-0 m-b-20 f-s-16 text-inverse"><h1>Manage Theme For your Store</h1></legend>
+
+        <!-- end page-header -->
+
+        <!-- begin panel -->
+        <div class="panel panel-inverse">
+            <!-- begin panel-heading -->
+            <div class="panel-heading">
+                <div class="panel-heading-btn">
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo"></i></a>
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+                </div>
+                <h4 class="panel-title">Themes</h4>
+            </div>
+            <!-- end panel-heading -->
+            <!-- begin panel-body -->
+            <div class="panel-body">
+                    <table id="data-table-default" class="table table-striped table-bordered">
+                        <thead>
+                                <tr>
+                                  <th>Theme ID</th>
+                                  <th>Theme Name</th>
+                                  <th>Selected Theme</th>
+                                  <th>Actions</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                  @foreach($themes as $theme)
+                                <tr class="gradeX">
+                                  <td style="font-style: bold; font-size: 15px" class="center">{{ $theme->theme_id }}</td>
+                                  <td style="font-style: bold; font-size: 15px" class="center">{{ $theme->theme_name }}</td>
+                                  <td class="center">
+                                    @if(!empty($supplierDetails->theme_id==$theme->theme_id))
+                                        <i style="font-style: bold; font-size: 20px" class="fas fa-hand-peace">   Selected</i>
+                                    @endif
+                                  </td>
+                                  <td class="center">
+                                    <a href="{{ url('/supplier/view-theme/'.$theme->theme_id) }}" class="btn btn-primary btn-mini">View Theme</a>
+                                    <a href="{{ url('/supplier/edit-store-theme/'.$theme->theme_id) }}" class="btn btn-danger btn-mini deleteRecord">Select Theme</a>
+                                  </td>
+                                </tr>
+                                @endforeach
+                              </tbody>
+                </table>
+            </div>
+            <!-- end panel-body -->
+        </div>
+        <!-- end panel -->
+    </div>
+    <!-- end #content -->
+
                                 <div class="col-md-8 offset-md-2">
                                     <legend class="no-border f-w-700 p-b-0 m-t-0 m-b-20 f-s-16 text-inverse"><h1>Edit Store</h1></legend>
                                     {{--  //Main Color  --}}
@@ -82,12 +138,12 @@
                                 <input type="hidden" name="image" id="image" value="{{ $design->background_img }}">
                                 <button class="btn" type="submit">Select</button>
                         </form>
-                        </div>    
+                        </div>
                     @endforeach
                 </div>
               </div>
             </div>
-            
+
     </div>
 
 @endsection

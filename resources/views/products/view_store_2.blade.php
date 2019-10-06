@@ -4,46 +4,19 @@
 
 <div style="background-size: 100% 100%; background-color: {{ $background_color }}; background-image: url('../images/backend_images/backgrounds/large/{{$background_img}}'); background-repeat: no-repeat;">
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-	<div class="container"  >
-		<div class="fb-profile" style="margin-bottom: 40px;margin-top: 0px;" >
-			<div style="margin: 0px" id="slider-carousel" class="carousel slide" data-ride="carousel" >
-				<ol class="carousel-indicators">
-					@foreach($banners as $key => $banner)
-						<li data-target="#slider-carousel" data-slide-to="0" @if($key==0) class="active" @endif></li>
-					@endforeach
-				</ol>
+	<div class="container">
 
-				<div class="carousel-inner" >
-					@foreach($banners as $key => $banner)
-						<div class="item @if($key==0) active @endif">
-							<a href="{{ $banner->link }}" title="Banner 1"><img onerror="imgErrorBanner(this);"  src="{{ asset('images/frontend_images/banners/'.$banner->image )}}"></a>
-						</div>
-					@endforeach
-				</div>
-				<a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
-					<i class="fa fa-angle-left"></i>
-				</a>
-				<a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
-					<i class="fa fa-angle-right"></i>
-				</a>
-			</div>
-
-
-				<img align="left" style="border-radius: 0%;" onerror="imgError(this);"  class="fb-image-profile thumbnail" src="{{ asset('images/supplierend_images/store_images/small/'.$supplier->store_image)}} " alt="Profile image example"/>
-
-
-			<div class="fb-profile-text">
-				<h1 style="color: {{ $store_name_color }}">{{$supplier->store_name}}</h1>
-				<a href="#" class="my_Button">Follow +</a>
-			</div>
-		</div>
-
+		<div class="fb-profile"  style="margin-bottom: 40px; margin-top: 0px;" >
+            </div>
+            <div align="center">
+            <img style="border-radius: 40%;" onerror="imgError(this);"  class="" src="{{ asset('images/supplierend_images/store_images/small/'.$supplier->store_image)}} " alt="Profile image example"/>
+            </div>
+        <div class="" align="center" style="padding-bottom: 2%">
+            <h1 style="color: {{ $store_name_color }}">{{$supplier->store_name}}</h1>
+            <a href="#" class="my_Button">Follow +</a>
+        </div>
 	</div> <!-- /container -->
-
-
-
-
-<div class="container" >
+<div class="container" style="margin-top: 1.5%">
 	<div class="category-tab shop-details-tab" style=" border-color: transparent">
 		<!--category-tab-->
 		<div class="col-sm-12" >
@@ -51,7 +24,7 @@
 				<li class="active"><a href="#description" data-toggle="tab">All Products</a></li>
 				<li><a href="#care" data-toggle="tab">Description</a></li>
                 <li><a href="#delivery" data-toggle="tab">Statistic Details</a></li>
-				<li><a href="#branches" data-toggle="tab">Branches</a></li>                
+				<li><a href="#branches" data-toggle="tab">Branches</a></li>
 			</ul>
 		</div>
 		<div class="tab-content"  >
@@ -59,7 +32,6 @@
 				<div class="col-sm-12">
 					<div class="container" style="width:100%;" >
 						<div class="row">
-							
 							<div class="col-sm-12">
 								<div class="features_items">
 									<!--features_items-->
@@ -69,19 +41,18 @@
 												<div class="product-image-wrapper" style=" border-color:transparent ">
 													<div class="single-products">
 														<div  class="productinfo text-center">
-															<img style="border-radius: 0%;" src="{{ asset('images/supplierend_images/products/small/'.$product->image) }}" alt="" />
+															<img style="border-radius: 40%;" src="{{ asset('images/supplierend_images/products/small/'.$product->image) }}" alt="" />
 															<h2 style="color: {{ $main_color }}">Rs {{$product->price}}</h2>
 															<p style="color: {{ $secondary_color }};"><strong>{{$product->product_name}}</strong></p>
-															<a href="{{ url('product/'.$product->id)}}" class="btn btn-default add-to-cart"><i class="fa fa-eye"></i>View</a>
+															<a href="{{ url('product/'.$product->id)}}" class="btn btn-default add-to-cart" style="border-radius: 30%;"><i class="fa fa-eye"></i>View</a>
 														</div>
 													</div>
 													<div class="choose text-center" style="border-color: transparent">
-
 																<form name="addtoWishListForm" id="addtoWishListForm" action="{{ url('add-wishlist') }}" method="post">{{ csrf_field() }}
 																	<input type="hidden" name="product_id" value="{{ $product->id }}">
 																	<input type="hidden" name="product_name" value="{{ $product->product_name }}">
 																	<input type="hidden" name="price" id="price" value="{{ $product->price }}">
-																	<button type="submit" class="btn btn-default" style="background-color: tomato;color:white;" id="wishlistButton">
+																	<button type="submit" class="btn btn-default" style="background-color: tomato;color:white; border-radius: 30%;" id="wishlistButton">
 																		<i class="fa fa-heart"></i>
 																		Add to Wish List
 																	</button>
@@ -89,17 +60,11 @@
 													</div>
 												</div>
 											</a>
-
-
-
-                                       
                                     </div>
 									@endforeach
 									<div align="center">{{ $productsAll->links() }}</div>
 								</div>
 								<!--features_items-->
-
-
 							</div>
 						</div>
 					</div>
@@ -151,7 +116,7 @@
 
 	<script>function imgError(image) {
 			image.onerror = "";
-			image.src = "{{ asset('images/User_Image.jpg')}}";
+			image.src = "{{ asset('images/supplierend_images/store_images/small/store.gif')}}";
 			return true;
 		}</script>
 	<script>function imgErrorBanner(image) {

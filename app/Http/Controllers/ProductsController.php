@@ -29,7 +29,7 @@ class ProductsController extends Controller
     ///////////////////////////////FACTORY START///////////////////////////////////////
 
     public function updateOrderStatusFactory(Request $request){
-        
+
         if($request->isMethod('post')){
             $data = $request->all();
             Order::where('id',$data['order_id'])->update(['order_status'=>$data['order_status']]);
@@ -555,7 +555,7 @@ class ProductsController extends Controller
     /////////////////////////////////END OF FACTORY//////////////////////////////////
 
     public function updateOrderStatusSupplier(Request $request){
-        
+
         if($request->isMethod('post')){
             $data = $request->all();
             Order::where('id',$data['order_id'])->update(['order_status'=>$data['order_status']]);
@@ -1657,28 +1657,31 @@ class ProductsController extends Controller
         $outlet_title="";
 
         if ($supplierDetails!=null) {
-            $background_img=$supplierDetails->background_img;   
+            $background_img=$supplierDetails->background_img;
             $main_color=$supplierDetails->main_color;
             $secondary_color=$supplierDetails->secondary_color;
-            $store_name_color=$supplierDetails->store_name_color;    
+            $store_name_color=$supplierDetails->store_name_color;
             $outlet_name=$supplierDetails->store_name;
             $outlet_title="Store Name:";
             $outlet_id=$supplierDetails->id;
             $store=true;
             $factory=false;
+            $theme_id=$supplierDetails->theme_id;
 
         }else
         {
-            $outlet_name=$factoryDetails->factory_name;        
-            $outlet_title="Factory Name:";    
+            $outlet_name=$factoryDetails->factory_name;
+            $outlet_title="Factory Name:";
             $outlet_id=$factoryDetails->id;
             $store=false;
             $factory=true;
+            $theme_id=$factoryDetails->theme_id;
+
         }
         $meta_title = $productDetails->product_name;
         $meta_description = $productDetails->description;
         $meta_keywords = $productDetails->product_name;
-        return view('products.detail')->with(compact('productDetails','relatedProducts','categories','supplierDetails'
+        return view('products.detail_'.$theme_id)->with(compact('productDetails','relatedProducts','categories','supplierDetails'
         ,'productAltImages','total_stock','meta_title','meta_description','meta_keywords','banners','breadcrumb'
         ,'background_img','main_color','secondary_color','store_name_color','outlet_name','outlet_title'
         ,'outlet_id','store','factory'));
@@ -2042,7 +2045,7 @@ class ProductsController extends Controller
             $order->save();
 
             $order_id = DB::getPdo()->lastInsertId();
-            
+
             $cartProducts = DB::table('cart')->where(['user_email'=>$user_email])->get();
             foreach($cartProducts as $pro){
 

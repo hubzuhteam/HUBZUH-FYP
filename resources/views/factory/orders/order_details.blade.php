@@ -62,7 +62,6 @@
                                 </table>
                         </div>
                 </div>
-
                     <div class="panel panel-inverse" style="margin-right: 25%;margin-left: 25%; margin-top: 1%" data-sortable-id="table-basic-9">
                             <div class="table-responsive p-t-10" style="background-color: cornflowerblue; color: black">
                                     <h4 class="panel-title" style="padding-left: 5px">Customer Details</h4>                                    

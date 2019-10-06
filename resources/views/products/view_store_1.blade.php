@@ -51,7 +51,7 @@
 				<li class="active"><a href="#description" data-toggle="tab">All Products</a></li>
 				<li><a href="#care" data-toggle="tab">Description</a></li>
                 <li><a href="#delivery" data-toggle="tab">Statistic Details</a></li>
-				<li><a href="#branches" data-toggle="tab">Branches</a></li>                
+				<li><a href="#branches" data-toggle="tab">Branches</a></li>
 			</ul>
 		</div>
 		<div class="tab-content"  >
@@ -59,12 +59,11 @@
 				<div class="col-sm-12">
 					<div class="container" style="width:100%;" >
 						<div class="row">
-							
+
 							<div class="col-sm-12">
 								<div class="features_items">
 									<!--features_items-->
 									@foreach ($productsAll as $product)
-                                        
                                     <div class="col-sm-3" >
 											<a class="product_click" >
 												<div class="product-image-wrapper" style=" border-color:transparent ">
@@ -93,7 +92,7 @@
 
 
 
-                                       
+
                                     </div>
 									@endforeach
 									<div align="center">{{ $productsAll->links() }}</div>
@@ -152,7 +151,7 @@
 
 	<script>function imgError(image) {
 			image.onerror = "";
-			image.src = "{{ asset('images/User_Image.jpg')}}";
+			image.src = "{{ asset('images/supplierend_images/store_images/small/store.gif')}}";
 			return true;
 		}</script>
 	<script>function imgErrorBanner(image) {

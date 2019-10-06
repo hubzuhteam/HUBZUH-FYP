@@ -21,6 +21,13 @@
 //     return view('supplier.index');
 // });
 
+Route::get('/supplier/view_theme_1', function () {
+    return view('themes.view_theme_1');
+});
+
+Route::get('/supplier/view_theme_2', function () {
+    return view('themes.view_theme_2');
+});
 
 /////////////factory dashboard
 
@@ -59,7 +66,7 @@ Route::group(['middleware'=>['factorylogin']],function(){
 
     //view order invoice factory
     Route::get('/factory/view-order-invoice/{id}','ProductsController@viewOrderInvoiceFactory');
-    
+
     //view banner factory
     Route::get('/factory/view-banners','BannersController@viewBannersFactory');
 
@@ -156,11 +163,19 @@ Route::get('/supplier-logout','SupplierController@logout');
 //view supplier store
 Route::match(['get','post'],'/view_store/{id}','StoreController@ViewStore');
 
+
 //forgot password supplier
 Route::match(['get','post'],'/supplier/forgetpassword','SupplierController@forgetpassword');
 
 //all routes after supplier
 Route::group(['middleware'=>['supplierlogin']],function(){
+
+    //edit/select theme for store
+    Route::match(['get','post'],'/supplier/edit-store-theme/{id}','StoreController@editStoreSupplierTheme');
+
+
+    //view supplier Themes
+    Route::match(['get','post'],'/supplier/view-theme/{id}','StoreController@ViewTheme');
 
     // Update Order Status
     Route::post('/supplier/update-order-status','ProductsController@updateOrderStatusFactory');
@@ -358,14 +373,22 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware' => ['adminlogin']], function () {
     //for factory edit
     Route::match(['get','post'],'/admin/edit-factories/{id}','FactoryController@editfactory');
-    
+
     // Admin Factory Route
     Route::get('/admin/view-factories ','FactoryController@viewFactory');
-    
+
     // Admin design stuff
     Route::match(['get','post'],'/admin/add-design','DesignController@addDesign');
 
     Route::get('/admin/view-designs','DesignController@viewDesigns');
+
+    // Admin design stuff
+    Route::match(['get','post'],'/admin/add-theme','ThemeController@addTheme');
+
+    Route::get('/admin/view-themes','ThemeController@viewThemes');
+
+	Route::match(['get','post'],'/admin/delete-theme/{id}','ThemeController@deleteTheme');
+
 
 	Route::match(['get','post'],'/admin/delete-design/{id}','DesignController@deleteDesign');
 

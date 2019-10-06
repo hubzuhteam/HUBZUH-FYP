@@ -48,7 +48,7 @@
       @if (Session::get('adminDetails')['orders_access']==1)
 
       <li class="submenu"> <a href="#"><i class="icon icon-shopping-cart"></i> <span>Orders</span>
-        <span class="label label-important">2</span></a>
+        <span class="label label-important">1</span></a>
         <ul <?php if(preg_match("/orders/i",$url)){?> style="display: block;" <?php } ?>>
           <li <?php if(preg_match("/view-orders/i",$url)){?> class="active" <?php } ?>><a
             href="{{ url('/admin/view-orders')}}">View Orders</a></li>
@@ -58,13 +58,19 @@
       @endif
 
       {{--  /////Design stuff for Supplier and Factory  --}}
-      <li class="submenu"> <a href="#"><i class="icon icon-picture"></i> <span>Design Stuff</span>
-        <span class="label label-important">2</span></a>
-        <ul <?php if(preg_match("/designs/i",$url)){?> style="display: block;" <?php } ?>>
+      <li class="submenu"> <a href="#"><i class="icon icon-picture"></i> <span>Designs</span>
+        <span class="label label-important">4</span></a>
+        <ul <?php if(preg_match("/design/i",$url)){?> style="display: block;" <?php } ?>>
           <li <?php if(preg_match("/add-Design/i",$url)){?> class="active" <?php } ?>><a
-            href="{{ url('/admin/add-design')}}">Add Designs Stuff</a></li>
+            href="{{ url('/admin/add-design')}}">Add Background Image</a></li>
             <li <?php if(preg_match("/view-Designs/i",$url)){?> class="active" <?php } ?>><a
-                href="{{ url('/admin/view-designs')}}">View Designs Stuff</a></li>
+                href="{{ url('/admin/view-designs')}}">View Background Images</a></li>
+
+            <li <?php if(preg_match("/add-theme/i",$url)){?> class="active" <?php } ?>><a
+                href="{{ url('/admin/add-theme')}}">Add Theme</a></li>
+            <li <?php if(preg_match("/view-themes/i",$url)){?> class="active" <?php } ?>><a
+                    href="{{ url('/admin/view-themes')}}">View Themes</a></li>
+
         </ul>
       </li>
 
@@ -135,7 +141,7 @@
             href="{{ url('/admin/view-factories')}}">View Factories</a></li>
         </ul>
       </li>
-      
+
     </ul>
   </div>
   <!--sidebar-menu-->

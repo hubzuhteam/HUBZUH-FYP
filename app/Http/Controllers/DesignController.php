@@ -18,11 +18,12 @@ class DesignController extends Controller
         }
     }
 
+
     public function viewDesigns(){
-        
+
          $designs = Design::orderBy('id','Desc')->get();
          $designs = json_decode(json_encode($designs));
-         
+
         //     //echo "<pre>"; print_r($products); die;
           return view('admin.designs.view_designs')->with(compact('designs'));
     }
@@ -64,5 +65,5 @@ class DesignController extends Controller
     return view('admin.designs.add_design');
     }
 
-    
+
 }
