@@ -83,6 +83,7 @@ class StoreController extends Controller
             //      'Background Image updated Successfully!');
              Supplier::where(['id'=>$id])->update(['main_color'=>$data['main_color']
              ,'secondary_color'=>$data['secondary_color'],'store_name_color'=>$data['store_name_color']]);
+
              return redirect('/supplier/edit-store/'.$id)->with('flash_message_success',
                  'Store updated Successfully!');
         }

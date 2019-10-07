@@ -1,6 +1,7 @@
 {{-- Supplier EDIT Store  --}}
 @section('content')
     @extends('layouts.supplierLayout.supplier_design')
+	<link href="{{ asset('css/supplierend_css/default/style.min2.css') }}" rel="stylesheet" />
 
     <!-- begin #content -->
     <div id="content" class="content">
@@ -8,6 +9,7 @@
         <ol class="breadcrumb pull-right">
             <li class="breadcrumb-item"><a href="{{ url('/supplier/dashboard') }}">Home</a></li>
             <li class="breadcrumb-item"><a href="{{ url('/supplier/view_store_notice') }}">View Store</a></li>
+            <li class="breadcrumb-item"><a href="{{ url('/supplier/edit-profile') }}">Edit Store Details</a></li>
         </ol>
         <!-- end breadcrumb -->
         <!-- begin page-header -->
@@ -25,13 +27,25 @@
                 <strong>{!! session('flash_message_success') !!}</strong>
             </div>
         @endif
+
+        <div  class="col-md-8 offset-md-2" style="margin-top: 5%;"  >
+
+        <legend class="no-border f-w-700 p-b-0 m-t-0 m-b-20 f-s-16 text-inverse"><h1>Edit Your Store Details.</h1></legend>
+
+
+        <div class="jumbotron m-b-0 text-center col-sm-2" style="background-color: transparent">
+                <input type="submit" value="Update Store" class="btn btn-primary btn-lg">
+            </div>
+
+
+        </div>
         <form action="{{ url('/supplier/edit-store/'.$supplierDetails->id )}}" style="margin-top: 5%" method="post" name="edit_store" class="form-control-with-bg">{{ csrf_field() }}
                 <div id="wizard" >
                     <div>
                         <div id="step-1">
                             <div class="row" style="background-color:">
                                     <!-- begin #content -->
-    <div id="content" class="col-md-8 offset-md-2" >
+        <div id="content" class="col-md-8 offset-md-2" >
 
         <!-- begin page-header -->
         <legend class="no-border f-w-700 p-b-0 m-t-0 m-b-20 f-s-16 text-inverse"><h1>Manage Theme For your Store</h1></legend>

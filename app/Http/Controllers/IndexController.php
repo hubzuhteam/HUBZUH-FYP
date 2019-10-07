@@ -24,6 +24,8 @@ class IndexController extends Controller
         // $suppliers = Supplier::where(['active'=>1])->get();
 
         $suppliersAll = Supplier::inRandomOrder()->where('status',1)->where('active',1)->paginate(12);
+        $factoriesAll = Factory::inRandomOrder()->where('status',1)->where('active',1)->paginate(12);
+
 
         $productsAll = Product::inRandomOrder()->whereHas('supplier', function ($query) {
             $query->where('active', '=', '1');
@@ -46,6 +48,6 @@ class IndexController extends Controller
 		$meta_description = "Online HUB to gether all the Products";
 		$meta_keywords = "e-shop website, online shopping, men clothing ,women clothing ";
         return view('index')->with(compact('productsAll','categories_menu','suppliersAll',
-        'categories','banners','meta_title','meta_description','meta_keywords'));
+        'categories','banners','meta_title','meta_description','meta_keywords','factoriesAll'));
     }
 }
