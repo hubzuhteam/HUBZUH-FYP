@@ -111,10 +111,30 @@
                         @endforeach
                         <div align="center">{{ $productsAll->links() }}</div>
                     </div>
+                    <div class="features_items">
+                            <!--features_items-->
+                            <h2 class="title text-center">STORES</h2>
+                             @foreach ($suppliersAll as $supplier)
+                            <div class="col-sm-4">
+                                <div class="product-image-wrapper">
+                                    <div class="single-products">
+                                        <div class="productinfo text-center">
+                                            <img src="{{ asset('images/supplierend_images/store_images/small/'.$supplier->store_image) }}" alt="" />
+                                        <h2>{{$supplier->store_name}}</h2>
+                                            <a href="{{ url('/view_store/'.$supplier->id)}}" class="btn btn-default add-to-cart"><i class="fa fa-eye"></i>View</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @endforeach
+                            <div align="center"></div>
+                        </div>
                     <!--features_items-->
 
 
                 </div>
+
+
             </div>
         </div>
     </section>
