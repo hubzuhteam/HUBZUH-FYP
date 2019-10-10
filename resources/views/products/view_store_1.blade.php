@@ -16,7 +16,7 @@
 				<div class="carousel-inner" >
 					@foreach($banners as $key => $banner)
 						<div class="item @if($key==0) active @endif">
-							<a href="{{ $banner->link }}" title="Banner 1"><img onerror="imgErrorBanner(this);"  src="{{ asset('images/frontend_images/banners/'.$banner->image )}}"></a>
+							<a href="{{ $banner->link }}" title="Banner 1"><img onerror="imgErrorBanner(this);"  src="{{ asset('images/frontend_images/banners/'.$banner->image )}}" alt="Image Banner"></a>
 						</div>
 					@endforeach
 				</div>
@@ -27,11 +27,7 @@
 					<i class="fa fa-angle-right"></i>
 				</a>
 			</div>
-
-
 				<img align="left" style="border-radius: 0%;" onerror="imgError(this);"  class="fb-image-profile thumbnail" src="{{ asset('images/supplierend_images/store_images/small/'.$supplier->store_image)}} " alt="Profile image example"/>
-
-
 			<div class="fb-profile-text">
 				<h1 style="color: {{ $store_name_color }}">{{$supplier->store_name}}</h1>
 				<a href="#" class="my_Button">Follow +</a>

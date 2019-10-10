@@ -4,7 +4,9 @@
     @extends('layouts.factoryLayout.factory_design')
 
     <section class="admin-main">
-    
+
+                                                        <!-- HUB_TECH FIVERR-->
+
 <!-- begin #content -->
 <div id="content" class="content">
     <!-- begin breadcrumb -->
@@ -27,7 +29,7 @@
     <hr>
                 <div class="panel panel-inverse" style="margin-right: 25%;margin-left: 25%"  data-sortable-id="table-basic-9">
                         <div class="table-responsive p-t-10" style="background-color: cornflowerblue; color: black">
-                                        <h4 class="panel-title" style="padding-left: 5px">Order Details</h4>                                    
+                                        <h4 class="panel-title" style="padding-left: 5px">Order Details</h4>
                                 <table id="example-height" class="table   " style="width:100%; background-color: tan; color: black">
                                         <tbody>
                                                 <tr class="info">
@@ -64,7 +66,7 @@
                 </div>
                     <div class="panel panel-inverse" style="margin-right: 25%;margin-left: 25%; margin-top: 1%" data-sortable-id="table-basic-9">
                             <div class="table-responsive p-t-10" style="background-color: cornflowerblue; color: black">
-                                    <h4 class="panel-title" style="padding-left: 5px">Customer Details</h4>                                    
+                                    <h4 class="panel-title" style="padding-left: 5px">Customer Details</h4>
                             <table id="example-height" class="table   " style="width:100%; background-color: skyblue; color: black">
                                     <tbody>
                                             <tr class="warning">
@@ -79,10 +81,10 @@
                             </table>
                         </div>
                     </div>
-                    
+
                     <div class="panel panel-inverse" style="margin-right: 25%;margin-left: 25%; margin-top: 1%"  data-sortable-id="table-basic-9">
                             <div class="table-responsive p-t-10" style="background-color: cornflowerblue; color: black">
-                                    <h4 class="panel-title" style="padding-left: 5px">Supplier Details</h4>                                    
+                                    <h4 class="panel-title" style="padding-left: 5px">Supplier Details</h4>
                             <table id="example-height" class="table   " style="width:100%; background-color: cornflowerblue; color: white">
                                     <tbody>
                                             <tr class="info">
@@ -103,11 +105,11 @@
                                             </tr>
                                           </tbody>
                             </table>
-                            </div>        
+                            </div>
                     </div>
 
                     <div class="panel panel-inverse" style="margin-right: 25%;margin-left: 25%; margin-top: 1%" data-sortable-id="table-basic-9">
-                                            <h4 class="panel-title" style="padding-left: 5px">Update Order Status</h4>                                    
+                                            <h4 class="panel-title" style="padding-left: 5px">Update Order Status</h4>
                                             <form action="{{ url('factory/update-order-status') }}" method="post">{{ csrf_field() }}
                                                 <input type="hidden" name="order_id" value="{{ $orderDetails->id }}">
                                             <div class="form-group row m-b-10">
@@ -139,7 +141,7 @@
 
                 <div class="panel panel-inverse" style="margin-right: 25%;margin-left: 25%; margin-top: 1%" data-sortable-id="table-basic-9">
                         <div class="table-responsive p-t-10" style="background-color: cornflowerblue; color: black">
-                                <h4 class="panel-title" style="padding-left: 5px">Billing Address</h4>                                    
+                                <h4 class="panel-title" style="padding-left: 5px">Billing Address</h4>
                         <table id="example-height" class="table   " style="width:100%; background-color: darkgoldenrod; color: white">
                                 <tbody>
 
@@ -170,7 +172,7 @@
                 </div>
                 <div class="panel panel-inverse" style="margin-right: 25%;margin-left: 25%; margin-top: 1%" data-sortable-id="table-basic-9">
                         <div class="table-responsive p-t-10" style="background-color: cornflowerblue; color: black">
-                                <h4 class="panel-title" style="padding-left: 5px">Shipping Address</h4>                                    
+                                <h4 class="panel-title" style="padding-left: 5px">Shipping Address</h4>
                         <table id="example-height" class="table   " style="width:100%; background-color: darksalmon; color: black">
                                 <tbody>
                                         <tr class="danger">
@@ -200,7 +202,7 @@
                 </div>
         <div class="panel panel-inverse" style="margin-right: 15%;margin-left: 15%; margin-top: 1%" data-sortable-id="table-basic-9">
                 <div class="table-responsive p-t-10" style="background-color: cornflowerblue; color: black">
-                        <h4 class="panel-title" style="padding-left: 5px">Product Details</h4>                                    
+                        <h4 class="panel-title" style="padding-left: 5px">Product Details</h4>
                 <table id="example-height" class="table   " style="width:100%; background-color: darkcyan; color: white">
                         <thead>
                                 <tr>
