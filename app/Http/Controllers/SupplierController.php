@@ -14,6 +14,7 @@ use App\Country;
 use Illuminate\Support\Facades\Hash;
 use DB;
 use Mail;
+use App\Branch;
 class SupplierController extends Controller
 {
 
@@ -115,6 +116,69 @@ class SupplierController extends Controller
     public function edit_profile(Request $request){
         $supplierDetails = Supplier::where(['email'=>Session::get('supplierSession')])->first();
         return view('supplier.edit_profile')->with(compact('supplierDetails'));
+    }
+
+    public function branches(Request $request){
+        $supplierDetails = Supplier::where(['email'=>Session::get('supplierSession')])->first();
+        $branches = Branch::where(['supplier_id'=>$supplierDetails->id])->get();
+        //  echo "<pre>"; print_r($branches); die;
+
+        return view('supplier.branches')->with(compact('supplierDetails','branches'));
+    }
+
+    public function addBranch(Request $request){
+
+        if($request->isMethod('post')){
+            $data = $request->all();
+            //echo "<pre>"; print_r($data); die;
+            $supplierDetails = Supplier::where(['email' => Session::get('supplierSession')])->first();
+            //echo $supplierCount;die;
+
+            $branch = new Branch;
+            $branch->branch_name = $data['branch_name'];
+            $branch->branch_location = $data['branch_location'];
+            $branch->branch_phn_no = $data['branch_phn_no'];
+            $branch->supplier_id = $supplierDetails->id;
+
+            $branch->save();
+            return redirect('/supplier/branches')->with('flash_message_success', 'Branch added successfully.');
+
+        }
+    }
+
+    public function deleteBranch(Request $request, $id = null){
+        if(!empty($id)){
+            Branch::where(['id'=>$id])->delete();
+            return redirect()->back()->with('flash_message_success','Branch deleted Successfully!');
+        }
+    }
+
+    public function editBranch(Request $request, $id = null){
+        $supplierDetails = Supplier::where(['email' => Session::get('supplierSession')])->first();
+
+        $branches = Branch::where(['supplier_id'=>$supplierDetails->id])->get();
+        $branch = Branch::where(['id'=>$id])->first();
+
+        if($request->isMethod('post')){
+            $data = $request->all();
+            //echo "<pre>"; print_r($data); die;
+            //echo $supplierCount;die;
+
+                Branch::where('supplier_id',$supplierDetails->id)->update(['branch_name'=>$data['branch_name'],
+                'branch_location'=>$data['branch_location'],
+                'branch_phn_no'=>$data['branch_phn_no']
+            ]);
+
+            $flash_message_success='Branch Updated Successfully';
+            return view('supplier.branches')->with(compact('supplierDetails','branches','flash_message_success'));
+
+
+        }
+
+            // echo "<pre>"; print_r($branch); die;
+
+		return view('supplier.branches.edit_branch')->with(compact('supplierDetails','branches','branch'));
+
     }
 
     public function updateProfile(Request $request){

@@ -98,7 +98,7 @@
                                                         <input type="hidden" name="product_id" value="{{ $product->id }}">
                                                         <input type="hidden" name="product_name" value="{{ $product->product_name }}">
                                                         <input type="hidden" name="price" id="price" value="{{ $product->price }}">
-                                            <button type="submit" class="btn btn-default" style="background-color: tomato;color:white" id="wishlistButton">
+                                            <button  type="submit" class="btn btn-default" style="background-color: tomato;color:white" id="wishlistButton">
                                                     <i class="fa fa-heart"></i>
                                                     Add to Wish List
                                                 </button>
@@ -121,7 +121,7 @@
                                         <div class="productinfo text-center">
                                             <img src="{{ asset('images/supplierend_images/store_images/small/'.$supplier->store_image) }}" alt="" />
                                         <h2>{{$supplier->store_name}}</h2>
-                                            <a href="{{ url('/view_store/'.$supplier->id)}}" class="btn btn-default add-to-cart"><i class="fa fa-eye"></i>View</a>
+                                            <a target="_black" href="{{ url('/view_store/'.$supplier->id)}}" class="btn btn-default add-to-cart"><i class="fa fa-eye"></i>View</a>
                                         </div>
                                     </div>
                                 </div>
@@ -129,7 +129,7 @@
                             @endforeach
                             <div align="center"></div>
                     </div>
-                    <div class="features_items">
+                    {{-- <div class="features_items">
                             <!--Factories-->
                             <h2 class="title text-center">FACTORIES</h2>
                              @foreach ($factoriesAll as $factory)
@@ -146,13 +146,11 @@
                             </div>
                             @endforeach
                             <div align="center"></div>
-                    </div>
+                    </div> --}}
                     <!--features_items-->
 
 
                 </div>
-
-
             </div>
         </div>
     </section>

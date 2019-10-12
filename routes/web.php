@@ -190,6 +190,20 @@ Route::group(['middleware'=>['supplierlogin']],function(){
     //users account page
     Route::match(['GET','POST'],'/supplier/edit-profile','SupplierController@edit_profile');
 
+    // Route::match(['GET','POST'],'/supplier/add-branch','SupplierController@edit_profile');
+
+    //edit branch
+    Route::match(['GET','POST'],'/supplier/edit-branch/{id}','SupplierController@editBranch');
+
+    //delete branch
+	Route::match(['get','post'],'/supplier/delete-branch/{id}','SupplierController@deleteBranch');
+
+    //supplier branches
+    Route::match(['GET','POST'],'/supplier/branches','SupplierController@branches');
+
+    //Add supplier Branch
+    Route::match(['get','post'],'/supplier/add-branch','SupplierController@addBranch');
+
     //update supplier profile
     Route::match(['get','post'],'/supplier/update-profile','SupplierController@updateProfile');
 

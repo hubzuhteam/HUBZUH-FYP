@@ -41,6 +41,19 @@
         </form>
 
         </div>
+        <div  class="col-md-8 offset-md-2" style="margin-top: 5%;"  >
+
+            <legend class="no-border f-w-700 p-b-0 m-t-0 m-b-20 f-s-16 text-inverse"><h1>Add/Edit Your Branches.</h1></legend>
+
+            <form action="{{ url('/supplier/branches/' )}}" style="margin-top: 5% align-cont" method="post" name="edit_profile" class="form-control-with-bg">{{ csrf_field() }}
+
+                    <div  class="jumbotron m-b-0 text-center col-sm-2" style="background-color: transparent">
+                            <input type="submit" value="Add/Edit Branches" class="btn btn-purple btn-lg">
+                    </div>
+
+            </form>
+
+            </div>
         <form action="{{ url('/supplier/edit-store/'.$supplierDetails->id )}}" style="margin-top: 5%" method="post" name="edit_store" class="form-control-with-bg">{{ csrf_field() }}
                 <div id="wizard" >
                     <div>
