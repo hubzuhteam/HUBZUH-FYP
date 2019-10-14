@@ -121,7 +121,7 @@
                     <hr style="height:11px; background-color: {{ $main_color }};">
                     </div>
                 @endforeach
-                </div>
+            </div>
 
 			<div class="tab-pane fade" id="delivery">
 				<div class="col-sm-12">

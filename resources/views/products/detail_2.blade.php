@@ -133,7 +133,8 @@
                         <!--category-tab-->
                         <div class="col-sm-12">
                             <ul class="nav nav-tabs" style="background-color: {{ $main_color }};">
-                                <li  class="active"><a href="#description" data-toggle="tab">Description</a></li>
+                                <li  class="active"><a href="#reviews" data-toggle="tab">Reviews and Ratings</a></li>
+                                <li><a href="#description" data-toggle="tab">Description</a></li>
                                 <li><a href="#care" data-toggle="tab">Material & Care</a></li>
                                 <li><a href="#delivery" data-toggle="tab">Delivery Options</a></li>
                                 {{-- <li><a href="#reviews" data-toggle="tab">Reviews (5)</a></li> --}}
@@ -143,11 +144,17 @@
                             </ul>
                         </div>
                         <div class="tab-content">
-                            <div class="tab-pane fade active in" id="description">
+                            <div class="tab-pane fade active in" id="reviews">
+                                @foreach ($reviews as $review)
+                                    <div class="col-sm-12">
+                                        <p style="color: black; font-size: 17px;">{{ $review->review }}</p>
+                                    </div>
+                                @endforeach
+                            </div>
+                            <div class="tab-pane fade in" id="description">
                                     <div class="col-sm-12">
                                         <p style="color: black; font-size: 17px;">{{ $productDetails->description}}</p>
                                     </div>
-
                             </div>
                             <div class="tab-pane fade" id="care">
                                     <div class="col-sm-12">

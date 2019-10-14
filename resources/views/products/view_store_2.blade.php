@@ -85,17 +85,18 @@
 				</div>
 			</div>
 			<div class="tab-pane fade" id="branches">
+                @foreach ($branches as $branch)
                     <div class="col-sm-12">
-                        <div style="margin-left: 10px;"	 class="store_description">
-                        <h3 style="color: {{ $main_color }};">First Name    :</h3><h4 style="color: {{ $secondary_color }};">{{$supplier->name}}   </h4> <br>
-                        <h3 style="color: {{ $main_color }};">Last Name     :</h3><h4 style="color: {{ $secondary_color }};">{{$supplier->last_name}} </h4><br>
-                        <h3 style="color: {{ $main_color }};">Store Email   :</h3><h4 style="color: {{ $secondary_color }};">{{$supplier->email}}   </h4><br>
-                        <h3 style="color: {{ $main_color }};">Store Address :</h3><h4 style="color: {{ $secondary_color }};">{{$supplier->address}} </h4><br>
-                        <h3 style="color: {{ $main_color }};">Phone Number  :</h3><h4 style="color: {{ $secondary_color }};">{{$supplier->mobile}}  </h4><br>
-                        <h3 style="color: {{ $main_color }};">Product Types :</h3><h4 style="color: {{ $secondary_color }};">{{$supplier->deals_in}} </h4><br>
+                        <div style="margin-left: 10px;" class="store_description">
+                        <h3 style="color: {{ $main_color }}; margin-top:-1%">Branch Name    :</h3><h4 style="color: {{ $secondary_color }};">{{$branch->branch_name}}   </h4> <br>
+                        <h3 style="color: {{ $main_color }}; margin-top:-1%">Branch Location     :</h3><h4 style="color: {{ $secondary_color }};">{{$supplier->last_name}} </h4><br>
+                        <h3 style="color: {{ $main_color }}; margin-top:-1%">Branch Contact Number   :</h3><h4 style="color: {{ $secondary_color }};">{{$supplier->email}}   </h4><br>
                         </div>
+
+                    <hr style="height:11px; background-color: {{ $main_color }};">
                     </div>
-                </div>
+                @endforeach
+            </div>
 
 			<div class="tab-pane fade" id="delivery">
 				<div class="col-sm-12">

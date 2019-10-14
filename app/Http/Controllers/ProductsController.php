@@ -23,6 +23,7 @@ use App\Supplier;
 use DB;
 use App\Banner;
 use App\Factory;
+use App\Review;
 
 class ProductsController extends Controller
 {
@@ -1647,6 +1648,10 @@ class ProductsController extends Controller
         $total_stock = ProductsAttribute::where('product_id',$id)->sum('stock');
 
         $banners = Banner::where('status','1')->get();
+        $reviews = Review::where('product_id',$id)->get();
+        $users = User::where('id',$reviews->id)->get();
+         echo "<pre>"; print_r($users); die;
+
 
         // default varaibles
         $background_img="";
@@ -1684,7 +1689,7 @@ class ProductsController extends Controller
         return view('products.detail_'.$theme_id)->with(compact('productDetails','relatedProducts','categories','supplierDetails'
         ,'productAltImages','total_stock','meta_title','meta_description','meta_keywords','banners','breadcrumb'
         ,'background_img','main_color','secondary_color','store_name_color','outlet_name','outlet_title'
-        ,'outlet_id','store','factory'));
+        ,'outlet_id','store','factory','reviews'));
     }
 
     public function getProductPrice(Request $request){
