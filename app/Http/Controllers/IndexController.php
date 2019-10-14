@@ -23,15 +23,15 @@ class IndexController extends Controller
         //->where('feature_item',1)
         // $suppliers = Supplier::where(['active'=>1])->get();
 
-        $suppliersAll = Supplier::inRandomOrder()->where('status',1)->where('active',1)->paginate(12);
-        $factoriesAll = Factory::inRandomOrder()->where('status',1)->where('active',1)->paginate(12);
+        $suppliersAll = Supplier::inRandomOrder()->where('status',1)->where('active',1)->paginate(60);
+        $factoriesAll = Factory::inRandomOrder()->where('status',1)->where('active',1)->paginate(60);
 
 
         $productsAll = Product::inRandomOrder()->whereHas('supplier', function ($query) {
             $query->where('active', '=', '1');
         })->orwhereHas('factory', function ($query) {
             $query->where('active', '=', '1');
-        })->where('status',1)->paginate(6);
+        })->where('status',1)->paginate(60);
 
         //  $products = Product::with('supplier')->where('status',1)->get();
     	// Get All Categories and Sub Categories

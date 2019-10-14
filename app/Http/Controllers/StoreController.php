@@ -9,6 +9,7 @@ use App\Product;
 use App\Supplier;
 use App\Theme;
 use Session;
+use App\Branch;
 use Illuminate\Http\Request;
 
 class StoreController extends Controller
@@ -64,8 +65,12 @@ class StoreController extends Controller
         // $secondary_color="black";
         // $store_name_color="black";
 
+        $branches = Branch::where(['supplier_id'=>$supplier->id])->get();
+        //  echo "<pre>"; print_r($branches); die;
+
+
         $theme_id=$supplier->theme_id;
-        return view('products.view_store_'.$theme_id)->with(compact('productsAll','categories_menu',
+        return view('products.view_store_'.$theme_id)->with(compact('productsAll','categories_menu','branches',
             'categories','banners','supplier','store','background_img','background_color','main_color','secondary_color','store_name_color'));
     }
     // STORE EDIT
