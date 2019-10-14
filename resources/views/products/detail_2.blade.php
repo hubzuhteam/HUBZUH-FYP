@@ -147,7 +147,23 @@
                             <div class="tab-pane fade active in" id="reviews">
                                 @foreach ($reviews as $review)
                                     <div class="col-sm-12">
-                                        <p style="color: black; font-size: 17px;">{{ $review->review }}</p>
+                                                <p style="color: {{ $secondary_color }}; font-size: 17px; display: inline"><strong>{{ $review->created_at }}</strong></p>
+
+                                                <br>
+
+                                                <br>
+                                                <br>
+                                        @foreach ($users as $user)
+                                            @if ($user->id == $review->user_id)
+                                                <p style="color: black; font-size: 17px; display: inline">Review By:</p>
+                                                <p style="color: {{ $secondary_color }}; font-size: 17px; display: inline"> <strong>{{ $user->name }}</strong></p>
+                                            @endif
+                                        @endforeach
+                                        <br>
+                                                <p style="color: black; font-size: 17px; display: inline">Review:</p>
+                                                <p style="color: {{ $secondary_color }}; font-size: 17px; display: inline"> <strong>{{ $review->review }}</strong></p>
+                                    <hr style="height:5px; background-color: {{ $main_color }};">
+
                                     </div>
                                 @endforeach
                             </div>

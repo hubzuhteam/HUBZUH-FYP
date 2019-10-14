@@ -1649,8 +1649,9 @@ class ProductsController extends Controller
 
         $banners = Banner::where('status','1')->get();
         $reviews = Review::where('product_id',$id)->get();
-        $users = User::where('id',$reviews->id)->get();
-         echo "<pre>"; print_r($users); die;
+        $users = User::get();
+
+        //   echo "<pre>"; print_r($users); die;
 
 
         // default varaibles
@@ -1689,7 +1690,7 @@ class ProductsController extends Controller
         return view('products.detail_'.$theme_id)->with(compact('productDetails','relatedProducts','categories','supplierDetails'
         ,'productAltImages','total_stock','meta_title','meta_description','meta_keywords','banners','breadcrumb'
         ,'background_img','main_color','secondary_color','store_name_color','outlet_name','outlet_title'
-        ,'outlet_id','store','factory','reviews'));
+        ,'outlet_id','store','factory','reviews','users'));
     }
 
     public function getProductPrice(Request $request){
