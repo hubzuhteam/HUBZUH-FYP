@@ -85,7 +85,7 @@
                             <ul class="sub-menu">
                                 <li class="active"><a href="{{ url('/view_store_notice') }}">View Store</a></li>
                                 <li class="active"><a href="{{ url('/supplier/edit-store/'.$supplierDetails->id) }}">Edit Store</a></li>
-    
+
                             </ul>
                         </li>
                     <li class="has-sub active">

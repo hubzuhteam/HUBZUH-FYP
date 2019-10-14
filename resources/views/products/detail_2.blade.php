@@ -145,9 +145,45 @@
                         </div>
                         <div class="tab-content">
                             <div class="tab-pane fade active in" id="reviews">
-                                @foreach ($reviews as $review)
+                                 @foreach ($reviews as $review)
+
                                     <div class="col-sm-12">
-                                                <p style="color: {{ $secondary_color }}; font-size: 17px; display: inline"><strong>{{ $review->created_at }}</strong></p>
+                                            <ul style="background-color: transparent">
+                                                    @foreach ($users as $user)
+                                                    @if ($user->id == $review->user_id)
+                                                    <li><a style="font-size: 20px; color: "><i class="fa fa-user" style="color: {{ $main_color }}">  {{ $user->name }}</i></a></li>
+
+                                                    @endif
+                                                @endforeach
+                                                <li><a style="font-size: 20px;"><i class="fa fa-clock-o" style="color: {{ $main_color }}"></i>{{ $review->created_at }}</a></li>
+                                            </ul>
+                                            <p style="color: black; font-size: 20px; display: inline">Title:</p>
+                                        <p style="color: {{ $main_color }}; font-size: 20px; display: inline"> <strong>{{ $review->heading }}</strong></p>
+                                            <br>
+                                            <p style="color: black; font-size: 20px; display: inline">Review:</p>
+                                            <p style="color: {{ $main_color }}; font-size: 20px; display: inline"> <strong>{{ $review->review }}</strong></p>
+                                            <br>
+                                            <br>
+
+                                    <hr style="height:5px; background-color: {{ $main_color }};">
+
+                                        </div>
+                                    @endforeach
+                                    <p style="font-size: 20px"><b>Write Your Review</b></p>
+
+                                            <form action="#">
+                                                <span >
+                                                    <input style="width: 100%; margin-left: 0px;" type="text" id="heading" name="heading" placeholder="Title of The Review"/>
+                                                </span>
+                                                <textarea name="review" id="review" placeholder="Description for Review"></textarea>
+                                                <b>Rating: </b> <img src="images/product-details/rating.png" alt="" />
+                                                <button type="button" class="btn btn-default pull-right">
+                                                    Submit
+                                                </button>
+                                            </form>
+                                {{-- @foreach ($reviews as $review)
+                                    <div class="col-sm-12">
+                                                <p style="color: {{ $secondary_color }}; font-size: 20px; display: inline"><strong>{{ $review->created_at }}</strong></p>
 
                                                 <br>
 
@@ -155,17 +191,22 @@
                                                 <br>
                                         @foreach ($users as $user)
                                             @if ($user->id == $review->user_id)
+
                                                 <p style="color: black; font-size: 17px; display: inline">Review By:</p>
-                                                <p style="color: {{ $secondary_color }}; font-size: 17px; display: inline"> <strong>{{ $user->name }}</strong></p>
+                                                <p style="color: {{ $secondary_color }}; font-size: 20px; display: inline"><strong>{{ $user->name }}</strong></p>
                                             @endif
                                         @endforeach
                                         <br>
-                                                <p style="color: black; font-size: 17px; display: inline">Review:</p>
-                                                <p style="color: {{ $secondary_color }}; font-size: 17px; display: inline"> <strong>{{ $review->review }}</strong></p>
+                                        <p style="color: black; font-size: 20px; display: inline">Title:</p>
+
+                                        <p style="color: {{ $secondary_color }}; font-size: 20px; display: inline"> <strong>{{ $review->heading }}</strong></p>
+                                            <br>
+                                                <p style="color: black; font-size: 20px; display: inline">Review:</p>
+                                                <p style="color: {{ $secondary_color }}; font-size: 20px; display: inline"> <strong>{{ $review->review }}</strong></p>
                                     <hr style="height:5px; background-color: {{ $main_color }};">
 
                                     </div>
-                                @endforeach
+                                @endforeach --}}
                             </div>
                             <div class="tab-pane fade in" id="description">
                                     <div class="col-sm-12">

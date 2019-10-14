@@ -8,7 +8,7 @@
         <!-- begin breadcrumb -->
         <ol class="breadcrumb pull-right">
             <li class="breadcrumb-item"><a href="{{ url('/supplier/dashboard') }}">Home</a></li>
-            <li class="breadcrumb-item"><a href="{{ url('/supplier/view_store_notice') }}">View Store</a></li>
+            <li class="breadcrumb-item"><a href="{{ url('/view_store_notice') }}">View Store</a></li>
             <li class="breadcrumb-item"><a href="{{ url('/supplier/edit-profile') }}">Edit Store Details</a></li>
         </ol>
         <!-- end breadcrumb -->
