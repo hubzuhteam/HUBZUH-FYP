@@ -179,30 +179,24 @@
 
                                         </div>
                                     @endforeach
-                                    @foreach ($reviews as $review)
-                                    @if ($review->user_id==$user->id)
-                                       @break;
-                                    @elseif ($review->user_id!=$user->id)
 
-                                        <p style="font-size: 20px"><b>Write Your Review</b></p>
-                                            <form name="addreview" id="addreview"  action="{{ url('add-comment/'.$productDetails->id) }}" method="post">{{ csrf_field() }}
+                                    @if (!$commented)
+                                    <p style="font-size: 20px"><b>Write Your Review </b></p>
+                                    <form name="addreview" id="addreview"  action="{{ url('add-comment/'.$productDetails->id) }}" method="post">{{ csrf_field() }}
 
-                                                {{-- <div class=".row"> --}}
-                                                        <x-star-rating value="0" type="text" id="rating" onclick="myFunction()" name="rating" number="5"></x-star-rating>
-                                                {{-- </div> --}}
+                                                <x-star-rating value="0" type="text" id="rating" onclick="myFunction()" name="rating" number="5"></x-star-rating>
 
-                                                <input type="hidden" id="rate" name="rate"></input>
-                                                <span >
-                                                    <input style="width: 100%; margin-left: 0px;" type="text" id="heading" name="heading" placeholder="Title of The Review" required/>
-                                                </span>
-                                                <textarea name="review" id="review" placeholder="Description for Review" required></textarea>
-                                                <button type="submit" class="btn btn-default pull-right">
-                                                    Submit
-                                                </button>
-                                            </form>
-                                            @break
+                                        <input type="hidden" id="rate" name="rate"></input>
+                                        <span >
+                                            <input style="width: 100%; margin-left: 0px;" type="text" id="heading" name="heading" placeholder="Title of The Review" required/>
+                                        </span>
+                                        <textarea name="review" id="review" placeholder="Description for Review" required></textarea>
+                                        <button type="submit" class="btn btn-default pull-right">
+                                            Submit
+                                        </button>
+                                    </form>
                                     @endif
-                                    @endforeach
+
 
 
                             </div>

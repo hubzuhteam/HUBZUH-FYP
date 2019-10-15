@@ -1687,10 +1687,34 @@ class ProductsController extends Controller
         $meta_title = $productDetails->product_name;
         $meta_description = $productDetails->description;
         $meta_keywords = $productDetails->product_name;
+
+        if(empty(Session::has('frontSession'))){
+            $commented=true;
+        }else{
+            $user = User::where(['email'=>Session::get('frontSession')])->first();
+
+            // echo $user->id;
+            // echo "<pre>"; print_r($user); die;
+            $commented=false;
+
+            foreach ($reviews as $key => $review) {
+                if ($review->user_id==$user->id) {
+                    $commented=true;
+                    // echo "hey";
+                }
+            }
+        }
+            $user = User::where(['email'=>Session::get('frontSession')])->first();
+
+
+
+
+
+
         return view('products.detail_'.$theme_id)->with(compact('productDetails','relatedProducts','categories','supplierDetails'
         ,'productAltImages','total_stock','meta_title','meta_description','meta_keywords','banners','breadcrumb'
         ,'background_img','main_color','secondary_color','store_name_color','outlet_name','outlet_title'
-        ,'outlet_id','store','factory','reviews','users'));
+        ,'outlet_id','store','factory','reviews','users','user','commented'));
     }
 
     public function getProductPrice(Request $request){
