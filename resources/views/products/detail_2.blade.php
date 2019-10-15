@@ -1,6 +1,8 @@
 @section('content')
 @extends('layouts.frontLayout.front_design')
+<link href="{{ asset('css/frontend_css/StarRating.css') }}" rel="stylesheet">
 
+        <link rel="stylesheet" href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 <section>
 <div style="background-size: 100% 100%; background-image: url('../images/backend_images/backgrounds/large/{{$background_img}}'); background-repeat: no-repeat;">
 
@@ -157,11 +159,11 @@
                                                 @endforeach
                                                 <li><a style="font-size: 20px;"><i class="fa fa-clock-o" style="color: {{ $main_color }}"></i>{{ $review->created_at }}</a></li>
                                             </ul>
-                                            <p style="color: black; font-size: 20px; display: inline">Title:</p>
-                                        <p style="color: {{ $main_color }}; font-size: 20px; display: inline"> <strong>{{ $review->heading }}</strong></p>
+                                                <p style="color: black; font-size: 20px; display: inline">Title:</p>
+                                                <p style="color: {{ $main_color }}; font-size: 20px; display: inline"> <strong>{{ $review->heading }}</strong></p>
                                             <br>
-                                            <p style="color: black; font-size: 20px; display: inline">Review:</p>
-                                            <p style="color: {{ $main_color }}; font-size: 20px; display: inline"> <strong>{{ $review->review }}</strong></p>
+                                                <p style="color: black; font-size: 20px; display: inline">Review:</p>
+                                                <p style="color: {{ $main_color }}; font-size: 20px; display: inline"> <strong>{{ $review->review }}</strong></p>
                                             <br>
                                             <br>
 
@@ -170,43 +172,24 @@
                                         </div>
                                     @endforeach
                                     <p style="font-size: 20px"><b>Write Your Review</b></p>
+                                            <form name="addreview" id="addreview"  action="{{ url('add-comment/'.$productDetails->id) }}" method="post">{{ csrf_field() }}
 
-                                            <form action="#">
+                                                {{-- <div class=".row"> --}}
+                                                        <x-star-rating value="0" type="text" id="rating" onclick="myFunction()" name="rating" number="5"></x-star-rating>
+
+
+                                                {{-- </div> --}}
+
+                                                <input type="hidden" id="rate" name="rate"></input>
                                                 <span >
-                                                    <input style="width: 100%; margin-left: 0px;" type="text" id="heading" name="heading" placeholder="Title of The Review"/>
+                                                    <input style="width: 100%; margin-left: 0px;" type="text" id="heading" name="heading" placeholder="Title of The Review" required/>
                                                 </span>
-                                                <textarea name="review" id="review" placeholder="Description for Review"></textarea>
-                                                <b>Rating: </b> <img src="images/product-details/rating.png" alt="" />
-                                                <button type="button" class="btn btn-default pull-right">
+                                                <textarea name="review" id="review" placeholder="Description for Review" required></textarea>
+                                                <button type="submit" class="btn btn-default pull-right">
                                                     Submit
                                                 </button>
                                             </form>
-                                {{-- @foreach ($reviews as $review)
-                                    <div class="col-sm-12">
-                                                <p style="color: {{ $secondary_color }}; font-size: 20px; display: inline"><strong>{{ $review->created_at }}</strong></p>
 
-                                                <br>
-
-                                                <br>
-                                                <br>
-                                        @foreach ($users as $user)
-                                            @if ($user->id == $review->user_id)
-
-                                                <p style="color: black; font-size: 17px; display: inline">Review By:</p>
-                                                <p style="color: {{ $secondary_color }}; font-size: 20px; display: inline"><strong>{{ $user->name }}</strong></p>
-                                            @endif
-                                        @endforeach
-                                        <br>
-                                        <p style="color: black; font-size: 20px; display: inline">Title:</p>
-
-                                        <p style="color: {{ $secondary_color }}; font-size: 20px; display: inline"> <strong>{{ $review->heading }}</strong></p>
-                                            <br>
-                                                <p style="color: black; font-size: 20px; display: inline">Review:</p>
-                                                <p style="color: {{ $secondary_color }}; font-size: 20px; display: inline"> <strong>{{ $review->review }}</strong></p>
-                                    <hr style="height:5px; background-color: {{ $main_color }};">
-
-                                    </div>
-                                @endforeach --}}
                             </div>
                             <div class="tab-pane fade in" id="description">
                                     <div class="col-sm-12">
@@ -279,6 +262,11 @@
 
 </div>
 </section>
+<script>
+        function myFunction() {
+            $('#rate').val(document.getElementById("rating").value);
 
+        }
+        </script>
 
 @endsection

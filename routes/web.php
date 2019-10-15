@@ -170,6 +170,7 @@ Route::match(['get','post'],'/supplier/forgetpassword','SupplierController@forge
 //all routes after supplier
 Route::group(['middleware'=>['supplierlogin']],function(){
 
+
     //edit/select theme for store
     Route::match(['get','post'],'/supplier/edit-store-theme/{id}','StoreController@editStoreSupplierTheme');
 
@@ -332,6 +333,8 @@ Route::post('/search-products','ProductsController@searchProducts');
 
 //all routes after login
 Route::group(['middleware'=>['frontlogin']],function(){
+    //user comment
+    Route::match(['GET','POST'],'/add-comment/{id}','ReviewController@addcomment');
 
     // Add to Cart Route
 Route::match(['get', 'post'], '/add-cart', 'ProductsController@addtocart');

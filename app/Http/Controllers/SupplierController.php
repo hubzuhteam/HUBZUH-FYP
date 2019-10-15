@@ -164,21 +164,17 @@ class SupplierController extends Controller
             //echo "<pre>"; print_r($data); die;
             //echo $supplierCount;die;
 
-                Branch::where('supplier_id',$supplierDetails->id)->update(['branch_name'=>$data['branch_name'],
+                Branch::where('id',$id)->update(['branch_name'=>$data['branch_name'],
                 'branch_location'=>$data['branch_location'],
                 'branch_phn_no'=>$data['branch_phn_no']
             ]);
 
             $flash_message_success='Branch Updated Successfully';
-            return view('supplier.branches')->with(compact('supplierDetails','branches','flash_message_success'));
 
-
+            return redirect('/supplier/branches')->with('flash_message_success','Branch Updated Successfully');
         }
-
             // echo "<pre>"; print_r($branch); die;
-
 		return view('supplier.branches.edit_branch')->with(compact('supplierDetails','branches','branch'));
-
     }
 
     public function updateProfile(Request $request){

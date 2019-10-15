@@ -21,5 +21,9 @@
         "sass": "^1.15.2",
         "sass-loader": "^7.1.0",
         "vue": "^2.5.17"
+    },
+    "dependencies": {
+        "rateyo": "^2.3.5",
+        "vue-star-rating": "^1.6.1"
     }
 }
