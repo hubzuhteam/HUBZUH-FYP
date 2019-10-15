@@ -2,7 +2,7 @@
 @extends('layouts.frontLayout.front_design')
 <link href="{{ asset('css/frontend_css/StarRating.css') }}" rel="stylesheet">
 
-        <link rel="stylesheet" href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<link rel="stylesheet" href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 <section>
 <div style="background-size: 100% 100%; background-image: url('../images/backend_images/backgrounds/large/{{$background_img}}'); background-repeat: no-repeat;">
 
@@ -158,6 +158,14 @@
                                                     @endif
                                                 @endforeach
                                                 <li><a style="font-size: 20px;"><i class="fa fa-clock-o" style="color: {{ $main_color }}"></i>{{ $review->created_at }}</a></li>
+
+                                                <div class="row">
+                                                @for ($stars = 0; $stars < $review->rating; $stars++)
+                                                        <span class="star-five"  style="display: inline-block; margin-left: -70px; margin-right: -95px ">
+                                                        </span>
+                                                @endfor
+                                                </div>
+
                                             </ul>
                                                 <p style="color: black; font-size: 20px; display: inline">Title:</p>
                                                 <p style="color: {{ $main_color }}; font-size: 20px; display: inline"> <strong>{{ $review->heading }}</strong></p>
@@ -171,13 +179,16 @@
 
                                         </div>
                                     @endforeach
-                                    <p style="font-size: 20px"><b>Write Your Review</b></p>
+                                    @foreach ($reviews as $review)
+                                    @if ($review->user_id==$user->id)
+                                       @break;
+                                    @elseif ($review->user_id!=$user->id)
+
+                                        <p style="font-size: 20px"><b>Write Your Review</b></p>
                                             <form name="addreview" id="addreview"  action="{{ url('add-comment/'.$productDetails->id) }}" method="post">{{ csrf_field() }}
 
                                                 {{-- <div class=".row"> --}}
                                                         <x-star-rating value="0" type="text" id="rating" onclick="myFunction()" name="rating" number="5"></x-star-rating>
-
-
                                                 {{-- </div> --}}
 
                                                 <input type="hidden" id="rate" name="rate"></input>
@@ -189,6 +200,10 @@
                                                     Submit
                                                 </button>
                                             </form>
+                                            @break
+                                    @endif
+                                    @endforeach
+
 
                             </div>
                             <div class="tab-pane fade in" id="description">
