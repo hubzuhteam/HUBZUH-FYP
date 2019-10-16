@@ -899,6 +899,8 @@ class ProductsController extends Controller
         return view('supplier.products.view_products')->with(compact('products','supplierDetails'));
     }
 
+
+
     public function deleteProductImageSupplier($id=null){
 		// Get Product Image
 		$productImage = Product::where('id',$id)->first();
@@ -1705,11 +1707,6 @@ class ProductsController extends Controller
             }
         }
             $user = User::where(['email'=>Session::get('frontSession')])->first();
-
-
-
-
-
 
         return view('products.detail_'.$theme_id)->with(compact('productDetails','relatedProducts','categories','supplierDetails'
         ,'productAltImages','total_stock','meta_title','meta_description','meta_keywords','banners','breadcrumb'

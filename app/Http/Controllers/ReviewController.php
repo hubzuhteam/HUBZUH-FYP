@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\User;
 use Session;
 use DB;
+use App\Supplier;
+use App\Product;
 class ReviewController extends Controller
 {
     public function addcomment(Request $request,$id=nul){
@@ -29,6 +31,20 @@ class ReviewController extends Controller
            return redirect()->back()->with('flash_message_error','Review Updated Successfully');
 
 
+    }
+
+    public function viewProductsReviews(){
+
+        $supplierDetails = Supplier::where(['email'=>Session::get('supplierSession')])->first();
+
+
+        $products = Product::where(['supplier_id'=>$supplierDetails->id])->orderBy('id','Desc')->get();
+
+        $reviews = Review::whereIn('product_id',[$products])->orderBy('id','Desc')->get();
+
+        echo "<pre>"; print_r($products); die;
+
+        return view('supplier.products.view_products')->with(compact('products','supplierDetails','reviews'));
     }
 
 }

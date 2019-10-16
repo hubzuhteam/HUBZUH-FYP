@@ -228,6 +228,10 @@ Route::group(['middleware'=>['supplierlogin']],function(){
     Route::get('/supplier/delete-alt-image/{id}','ProductsController@deleteAltImageSupplier');
     Route::get('/supplier/delete-product-video/{id}','ProductsController@deleteProductVideoSupplier');
 
+    //supplier review for products
+    Route::get('/supplier/products-reviews','ReviewController@viewProductsReviews');
+
+
         	// Supplier Product Attributes Routes
 	Route::match(['get', 'post'], '/supplier/add-attributes/{id}','ProductsController@addAttributesSupplier');
     Route::match(['get', 'post'], '/supplier/edit-attributes/{id}','ProductsController@editAttributesSupplier');

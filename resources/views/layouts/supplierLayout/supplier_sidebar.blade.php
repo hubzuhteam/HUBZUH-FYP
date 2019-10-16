@@ -61,6 +61,7 @@
 						<ul class="sub-menu">
 						    <li class="active"><a href="{{ url('/supplier/add-product') }}">Add Product</a></li>
                             <li class="active"><a href="{{ url('/supplier/view-products') }}">View Products</a></li>
+                            <li class="active"><a href="{{ url('/supplier/products-reviews') }}">View Reviews of Products</a></li>
 
 						</ul>
                     </li>

@@ -18,6 +18,9 @@ class Product extends Model
     public function factory(){
         return $this->belongsTo(Factory::class);
     }
+    public function reviews(){
+    	return $this->hasMany('App\Review');
+    }
 
     public static function cartCount(){
     	if(Auth::check()){
