@@ -63,6 +63,8 @@
         <script src="{{ asset('js/backend_js/jquery.validate.js') }}"></script>
         <script src="{{ asset('js/backend_js/matrix.tables.js') }}"></script>
         <script src="{{ asset('js/backend_js/matrix.js') }}"></script>
+
+
         <script src="{{ asset('js/backend_js/matrix.form_validation.js') }}"></script>
         <script src="{{ asset('js/backend_js/matrix.popover.js') }}"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -117,7 +119,8 @@
 		$(document).ready(function() {
 			App.init();
 			Dashboard.init();
-		});
+        });
+
     </script>
     <script>
             $(document).ready(function() {

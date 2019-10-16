@@ -231,6 +231,9 @@ Route::group(['middleware'=>['supplierlogin']],function(){
     //supplier review for products
     Route::get('/supplier/products-reviews','ReviewController@viewProductsReviews');
 
+    //view reviews of one product
+    Route::match(['get','post'],'/supplier/view-review/{id}','ReviewController@viewReviews');
+
 
         	// Supplier Product Attributes Routes
 	Route::match(['get', 'post'], '/supplier/add-attributes/{id}','ProductsController@addAttributesSupplier');

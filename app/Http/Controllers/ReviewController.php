@@ -40,11 +40,37 @@ class ReviewController extends Controller
 
         $products = Product::where(['supplier_id'=>$supplierDetails->id])->orderBy('id','Desc')->get();
 
-        $reviews = Review::whereIn('product_id',[$products])->orderBy('id','Desc')->get();
 
-        echo "<pre>"; print_r($products); die;
+        // $reviewsid=[];
+        // foreach ($products as $key => $value) {
+        //     $reviewsid[]=$value->id;
+        // }
 
-        return view('supplier.products.view_products')->with(compact('products','supplierDetails','reviews'));
+        // $reviews = Review::whereIn('product_id',$reviewsid)->orderBy('id','Desc')->get();
+
+        // echo "<pre>"; print_r($reviews); die;
+
+        return view('supplier.products.view_reviews')->with(compact('products','supplierDetails'));
+    }
+
+    public function viewReviews($id = null){
+
+        $supplierDetails = Supplier::where(['email'=>Session::get('supplierSession')])->first();
+
+
+        $product = Product::where(['id'=>$id])->first();
+
+
+        // $reviewsid=[];
+        // foreach ($products as $key => $value) {
+        //     $reviewsid[]=$value->id;
+        // }
+
+        $reviews = Review::where('product_id',$id)->orderBy('id','Desc')->get();
+
+        // echo "<pre>"; print_r($reviews); die;
+
+        return view('supplier.products.view_reviews_one_product')->with(compact('product','supplierDetails','reviews'));
     }
 
 }

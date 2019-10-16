@@ -164,6 +164,7 @@
                                                         <span class="star-five"  style="display: inline-block; margin-left: -70px; margin-right: -95px ">
                                                         </span>
                                                 @endfor
+
                                                 </div>
 
                                             </ul>
@@ -196,8 +197,6 @@
                                         </button>
                                     </form>
                                     @endif
-
-
 
                             </div>
                             <div class="tab-pane fade in" id="description">
