@@ -14,9 +14,91 @@ use App\Country;
 use Illuminate\Support\Facades\Hash;
 use DB;
 use Mail;
+use App\Branch;
+
 class FactoryController extends Controller
 {
-    
+    public function editFactoryStoreBackground(Request $request, $id = null){
+        if($request->isMethod('post')){
+            $data = $request->all();
+            //  echo "<pre>"; print_r($data); die;
+
+            $filename = $data['image'];
+            //  echo "$filename";die;
+            $factoryDetails = Factory::where(['email'=>Session::get('factorySession')])->first();
+
+            Factory::where(['id'=>$factoryDetails->id])->update(['background_img'=>$filename
+             ]);
+             return redirect('/factory/edit-factorystore/'.$id)->with('flash_message_success',
+                 'Background Image updated Successfully!');
+        }
+
+
+        $designs = Design::get();
+
+        $factoryDetails = Factory::where(['email'=>Session::get('factorySession')])->first();
+        return view('factory.store.edit_store')->with(compact('factoryDetails','designs'));
+    }
+
+    public function branches(Request $request){
+        $factoryDetails = Factory::where(['email'=>Session::get('factorySession')])->first();
+        $branches = Branch::where(['factory_id'=>$factoryDetails->id])->get();
+        //  echo "<pre>"; print_r($branches); die;
+
+        return view('factory.branches.branches')->with(compact('factoryDetails','branches'));
+    }
+
+    public function addBranch(Request $request){
+
+        if($request->isMethod('post')){
+            $data = $request->all();
+            //echo "<pre>"; print_r($data); die;
+            $factoryDetails = Factory::where(['email' => Session::get('factorySession')])->first();
+            //echo $supplierCount;die;
+
+            $branch = new Branch;
+            $branch->branch_name = $data['branch_name'];
+            $branch->branch_location = $data['branch_location'];
+            $branch->branch_phn_no = $data['branch_phn_no'];
+            $branch->factory_id = $factoryDetails->id;
+
+            $branch->save();
+            return redirect('/factory/branches')->with('flash_message_success', 'Branch added successfully.');
+
+        }
+    }
+
+    public function deleteBranch(Request $request, $id = null){
+        if(!empty($id)){
+            Branch::where(['id'=>$id])->delete();
+            return redirect()->back()->with('flash_message_success','Branch deleted Successfully!');
+        }
+    }
+
+    public function editBranch(Request $request, $id = null){
+        $factoryDetails = Factory::where(['email' => Session::get('factorySession')])->first();
+
+        $branches = Branch::where(['factory_id'=>$factoryDetails->id])->get();
+        $branch = Branch::where(['id'=>$id])->first();
+
+        if($request->isMethod('post')){
+            $data = $request->all();
+            //echo "<pre>"; print_r($data); die;
+            //echo $supplierCount;die;
+
+                Branch::where('id',$id)->update(['branch_name'=>$data['branch_name'],
+                'branch_location'=>$data['branch_location'],
+                'branch_phn_no'=>$data['branch_phn_no']
+            ]);
+
+            $flash_message_success='Branch Updated Successfully';
+
+            return redirect('/factory/branches')->with('flash_message_success','Branch Updated Successfully');
+        }
+            // echo "<pre>"; print_r($branch); die;
+		return view('factory.branches.edit_branch')->with(compact('factoryDetails','branches','branch'));
+    }
+
     public function forgetpassword(Request $request){
         if($request->isMethod('post')){
             $data = $request->all();
@@ -58,7 +140,7 @@ class FactoryController extends Controller
 
 
         return view('factory.factory_forgot_password');
-        
+
     }
     public function editfactory(Request $request, $id = null){
         if($request->isMethod('post')){
@@ -79,14 +161,14 @@ class FactoryController extends Controller
 
        return view('admin.factories.view_factory')->with(compact('factoryDetails'));
     }
-    
+
     public function viewFactory(){
 
         $factories = Factory::get();
         return view('admin.factories.view_factory')->with(compact('factories'));
     }
 
-    
+
     public function logout(){
         Auth::logout();
         Session::forget('factorySession');
@@ -181,7 +263,7 @@ class FactoryController extends Controller
 
         $factoryDetails = Factory::where(['email'=>Session::get('factorySession')])->first();
         // echo $factoryDetails;die;
-    return view('factory.dashboard')->with(compact('factoryDetails'));
+        return view('factory.dashboard')->with(compact('factoryDetails'));
     }
     public function FactoryRegisterPage(){
         // echo "test";die;
@@ -200,11 +282,11 @@ class FactoryController extends Controller
             // echo $factoryCount;die;
             $factoryCount2=Factory::where('factory_name',$data['factory_name'])->count();
             if($factoryCount>0)
-            {   
+            {
                 return redirect()->back()->with('flash_message_error','Email Already Exists!');
             }
             if($factoryCount2>0)
-            {   
+            {
                 return redirect()->back()->with('flash_message_error','factory Name Already Exists!');
             }
             else{

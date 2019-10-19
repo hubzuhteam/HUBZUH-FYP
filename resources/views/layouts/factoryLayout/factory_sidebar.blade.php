@@ -21,7 +21,7 @@
                                                     <span class="menu-name">My Dashboard
                                                         <span class="menu-arrow"></span>
                             </span>
-    
+
                             </span>
                             <span class="menu-icon">
                                <span class="icon-badge badge-success badge badge-pill">4</span>
@@ -66,6 +66,44 @@
                         </li>
                 </ul>
             </li>
+            <li class="menu-item ">
+                <a href="#" class="open-dropdown menu-link">
+                        <span class="menu-label">
+                            <span class="menu-name">My Factory
+                                <span class="menu-arrow"></span>
+                            </span>
+                        </span>
+                            <span class="menu-icon">
+                                <i class="icon-placeholder mdi mdi-apps "></i>
+                            </span>
+                </a>
+                <!--submenu-->
+                <ul class="sub-menu">
+                    <li class="menu-item">
+                        <a href='{{ url('/view_factorystore_notice') }}' class=' menu-link'>
+                                        <span class="menu-label">
+                                                <span class="menu-name">View Factory
+                                                </span>
+                                        </span>
+                            <span class="menu-icon">
+                                <i class="icon-placeholder mdi mdi-tshirt-crew  "></i>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                            <a href='{{ url('/factory/edit-factorystore/'.$factoryDetails->id) }}' class=' menu-link'>
+                                            <span class="menu-label">
+                                                    <span class="menu-name">Edit Factory
+                                                    </span>
+                                            </span>
+                                <span class="menu-icon">
+                                    <i class="icon-placeholder mdi mdi-tshirt-crew  "></i>
+                                </span>
+                            </a>
+                        </li>
+                </ul>
+            </li>
+
             <li class="menu-item ">
                     <a href="#" class="open-dropdown menu-link">
                     <span class="menu-label">
@@ -117,7 +155,7 @@
                                     <i class="icon-placeholder mdi mdi-tshirt-crew  "></i>
                                 </span>
                                     </a>
-                                </li>   
+                                </li>
                         <li class="menu-item">
                             <a href='{{ url('/factory/view-banners') }}' class=' menu-link'>
                                     <span class="menu-label">
@@ -129,7 +167,7 @@
                         </span>
                             </a>
                         </li>
-                        
+
 
                     </ul>
                 </li>
@@ -170,7 +208,7 @@
                             </li>
                     </ul>
                 </li>
-    
+
                 <li class="menu-item ">
                     <a href="#" class="open-dropdown menu-link">
                             <span class="menu-label">
@@ -254,9 +292,9 @@
                         </ul>
                     </li>
                 </ul>
-    
+
             </div>
-    
+
     </aside>
-    
+
         {{--  END OF SIDE BAR  --}}

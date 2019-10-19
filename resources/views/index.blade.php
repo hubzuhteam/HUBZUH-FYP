@@ -129,7 +129,7 @@
                             @endforeach
                             <div align="center"></div>
                     </div>
-                    {{-- <div class="features_items">
+                    <div class="features_items">
                             <!--Factories-->
                             <h2 class="title text-center">FACTORIES</h2>
                              @foreach ($factoriesAll as $factory)
@@ -139,14 +139,14 @@
                                         <div class="productinfo text-center">
                                             <img src="{{ asset('images/factoryend_images/factory_images/small/'.$factory->factory_image) }}" alt="" />
                                         <h2>{{$factory->factory_name}}</h2>
-                                            <a href="{{ url('/view_store/'.$factory->id)}}" class="btn btn-default add-to-cart"><i class="fa fa-eye"></i>View</a>
+                                            <a target="_black" href="{{ url('/view_factory/'.$factory->id)}}" class="btn btn-default add-to-cart"><i class="fa fa-eye"></i>View</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             @endforeach
                             <div align="center"></div>
-                    </div> --}}
+                    </div>
                     <!--features_items-->
 
 

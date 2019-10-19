@@ -1084,6 +1084,7 @@ class ProductsController extends Controller
 
     public function viewStore($id=null){
 
+
         $productsAll = Product::whereHas('supplier', function ($query) {
             $query->where('active', '=', '1');
         })->where('status',1)->paginate(12);
@@ -1615,7 +1616,7 @@ class ProductsController extends Controller
 
     }
 
-    public function product($id = null){
+    public function product($id = null){  //product id
         // Show 404 Page if Product is disabled
         $productCount = Product::where(['id'=>$id,'status'=>1])->count();
         if($productCount==0){
@@ -1628,7 +1629,6 @@ class ProductsController extends Controller
         // echo $supplierDetails;die;
         $factoryDetails = Factory::where('id',$productDetails->factory_id)->first();
         //  echo $factoryDetails;die;
-
         $relatedProducts = Product::where('id','!=',$id)->where(['category_id' => $productDetails->category_id])->get();
         // Get Product Alt Images
         $productAltImages = ProductsImage::where('product_id',$id)->get();
@@ -1678,6 +1678,10 @@ class ProductsController extends Controller
 
         }else
         {
+            $background_img=$factoryDetails->background_img;
+            $main_color=$factoryDetails->main_color;
+            $secondary_color=$factoryDetails->secondary_color;
+            $store_name_color=$factoryDetails->factorystore_name_color;
             $outlet_name=$factoryDetails->factory_name;
             $outlet_title="Factory Name:";
             $outlet_id=$factoryDetails->id;
@@ -1690,6 +1694,7 @@ class ProductsController extends Controller
         $meta_description = $productDetails->description;
         $meta_keywords = $productDetails->product_name;
 
+        //creviews
         if(empty(Session::has('frontSession'))){
             $commented=true;
         }else{

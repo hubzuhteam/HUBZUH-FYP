@@ -39,6 +39,7 @@ class StoreController extends Controller
     //
     public function  viewStore($id=null)
     {
+        // echo "$id";
         // $supplierDetails = Supplier::where(['email'=>Session::get('supplierSession')])->first();
         $supplier=Supplier::where('id',$id)->first();
 

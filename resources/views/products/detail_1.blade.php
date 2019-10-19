@@ -142,6 +142,89 @@
                             </ul>
                         </div>
                         <div class="tab-content">
+                            <div class="tab-pane fade active in" id="reviews">
+                                 @foreach ($reviews as $review)
+
+                                    <div class="col-sm-12">
+                                            <ul style="background-color: transparent">
+                                                    @foreach ($users as $user)
+                                                    @if ($user->id == $review->user_id)
+                                                    <li><a style="font-size: 20px; color: "><i class="fa fa-user" style="color: {{ $main_color }}">  {{ $user->name }}</i></a></li>
+
+                                                    @endif
+                                                @endforeach
+                                                <li><a style="font-size: 20px; display: inline"><i class="fa fa-clock-o" style="color: {{ $main_color }}"></i>{{ $review->created_at }}</a></li>
+                                                @if ($user->id == $review->user_id)
+                                                <li><a href="{{ url('supplier/delete-comment/'.$review->id) }}" style="font-size: 20px; display: inline"><i class="fa fa-archive" style="color: {{ $main_color }}"></i>Delete</a></li>
+                                                @endif
+                                                <div class="row">
+                                                @for ($stars = 0; $stars < $review->rating; $stars++)
+                                                        <span class="star-five"  style="display: inline-block; margin-left: -70px; margin-right: -95px ">
+                                                        </span>
+                                                @endfor
+
+                                                </div>
+
+                                            </ul>
+                                                <p style="color: black; font-size: 20px; display: inline">Title:</p>
+                                                <p style="color: {{ $main_color }}; font-size: 20px; display: inline"> <strong>{{ $review->heading }}</strong></p>
+                                            <br>
+                                                <p style="color: black; font-size: 20px; display: inline">Review:</p>
+                                                <p style="color: {{ $main_color }}; font-size: 20px; display: inline"> <strong>{{ $review->review }}</strong></p>
+                                            <br>
+                                            <br>
+
+                                    <hr style="height:5px; background-color: {{ $main_color }};">
+
+                                        </div>
+                                    @endforeach
+
+                                    @if (!$commented)
+                                    <p style="font-size: 20px"><b>Write Your Review </b></p>
+                                    <form name="addreview" id="addreview"  action="{{ url('add-comment/'.$productDetails->id) }}" method="post">{{ csrf_field() }}
+
+                                                <x-star-rating value="0" type="text" id="rating" onclick="myFunction()" name="rating" number="5"></x-star-rating>
+
+                                        <input type="hidden" id="rate" name="rate"></input>
+                                        <span >
+                                            <input style="width: 100%; margin-left: 0px;" type="text" id="heading" name="heading" placeholder="Title of The Review" required/>
+                                        </span>
+                                        <textarea name="review" id="review" placeholder="Description for Review" required></textarea>
+                                        <button type="submit" class="btn btn-default pull-right">
+                                            Submit
+                                        </button>
+                                    </form>
+                                    @endif
+
+                            </div>
+                            <div class="tab-pane fade in" id="description">
+                                    <div class="col-sm-12">
+                                        <p style="color: black; font-size: 17px;">{{ $productDetails->description}}</p>
+                                    </div>
+                            </div>
+                            <div class="tab-pane fade" id="care">
+                                    <div class="col-sm-12">
+                                            <p style="color: black; font-size: 17px;">{{ $productDetails->care}}</p>
+                                    </div>
+                            </div>
+                            <div class="tab-pane fade" id="delivery">
+                                    <div class="col-sm-12">
+                                            <p>Good Quality Products <br>
+                                                Cash on Delivery
+                                            </p>
+                                    </div>
+                            </div>
+							@if(!empty($productDetails->video))
+								<div class="tab-pane fade" id="video" >
+									<div class="col-sm-12">
+										<video controls width="640" height="480">
+										  <source src="{{ url('videos/'.$productDetails->video)}}" type="video/mp4">
+										</video>
+									</div>
+								</div>
+							@endif
+                        </div>
+                        <div class="tab-content">
                             <div class="tab-pane fade active in" id="description">
                                     <div class="col-sm-12">
                                         <p style="color: black; font-size: 17px;">{{ $productDetails->description}}</p>

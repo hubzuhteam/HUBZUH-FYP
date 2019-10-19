@@ -31,7 +31,7 @@
 	<!-- end #page-loader -->
 
 	<div class="login-cover">
-	    <div class="login-cover-image" style="background-image: url({{ asset('images/supplierend_images/login-bg/login-bg-17.jpg')}})" data-id="login-cover-image"></div>
+	    <div class="login-cover-image" style="background-image: url({{ asset('images/supplierend_images/sample/img-3.jpg')}})" data-id="login-cover-image"></div>
 	    <div class="login-cover-bg"></div>
 	</div>
 	<!-- begin #page-container -->
@@ -92,12 +92,12 @@
         <!-- end login -->
 
         <ul class="login-bg-list clearfix">
-            <li class="active"><a href="javascript:;" data-click="change-bg" data-img="{{ asset('images/supplierend_images/login-bg/login-bg-17.jpg')}}" style="background-image: url({{ asset('images/supplierend_images/login-bg/login-bg-17.jpg)')}}"></a></li>
-            <li><a href="javascript:;" data-click="change-bg" data-img="{{ asset('images/supplierend_images/sample/img-3.jpg')}}" style="background-image: url({{ asset('images/supplierend_images/sample/img-3.jpg)')}}"></a></li>
-            <li><a href="javascript:;" data-click="change-bg" data-img="{{ asset('images/supplierend_images/login-bg/login-bg-15.jpg')}}" style="background-image: url({{ asset('images/supplierend_images/login-bg/login-bg-15.jpg)')}}"></a></li>
-            <li><a href="javascript:;" data-click="change-bg" data-img="{{ asset('images/supplierend_images/login-bg/login-bg-14.jpg')}}" style="background-image: url({{ asset('images/supplierend_images/login-bg/login-bg-14.jpg)')}}"></a></li>
-            <li><a href="javascript:;" data-click="change-bg" data-img="{{ asset('images/supplierend_images/login-bg/login-bg-13.jpg')}}" style="background-image: url({{ asset('images/supplierend_images/login-bg/login-bg-13.jpg)')}}"></a></li>
-            <li><a href="javascript:;" data-click="change-bg" data-img="{{ asset('images/supplierend_images/login-bg/login-bg-12.jpg')}}" style="background-image: url({{ asset('images/supplierend_images/login-bg/login-bg-12.jpg)')}}"></a></li>
+            <li class="active"><a href="javascript:;" data-click="change-bg" data-img="{{ asset('images/supplierend_images/sample/img-3.jpg')}}" style="background-image: url({{ asset('images/supplierend_images/sample/img-3.jpg)')}}"></a></li>
+            <li><a href="javascript:;" data-click="change-bg" data-img="{{ asset('images/supplierend_images/sample/pexels-photo-298863.jpeg')}}" style="background-image: url({{ asset('images/supplierend_images/sample/pexels-photo-298863.jpeg)')}}"></a></li>
+            <li><a href="javascript:;" data-click="change-bg" data-img="{{ asset('images/supplierend_images/sample/pexels-photo-322207.jpeg')}}" style="background-image: url({{ asset('images/supplierend_images/sample/pexels-photo-322207.jpeg)')}}"></a></li>
+            <li><a href="javascript:;" data-click="change-bg" data-img="{{ asset('images/supplierend_images/sample/photo-1441984904996-e0b6ba687e04.jpg')}}" style="background-image: url({{ asset('images/supplierend_images/sample/photo-1441984904996-e0b6ba687e04.jpg)')}}"></a></li>
+            <li><a href="javascript:;" data-click="change-bg" data-img="{{ asset('images/supplierend_images/sample/img-2.jpg')}}" style="background-image: url({{ asset('images/supplierend_images/sample/img-2.jpg)')}}"></a></li>
+            <li><a href="javascript:;" data-click="change-bg" data-img="{{ asset('images/supplierend_images/sample/Camerinageking001-650x600.jpg')}}" style="background-image: url({{ asset('images/supplierend_images/sample/Camerinageking001-650x600.jpg)')}}"></a></li>
         </ul>
 
         <!-- begin theme-panel -->
@@ -196,7 +196,7 @@
 
 	<!-- ================== BEGIN PAGE LEVEL JS ================== -->
     <script src="{{ asset('js/supplierend_js/demo/login-v2.demo.min.js')}}"></script>
-    
+
 	<!-- ================== END PAGE LEVEL JS ================== -->
 s
 	<script>

@@ -33,6 +33,10 @@ class ReviewController extends Controller
 
     }
 
+    public function delcomment($id=null){
+
+        Review::where(['id'=>$id])->delete();
+    }
     public function viewProductsReviews(){
 
         $supplierDetails = Supplier::where(['email'=>Session::get('supplierSession')])->first();

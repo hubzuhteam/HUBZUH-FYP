@@ -89,7 +89,7 @@
         <!-- end wizard -->
     </form>
     <!-- end wizard-form -->
-    
+
     <div class="container  pull-up" style="margin-top: -1%">
             <div class="row">
                 <div class="col-12">

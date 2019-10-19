@@ -55,6 +55,43 @@ Route::match(['get','post'],'/factory/forgetpassword','FactoryController@forgetp
 
 Route::group(['middleware'=>['factorylogin']],function(){
 
+    ///factory edit stre background image
+    Route::match(['get','post'],'/factory/edit-factorystore-background/{id}','FactoryController@editFactoryStoreBackground');
+
+
+    //edit branch
+    Route::match(['GET','POST'],'/factory/edit-branch/{id}','FactoryController@editBranch');
+
+    //delete branch
+	Route::match(['get','post'],'/factory/delete-branch/{id}','FactoryController@deleteBranch');
+
+    //Add Factory Branch
+    Route::match(['get','post'],'/factory/add-branch','FactoryController@addBranch');
+
+    ///////////ZAID
+    Route::match(['get','post'],'/view_factorystore_notice','FactorystoreController@viewfactoryNotice');
+
+    //view factory store
+     Route::match(['get','post'],'/view_factorystore/{id}','FactorystoreController@ViewStore');
+    //Edit factory store
+     Route::match(['get','post'],'/factory/edit-factorystore/{id}','FactorystoreController@editfactorystore');
+
+     Route::match(['get','post'],'/factory/view-theme/{id}','FactorystoreController@viewTheme');
+
+     Route::match(['get','post'],'/factory/edit-factorystore-theme/{id}','FactorystoreController@editFactorystoreTheme');
+
+    Route::match(['GET','POST'],'/factory/factory_edit-branch/{id}','FactoryController@factory_editBranch');
+    Route::match(['get','post'],'/factory/factory_delete-branch/{id}','FactoryController@factory_deleteBranch');
+
+    Route::match(['GET','POST'],'/factory/branches','FactoryController@branches');
+
+    Route::match(['get','post'],'/factory/factoty-add-branch','FactoryController@addBranch');
+
+
+
+    ////////////ZAID
+
+
     // Update Order Status
     Route::post('/factory/update-order-status','ProductsController@updateOrderStatusFactory');
 
@@ -86,7 +123,7 @@ Route::group(['middleware'=>['factorylogin']],function(){
 Route::get('/factory/dashboard','FactoryController@dashboard');
 
 //profile of Factory
-Route::get('/factory/edit-profile','FactoryController@edit_profile');
+Route::match(['get','post'],'/factory/edit-profile','FactoryController@edit_profile');
 
  //update factory profile
 Route::match(['get','post'],'/factory/update-profile','FactoryController@updateProfile');
@@ -161,8 +198,10 @@ Route::post('/supplier-login','SupplierController@login');
 Route::get('/supplier-logout','SupplierController@logout');
 
 //view supplier store
-Route::match(['get','post'],'/view_store/{id}','StoreController@ViewStore');
+Route::match(['get','post'],'/view_store/{id}','StoreController@viewStore');
 
+//view supplier store
+Route::match(['get','post'],'/view_factory/{id}','FactoryStoreController@viewFactoryStore');
 
 //forgot password supplier
 Route::match(['get','post'],'/supplier/forgetpassword','SupplierController@forgetpassword');
@@ -191,7 +230,6 @@ Route::group(['middleware'=>['supplierlogin']],function(){
     //users account page
     Route::match(['GET','POST'],'/supplier/edit-profile','SupplierController@edit_profile');
 
-    // Route::match(['GET','POST'],'/supplier/add-branch','SupplierController@edit_profile');
 
     //edit branch
     Route::match(['GET','POST'],'/supplier/edit-branch/{id}','SupplierController@editBranch');
@@ -340,47 +378,51 @@ Route::post('/search-products','ProductsController@searchProducts');
 
 //all routes after login
 Route::group(['middleware'=>['frontlogin']],function(){
-    //user comment
-    Route::match(['GET','POST'],'/add-comment/{id}','ReviewController@addcomment');
+        //user comment
+        Route::match(['GET','POST'],'/add-comment/{id}','ReviewController@addcomment');
 
-    // Add to Cart Route
-Route::match(['get', 'post'], '/add-cart', 'ProductsController@addtocart');
+        //Delete user comment
+        Route::match(['GET','POST'],'supplier/delete-comment/{id}','ReviewController@delcomment');
 
-//Add to Wish List
-Route::match(['get', 'post'], '/add-wishlist', 'ProductsController@addtowishlist');
 
-// Delete Product from Cart Route
-Route::get('/cart/delete-product/{id}','ProductsController@deleteCartProduct');
-// Delete Product from Cart Route
-Route::get('/wishlist/delete-product/{id}','ProductsController@deleteWishListProduct');
+        // Add to Cart Route
+    Route::match(['get', 'post'], '/add-cart', 'ProductsController@addtocart');
 
-// Cart Page
-Route::match(['get', 'post'],'/cart','ProductsController@cart');
+    //Add to Wish List
+    Route::match(['get', 'post'], '/add-wishlist', 'ProductsController@addtowishlist');
 
-// Wish List Page
-Route::match(['get', 'post'],'/wishlist','ProductsController@wishlist');
+    // Delete Product from Cart Route
+    Route::get('/cart/delete-product/{id}','ProductsController@deleteCartProduct');
+    // Delete Product from Cart Route
+    Route::get('/wishlist/delete-product/{id}','ProductsController@deleteWishListProduct');
 
-//users account page
-Route::match(['GET','POST'],'account','UsersController@account');
+    // Cart Page
+    Route::match(['get', 'post'],'/cart','ProductsController@cart');
 
-// Check User Current Password
-Route::post('/check-user-pwd','UsersController@chkUserPassword');
+    // Wish List Page
+    Route::match(['get', 'post'],'/wishlist','ProductsController@wishlist');
 
-// Update User Password
-Route::post('/update-user-pwd','UsersController@updatePassword');
+    //users account page
+    Route::match(['GET','POST'],'account','UsersController@account');
 
-// Checkout Page
-Route::match(['get','post'],'checkout','ProductsController@checkout');
-// Order Review Page
-Route::match(['get','post'],'/order-review','ProductsController@orderReview');
-// Place Order
-Route::match(['get','post'],'/place-order','ProductsController@placeOrder');
-// Thanks Page
-Route::get('/thanks','ProductsController@thanks');
-// Users Orders Page
-Route::get('/orders','ProductsController@userOrders');
-// User Ordered Products Page
-Route::get('/orders/{id}','ProductsController@userOrderDetails');
+    // Check User Current Password
+    Route::post('/check-user-pwd','UsersController@chkUserPassword');
+
+    // Update User Password
+    Route::post('/update-user-pwd','UsersController@updatePassword');
+
+    // Checkout Page
+    Route::match(['get','post'],'checkout','ProductsController@checkout');
+    // Order Review Page
+    Route::match(['get','post'],'/order-review','ProductsController@orderReview');
+    // Place Order
+    Route::match(['get','post'],'/place-order','ProductsController@placeOrder');
+    // Thanks Page
+    Route::get('/thanks','ProductsController@thanks');
+    // Users Orders Page
+    Route::get('/orders','ProductsController@userOrders');
+    // User Ordered Products Page
+    Route::get('/orders/{id}','ProductsController@userOrderDetails');
 });
 
 

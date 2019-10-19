@@ -48,7 +48,7 @@
 </head>
 
 <body class="sidebar-pinned page-home">
-    
+
 @include('layouts.factoryLayout.factory_header')
 
 @include('layouts.factoryLayout.factory_sidebar')
@@ -79,7 +79,7 @@
             $(this).parent('div').remove(); //Remove field html
             x--; //Decrement field counter
         });
-    });        
+    });
 </script>
 
 
