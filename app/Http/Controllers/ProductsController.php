@@ -597,6 +597,8 @@ class ProductsController extends Controller
         $supplierDetails = Supplier::where(['email'=>Session::get('supplierSession')])->first();
 
         $ordersproducts = OrdersProduct::orderBy('id','Desc')->where(['supplier_id'=>$supplierDetails->id])->get();
+        // echo "<pre>"; print_r($ordersproducts); die;
+
         $ordersid=[];
         foreach ($ordersproducts as $key => $value) {
             $ordersid[]=$value->order_id;
@@ -1515,8 +1517,6 @@ class ProductsController extends Controller
         $title = "Add Images";
        return view('admin.products.add_images')->with(compact('productDetails','productImages'));
    }
-    //================================================================================
-    //================================================================================
     public function editAttributes(Request $request, $id=null){
         if (Session::get('adminDetails')['products_access']==0){
             return redirect('/admin/dashboard')->with('flash_message_error','You have no access for this module');
@@ -1533,11 +1533,6 @@ class ProductsController extends Controller
             return redirect('admin/add-attributes/'.$id)->with('flash_message_success', 'Product Attributes has been updated successfully');
         }
     }
-   //================================================================================
-    //================================================================================
-    //================================================================================
-    //================================================================================
-    //================================================================================
     public function products($url=null){
 
         // Show 404 Page if Category does not exists
@@ -1615,7 +1610,6 @@ class ProductsController extends Controller
          'sleeveArray','patternArray','banners','sizesArray','breadcrumb'));
 
     }
-
     public function product($id = null){  //product id
         // Show 404 Page if Product is disabled
         $productCount = Product::where(['id'=>$id,'status'=>1])->count();
@@ -1654,8 +1648,6 @@ class ProductsController extends Controller
         $users = User::get();
 
         //   echo "<pre>"; print_r($users); die;
-
-
         // default varaibles
         $background_img="";
         $main_color="";
@@ -1688,35 +1680,60 @@ class ProductsController extends Controller
             $store=false;
             $factory=true;
             $theme_id=$factoryDetails->theme_id;
-
         }
         $meta_title = $productDetails->product_name;
         $meta_description = $productDetails->description;
         $meta_keywords = $productDetails->product_name;
 
-        //creviews
+        //reviews
         if(empty(Session::has('frontSession'))){
-            $commented=true;
+            $commented=true;  //no form for review
+            $commented2=true;
         }else{
             $user = User::where(['email'=>Session::get('frontSession')])->first();
-
             // echo $user->id;
             // echo "<pre>"; print_r($user); die;
             $commented=false;
 
             foreach ($reviews as $key => $review) {
                 if ($review->user_id==$user->id) {
-                    $commented=true;
+                    $commented=true;   // no form
+                    // echo "hey";
+                }
+            }
+
+            $commented2=true;
+            $OrdersProducts = OrdersProduct::where('product_id',$id)->get();
+            // echo "<pre>"; print_r($OrdersProducts); die;
+
+            $ordersid=[];
+            foreach ($OrdersProducts as $key => $value) {
+                $ordersid[]=$value->order_id;
+            }
+            //  echo "<pre>"; print_r($ordersid); die;
+
+            $orders = Order::with('orders')->whereIn('id',$ordersid)->get();
+            //  echo "<pre>"; print_r($orders); die;
+
+            foreach ($orders as $key => $order) {
+                if ($order->user_id==$user->id) {
+                    $commented2=false;  // form
                     // echo "hey";
                 }
             }
         }
-            $user = User::where(['email'=>Session::get('frontSession')])->first();
+        // if($commented1 == true && $commented2 == true)
+        // {
+        //     $commented=true;   //no form
+        // }else{
+        //     $commented=false;
+        // }
+            $current_user = User::where(['email'=>Session::get('frontSession')])->first();
 
         return view('products.detail_'.$theme_id)->with(compact('productDetails','relatedProducts','categories','supplierDetails'
         ,'productAltImages','total_stock','meta_title','meta_description','meta_keywords','banners','breadcrumb'
         ,'background_img','main_color','secondary_color','store_name_color','outlet_name','outlet_title'
-        ,'outlet_id','store','factory','reviews','users','user','commented'));
+        ,'outlet_id','store','factory','reviews','users','current_user','commented','commented2'));
     }
 
     public function getProductPrice(Request $request){

@@ -1,6 +1,26 @@
 {{-- Admin Dashboard --}}
 @extends('layouts.adminLayout.admin_design')
 @section('content')
+<?php
+use App\User;
+use App\Supplier;
+use App\Order;
+use App\Factory;
+use App\Product;
+use App\Review;
+$userCount = User::userCount();
+$storeCount = Supplier::storeCount();
+$orderCount = Order::orderCount();
+$pendingOrderCount = Order::pendingOrderCount();
+$factoryCount = Factory::factoryCount();
+$totalproductCount = Product::totalproductCount();
+$earningOrderTotal = Order::earningOrderTotal();
+$reviewCount = Review::reviewCount();
+
+
+
+
+?>
 
 
 <!--main-container-part-->
@@ -50,12 +70,14 @@
                 @endif
                 @if (Session::get('adminDetails')['users_access']==1)
 
-
                 <li class="bg_db"> <a href="{{url('admin/view-users')}}"><i class="icon-user"></i>
                     <span class="label label-success"></span> Users </a> </li>
-
                 @endif
+                <li class="bg_db"> <a href="{{url('admin/view-factories')}}"><i class="icon-user"></i>
+                    <span class="label label-success"></span> Factories </a> </li>
 
+                <li class="bg_db"> <a href="{{url('admin/view-suppliers')}}"><i class="icon-user"></i>
+                        <span class="label label-success"></span> Suppliers </a> </li>
 
 
               </ul>
@@ -70,22 +92,21 @@
                 </div>
                 <div class="widget-content" >
                   <div class="row-fluid">
-                    <div class="span9">
-                      <div class="chart"></div>
-                    </div>
-                    <div class="span3">
+                    <div class="span9" >
                       <ul class="site-stats">
-                        <li class="bg_lh"><i class="icon-user"></i> <strong>2540</strong> <small>Total Users</small></li>
-                        <li class="bg_lh"><i class="icon-plus"></i> <strong>120</strong> <small>New Users </small></li>
-                        <li class="bg_lh"><i class="icon-shopping-cart"></i> <strong>656</strong> <small>Total Shop</small></li>
-                        <li class="bg_lh"><i class="icon-tag"></i> <strong>9540</strong> <small>Total Orders</small></li>
-                        <li class="bg_lh"><i class="icon-repeat"></i> <strong>10</strong> <small>Pending Orders</small></li>
-                        <li class="bg_lh"><i class="icon-globe"></i> <strong>8540</strong> <small>Online Orders</small></li>
+                        <li class="bg_lh" style="background-color: bisque; color: black"><i class="icon-user"></i> <strong>{{ $userCount }}</strong> <small>Total Users</small></li>
+                        <li class="bg_lh" style="background-color: cornflowerblue; color: black"><i class="icon-shopping-cart"></i> <strong>{{ $storeCount }}</strong> <small>Total Stores</small></li>
+                        <li class="bg_lh" style="background-color: darkgoldenrod; color: black"><i class="icon-list"></i> <strong>{{ $orderCount }}</strong> <small>Total Orders</small></li>
+                        <li class="bg_lh" style="background-color: darkseagreen; color: black"><i class="icon-repeat"></i> <strong>{{ $pendingOrderCount }}</strong> <small>Pending Orders</small></li>
+                        <li class="bg_lh" style="background-color: indianred; color: black"><i class="icon-building"></i> <strong>{{ $factoryCount }}</strong> <small>Total Factories</small></li>
+                        <li class="bg_lh" style="background-color: lightskyblue; color: black"><i class="icon-user"></i> <strong>{{ $totalproductCount }}</strong> <small>Total Products</small></li>
+                        <li class="bg_lh" style="background-color: lightskyblue; color: black"><i class="fa fa-dollar"></i> <strong>{{ $earningOrderTotal }}</strong> <small>Total Earnings</small></li>
+                        <li class="bg_lh" style="background-color: lightskyblue; color: black"><i class="fa fa-list-ol"></i> <strong>{{ $reviewCount }}</strong> <small>Total Reviews</small></li>
                       </ul>
                     </div>
                   </div>
                 </div>
-              </div>
+              </-dollfa-dollar
             </div>
         <!--End-Chart-box-->
             <hr/>

@@ -139,7 +139,6 @@
                                 <li><a href="#description" data-toggle="tab">Description</a></li>
                                 <li><a href="#care" data-toggle="tab">Material & Care</a></li>
                                 <li><a href="#delivery" data-toggle="tab">Delivery Options</a></li>
-                                {{-- <li><a href="#reviews" data-toggle="tab">Reviews (5)</a></li> --}}
                                 @if(!empty($productDetails->video))
 									<li><a href="#video" data-toggle="tab">Product Video</a></li>
 								@endif
@@ -151,14 +150,14 @@
 
                                     <div class="col-sm-12">
                                             <ul style="background-color: transparent">
-                                                    @foreach ($users as $user)
+                                                @foreach ($users as $user)
                                                     @if ($user->id == $review->user_id)
                                                     <li><a style="font-size: 20px; color: "><i class="fa fa-user" style="color: {{ $main_color }}">  {{ $user->name }}</i></a></li>
 
                                                     @endif
                                                 @endforeach
                                                 <li><a style="font-size: 20px; display: inline"><i class="fa fa-clock-o" style="color: {{ $main_color }}"></i>{{ $review->created_at }}</a></li>
-                                                @if ($user->id == $review->user_id)
+                                                @if ($current_user->id == $review->user_id)
                                                 <li><a href="{{ url('supplier/delete-comment/'.$review->id) }}" style="font-size: 20px; display: inline"><i class="fa fa-archive" style="color: {{ $main_color }}"></i>Delete</a></li>
                                                 @endif
                                                 <div class="row">
@@ -191,9 +190,9 @@
 
                                         <input type="hidden" id="rate" name="rate"></input>
                                         <span >
-                                            <input style="width: 100%; margin-left: 0px;" type="text" id="heading" name="heading" placeholder="Title of The Review" required/>
+                                            <input style="width: 100%; margin-left: 0px; color: black" type="text" id="heading" name="heading" placeholder="Title of The Review" required/>
                                         </span>
-                                        <textarea name="review" id="review" placeholder="Description for Review" required></textarea>
+                                        <textarea name="review" id="review" style="color: black" placeholder="Description for Review" required></textarea>
                                         <button type="submit" class="btn btn-default pull-right">
                                             Submit
                                         </button>
@@ -277,6 +276,6 @@
             $('#rate').val(document.getElementById("rating").value);
 
         }
-        </script>
+</script>
 
 @endsection

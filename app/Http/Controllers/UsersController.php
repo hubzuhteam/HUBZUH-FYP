@@ -30,7 +30,7 @@ class UsersController extends Controller
                 //     DB::table('cart')->where('session_id',$session_id)->update(['user_email' => $data['email']]);
                 // }
 
-                return redirect('/cart');
+                return redirect('/');
             } else {
                 return redirect()->back()->with('flash_message_error','Invalid Username or Password');
             }

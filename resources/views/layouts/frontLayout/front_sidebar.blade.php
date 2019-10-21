@@ -3,7 +3,7 @@
     @if(!empty($url))
 	<input name="url" value="{{ $url }}" type="hidden">
 	@endif
-<div class="left-sidebar" style="padding-top: 6%"> 
+<div class="left-sidebar" style="padding-top: 6%">
     <h2>Category</h2>
         <div class="panel-group category-products" id="accordian" style="border-color: transparent">
             <!--category-productsr-->

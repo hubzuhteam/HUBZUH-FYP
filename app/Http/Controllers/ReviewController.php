@@ -36,6 +36,8 @@ class ReviewController extends Controller
     public function delcomment($id=null){
 
         Review::where(['id'=>$id])->delete();
+        return redirect()->back()->with('flash_message_error','Review Deleted Successfully');
+
     }
     public function viewProductsReviews(){
 

@@ -2,6 +2,32 @@
 {{-- Supplier Dashboard  --}}
 @section('content')
 @extends('layouts.supplierLayout.supplier_design')
+<?php
+use App\User;
+use App\Supplier;
+use App\Order;
+use App\Factory;
+use App\Product;
+use App\Review;
+use App\OrdersProduct;
+$userCount = User::userCount();
+$storeCount = Supplier::storeCount();
+$orderCount = Order::orderCount();
+$pendingOrderCount = Order::pendingOrderCount();
+$factoryCount = Factory::factoryCount();
+$totalproductCount = Product::totalproductCountsupplier($supplierDetails->id);
+$earningOrderTotal = Order::earningOrderTotal();
+$reviewCount = Review::reviewCount();
+$reviewsCount = Review::reviewCountSupplier();
+$totalOrderCountSupplier = OrdersProduct::totalOrderCountSupplier($supplierDetails->id);
+$earningOrderTotal = OrdersProduct::earningOrderTotal($supplierDetails->id);
+
+
+
+
+
+?>
+
     <!-- begin #page-loader -->
 	<div id="page-loader" class="fade show"><span class="spinner"></span></div>
 	<!-- end #page-loader -->
@@ -27,13 +53,13 @@
 				<!-- begin col-3 -->
 				<div class="col-lg-3 col-md-6">
 					<div class="widget widget-stats bg-red">
-						<div class="stats-icon"><i class="fa fa-desktop"></i></div>
+						<div class="stats-icon"><i class="fas fa-th"></i></div>
 						<div class="stats-info">
-							<h4>TOTAL VISITORS</h4>
-							<p>3,291,922</p>
+							<h4>YOUR TOTAL PRODUCTS</h4>
+							<p>{{ $totalproductCount }}</p>
 						</div>
 						<div class="stats-link">
-							<a href="javascript:;">View Detail <i class="fa fa-arrow-alt-circle-right"></i></a>
+							<a href="{{ url('/supplier/view-products') }}">View Detail <i class="fa fa-arrow-alt-circle-right"></i></a>
 						</div>
 					</div>
 				</div>
@@ -41,10 +67,10 @@
 				<!-- begin col-3 -->
 				<div class="col-lg-3 col-md-6">
 					<div class="widget widget-stats bg-orange">
-						<div class="stats-icon"><i class="fa fa-link"></i></div>
+						<div class="stats-icon"><i class="fa fa-th-list"></i></div>
 						<div class="stats-info">
-							<h4>BOUNCE RATE</h4>
-							<p>20.44%</p>
+							<h4>TOTAL ORDERS</h4>
+							<p>{{ $totalOrderCountSupplier }}</p>
 						</div>
 						<div class="stats-link">
 							<a href="javascript:;">View Detail <i class="fa fa-arrow-alt-circle-right"></i></a>
@@ -55,10 +81,10 @@
 				<!-- begin col-3 -->
 				<div class="col-lg-3 col-md-6">
 					<div class="widget widget-stats bg-grey-darker">
-						<div class="stats-icon"><i class="fa fa-users"></i></div>
+						<div class="stats-icon"><i class="fa fa-dollar-sign"></i></div>
 						<div class="stats-info">
-							<h4>UNIQUE VISITORS</h4>
-							<p>1,291,922</p>
+							<h4>Total Earnings</h4>
+							<p>{{ $earningOrderTotal }}</p>
 						</div>
 						<div class="stats-link">
 							<a href="javascript:;">View Detail <i class="fa fa-arrow-alt-circle-right"></i></a>
@@ -69,10 +95,10 @@
 				<!-- begin col-3 -->
 				<div class="col-lg-3 col-md-6">
 					<div class="widget widget-stats bg-black-lighter">
-						<div class="stats-icon"><i class="fa fa-clock"></i></div>
+						<div class="stats-icon"><i class="fa fa-star"></i></div>
 						<div class="stats-info">
-							<h4>AVG TIME ON SITE</h4>
-							<p>00:12:23</p>
+							<h4>Total Reviews</h4>
+							<p>{{ $reviewsCount }}</p>
 						</div>
 						<div class="stats-link">
 							<a href="javascript:;">View Detail <i class="fa fa-arrow-alt-circle-right"></i></a>

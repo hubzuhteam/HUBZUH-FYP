@@ -1,6 +1,6 @@
 @section('content')
 @extends('layouts.frontLayout.front_design')
-
+<link href="{{ asset('css/frontend_css/StarRating.css') }}" rel="stylesheet">
 <section>
 <div style="background-size: 100% 100%; background-image: url('../images/backend_images/backgrounds/large/{{$background_img}}'); background-repeat: no-repeat;">
 
@@ -128,14 +128,14 @@
                     </div>
                     <!--/product-details-->
                 </div>
-                    <div class="category-tab shop-details-tab" style=" border:1px solid white; border-top: none; ">
+                <div class="category-tab shop-details-tab" style=" border:1px solid white; border-top: none; ">
                         <!--category-tab-->
                         <div class="col-sm-12">
                             <ul class="nav nav-tabs" style="background-color: {{ $main_color }};">
-                                <li  class="active"><a href="#description" data-toggle="tab">Description</a></li>
+                                <li  class="active"><a href="#reviews" data-toggle="tab">Reviews and Ratings</a></li>
+                                <li><a href="#description" data-toggle="tab">Description</a></li>
                                 <li><a href="#care" data-toggle="tab">Material & Care</a></li>
                                 <li><a href="#delivery" data-toggle="tab">Delivery Options</a></li>
-                                {{-- <li><a href="#reviews" data-toggle="tab">Reviews (5)</a></li> --}}
                                 @if(!empty($productDetails->video))
 									<li><a href="#video" data-toggle="tab">Product Video</a></li>
 								@endif
@@ -154,7 +154,7 @@
                                                     @endif
                                                 @endforeach
                                                 <li><a style="font-size: 20px; display: inline"><i class="fa fa-clock-o" style="color: {{ $main_color }}"></i>{{ $review->created_at }}</a></li>
-                                                @if ($user->id == $review->user_id)
+                                                @if ($current_user->id == $review->user_id)
                                                 <li><a href="{{ url('supplier/delete-comment/'.$review->id) }}" style="font-size: 20px; display: inline"><i class="fa fa-archive" style="color: {{ $main_color }}"></i>Delete</a></li>
                                                 @endif
                                                 <div class="row">
@@ -179,7 +179,7 @@
                                         </div>
                                     @endforeach
 
-                                    @if (!$commented)
+                                    @if (!$commented && !$commented2)
                                     <p style="font-size: 20px"><b>Write Your Review </b></p>
                                     <form name="addreview" id="addreview"  action="{{ url('add-comment/'.$productDetails->id) }}" method="post">{{ csrf_field() }}
 
@@ -187,9 +187,9 @@
 
                                         <input type="hidden" id="rate" name="rate"></input>
                                         <span >
-                                            <input style="width: 100%; margin-left: 0px;" type="text" id="heading" name="heading" placeholder="Title of The Review" required/>
+                                            <input style="width: 100%; margin-left: 0px; color: black" type="text" id="heading" name="heading" placeholder="Title of The Review" required/>
                                         </span>
-                                        <textarea name="review" id="review" placeholder="Description for Review" required></textarea>
+                                        <textarea name="review" id="review" style="color: black" placeholder="Description for Review" required></textarea>
                                         <button type="submit" class="btn btn-default pull-right">
                                             Submit
                                         </button>
@@ -201,35 +201,6 @@
                                     <div class="col-sm-12">
                                         <p style="color: black; font-size: 17px;">{{ $productDetails->description}}</p>
                                     </div>
-                            </div>
-                            <div class="tab-pane fade" id="care">
-                                    <div class="col-sm-12">
-                                            <p style="color: black; font-size: 17px;">{{ $productDetails->care}}</p>
-                                    </div>
-                            </div>
-                            <div class="tab-pane fade" id="delivery">
-                                    <div class="col-sm-12">
-                                            <p>Good Quality Products <br>
-                                                Cash on Delivery
-                                            </p>
-                                    </div>
-                            </div>
-							@if(!empty($productDetails->video))
-								<div class="tab-pane fade" id="video" >
-									<div class="col-sm-12">
-										<video controls width="640" height="480">
-										  <source src="{{ url('videos/'.$productDetails->video)}}" type="video/mp4">
-										</video>
-									</div>
-								</div>
-							@endif
-                        </div>
-                        <div class="tab-content">
-                            <div class="tab-pane fade active in" id="description">
-                                    <div class="col-sm-12">
-                                        <p style="color: black; font-size: 17px;">{{ $productDetails->description}}</p>
-                                    </div>
-
                             </div>
                             <div class="tab-pane fade" id="care">
                                     <div class="col-sm-12">
@@ -297,6 +268,11 @@
 
 </div>
 </section>
+<script>
+        function myFunction() {
+            $('#rate').val(document.getElementById("rating").value);
 
+        }
+</script>
 
 @endsection

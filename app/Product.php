@@ -7,6 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 use DB;
 class Product extends Model
 {
+    public static function totalproductCount(){
+    	$totalproductCount = Product::get()->count();
+    	return $totalproductCount;
+    }
+
+    public static function totalproductCountsupplier($id=null){
+    	$totalproductCount = Product::where('supplier_id',$id)->get()->count();
+    	return $totalproductCount;
+    }
+
     public function attributes(){
         return $this->hasMany('App\ProductsAttribute','product_id');
     }

@@ -9,6 +9,10 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable
 {
     use Notifiable;
+    public static function userCount(){
+    	$userCount = User::get()->count();
+    	return $userCount;
+    }
     public function reviews(){
     	return $this->hasMany('App\Review');
     }

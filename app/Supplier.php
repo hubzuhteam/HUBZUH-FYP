@@ -10,6 +10,10 @@ class Supplier extends Authenticatable
 {
 
     use Notifiable;
+    public static function storeCount(){
+    	$storeCount = Supplier::get()->count();
+    	return $storeCount;
+    }
     public function products(){
     	return $this->hasMany('App\Product');
     }
