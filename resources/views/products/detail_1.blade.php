@@ -82,7 +82,8 @@
                                 <span>
 									<span style="color: {{ $main_color }};" id="getPrice">Rs. {{ $productDetails->price}}</span>
                                 <label style="color: black; font-size: 14px;">Quantity:</label>
-                                <input  type="text" name="quantity" value="1"  />
+                                <input  type="number" min="1" name="quantity" value="1"  />
+
                                 @if ($total_stock>0)
                                 <button type="submit" class="btn btn-fefault cart" style="margin-left: 4px" id="cartButton">
 										<i class="fa fa-shopping-cart"></i>

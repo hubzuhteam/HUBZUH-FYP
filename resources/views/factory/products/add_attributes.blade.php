@@ -43,6 +43,7 @@
                             {{-- begin personal information --}}
                             <div class="col-md-8 offset-md-2">
                                 <legend class="no-border f-w-700 p-b-0 m-t-0 m-b-20 f-s-16 text-inverse">Add Attributes</legend>
+
                                 <div class="form-group row m-b-10">
                                     <label class="col-md-3 text-md-right col-form-label">Product Name</label>
                                     <div class="col-md-6">
@@ -75,6 +76,10 @@
                                 </div>
                                 <div class="jumbotron m-b-0 text-center" style="background-color: transparent">
                                         <input type="submit" value="Add Attributes" class="btn btn-primary btn-lg">
+                            </div>
+                            <div class="alert alert-error alert-block alert-danger">
+                                    <button type="button" class="close" data-dismiss="alert">×</button>
+                                        <strong>Attributes having low quantity are in Red</strong>
                             </div>
                             </div>
                             {{-- end personal info --}}
@@ -111,7 +116,8 @@
                                             </thead>
                                             <tbody>
                                                     @foreach($productDetails['attributes'] as $attribute)
-                                                    <tr class="gradeX">
+                                                    @if ($attribute->stock<=5)
+                                                    <tr class="gradeX alert-danger" >
                                                       <td><input type="hidden" name="idAttr[]" value="{{ $attribute->id }}"></td>
                                                       <td>{{ $attribute->sku }}</td>
                                                       <td>{{ $attribute->size }}</td>
@@ -124,6 +130,21 @@
                                                         class="btn btn-warning btn-mini deleteRecord">Delete</a>
                                                     </td>
                                                     </tr>
+                                                    @else
+                                                    <tr class="gradeX">
+                                                            <td><input type="hidden" name="idAttr[]" value="{{ $attribute->id }}"></td>
+                                                            <td>{{ $attribute->sku }}</td>
+                                                            <td>{{ $attribute->size }}</td>
+                                                            <td><input type="text"  name="price[]" value="{{ $attribute->price }}"></td>
+                                                            <td><input type="text" name="stock[]" value="{{ $attribute->stock }}"></td>
+                                                            <td class="center">
+                                                                <input type="submit" value="Update" class="btn btn-info btn-mini">
+                                                              <a id="delProduct"
+                                                               href="{{ url('/factory/delete-attribute/'.$attribute->id) }}"
+                                                              class="btn btn-warning btn-mini deleteRecord">Delete</a>
+                                                          </td>
+                                                          </tr>
+                                                    @endif
                                                     @endforeach
                                             </tbody>
                                     <tfoot>

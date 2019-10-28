@@ -60,7 +60,7 @@
                                     <th>Product Color</th>
                                     <th>Price</th>
                                     <th>Image</th>
-                                    <th>Feature Item</th>
+                                    {{--  <th>Feature Item</th>  --}}
                                     <th>Actions</th>
                             </tr>
                     </thead>
@@ -81,7 +81,7 @@
                                 style="width:60px;">
                               @endif
                             </td>
-                            <td class="center">@if($product->feature_item == 1) Yes @else No @endif</td>
+                            {{--  <td class="center">@if($product->feature_item == 1) Yes @else No @endif</td>  --}}
                             <td class="center">
                               <a href="  {{ url('/supplier/edit-product/'.$product->id) }}"
                               class="btn btn-primary btn-mini" title="Edit Product">Edit</a>

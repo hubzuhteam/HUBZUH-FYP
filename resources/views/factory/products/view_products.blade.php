@@ -23,12 +23,12 @@
                         </div>
                     </div>
                 </div>
-        
+
                 <div class="container  pull-up">
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
-        
+
                                 <div class="card-body">
                                     <div class="table-responsive p-t-10">
                                         <table id="example" class="table   " style="width:100%">
@@ -43,7 +43,7 @@
                                                     <th>Product Color</th>
                                                     <th>Price</th>
                                                     <th>Image</th>
-                                                    <th>Feature Item</th>
+                                                    {{--  <th>Feature Item</th>  --}}
                                                     <th>Actions</th>
                                                 </tr>
                                             </thead>
@@ -64,7 +64,7 @@
                                                         style="width:60px;">
                                                       @endif
                                                     </td>
-                                                    <td class="center">@if($product->feature_item == 1) Yes @else No @endif</td>
+                                                    {{--  <td class="center">@if($product->feature_item == 1) Yes @else No @endif</td>  --}}
                                                     <td class="center">
                                                       <a href="  {{ url('/factory/edit-product/'.$product->id) }}"
                                                       class="btn btn-primary btn-mini" title="Edit Product">Edit</a>
@@ -118,7 +118,7 @@
                     </div>
                 </div>
             </section>
-        
+
 </main>
 
 @endsection

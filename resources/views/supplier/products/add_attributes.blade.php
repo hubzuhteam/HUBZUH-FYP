@@ -74,6 +74,10 @@
                                 <div class="jumbotron m-b-0 text-center" style="background-color: transparent">
                                         <input type="submit" value="Add Attributes" class="btn btn-primary btn-lg">
                             </div>
+                            <div class="alert alert-error alert-block alert-danger">
+                                    <button type="button" class="close" data-dismiss="alert">×</button>
+                                        <strong>Attributes having low quantity are in Red</strong>
+                                </div>
                             </div>
                             {{-- end personal info --}}
                             <!-- end col-8 -->
@@ -115,19 +119,36 @@
                 </thead>
                 <tbody>
                         @foreach($productDetails['attributes'] as $attribute)
-                        <tr class="gradeX">
-                          <td><input type="hidden" name="idAttr[]" value="{{ $attribute->id }}"></td>
-                          <td>{{ $attribute->sku }}</td>
-                          <td>{{ $attribute->size }}</td>
-                          <td><input type="text"  name="price[]" value="{{ $attribute->price }}"></td>
-                          <td><input type="text" name="stock[]" value="{{ $attribute->stock }}"></td>
-                          <td class="center">
-                              <input type="submit" value="Update" class="btn btn-info btn-mini">
-                            <a id="delProduct"
-                             href="{{ url('/supplier/delete-attribute/'.$attribute->id) }}"
-                            class="btn btn-warning btn-mini deleteRecord">Delete</a>
-                        </td>
+                        @if ($attribute->stock<=5)
+                        <tr class="gradeX danger">
+                                <td><input type="hidden" name="idAttr[]" value="{{ $attribute->id }}"></td>
+                                <td>{{ $attribute->sku }}</td>
+                                <td>{{ $attribute->size }}</td>
+                                <td><input type="text"  name="price[]" value="{{ $attribute->price }}"></td>
+                                <td><input type="text" name="stock[]" value="{{ $attribute->stock }}"></td>
+                                <td class="center">
+                                    <input type="submit" value="Update" class="btn btn-info btn-mini">
+                                  <a id="delProduct"
+                                   href="{{ url('/supplier/delete-attribute/'.$attribute->id) }}"
+                                  class="btn btn-warning btn-mini deleteRecord">Delete</a>
+                              </td>
                         </tr>
+                        @else
+                        <tr class="gradeX">
+                                <td><input type="hidden" name="idAttr[]" value="{{ $attribute->id }}"></td>
+                                <td>{{ $attribute->sku }}</td>
+                                <td>{{ $attribute->size }}</td>
+                                <td><input type="text"  name="price[]" value="{{ $attribute->price }}"></td>
+                                <td><input type="text" name="stock[]" value="{{ $attribute->stock }}"></td>
+                                <td class="center">
+                                    <input type="submit" value="Update" class="btn btn-info btn-mini">
+                                  <a id="delProduct"
+                                   href="{{ url('/supplier/delete-attribute/'.$attribute->id) }}"
+                                  class="btn btn-warning btn-mini deleteRecord">Delete</a>
+                              </td>
+                        </tr>
+                        @endif
+
                         @endforeach
 
                 </tbody>
