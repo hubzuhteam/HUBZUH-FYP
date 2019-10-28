@@ -208,7 +208,7 @@
                                                 <a style="font-size: 20px; color: "><i class="" style="color: {{ $main_color }}">Questions asked by: <strong>{{ $user->name }}</strong></i></a>
                                                 <a style="font-size: 20px; color: "><i class="fa fa-user" style="color: {{ $main_color }}"></i></a>
                                                 <br>
-                                                <a style="font-size: 20px; display: inline; color: {{ $main_color }}"><i class="fa fa-clock-o" style="color: {{ $main_color }}"></i>{{ $faq->created_at }}</a>
+                                                <a style="font-size: 20px; display: inline; color: {{ $main_color }}"><i class="fa fa-clock-o" style="color: {{ $main_color }}"></i>  {{ $faq->created_at }}</a>
                                                 @endif
                                                 @endforeach
                                                 <br>

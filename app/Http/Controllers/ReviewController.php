@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\Review as AppReview;
 use App\Review;
 use Illuminate\Http\Request;
 use App\User;

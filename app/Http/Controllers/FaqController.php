@@ -7,9 +7,63 @@ use App\Faq;
 use App\Product;
 use App\User;
 use Session;
+use App\Supplier;
 
 class FaqController extends Controller
 {
+    public function editFaqAnswerSupplier(Request $request, $id=null){
+        $faq = Faq::where(['id'=>$id])->first();
+        // echo "<pre>"; print_r($product); die;
+
+        if($request->isMethod('post')){
+            $data = $request->all();
+            // echo "<pre>"; print_r($data); die;
+
+                    Faq::where(['id' => $id])
+                    ->update(['answer' => $data['answer']]);
+
+            return redirect('supplier/view-faq/'.$faq->product_id)->with('flash_message_success', 'Answer has been updated successfully');
+        }
+    }
+    public function viewfaqs($id = null){
+
+        $supplierDetails = Supplier::where(['email'=>Session::get('supplierSession')])->first();
+
+        $product = Product::where(['id'=>$id])->first();
+
+        // $reviewsid=[];
+        // foreach ($products as $key => $value) {
+        //     $reviewsid[]=$value->id;
+        // }
+
+        $faqs = Faq::where('product_id',$id)->orderBy('id','Desc')->get();
+
+        $users = User::get();
+
+
+        // echo "<pre>"; print_r($reviews); die;
+
+        return view('supplier.products.view_faqs_one_product')->with(compact('product','supplierDetails','faqs','users'));
+    }
+    public function viewProductsfaqs(){
+
+        $supplierDetails = Supplier::where(['email'=>Session::get('supplierSession')])->first();
+
+
+        $products = Product::where(['supplier_id'=>$supplierDetails->id])->orderBy('id','Desc')->get();
+
+
+        // $reviewsid=[];
+        // foreach ($products as $key => $value) {
+        //     $reviewsid[]=$value->id;
+        // }
+
+        // $reviews = Review::whereIn('product_id',$reviewsid)->orderBy('id','Desc')->get();
+
+        // echo "<pre>"; print_r($reviews); die;
+
+        return view('supplier.products.view_faqs')->with(compact('products','supplierDetails'));
+    }
     public function addfaq(Request $request,$id=nul){
 
         $data = $request->all();

@@ -275,11 +275,19 @@ Route::group(['middleware'=>['supplierlogin']],function(){
     //supplier review for products
     Route::get('/supplier/products-reviews','ReviewController@viewProductsReviews');
 
+    //supplier faqs for products
+    Route::get('/supplier/products-faqs','FaqController@viewProductsfaqs');
+
     //view reviews of one product
     Route::match(['get','post'],'/supplier/view-review/{id}','ReviewController@viewReviews');
 
+    //view reviews of one product
+    Route::match(['get','post'],'/supplier/view-faq/{id}','FaqController@viewfaqs');
 
-        	// Supplier Product Attributes Routes
+    //supplier give answer to faq
+    Route::match(['get', 'post'], '/supplier/edit-faq/{id}','FaqController@editFaqAnswerSupplier');
+
+    // Supplier Product Attributes Routes
 	Route::match(['get', 'post'], '/supplier/add-attributes/{id}','ProductsController@addAttributesSupplier');
     Route::match(['get', 'post'], '/supplier/edit-attributes/{id}','ProductsController@editAttributesSupplier');
     Route::get('/supplier/delete-attribute/{id}','ProductsController@deleteAttributeSupplier');

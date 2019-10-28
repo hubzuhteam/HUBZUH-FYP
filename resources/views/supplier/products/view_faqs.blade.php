@@ -1,5 +1,5 @@
 
-{{-- Supplier View Reviews  --}}
+{{-- Supplier View Faqs  --}}
 @section('content')
 @extends('layouts.supplierLayout.supplier_design')
 
@@ -31,7 +31,7 @@
     <div id="content" class="content"  style="margin-left: -35px;margin-right: -55px;">
 
         <!-- begin page-header -->
-        <h1 class="page-header">Manage Reviews</small></h1>
+        <h1 class="page-header">Manage Frequently Asked Questions</small></h1>
         <!-- end page-header -->
 
         <!-- begin panel -->
@@ -71,8 +71,8 @@
                               @endif
                             </td>
                             <td class="center">
-                              <a href="  {{ url('/supplier/view-review/'.$product->id) }}"
-                              class="btn btn-primary btn-mini" title="View Reviews">View Reviews</a>
+                              <a href="  {{ url('/supplier/view-faq/'.$product->id) }}"
+                              class="btn btn-primary btn-mini" title="View FAQ">View FAQs</a>
                           </td>
                           </tr>
 
