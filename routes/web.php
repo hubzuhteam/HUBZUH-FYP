@@ -209,6 +209,12 @@ Route::match(['get','post'],'/supplier/forgetpassword','SupplierController@forge
 //all routes after supplier
 Route::group(['middleware'=>['supplierlogin']],function(){
 
+    /////////////////ZAID
+     Route::match(['get', 'post'], '/supplier/add-colour/{id}','ProductsController@addcolourSupplier');
+     Route::get('/supplier/delete-colour/{id}','ProductsController@deleteColourSupplier');
+        Route::match(['get', 'post'], '/supplier/edit-colour/{id}','ProductsController@editColoursSupplier');
+///////////zaid end
+
 
     //edit/select theme for store
     Route::match(['get','post'],'/supplier/edit-store-theme/{id}','StoreController@editStoreSupplierTheme');
@@ -380,6 +386,10 @@ Route::post('/search-products','ProductsController@searchProducts');
 Route::group(['middleware'=>['frontlogin']],function(){
         //user comment
         Route::match(['GET','POST'],'/add-comment/{id}','ReviewController@addcomment');
+
+        // user add faq
+        Route::match(['GET','POST'],'/add-faq/{id}','FaqController@addfaq');
+
 
         //Delete user comment
         Route::match(['GET','POST'],'supplier/delete-comment/{id}','ReviewController@delcomment');

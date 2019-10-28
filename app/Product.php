@@ -11,7 +11,9 @@ class Product extends Model
     	$totalproductCount = Product::get()->count();
     	return $totalproductCount;
     }
-
+    public function colours(){
+        return $this->hasMany('App\ProductsColour','product_id');
+    }
     public static function totalproductCountsupplier($id=null){
     	$totalproductCount = Product::where('supplier_id',$id)->get()->count();
     	return $totalproductCount;

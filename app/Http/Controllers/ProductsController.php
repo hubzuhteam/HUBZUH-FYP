@@ -24,9 +24,69 @@ use DB;
 use App\Banner;
 use App\Factory;
 use App\Review;
+use App\ProductsColour;
+use App\Faq;
 
 class ProductsController extends Controller
 {
+    ///zaid supplier
+    public function editColoursSupplier(Request $request, $id=null){
+
+        if($request->isMethod('post')){
+            $data = $request->all();
+            // /echo "<pre>"; print_r($data); die;/
+            foreach($data['idAttr'] as $key=> $attr){
+                if(!empty($attr)){
+                    ProductsColour::where(['id' => $data['idAttr'][$key]])
+                    ->update(['price' => $data['price'][$key], 'stock' => $data['stock'][$key]]);
+                }
+            }
+            return redirect('/supplier/add-colour/'.$id)->with('flash_message_success', 'Product Colour has been updated successfully');
+        }
+    }
+
+    public function deleteColourSupplier($id = null){
+        ProductsColour::where(['id'=>$id])->delete();
+        return redirect()->back()->with('flash_message_success', 'Product Colour has been deleted successfully');
+    }
+    public function addcolourSupplier(Request $request, $id=null){
+        $productDetails = Product::with('colours')->where(['id' => $id])->first();
+        if($request->isMethod('post')){
+            $data = $request->all();
+             //  echo "<pre>"; print_r($data); die;
+            foreach($data['sku'] as $key => $val){
+                //Sku check preveting duplicate
+                if(!empty($val)){
+                      $attrCountSKU = ProductsColour::where(['sku'=>$val])->count();
+                    if($attrCountSKU>0){
+                        return redirect('/supplier/add-colour/'.$id)->with('flash_message_error', 'SKU already exists. Please add another SKU.');
+                    }
+                    //size check preventing duplicate
+                      $attrCountcolours = ProductsColour::where(['product_id'=>$id,'colour'=>$data['colour'][$key]])->count();
+                      if($attrCountcolours>0){
+                       return redirect('/supplier/add-colour/'.$id)->with('flash_message_error',
+                        '"'.$data['colour'][$key].'" Size already exists. Please add another Attribute.');
+                      }
+                    $attr=new ProductsColour;
+                       $attr->product_id = $id;
+                       $attr->sku = $val;
+                       $attr->colour = $data['colour'][$key];
+                       $attr->price = $data['price'][$key];
+                       $attr->stock = $data['stock'][$key];
+                       $attr->save();
+                  }
+               }
+            return redirect('/supplier/add-colour/'.$id)->with('flash_message_success', 'Product Attributes has been added successfully');
+          }
+       // $title = "Add Attributes";
+       //->with(compact('title','productDetails','category_name'))
+       $supplierDetails = Supplier::where(['email'=>Session::get('supplierSession')])->first();
+
+       return view('supplier.products.add_colour')->with(compact('productDetails','supplierDetails'));
+   }
+    ///zaid supplier
+
+
     ///////////////////////////////FACTORY START///////////////////////////////////////
 
     public function updateOrderStatusFactory(Request $request){
@@ -1646,7 +1706,6 @@ class ProductsController extends Controller
         $banners = Banner::where('status','1')->get();
         $reviews = Review::where('product_id',$id)->get();
         $users = User::get();
-
         //   echo "<pre>"; print_r($users); die;
         // default varaibles
         $background_img="";
@@ -1689,7 +1748,12 @@ class ProductsController extends Controller
         if(empty(Session::has('frontSession'))){
             $commented=true;  //no form for review
             $commented2=true;
+            $userfaq=false;
+            // echo "s";die;
+            $current_user='';
         }else{
+            $userfaq=true;
+            $current_user = User::where(['email'=>Session::get('frontSession')])->first();
             $user = User::where(['email'=>Session::get('frontSession')])->first();
             // echo $user->id;
             // echo "<pre>"; print_r($user); die;
@@ -1722,18 +1786,14 @@ class ProductsController extends Controller
                 }
             }
         }
-        // if($commented1 == true && $commented2 == true)
-        // {
-        //     $commented=true;   //no form
-        // }else{
-        //     $commented=false;
-        // }
-            $current_user = User::where(['email'=>Session::get('frontSession')])->first();
+        $faqs = Faq::where('product_id',$id)->get();
+        // echo "<pre>"; print_r($faqs); die;
+
 
         return view('products.detail_'.$theme_id)->with(compact('productDetails','relatedProducts','categories','supplierDetails'
         ,'productAltImages','total_stock','meta_title','meta_description','meta_keywords','banners','breadcrumb'
         ,'background_img','main_color','secondary_color','store_name_color','outlet_name','outlet_title'
-        ,'outlet_id','store','factory','reviews','users','current_user','commented','commented2'));
+        ,'outlet_id','store','factory','reviews','users','current_user','commented','commented2','userfaq','faqs'));
     }
 
     public function getProductPrice(Request $request){

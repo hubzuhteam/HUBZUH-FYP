@@ -157,8 +157,10 @@
                                                     @endif
                                                 @endforeach
                                                 <li><a style="font-size: 20px; display: inline"><i class="fa fa-clock-o" style="color: {{ $main_color }}"></i>{{ $review->created_at }}</a></li>
+                                                @if ($current_user!='')
                                                 @if ($current_user->id == $review->user_id)
                                                 <li><a href="{{ url('supplier/delete-comment/'.$review->id) }}" style="font-size: 20px; display: inline"><i class="fa fa-archive" style="color: {{ $main_color }}"></i>Delete</a></li>
+                                                @endif
                                                 @endif
                                                 <div class="row">
                                                 @for ($stars = 0; $stars < $review->rating; $stars++)

@@ -134,6 +134,7 @@
                             <ul class="nav nav-tabs" style="background-color: {{ $main_color }};">
                                 <li  class="active"><a href="#reviews" data-toggle="tab">Reviews and Ratings</a></li>
                                 <li><a href="#description" data-toggle="tab">Description</a></li>
+                                <li><a href="#faq" data-toggle="tab">FAQ</a></li>
                                 <li><a href="#care" data-toggle="tab">Material & Care</a></li>
                                 <li><a href="#delivery" data-toggle="tab">Delivery Options</a></li>
                                 @if(!empty($productDetails->video))
@@ -143,20 +144,23 @@
                         </div>
                         <div class="tab-content">
                             <div class="tab-pane fade active in" id="reviews">
-                                 @foreach ($reviews as $review)
+                                @foreach ($reviews as $review)
 
                                     <div class="col-sm-12">
                                             <ul style="background-color: transparent">
-                                                    @foreach ($users as $user)
-                                                    @if ($user->id == $review->user_id)
-                                                    <li><a style="font-size: 20px; color: "><i class="fa fa-user" style="color: {{ $main_color }}">  {{ $user->name }}</i></a></li>
+                                                @foreach ($users as $user)
+                                                @if ($user->id == $review->user_id)
+                                                <li><a style="font-size: 20px; color: "><i class="fa fa-user" style="color: {{ $main_color }}">  {{ $user->name }}</i></a></li>
+                                                @endif
 
-                                                    @endif
                                                 @endforeach
                                                 <li><a style="font-size: 20px; display: inline"><i class="fa fa-clock-o" style="color: {{ $main_color }}"></i>{{ $review->created_at }}</a></li>
+                                                @if ($current_user!='')
                                                 @if ($current_user->id == $review->user_id)
                                                 <li><a href="{{ url('supplier/delete-comment/'.$review->id) }}" style="font-size: 20px; display: inline"><i class="fa fa-archive" style="color: {{ $main_color }}"></i>Delete</a></li>
                                                 @endif
+                                                @endif
+
                                                 <div class="row">
                                                 @for ($stars = 0; $stars < $review->rating; $stars++)
                                                         <span class="star-five"  style="display: inline-block; margin-left: -70px; margin-right: -95px ">
@@ -175,9 +179,8 @@
                                             <br>
 
                                     <hr style="height:5px; background-color: {{ $main_color }};">
-
-                                        </div>
-                                    @endforeach
+                                    </div>
+                                @endforeach
 
                                     @if (!$commented && !$commented2)
                                     <p style="font-size: 20px"><b>Write Your Review </b></p>
@@ -196,6 +199,51 @@
                                     </form>
                                     @endif
 
+                            </div>
+                            <div class="tab-pane fade in" id="faq" style="padding-left: 25px; padding-right: 25px">
+
+                                    @foreach ($faqs as $faq)
+
+                                            <img style="width:25px; display: inline;border-radius: 28%;" src="{{ asset('images/frontend_images/q.jpg') }}" alt="" />
+
+                                            <span style="display: inline;">
+                                                    <p style="width: 100%; margin-left: 10px; color: black;background: transparent;
+                                                    border: 0 none; color: black; font-family: 'Roboto', sans-serif;font-size: 24px;
+                                                    outline: medium none; width: 100%;display: inline;" type="text" id="question" name="question"  required>{{ $faq->question }}</p>
+                                            </span>
+                                            <br>
+                                            @if ($faq->answer!='')
+                                            <img style="width:25px; display: inline;border-radius: 28%;" src="{{ asset('images/frontend_images/q.jpg') }}" alt="" />
+
+                                            <span style="display: inline;">
+                                                    <p style="width: 100%; margin-left: 10px; color: black;background: transparent;
+                                                    border: 0 none; color: black; font-family: 'Roboto', sans-serif;font-size: 24px;
+                                                    outline: medium none; width: 100%;display: inline;" type="text" id="answer" name="answer"  required>{{ $faq->answer }}</p>
+                                            </span>
+                                            @endif
+
+                                    @endforeach
+
+                                    @if ($userfaq)
+                                    <p style="font-size: 20px; padding-top: 10px"><b>Ask Freely about this product! </b></p>
+
+                                    <form name="addreview" id="addreview"  action="{{ url('add-faq/'.$productDetails->id) }}" method="post">{{ csrf_field() }}
+
+                                    <span style="display: block;">
+                                        <input style="width: 100%; margin-left: 0px; color: black;background: #F0F0E9;
+                                        border: 0 none; color: black; font-family: 'Roboto', sans-serif;font-size: 14px;
+                                        outline: medium none;padding: 8px;width: 100%;" type="text" id="question" name="question" placeholder="Your Question?" required/>
+                                    </span>
+                                    <button type="submit" style="margin-top: 40px;background: steelblue;
+                                    border: 0 none; border-radius: 0;
+                                    color: #FFFFFF; font-family: 'Roboto', sans-serif;
+                                    font-size: 14px;" class="btn btn-default pull-right">
+                                        Submit
+                                    </button>
+                                    </form>
+                                    @else
+                                        <p style="font-size: 20px"><b>Login yourself before asking Question! </b></p>
+                                    @endif
                             </div>
                             <div class="tab-pane fade in" id="description">
                                     <div class="col-sm-12">
@@ -224,7 +272,7 @@
 								</div>
 							@endif
                         </div>
-                    </div>
+                </div>
                     <!--/category-tab-->
                     <div class="recommended_items">
                         <!--recommended_items-->
@@ -264,6 +312,7 @@
                     </div>
                     <!--/recommended_items-->
                 </div>
+
             </div>
 
 </div>
