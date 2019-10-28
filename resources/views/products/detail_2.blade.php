@@ -137,6 +137,7 @@
                             <ul class="nav nav-tabs" style="background-color: {{ $main_color }};">
                                 <li  class="active"><a href="#reviews" data-toggle="tab">Reviews and Ratings</a></li>
                                 <li><a href="#description" data-toggle="tab">Description</a></li>
+                                <li><a href="#faq" data-toggle="tab">FAQ</a></li>
                                 <li><a href="#care" data-toggle="tab">Material & Care</a></li>
                                 <li><a href="#delivery" data-toggle="tab">Delivery Options</a></li>
                                 @if(!empty($productDetails->video))
@@ -201,6 +202,65 @@
                                     </form>
                                     @endif
 
+                            </div>
+                            <div class="tab-pane fade in" id="faq" style="padding-left: 25px; padding-right: 25px">
+
+                                    @foreach ($faqs as $faq)
+
+                                                @foreach ($users as $user)
+                                                @if ($user->id == $faq->user_id)
+                                                <a style="font-size: 20px; color: "><i class="" style="color: {{ $main_color }}">Questions asked by: <strong>{{ $user->name }}</strong></i></a>
+                                                <a style="font-size: 20px; color: "><i class="fa fa-user" style="color: {{ $main_color }}"></i></a>
+                                                <br>
+                                                <a style="font-size: 20px; display: inline; color: {{ $main_color }}"><i class="fa fa-clock-o" style="color: {{ $main_color }}"></i>{{ $faq->created_at }}</a>
+                                                @endif
+                                                @endforeach
+                                                <br>
+                                                <br>
+
+                                            <img style="width:25px; display: inline;border-radius: 28%;" src="{{ asset('images/frontend_images/q.jpg') }}" alt="" />
+
+                                            <span style="display: inline;">
+                                                    <p style="width: 100%; margin-left: 10px; color: black;background: transparent;
+                                                    border: 0 none; color: black; font-family: 'Roboto', sans-serif;font-size: 24px;
+                                                    outline: medium none; width: 100%;display: inline;" type="text" id="question" name="question"  required>{{ $faq->question }}</p>
+                                            </span>
+                                            <br>
+                                            @if ($faq->answer!='')
+                                            <img style="width:25px; display: inline;border-radius: 38%;" src="{{ asset('images/frontend_images/a.jpg') }}" alt="" />
+
+                                            <span style="display: inline;">
+                                                    <p style="width: 100%; margin-left: 10px; color: black;background: transparent;
+                                                    border: 0 none; color: black; font-family: 'Roboto', sans-serif;font-size: 24px;
+                                                    outline: medium none; width: 100%;display: inline;" type="text" id="answer" name="answer"  required>{{ $faq->answer }}</p>
+                                            </span>
+                                            @endif
+                                            <br>
+                                    <hr style="height:3px; background-color: {{ $main_color }};">
+
+
+                                    @endforeach
+
+                                    @if ($userfaq)
+                                    <p style="font-size: 20px; padding-top: 10px"><b>Ask Freely about this product! </b></p>
+
+                                    <form name="addreview" id="addreview"  action="{{ url('add-faq/'.$productDetails->id) }}" method="post">{{ csrf_field() }}
+
+                                    <span style="display: block;">
+                                        <input style="width: 100%; margin-left: 0px; color: black;background: #F0F0E9;
+                                        border: 0 none; color: black; font-family: 'Roboto', sans-serif;font-size: 14px;
+                                        outline: medium none;padding: 8px;width: 100%;" type="text" id="question" name="question" placeholder="Your Question?" required/>
+                                    </span>
+                                    <button type="submit" style="margin-top: 40px;background: steelblue;
+                                    border: 0 none; border-radius: 0;
+                                    color: #FFFFFF; font-family: 'Roboto', sans-serif;
+                                    font-size: 14px;" class="btn btn-default pull-right">
+                                        Submit
+                                    </button>
+                                    </form>
+                                    @else
+                                        <p style="font-size: 20px"><b>Login yourself before asking Question! </b></p>
+                                    @endif
                             </div>
                             <div class="tab-pane fade in" id="description">
                                     <div class="col-sm-12">

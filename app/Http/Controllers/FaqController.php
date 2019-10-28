@@ -22,7 +22,12 @@ class FaqController extends Controller
 
         $faq = new Faq;
            $faq->product_id = $id;
-           $faq->supplier_id = $product->supplier_id;
+            if ($product->supplier_id=='') {
+               $faq->factory_id = $product->factory_id;
+            }
+            else{
+               $faq->supplier_id = $product->supplier_id;
+            }
            $faq->user_id = $user->id;
            $faq->question = $data['question'];
            $faq->save();

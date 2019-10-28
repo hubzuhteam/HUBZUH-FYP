@@ -201,8 +201,18 @@
 
                             </div>
                             <div class="tab-pane fade in" id="faq" style="padding-left: 25px; padding-right: 25px">
-
                                     @foreach ($faqs as $faq)
+
+                                                @foreach ($users as $user)
+                                                @if ($user->id == $faq->user_id)
+                                                <a style="font-size: 20px; color: "><i class="" style="color: {{ $main_color }}">Questions asked by: <strong>{{ $user->name }}</strong></i></a>
+                                                <a style="font-size: 20px; color: "><i class="fa fa-user" style="color: {{ $main_color }}"></i></a>
+                                                <br>
+                                                <a style="font-size: 20px; display: inline; color: {{ $main_color }}"><i class="fa fa-clock-o" style="color: {{ $main_color }}"></i>{{ $faq->created_at }}</a>
+                                                @endif
+                                                @endforeach
+                                                <br>
+                                                <br>
 
                                             <img style="width:25px; display: inline;border-radius: 28%;" src="{{ asset('images/frontend_images/q.jpg') }}" alt="" />
 
@@ -213,7 +223,7 @@
                                             </span>
                                             <br>
                                             @if ($faq->answer!='')
-                                            <img style="width:25px; display: inline;border-radius: 28%;" src="{{ asset('images/frontend_images/q.jpg') }}" alt="" />
+                                            <img style="width:25px; display: inline;border-radius: 38%;" src="{{ asset('images/frontend_images/a.jpg') }}" alt="" />
 
                                             <span style="display: inline;">
                                                     <p style="width: 100%; margin-left: 10px; color: black;background: transparent;
@@ -221,6 +231,9 @@
                                                     outline: medium none; width: 100%;display: inline;" type="text" id="answer" name="answer"  required>{{ $faq->answer }}</p>
                                             </span>
                                             @endif
+                                            <br>
+                                    <hr style="height:3px; background-color: {{ $main_color }};">
+
 
                                     @endforeach
 
