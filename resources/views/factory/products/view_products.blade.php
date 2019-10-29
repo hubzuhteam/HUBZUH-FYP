@@ -70,6 +70,9 @@
                                                       class="btn btn-primary btn-mini" title="Edit Product">Edit</a>
                                                       <a href="{{ url('/factory/add-attributes/'.$product->id) }}"
                                                       class="btn btn-success btn-mini" title="Add Attributes">Add Attributes</a>
+                                                      <a href="{{ url('/factory/add-colours/'.$product->id) }}"
+
+                                                        class="btn btn-success btn-mini" title="Add Colours">Add Colours</a>
                                                       <a href="{{ url('/factory/add-images/'.$product->id) }}"
                                                           class="btn btn-primary btn-mini" title="Add Images">Add Images</a>
                                                       <a id="delProduct"

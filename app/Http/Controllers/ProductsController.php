@@ -29,6 +29,68 @@ use App\Faq;
 
 class ProductsController extends Controller
 {
+    /////zaid factoy colour
+    public function editColoursFactory(Request $request, $id=null){
+
+        if($request->isMethod('post')){
+            $data = $request->all();
+            // /echo "<pre>"; print_r($data); die;/
+            foreach($data['idAttr'] as $key=> $attr){
+                if(!empty($attr)){
+                    ProductsColour::where(['id' => $data['idAttr'][$key]])
+                    ->update(['price' => $data['price'][$key], 'stock' => $data['stock'][$key]]);
+                }
+            }
+            return redirect('factory/add-colours/'.$id)->with('flash_message_success', 'Product Colours has been updated successfully');
+        }
+    }
+    public function deleteColourFactory($id = null){
+        ProductsColour::where(['id'=>$id])->delete();
+        return redirect()->back()->with('flash_message_success', 'Product Attribute has been deleted successfully');
+    }
+    public function addColoursFactory(Request $request, $id=null){
+        $productDetails = Product::with('colours')->where(['id' => $id])->first();
+
+        //echo "a";die;
+        //$productDetails = json_decode(json_encode($productDetails));
+        //echo "<pre>"; print_r($productDetails); die;
+        //$categoryDetails = Category::where(['id'=>$productDetails->category_id])->first();
+        //$category_name = $categoryDetails->name;
+        if($request->isMethod('post')){
+            $data = $request->all();
+             //  echo "<pre>"; print_r($data); die;
+            foreach($data['sku'] as $key => $val){
+                //Sku check preveting duplicate
+                if(!empty($val)){
+                      $attrCountSKU = ProductsColour::where(['sku'=>$val])->count();
+                    if($attrCountSKU>0){
+                        return redirect('/factory/add-colours/'.$id)->with('flash_message_error', 'SKU already exists. Please add another SKU.');
+                    }
+                    //size check preventing duplicate
+                      $attrCountColours = ProductsColour::where(['product_id'=>$id,'colour'=>$data['colour'][$key]])->count();
+                      if($attrCountColours>0){
+                       return redirect('factory/add-colours/'.$id)->with('flash_message_error',
+
+                        '"'.$data['colour'][$key].'" Colour already exists. Please add another Attribute.');
+                      }
+                    $color=new ProductsColour;
+                       $color->product_id = $id;
+                       $color->sku = $val;
+                       $color->colour = $data['colour'][$key];
+                       $color->price = $data['price'][$key];
+                       $color->stock = $data['stock'][$key];
+                       $color->save();
+                  }
+               }
+            return redirect('factory/add-colours/'.$id)->with('flash_message_success', 'Product Colours has been added successfully');
+          }
+       // $title = "Add Attributes";
+       //->with(compact('title','productDetails','category_name'))
+       $factoryDetails = Factory::where(['email'=>Session::get('factorySession')])->first();
+
+       return view('factory.products.add_colour')->with(compact('productDetails','factoryDetails'));
+   }
+
     ///zaid supplier
     public function editColoursSupplier(Request $request, $id=null){
 

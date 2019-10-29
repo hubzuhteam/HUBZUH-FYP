@@ -54,9 +54,35 @@
           </div>
         </div>
 
+
+
         <div class="mesgs">
-                <p style="margin-left: 25%; margin-top: 25%; font-size: 40px"><strong>Click on any chat to View Messages!</strong></p>
-        </div>
+                <div class="msg_history">
+                  <div class="outgoing_msg">
+                    <div class="sent_msg">
+                      <p>Hey there? need some help</p>
+                      <span class="time_date"> 11:01 AM    |    June 9</span> </div>
+                  </div>
+                  <div class="incoming_msg">
+                    <div class="received_msg">
+                      <div class="received_withd_msg">
+                        <p>Thank you for contacting, How can i help you sir!</p>
+                        <span class="time_date"> 11:01 AM    |    Yesterday</span></div>
+                    </div>
+                  </div>
+                </div>
+                  <form action="{{ url('/customer/send-message/') }}" method="post">{{csrf_field()}}
+
+                <div class="type_msg">
+                  <div class="input_msg_write">
+
+                    <input type="text" class="write_msg" name="message"  id="message" placeholder="Type a message" />
+                    <button class="msg_send_btn" type="submit"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+
+                  </div>
+                </div>
+                  </form>
+              </div>
       </div>
 
 

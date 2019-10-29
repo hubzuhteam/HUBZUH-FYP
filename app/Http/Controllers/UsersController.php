@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Admin;
 use Illuminate\Http\Request;
 use App\User;
 use Auth;
@@ -36,10 +37,13 @@ class UsersController extends Controller
     public function chats(){
         $user = User::where(['email'=>Session::get('frontSession')])->first();
 
-        $chatsWithAdmin = Chat::where(['user_id'=>$user->id])->groupBy('admin_id')->get();
+        $chatsWithAdmin = Chat::where(['user_id'=>$user->id])->groupBy('admin_id')->orderBy('created_at','desc')->get();
         // echo "<pre>"; print_r($chats); die;
+        $admins = Admin::get();
 
-        return view('users.chats')->with(compact('chatsWithAdmin'));
+        $chats = Chat::where(['user_id'=>$user->id])->orderBy('created_at','desc')->get();
+
+        return view('users.chats')->with(compact('chatsWithAdmin','admins','chats'));
     }
 
     public function login(Request $request){

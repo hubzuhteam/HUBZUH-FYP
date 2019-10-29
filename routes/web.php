@@ -55,6 +55,16 @@ Route::match(['get','post'],'/factory/forgetpassword','FactoryController@forgetp
 
 Route::group(['middleware'=>['factorylogin']],function(){
 
+    /// factory add color
+    Route::match(['get', 'post'], '/factory/add-colours/{id}','ProductsController@addColoursFactory');
+
+    //factory delete color
+    Route::get('/factory/delete-colour/{id}','ProductsController@deleteColourFactory');
+
+    //factory edit color
+    Route::match(['get', 'post'], '/factory/edit-colour/{id}','ProductsController@editColoursFactory');
+
+
     ///factory edit stre background image
     Route::match(['get','post'],'/factory/edit-factorystore-background/{id}','FactoryController@editFactoryStoreBackground');
 
@@ -392,6 +402,9 @@ Route::post('/search-products','ProductsController@searchProducts');
 
 //all routes after login
 Route::group(['middleware'=>['frontlogin']],function(){
+
+        //user view specific chat
+        Route::match(['GET','POST'],'/view_messages/{id}','ChatController@viewChatSpecific');
 
         //User send message
         Route::match(['get', 'post'], '/customer/send-message/','UsersController@UserSendMessage');

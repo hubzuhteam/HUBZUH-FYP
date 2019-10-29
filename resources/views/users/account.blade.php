@@ -21,7 +21,7 @@
                     <h2>Update account</h2>
                     <form id="accountForm" enctype="multipart/form-data" name="accountForm" action="{{url('/account')}}"
                 method="POST">{{csrf_field()}}
-                <input value="{{$userDetails->name}}" id="name" name="name" type="text" placeholder="Name"/>
+                <input value="{{ $userDetails->name}}" id="name" name="name" type="text" placeholder="Name"/>
                 <table>
                         <tr>
                           <td>
