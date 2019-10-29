@@ -121,7 +121,7 @@
                         @foreach($productDetails['attributes'] as $attribute)
                         @if ($attribute->stock<=5)
                         <tr class="gradeX danger">
-                                <td><input type="hidden" name="idAttr[]" value="{{ $attribute->id }}"></td>
+                                <td><input type="hidden" name="idAttr[]" value="{{ $attribute->id }}">{{ $attribute->id }}</td>
                                 <td>{{ $attribute->sku }}</td>
                                 <td>{{ $attribute->size }}</td>
                                 <td><input type="text"  name="price[]" value="{{ $attribute->price }}"></td>
@@ -135,7 +135,7 @@
                         </tr>
                         @else
                         <tr class="gradeX">
-                                <td><input type="hidden" name="idAttr[]" value="{{ $attribute->id }}"></td>
+                                <td><input type="hidden" name="idAttr[]" value="{{ $attribute->id }}">{{ $attribute->id }}</td>
                                 <td>{{ $attribute->sku }}</td>
                                 <td>{{ $attribute->size }}</td>
                                 <td><input type="text"  name="price[]" value="{{ $attribute->price }}"></td>

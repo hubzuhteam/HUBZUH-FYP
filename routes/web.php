@@ -392,6 +392,10 @@ Route::post('/search-products','ProductsController@searchProducts');
 
 //all routes after login
 Route::group(['middleware'=>['frontlogin']],function(){
+
+        //User send message
+        Route::match(['get', 'post'], '/customer/send-message/','UsersController@UserSendMessage');
+
         //user comment
         Route::match(['GET','POST'],'/add-comment/{id}','ReviewController@addcomment');
 
@@ -422,6 +426,9 @@ Route::group(['middleware'=>['frontlogin']],function(){
 
     //users account page
     Route::match(['GET','POST'],'account','UsersController@account');
+
+    //users account page
+    Route::match(['GET','POST'],'chats','UsersController@chats');
 
     // Check User Current Password
     Route::post('/check-user-pwd','UsersController@chkUserPassword');
