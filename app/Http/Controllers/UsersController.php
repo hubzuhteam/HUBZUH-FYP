@@ -12,7 +12,8 @@ use DB;
 use Mail;
 use App\Supplier;
 use App\Chat;
-
+use Illuminate\Support\Facades\Input;
+use Image;
 class UsersController extends Controller
 {
     public function UserSendMessage(Request $request){
@@ -172,9 +173,32 @@ class UsersController extends Controller
         if($request->isMethod('POST')){
             $data=$request->all();
 
+
             if (empty($data['name'])) {
               return redirect()->back()->with('flash_message_error','Please Enter your Name to update your account.');
 
+            }
+            if($request->hasFile('user_image')){
+                // echo "hhnj";die;
+                $image_tmp = Input::file('user_image');
+                if($image_tmp->isValid()){
+                    $extension = $image_tmp->getClientOriginalExtension();
+                    $filename = rand(111,99999).'.'.$extension;
+                    $large_image_path = 'images/frontend_images/users/large/'.$filename;
+                    $medium_image_path = 'images/frontend_images/users/medium/'.$filename;
+                    $small_image_path = 'images/frontend_images/users/small/'.$filename;
+                    // Resize Images
+                    Image::make($image_tmp)->save($large_image_path);
+                    Image::make($image_tmp)->resize(600,600)->save($medium_image_path);
+                    Image::make($image_tmp)->resize(300,300)->save($small_image_path);
+
+                    // Store image name in products table
+                    // $product->image = $filename;
+                }
+            }else if(!empty($data['user_image'])){
+                $filename = $data['user_image'];
+            }else{
+                $filename = '';
             }
             if (empty($data['address'])) {
                 $data['address']='';
@@ -196,6 +220,7 @@ class UsersController extends Controller
             }
             $user=User::find($user_id);
             $user->name = $data['name'];
+            $user->user_image = $filename;
             $user->address = $data['address'];
             $user->city = $data['city'];
             $user->state = $data['state'];

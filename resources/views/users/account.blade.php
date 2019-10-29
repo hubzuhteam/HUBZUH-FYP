@@ -19,9 +19,24 @@
             <div class="col-sm-4 col-sm-offset-1">
                 <div class="login-form">
                     <h2>Update account</h2>
-                    <form id="accountForm" name="accountForm" action="{{url('/account')}}"
+                    <form id="accountForm" enctype="multipart/form-data" name="accountForm" action="{{url('/account')}}"
                 method="POST">{{csrf_field()}}
                 <input value="{{$userDetails->name}}" id="name" name="name" type="text" placeholder="Name"/>
+                <table>
+                        <tr>
+                          <td>
+                            <input name="user_image" id="user_image" type="file" >
+                            @if(!empty($userDetails->user_image))
+                              <input type="hidden" name="user_image" value="{{ $userDetails->user_image }}">
+                            @endif
+                          </td>
+                          <td>
+                            @if(!empty($userDetails->user_image))
+                            <img style="width:30px;" src="{{ asset('/images/frontend_images/users/large/'.$userDetails->user_image) }}">
+                            @endif
+                          </td>
+                        </tr>
+                      </table>
                 <input value="{{$userDetails->address}}" id="address" name="address" type="text" placeholder="Address"/>
                 <input value="{{$userDetails->city}}" id="city" name="city" type="text" placeholder="City"/>
                 <input value="{{$userDetails->state}}" id="state" name="state" type="text" placeholder="State"/>
