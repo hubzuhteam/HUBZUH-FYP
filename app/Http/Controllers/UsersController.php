@@ -15,8 +15,35 @@ use App\Supplier;
 use App\Chat;
 use Illuminate\Support\Facades\Input;
 use Image;
+use App\Feedback;
 class UsersController extends Controller
 {
+    public function feedback(Request $request)
+    {
+            $data=$request->all();
+
+            $feedback=new Feedback();
+
+            $feedback->email=$data['email'];
+            $feedback->comment=$data['message'];
+
+            $feedback->save();
+            $email = $data['email'];
+            //        $messageData = ['email'=>$data['email'],'message'=>$data['message'],'code'=>base64_encode($data['email'])];
+            //        Mail::send('emails.feedback',$messageData,function($message) use($email){
+            //            $message->to($email)->subject('Confirm your HUBZUH Account');
+            //        });
+
+        Mail::send('emails.feedback', [], function ($m) use ($email) {
+            $m->from('hubzuhteam@gmail.com', 'HUBZUH Team');
+
+            $m->to($email)->subject('Feedback Register!');
+        });
+
+
+        return redirect('/')->with('flash_message_success','Your feedback have been registered. Our team contact you in a while.');
+
+    }
     public function UserSendMessage(Request $request){
 
         $data = $request->all();

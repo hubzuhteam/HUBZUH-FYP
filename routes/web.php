@@ -403,6 +403,9 @@ Route::post('/search-products','ProductsController@searchProducts');
 //all routes after login
 Route::group(['middleware'=>['frontlogin']],function(){
 
+        //user send feedback
+        Route::match(['GET','POST'],'/contact_us','UsersController@feedback');
+
         //user view specific chat
         Route::match(['GET','POST'],'/view_messages/{id}','ChatController@viewChatSpecific');
 

@@ -8,11 +8,12 @@ use Session;
 use App\User;
 use Illuminate\Support\Facades\Hash;
 use App\Admin;
+use App\Feedback;
 
 class AdminController extends Controller
 {
 
-    
+
 
     public function login(Request $request){
     	if($request->isMethod('post')){
@@ -32,12 +33,18 @@ class AdminController extends Controller
     }
 
     public function dashboard(){
-            // if(Session::has('adminSession')){
-            // }else {
-            //     return redirect('/admin')->with('flash_message_error','Please Login to success');
-            // }
-        return view('admin.dashboard');
-    }
+        // if(Session::has('adminSession')){
+        // }else {
+        //     return redirect('/admin')->with('flash_message_error','Please Login to success');
+        // }
+$feedback=Feedback::all();
+//    foreach ($feedback as $fee)
+//        {
+//            echo $fee->id;
+//        }
+//    die;
+    return view('admin.dashboard')->with(compact('feedback'));
+}
 
     public function logout(){
         Session::flush();

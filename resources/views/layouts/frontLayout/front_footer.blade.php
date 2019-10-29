@@ -71,16 +71,30 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-sm-3 col-sm-offset-1">
-                        <div class="single-widget">
-                            <h2>About HUBZUH</h2>
-                            <form action="#" class="searchform">
-                                <input type="text" placeholder="Your email address" />
-                                <button type="submit" class="btn btn-default"><i class="fa fa-arrow-circle-o-right"></i></button>
-                                <p>Get the most recent updates from <br />our site and be updated your self...</p>
-                            </form>
+                    <div class="col-sm-3" style ="margin-right: 0px">
+                            <div class="contact-form">
+                                {{--                            <h2 class="title text-center">Contact Us</h2>--}}
+                                <div class="single-widget">
+                                    <h2 style="">Contact Us</h2>
+                                </div>
+                                <div class="status alert alert-success" style="display: none"></div>
+                                <form  class="contact-form row" action="{{ url('contact_us') }}"  >
+
+                                    <div class="form-group col-md-12">
+                                        <input type="email" name="email" class="form-control" required="required" placeholder="Email">
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        <textarea name="message" id="message" required="required" class="form-control" rows="8" placeholder="Your Message Here"></textarea>
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        <input type="submit" name="submit" class="btn btn-primary pull-right" value="Submit">
+                                    </div>
+
+                                </form>
+                            </div>
                         </div>
-                    </div>
 
                 </div>
             </div>
