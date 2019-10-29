@@ -41,12 +41,13 @@
                         @foreach ($admins as $admin)
                         @if ($admin->id == $chat->admin_id)
                         @php
-                            $s=date('h:i:s a m/d/Y', strtotime($chat->created_at))
+                            $s=date('h:i:s a m/d/Y', strtotime($chat->created_at));
+                            $admin_id=$admin->id;
                         @endphp
                             <h5>{{ $admin->username }}<span class="chat_date">{{ $s }}</span></h5>
                         @endif
                         @endforeach
-                      <p style="color: black"><strong><a href="{{url('/view_messages/'.$admin->id)}}">View Messages</a></strong></p>
+                      <p style="color: black"><strong><a href="{{url('/view_messages/'.$admin_id)}}">View Messages</a></strong></p>
                     </div>
                   </div>
                 </div>
@@ -58,18 +59,24 @@
 
         <div class="mesgs">
                 <div class="msg_history">
-                  <div class="outgoing_msg">
+            @foreach ($chats as $chat)
+            @if ($chat->sender=="user")
+                <div class="outgoing_msg">
                     <div class="sent_msg">
-                      <p>Hey there? need some help</p>
+                      <p>{{ $chat->message }}</p>
                       <span class="time_date"> 11:01 AM    |    June 9</span> </div>
                   </div>
-                  <div class="incoming_msg">
+            @else
+                <div class="incoming_msg">
                     <div class="received_msg">
                       <div class="received_withd_msg">
-                        <p>Thank you for contacting, How can i help you sir!</p>
+                        <p>{{ $chat->message }}</p>
                         <span class="time_date"> 11:01 AM    |    Yesterday</span></div>
                     </div>
                   </div>
+            @endif
+
+            @endforeach
                 </div>
                   <form action="{{ url('/customer/send-message/') }}" method="post">{{csrf_field()}}
 
@@ -82,7 +89,7 @@
                   </div>
                 </div>
                   </form>
-              </div>
+        </div>
       </div>
 
 

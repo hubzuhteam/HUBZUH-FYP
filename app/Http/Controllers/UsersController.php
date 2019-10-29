@@ -28,7 +28,7 @@ class UsersController extends Controller
            $chat->user_id = $user->id;
 
            $chat->message = $data['message'];
-           $chat->sender = 'User';
+           $chat->sender = 'user';
            $chat->save();
 
            return redirect()->back()->with('flash_message_success','Your Message has been sent');

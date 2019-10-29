@@ -41,12 +41,13 @@
                         @foreach ($admins as $admin)
                         @if ($admin->id == $chat->admin_id)
                         @php
-                            $s=date('h:i:s a m/d/Y', strtotime($chat->created_at))
+                            $date=date('h:i:s a m/d/Y', strtotime($chat->created_at));
+                            $admin_id=$admin->id;
                         @endphp
-                            <h5>{{ $admin->username }}<span class="chat_date">{{ $s }}</span></h5>
+                            <h5>{{ $admin->username }}<span class="chat_date">{{ $date }}</span></h5>
                         @endif
                         @endforeach
-                      <p style="color: black"><strong><a href="{{url('/view_messages/'.$admin->id)}}">View Messages</a></strong></p>
+                      <p style="color: black"><strong><a href="{{url('/view_messages/'.$admin_id)}}">View Messages</a></strong></p>
                     </div>
                   </div>
                 </div>

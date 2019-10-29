@@ -16,10 +16,6 @@ $factoryCount = Factory::factoryCount();
 $totalproductCount = Product::totalproductCount();
 $earningOrderTotal = Order::earningOrderTotal();
 $reviewCount = Review::reviewCount();
-
-
-
-
 ?>
 
 
