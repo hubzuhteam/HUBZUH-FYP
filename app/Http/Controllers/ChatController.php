@@ -11,6 +11,7 @@ use App\Admin;
 class ChatController extends Controller
 {
     public function viewChatSpecific($id=null){
+        echo $id; die;
         $user = User::where(['email'=>Session::get('frontSession')])->first();
 
         $chatsWithAdmin = Chat::where(['user_id'=>$user->id])->groupBy('admin_id')->orderBy('created_at','desc')->get();
