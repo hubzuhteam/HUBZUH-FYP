@@ -36,7 +36,7 @@
                 @foreach ($chatsWithAdmin as $chat)
                 <div class="chat_list active_chat">
                   <div class="chat_people">
-                    <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                    <div class="chat_img"> <img src="{{ asset('images/backend_images/admin.png')}}" alt="Profile Image"> </div>
                     <div class="chat_ib">
                         @foreach ($admins as $admin)
                         @if ($admin->id == $chat->admin_id)
@@ -44,10 +44,56 @@
                             $date=date('h:i:s a m/d/Y', strtotime($chat->created_at));
                             $admin_id=$admin->id;
                         @endphp
-                            <h5>{{ $admin->username }}<span class="chat_date">{{ $date }}</span></h5>
+                            <h5>{{ $admin->username }}<span class="chat_date"></span></h5>
                         @endif
                         @endforeach
-                      <p style="color: black"><strong><a href="{{url('/view_messages/'.$admin_id)}}">View Messages</a></strong></p>
+                      <p style="color: black"><strong><a href="{{url('/view_messages_admin/'.$admin_id)}}">View Messages</a></strong></p>
+                    </div>
+                  </div>
+                </div>
+                @endforeach
+                @foreach ($chatsWithSupplier as $chat)
+                <div class="chat_list active_chat">
+                  <div class="chat_people">
+                        @foreach ($suppliers as $supplier)
+                        @if ($supplier->id == $chat->supplier_id)
+                            <div class="chat_img" > <img style="border-radius: 45%;" src="{{ asset('images/supplierend_images/store_images/small/'.$supplier->store_image)}}" alt="Profile Image"> </div>
+                        @endif
+                        @endforeach
+                    <div class="chat_ib">
+                        @foreach ($suppliers as $supplier)
+                        @if ($supplier->id == $chat->supplier_id)
+                        @php
+                            $date=date('h:i:s a m/d/Y', strtotime($chat->created_at));
+                            $supplier_id=$supplier->id;
+                        @endphp
+                            <h5>{{ $supplier->store_name }}<span class="chat_date"></span></h5>
+                        @endif
+                        @endforeach
+                      <p style="color: black"><strong><a href="{{url('/view_messages_supplier/'.$supplier_id)}}">View Messages</a></strong></p>
+                    </div>
+                  </div>
+                </div>
+                @endforeach
+                @foreach ($chatsWithFactory as $chat)
+                <div class="chat_list active_chat">
+                  <div class="chat_people">
+                        @foreach ($factories as $factory)
+                        @if ($factory->id == $chat->factory_id)
+                            <div class="chat_img" > <img style="border-radius: 45%;" src="{{ asset('images/factoryend_images/factory_images/small/'.$factory->factory_image)}}" alt="Profile Image"> </div>
+                        @endif
+                        @endforeach
+                    <div class="chat_ib">
+                        @foreach ($factories as $factory)
+                        @if ($factory->id == $chat->factory_id)
+                        @php
+                            $date=date('h:i:s a m/d/Y', strtotime($chat->created_at));
+                            $factory_id=$factory->id;
+                        @endphp
+                            <h5>{{ $factory->factory_name }}<span class="chat_date"></span></h5>
+                        @endif
+                        @endforeach
+                      <p style="color: black"><strong><a href="{{url('/view_messages_factory/'.$factory_id)}}">View Messages</a></strong></p>
                     </div>
                   </div>
                 </div>

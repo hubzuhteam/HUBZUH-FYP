@@ -406,11 +406,23 @@ Route::group(['middleware'=>['frontlogin']],function(){
         //user send feedback
         Route::match(['GET','POST'],'/contact_us','UsersController@feedback');
 
-        //user view specific chat
-        Route::match(['GET','POST'],'/view_messages/{id}','ChatController@viewChatSpecific');
+        //user view specific chat of Factory
+        Route::match(['GET','POST'],'/view_messages_factory/{id}','ChatController@viewChatSpecificFactory');
 
-        //User send message
-        Route::match(['get', 'post'], '/customer/send-message/','UsersController@UserSendMessage');
+        //user view specific chat of supplier
+        Route::match(['GET','POST'],'/view_messages_supplier/{id}','ChatController@viewChatSpecificSupplier');
+
+        //user view specific chat of admin
+        Route::match(['GET','POST'],'/view_messages_admin/{id}','ChatController@viewChatSpecificAdmin');
+
+        //User send message to Factory
+        Route::match(['get', 'post'], '/customer/send-message/factory','ChatController@UserSendMessageFactory');
+
+        //User send message to admin
+        Route::match(['get', 'post'], '/customer/send-message/admin','ChatController@UserSendMessageAdmin');
+
+        //User send message to Supplier
+        Route::match(['get', 'post'], '/customer/send-message/supplier','ChatController@UserSendMessageSupplier');
 
         //user comment
         Route::match(['GET','POST'],'/add-comment/{id}','ReviewController@addcomment');
@@ -444,7 +456,7 @@ Route::group(['middleware'=>['frontlogin']],function(){
     Route::match(['GET','POST'],'account','UsersController@account');
 
     //users account page
-    Route::match(['GET','POST'],'chats','UsersController@chats');
+    Route::match(['GET','POST'],'chats','ChatController@chats');
 
     // Check User Current Password
     Route::post('/check-user-pwd','UsersController@chkUserPassword');
@@ -478,8 +490,18 @@ Route::get('/home', 'HomeController@index')->name('home');
 //Route::get('/admin/dashboard','AdminController@dashboard');
 
 Route::group(['middleware' => ['adminlogin']], function () {
+
+    //Admin send message
+    Route::match(['get', 'post'], '/admin/send-message/','AdminController@AdminSendMessage');
+
+    //Admin view specific chat
+    Route::match(['GET','POST'],'admin/view_messages/{id}','ChatController@AdminviewChatSpecific');
+
     //for factory edit
     Route::match(['get','post'],'/admin/edit-factories/{id}','FactoryController@editfactory');
+
+    // Admin View Chatting
+    Route::get('/admin/view-chats','ChatController@AdminChats');
 
     // Admin Factory Route
     Route::get('/admin/view-factories ','FactoryController@viewFactory');

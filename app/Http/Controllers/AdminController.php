@@ -9,10 +9,28 @@ use App\User;
 use Illuminate\Support\Facades\Hash;
 use App\Admin;
 use App\Feedback;
+use App\Chat;
 
 class AdminController extends Controller
 {
 
+    public function AdminSendMessage(Request $request){
+
+        $data = $request->all();
+        //    echo "<pre>"; print_r($data); die;
+        $admin = Admin::where(['username'=>Session::get('adminSession')])->first();
+
+        $chat = new Chat;
+           $chat->admin_id = $admin->id;
+           $chat->user_id = 6;
+
+           $chat->message = $data['message'];
+           $chat->sender = 'admin';
+           $chat->save();
+
+           return redirect()->back()->with('flash_message_success','Your Message has been sent');
+
+    }
 
 
     public function login(Request $request){

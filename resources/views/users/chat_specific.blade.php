@@ -36,52 +36,100 @@
                 @foreach ($chatsWithAdmin as $chat)
                 <div class="chat_list active_chat">
                   <div class="chat_people">
-                    <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                    <div class="chat_img"> <img src="{{ asset('images/backend_images/admin.png')}}" alt="Profile Image"> </div>
                     <div class="chat_ib">
                         @foreach ($admins as $admin)
                         @if ($admin->id == $chat->admin_id)
                         @php
-                            $s=date('h:i:s a m/d/Y', strtotime($chat->created_at));
+                            $date=date('h:i a m/d/Y', strtotime($chat->created_at));
                             $admin_id=$admin->id;
                         @endphp
-                            <h5>{{ $admin->username }}<span class="chat_date">{{ $s }}</span></h5>
+                            <h5>{{ $admin->username }}<span class="chat_date"></span></h5>
                         @endif
                         @endforeach
-                      <p style="color: black"><strong><a href="{{url('/view_messages/'.$admin_id)}}">View Messages</a></strong></p>
+                      <p style="color: black"><strong><a href="{{url('/view_messages_admin/'.$admin_id)}}">View Messages</a></strong></p>
+                    </div>
+                  </div>
+                </div>
+                @endforeach
+                @foreach ($chatsWithSupplier as $chat)
+                <div class="chat_list active_chat">
+                        <div class="chat_people">
+                                @foreach ($suppliers as $supplier)
+                                @if ($supplier->id == $chat->supplier_id)
+                                    <div class="chat_img" > <img style="border-radius: 45%;" src="{{ asset('images/supplierend_images/store_images/small/'.$supplier->store_image)}}" alt="Profile Image"> </div>
+                                @endif
+                                @endforeach
+                            <div class="chat_ib">
+                        @foreach ($suppliers as $supplier)
+                        @if ($supplier->id == $chat->supplier_id)
+                        @php
+                            $date=date('h:i:s a m/d/Y', strtotime($chat->created_at));
+                            $supplier_id=$supplier->id;
+                        @endphp
+                            <h5>{{ $supplier->store_name }}<span class="chat_date"></span></h5>
+                        @endif
+                        @endforeach
+                      <p style="color: black"><strong><a href="{{url('/view_messages_supplier/'.$supplier_id)}}">View Messages</a></strong></p>
+                    </div>
+                  </div>
+                </div>
+                @endforeach
+                @foreach ($chatsWithFactory as $chat)
+                <div class="chat_list active_chat">
+                        <div class="chat_people">
+                                @foreach ($factories as $factory)
+                                @if ($factory->id == $chat->factory_id)
+                                    <div class="chat_img" > <img style="border-radius: 45%;" src="{{ asset('images/factoryend_images/factory_images/small/'.$factory->factory_image)}}" alt="Profile Image"> </div>
+                                @endif
+                                @endforeach
+                            <div class="chat_ib">
+                        @foreach ($factories as $factory)
+                        @if ($factory->id == $chat->factory_id)
+                        @php
+                            $date=date('h:i:s a m/d/Y', strtotime($chat->created_at));
+                            $factory_id=$factory->id;
+                        @endphp
+                            <h5>{{ $factory->factory_name }}<span class="chat_date"></span></h5>
+                        @endif
+                        @endforeach
+                      <p style="color: black"><strong><a href="{{url('/view_messages_factory/'.$factory_id)}}">View Messages</a></strong></p>
                     </div>
                   </div>
                 </div>
                 @endforeach
           </div>
         </div>
-
-
-
         <div class="mesgs">
                 <div class="msg_history">
             @foreach ($chats as $chat)
+            @php
+                            $date=date('h:i a m/d/y', strtotime($chat->created_at));
+                        @endphp
             @if ($chat->sender=="user")
                 <div class="outgoing_msg">
                     <div class="sent_msg">
                       <p>{{ $chat->message }}</p>
-                      <span class="time_date"> 11:01 AM    |    June 9</span> </div>
+                      <span class="time_date">{{ $date }}</span> </div>
                   </div>
             @else
                 <div class="incoming_msg" >
                     <div class="received_msg" >
                       <div class="received_withd_msg">
                         <p style="background-color: cornflowerblue; color: white">{{ $chat->message }}</p>
-                        <span class="time_date"> 11:01 AM    |    Yesterday</span></div>
+                        <span class="time_date">{{ $date }}</span></div>
                     </div>
                   </div>
             @endif
 
             @endforeach
                 </div>
-                  <form action="{{ url('/customer/send-message/') }}" method="post">{{csrf_field()}}
+                  <form action="{{ url('/customer/send-message/'.$receiver ) }}" method="post">{{csrf_field()}}
 
                 <div class="type_msg">
                   <div class="input_msg_write">
+
+                        <input type="hidden" class="write_msg" name="receiver_id"  id="receiver_id" value="{{ $receiver_id }}" />
 
                     <input type="text" class="write_msg" name="message"  id="message" placeholder="Type a message" />
                     <button class="msg_send_btn" type="submit"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
@@ -90,6 +138,8 @@
                 </div>
                   </form>
         </div>
+
+
       </div>
 
 

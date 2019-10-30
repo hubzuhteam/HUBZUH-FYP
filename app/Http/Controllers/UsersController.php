@@ -44,34 +44,8 @@ class UsersController extends Controller
         return redirect('/')->with('flash_message_success','Your feedback have been registered. Our team contact you in a while.');
 
     }
-    public function UserSendMessage(Request $request){
 
-        $data = $request->all();
-        //    echo "<pre>"; print_r($data); die;
-        $user = User::where(['email'=>Session::get('frontSession')])->first();
 
-        $chat = new Chat;
-           $chat->admin_id = 1;
-           $chat->user_id = $user->id;
-
-           $chat->message = $data['message'];
-           $chat->sender = 'user';
-           $chat->save();
-
-           return redirect()->back()->with('flash_message_success','Your Message has been sent');
-
-    }
-    public function chats(){
-        $user = User::where(['email'=>Session::get('frontSession')])->first();
-
-        $chatsWithAdmin = Chat::where(['user_id'=>$user->id])->groupBy('admin_id')->orderBy('created_at','desc')->get();
-        // echo "<pre>"; print_r($chats); die;
-        $admins = Admin::get();
-
-        $chats = Chat::where(['user_id'=>$user->id])->orderBy('created_at','desc')->get();
-
-        return view('users.chats')->with(compact('chatsWithAdmin','admins','chats'));
-    }
 
     public function login(Request $request){
         if($request->isMethod('POST')){

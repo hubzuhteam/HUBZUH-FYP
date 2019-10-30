@@ -40,7 +40,7 @@ $reviewCount = Review::reviewCount();
         </div>
     @endif
         <!--Action boxes-->
-          <div class="container-fluid">
+        <div class="container-fluid">
             <div class="quick-actions_homepage">
               <ul class="quick-actions">
               <li class="bg_lb"> <a href="{{url('admin/dashboard')}}"> <i class="icon-dashboard"></i>
@@ -75,9 +75,12 @@ $reviewCount = Review::reviewCount();
                 <li class="bg_db"> <a href="{{url('admin/view-suppliers')}}"><i class="icon-user"></i>
                         <span class="label label-success"></span> Suppliers </a> </li>
 
+                <li class="bg_db"> <a href="{{url('admin/view-chats')}}"><i class="icon-inbox"></i>
+                    <span class="label label-success"></span> Chats </a> </li>
+
 
               </ul>
-            </div>
+        </div>
         <!--End-Action boxes-->
 
         <!--Chart-box-->
