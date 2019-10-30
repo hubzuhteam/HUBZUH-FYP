@@ -6,6 +6,9 @@
     <li <?php if(preg_match("/dashboard/i",$url)){?> class="active" <?php } ?>><a
         href="{{ url('/admin/dashboard')}}"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
 
+        <li><a
+            href="{{ url('/admin/view-chats')}}"><i class="icon icon-inbox"></i> <span>Chat Rooms</span></a> </li>
+
         @if (Session::get('adminDetails')['categories_access']==1)
 
         <li class="submenu"> <a href="#"><i class="icon icon-list-alt"></i> <span>Categories</span>

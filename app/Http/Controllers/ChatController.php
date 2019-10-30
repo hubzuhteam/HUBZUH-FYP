@@ -12,6 +12,68 @@ use App\Supplier;
 
 class ChatController extends Controller
 {
+    public function SupplierSendMessageUser(Request $request){
+
+        $data = $request->all();
+        //    echo "<pre>"; print_r($data); die;
+        $supplierDetails = Supplier::where(['email'=>Session::get('supplierSession')])->first();
+
+        $chat = new Chat;
+           $chat->supplier_id = $supplierDetails->id;
+           $chat->user_id = $data['receiver_id'];
+           $chat->message = $data['message'];
+           $chat->sender = 'supplier';
+           $chat->save();
+
+           return redirect()->back()->with('flash_message_success','Your Message has been sent');
+
+    }
+    public function AdminSendMessageUser(Request $request){
+
+        $data = $request->all();
+        //    echo "<pre>"; print_r($data); die;
+        $admin = Admin::where(['username'=>Session::get('adminSession')])->first();
+
+        $chat = new Chat;
+           $chat->admin_id = $admin->id;
+           $chat->user_id = $data['receiver_id'];
+           $chat->message = $data['message'];
+           $chat->sender = 'admin';
+           $chat->save();
+
+           return redirect()->back()->with('flash_message_success','Your Message has been sent');
+
+    }
+    public function UserSendMessageAdmin(Request $request){
+
+        $data = $request->all();
+        //    echo "<pre>"; print_r($data); die;
+        $user = User::where(['email'=>Session::get('frontSession')])->first();
+
+        $chat = new Chat;
+           $chat->admin_id = $data['receiver_id'];
+           $chat->user_id = $user->id;
+           $chat->message = $data['message'];
+           $chat->sender = 'user';
+           $chat->save();
+
+           return redirect()->back()->with('flash_message_success','Your Message has been sent');
+    }
+    public function SupplierviewChatSpecific($id=null){
+        // echo $id; die;
+        $supplierDetails = Supplier::where(['email'=>Session::get('supplierSession')])->first();
+
+        $chatsWithUser = Chat::where(['supplier_id'=>$supplierDetails->id])->where('user_id','!=','')->groupBy('user_id')->orderBy('created_at')->get();
+        // echo "<pre>"; print_r($chats); die;
+        $users = User::get();
+
+        $chats = Chat::where(['supplier_id'=>$supplierDetails->id])->orderBy('created_at')->get();
+        //  echo "<pre>"; print_r($chats); die;
+
+        $receiver_id = $id;
+        $receiver="user";
+        return view('supplier.chat_specific')->with(compact('chatsWithUser','users','chats','supplierDetails','receiver_id','receiver'));
+    }
     public function UserSendMessageFactory(Request $request){
 
         $data = $request->all();
@@ -46,23 +108,7 @@ class ChatController extends Controller
            return redirect()->back()->with('flash_message_success','Your Message has been sent to Supplier');
 
     }
-    public function UserSendMessageAdmin(Request $request){
 
-        $data = $request->all();
-        //    echo "<pre>"; print_r($data); die;
-        $user = User::where(['email'=>Session::get('frontSession')])->first();
-
-        $chat = new Chat;
-           $chat->admin_id = $data['receiver_id'];
-           $chat->user_id = $user->id;
-
-           $chat->message = $data['message'];
-           $chat->sender = 'user';
-           $chat->save();
-
-           return redirect()->back()->with('flash_message_success','Your Message has been sent');
-
-    }
     public function AdminviewChatSpecific($id=null){
         // echo $id; die;
         $admin = Admin::where(['username'=>Session::get('adminSession')])->first();
@@ -74,7 +120,9 @@ class ChatController extends Controller
         $chats = Chat::where(['admin_id'=>$admin->id])->orderBy('created_at')->get();
         //  echo "<pre>"; print_r($chats); die;
 
-        return view('admin.chats.chat_specific')->with(compact('chatsWithUser','users','chats'));
+        $receiver_id = $id;
+        $receiver="user";
+        return view('admin.chat_specific')->with(compact('chatsWithUser','users','chats','receiver','receiver_id'));
     }
     public function AdminChats(){
         $admin = Admin::where(['username'=>Session::get('adminSession')])->first();
@@ -85,7 +133,19 @@ class ChatController extends Controller
 
         $chats = Chat::where(['admin_id'=>$admin->id])->orderBy('created_at','desc')->get();
 
-        return view('admin.chats.chats')->with(compact('chatsWithUser','users','chats'));
+        return view('admin.chats')->with(compact('chatsWithUser','users','chats'));
+    }
+
+    public function SupplierChats(){
+        $supplierDetails = Supplier::where(['email'=>Session::get('supplierSession')])->first();
+
+        $chatsWithUser = Chat::where(['supplier_id'=>$supplierDetails->id])->where('user_id','!=','')->groupBy('user_id')->orderBy('created_at')->get();
+        // echo "<pre>"; print_r($chats); die;
+        $users = User::get();
+
+        $chats = Chat::where(['supplier_id'=>$supplierDetails->id])->orderBy('created_at','desc')->get();
+
+        return view('supplier.chats')->with(compact('chatsWithUser','users','chats','supplierDetails'));
     }
 
     public function chats(){

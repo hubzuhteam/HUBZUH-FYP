@@ -1,4 +1,4 @@
-@extends('layouts.adminLayout.admin_design')
+@extends('layouts.supplierLayout.supplier_design')
 @section('content')
 <link href="{{ asset('css/frontend_css/chat.css') }}" rel="stylesheet">
 
@@ -8,11 +8,13 @@
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" rel="stylesheet"
 <!--main-container-part-->
-<div id="content">
-        <!--breadcrumbs-->
-        <div id="content-header">
-          <div id="breadcrumb"> <a href="{{url('admin/dashboard')}}" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a></div>
-        </div>
+<div id="content" class="content">
+        <!-- begin breadcrumb -->
+    <ol class="breadcrumb pull-right">
+        <li class="breadcrumb-item"><a href="{{ url('/supplier/dashboard') }}">Home</a></li>
+    </ol>
+    <!-- end breadcrumb -->
+
         <!--End-breadcrumbs-->
         @if(Session::has('flash_message_error'))
         <div class="alert alert-error alert-block">
@@ -43,7 +45,7 @@
                     @foreach ($chatsWithUser as $chat)
                     <div class="chat_list active_chat">
                       <div class="chat_people">
-                        {{--  <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>  --}}
+                        <div class="chat_img"><img  src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
                         <div class="chat_ib">
                             @foreach ($users as $user)
                             @if ($user->id == $chat->user_id)
@@ -54,30 +56,11 @@
                                 <h5>{{ $user->name }}<span class="chat_date"></span></h5>
                             @endif
                             @endforeach
-                          <p style="color: black;"><strong><a href="{{url('admin/view_messages/'.$user_id)}}">View Messages</a></strong></p>
+                          <p style="color: black;"><strong><a href="{{url('supplier/view_messages/'.$user_id)}}">View Messages</a></strong></p>
                         </div>
                       </div>
                     </div>
                     @endforeach
-                    @foreach ($chatsWithSupplier as $chat)
-                <div class="chat_list active_chat">
-                  <div class="chat_people">
-                    <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-                    <div class="chat_ib">
-                        @foreach ($suppliers as $supplier)
-                        @if ($supplier->id == $chat->supplier_id)
-                        @php
-                            $date=date('h:i:s a m/d/Y', strtotime($chat->created_at));
-                            $supplier_id=$supplier->id;
-                        @endphp
-                            <h5>{{ $supplier->store_name }}<span class="chat_date"></span></h5>
-                        @endif
-                        @endforeach
-                      <p style="color: black"><strong><a href="{{url('/view_messages/'.$supplier_id)}}">View Messages</a></strong></p>
-                    </div>
-                  </div>
-                </div>
-                @endforeach
               </div>
             </div>
 

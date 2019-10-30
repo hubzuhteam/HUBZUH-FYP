@@ -55,6 +55,9 @@ Route::match(['get','post'],'/factory/forgetpassword','FactoryController@forgetp
 
 Route::group(['middleware'=>['factorylogin']],function(){
 
+    //Factory view products review
+    Route::get('/factory/products-reviews','ReviewController@viewFactoriesProductsReviews');
+
     /// factory add color
     Route::match(['get', 'post'], '/factory/add-colours/{id}','ProductsController@addColoursFactory');
 
@@ -218,6 +221,15 @@ Route::match(['get','post'],'/supplier/forgetpassword','SupplierController@forge
 
 //all routes after supplier
 Route::group(['middleware'=>['supplierlogin']],function(){
+
+    //Supplier send message
+    Route::match(['get', 'post'], '/supplier/send-message/user','ChatController@SupplierSendMessageUser');
+
+    //Supplier view specific chat
+    Route::match(['GET','POST'],'supplier/view_messages/{id}','ChatController@SupplierviewChatSpecific');
+
+    // Supplier View Chatting
+    Route::get('/supplier/view-chats','ChatController@SupplierChats');
 
     /////////////////ZAID
      Route::match(['get', 'post'], '/supplier/add-colour/{id}','ProductsController@addcolourSupplier');
@@ -492,7 +504,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware' => ['adminlogin']], function () {
 
     //Admin send message
-    Route::match(['get', 'post'], '/admin/send-message/','AdminController@AdminSendMessage');
+    Route::match(['get', 'post'], '/admin/send-message/user','ChatController@AdminSendMessageUser');
 
     //Admin view specific chat
     Route::match(['GET','POST'],'admin/view_messages/{id}','ChatController@AdminviewChatSpecific');

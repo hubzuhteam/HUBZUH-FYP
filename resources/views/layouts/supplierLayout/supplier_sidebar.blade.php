@@ -40,6 +40,17 @@
 						    {{-- <li><a href="index_v2.html">Dashboard v2</a></li> --}}
 						</ul>
                     </li>
+                    <li class="has-sub active">
+                            <a href="javascript:;">
+                                <b class="caret"></b>
+                                <i class="fa fa-envelope"></i>
+                                <span>Chat Room</span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li class="active"><a href="{{ url('/supplier/view-chats') }}">All Chattings</a></li>
+                                {{-- <li><a href="index_v2.html">Dashboard v2</a></li> --}}
+                            </ul>
+                        </li>
 					<li class="has-sub active">
 						<a href="javascript:;">
 					        <b class="caret"></b>

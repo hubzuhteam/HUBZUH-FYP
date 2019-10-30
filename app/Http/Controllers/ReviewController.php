@@ -10,8 +10,28 @@ use Session;
 use DB;
 use App\Supplier;
 use App\Product;
+use App\Factory;
+
 class ReviewController extends Controller
 {
+    public function viewFactoriesProductsReviews(){
+
+        $factoryDetails = Factory::where(['email'=>Session::get('factorySession')])->first();
+
+
+        $products = Product::where(['factory_id'=>$factoryDetails->id])->orderBy('id','Desc')->get();
+
+        // $reviewsid=[];
+        // foreach ($products as $key => $value) {
+        //     $reviewsid[]=$value->id;
+        // }
+
+        // $reviews = Review::whereIn('product_id',$reviewsid)->orderBy('id','Desc')->get();
+
+        // echo "<pre>"; print_r($reviews); die;
+
+        return view('factory.products.view_reviews')->with(compact('products','factoryDetails'));
+    }
     public function addcomment(Request $request,$id=nul){
 
         $data = $request->all();
