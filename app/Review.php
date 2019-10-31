@@ -29,4 +29,15 @@ class Review extends Model
 
         return $reviewsCount;
     }
+    public static function reviewCountFactory($id=null){
+        $products = Product::where(['factory_id'=>$id])->orderBy('id','Desc')->get();
+
+        $reviewsid=[];
+        foreach ($products as $key => $value) {
+            $reviewsid[]=$value->id;
+        }
+        $reviewsCount = Review::whereIn('product_id',$reviewsid)->count();
+
+        return $reviewsCount;
+    }
 }

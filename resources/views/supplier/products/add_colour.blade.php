@@ -68,6 +68,10 @@
                                 <div class="jumbotron m-b-0 text-center" style="background-color: transparent">
                                         <input type="submit" value="Add Colour" class="btn btn-primary btn-lg">
                             </div>
+                            <div class="alert alert-error alert-block alert-danger">
+                                    <button type="button" class="close" data-dismiss="alert">×</button>
+                                        <strong>Attributes having low quantity are in Red</strong>
+                                </div>
                             </div>
                             {{-- end personal info --}}
                             <!-- end col-8 -->
@@ -109,8 +113,9 @@
                 </thead>
                 <tbody>
                         @foreach($productDetails['colours'] as $colour)
-                        <tr class="gradeX">
-                          <td><input type="hidden" name="idAttr[]" value="{{ $colour->id }}"></td>
+                        @if ($colour->stock<=5)
+                        <tr class="gradeX danger">
+                          <td><input type="hidden" name="idAttr[]" value="{{ $colour->id }}">{{ $colour->id }}</td>
                           <td>{{ $colour->sku }}</td>
                           <td>{{ $colour->colour }}</td>
                           <td><input type="text"  name="price[]" value="{{ $colour->price }}"></td>
@@ -122,6 +127,21 @@
                             class="btn btn-warning btn-mini deleteRecord">Delete</a>
                         </td>
                         </tr>
+                        @else
+                        <tr class="gradeX">
+                                <td><input type="hidden" name="idAttr[]" value="{{ $colour->id }}">{{ $colour->id }}</td>
+                                <td>{{ $colour->sku }}</td>
+                                <td>{{ $colour->colour }}</td>
+                                <td><input type="text"  name="price[]" value="{{ $colour->price }}"></td>
+                                <td><input type="text" name="stock[]" value="{{ $colour->stock }}"></td>
+                                <td class="center">
+                                    <input type="submit" value="Update" class="btn btn-info btn-mini">
+                                  <a id="delProduct"
+                                   href="{{ url('/supplier/delete-colour/'.$colour->id) }}"
+                                  class="btn btn-warning btn-mini deleteRecord">Delete</a>
+                              </td>
+                        </tr>
+                        @endif
                         @endforeach
 
                 </tbody>

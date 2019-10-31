@@ -3,17 +3,39 @@
 {{-- Factory Dashboard  --}}
 @section('content')
 @extends('layouts.factoryLayout.factory_design')
+<?php
+use App\User;
+use App\Supplier;
+use App\Order;
+use App\Factory;
+use App\Product;
+use App\Review;
+use App\Coupon;
+use App\OrdersProduct;
+$totalproductCount = Product::totalproductCountfactory($factoryDetails->id);
+$totalOrderCountFactory = OrdersProduct::totalOrderCountFactory($factoryDetails->id);
+$earningOrderTotalFactory = OrdersProduct::earningOrderTotalFactory($factoryDetails->id);
+$reviewsCount = Review::reviewCountFactory($factoryDetails->id);
+$CouponCount = Coupon::CouponCountFactory($factoryDetails->id);
 
-    {{--  START OF SIDE BAR  --}}
 
-    {{--  END OF SIDE BAR  --}}
+?>
+{{--  $userCount = User::userCount();
+    $storeCount = Supplier::storeCount();
+    $orderCount = Order::orderCount();
+    $pendingOrderCount = Order::pendingOrderCount();
+    $factoryCount = Factory::factoryCount();
+    $earningOrderTotal = Order::earningOrderTotal();
+    $reviewCount = Review::reviewCount();
+    $reviewsCount = Review::reviewCountSupplier();
+    --}}
     <main class="admin-main">
         <!--site header begins-->
-        
+
 
         <!--site header End-->
         <!-- Modal -->
-        
+
         <!--site header ends -->
         <section class="admin-content">
             <div class="container-fluid bg-dark m-b-30">
@@ -23,10 +45,10 @@
 
                         <h4 class="  "><span class="btn btn-white-translucent"><i
                                     class="mdi mdi-shape-circle-plus "></i></span> <span class="js-greeting"></span>,
-                        John!</h4>
+                        {{ $factoryDetails->name }}</h4>
                         <p class="opacity-75 ">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad corporis dolores
-                            <br> doloribus esse et iste laboriosam maiores maxime, mollitia nisi numquam omnis praesentium provident quam quasi quia quisquam recusandae vel.
+                            This is your dashboard where you can Manage your store. You can manage Products, Discount coupons, Sales, Customization of Store,
+                            <br> Banners, Categories, Orders and much more.
                         </p>
                         <a href="#" class="btn btn-white-translucent">View Reports</a>
 
@@ -41,17 +63,15 @@
                                 <div class="text-success   ">
                                     <div class="avatar avatar-sm ">
                                         <span class="avatar-title rounded-circle badge-soft-success"><i
-                                                class="mdi mdi-arrow-up-bold mdi-18px"></i> </span>
-
+                                                class="mdi mdi-arrange-send-to-back mdi-18px"></i> </span>
                                     </div>
-                                    <h6 class="m-t-5 m-b-0"> 19%</h6>
                                 </div>
 
                                 <div class=" text-center">
-                                    <h3>$199,580 </h3>
+                                    <h3>{{ $totalproductCount }}</h3>
                                 </div>
                                 <div class="text-overline ">
-                                    CURRENT FISCAL
+                                    TOTAL PRODUCTS
                                 </div>
                             </div>
                         </div>
@@ -61,17 +81,16 @@
                             <div class="   text-center card-body">
                                 <div class="text-danger   ">
                                     <div class="avatar avatar-sm ">
-                                        <span class="avatar-title rounded-circle badge-soft-danger"><i
-                                                class="mdi mdi-arrow-down-bold mdi-18px"></i> </span>
+                                        <span class="avatar-title rounded-circle badge-soft-warning"><i
+                                                class="mdi mdi-format-list-checks mdi-18px"></i> </span>
                                     </div>
-                                    <h6 class="m-t-5 m-b-0"> 32%</h6>
                                 </div>
 
                                 <div class=" text-center">
-                                    <h3>$65,055 </h3>
+                                    <h3>{{ $totalOrderCountFactory }}</h3>
                                 </div>
                                 <div class="text-overline ">
-                                    Returning AVG
+                                    TOTAL ORDERS
                                 </div>
                             </div>
                         </div>
@@ -82,17 +101,16 @@
                                 <div class="text-warning   ">
                                     <div class="avatar avatar-sm ">
                                         <span class="avatar-title rounded-circle badge-soft-warning"><i
-                                                class="mdi mdi-arrange-send-to-back mdi-18px"></i> </span>
+                                                class="mdi mdi-home-currency-usd mdi-18px"></i> </span>
 
                                     </div>
-                                    <h6 class="m-t-5 m-b-0"> 74%</h6>
                                 </div>
 
                                 <div class=" text-center">
-                                    <h3> 35 </h3>
+                                    <h3>{{ $earningOrderTotalFactory }}</h3>
                                 </div>
                                 <div class="text-overline ">
-                                    on-going Projects
+                                    TOTAL EARNING
                                 </div>
                             </div>
                         </div>
@@ -103,17 +121,15 @@
                                 <div class="text-info   ">
                                     <div class="avatar avatar-sm ">
                                         <span class="avatar-title rounded-circle badge-soft-info"><i
-                                                class="mdi mdi-account-convert mdi-18px"></i> </span>
-
+                                                class="mdi mdi-star mdi-18px"></i> </span>
                                     </div>
-                                    <h6 class="m-t-5 m-b-0"> 36%</h6>
                                 </div>
 
                                 <div class=" text-center">
-                                    <h3>$899,580 </h3>
+                                    <h3>{{ $reviewsCount }}</h3>
                                 </div>
                                 <div class="text-overline ">
-                                    Recurring bills
+                                    TOTAL REVIEWS
                                 </div>
                             </div>
                         </div>
@@ -124,17 +140,15 @@
                                 <div class="text-danger   ">
                                     <div class="avatar avatar-sm ">
                                         <span class="avatar-title rounded-circle badge-soft-danger"><i
-                                                class="mdi mdi-arrow-up-bold mdi-18px"></i> </span>
+                                                class="mdi mdi-currency-usd-off mdi-18px"></i> </span>
 
                                     </div>
-                                    <h6 class="m-t-5 m-b-0"> 49%</h6>
                                 </div>
-
                                 <div class=" text-center">
-                                    <h3>$19,124 </h3>
+                                    <h3>{{ $CouponCount }}</h3>
                                 </div>
                                 <div class="text-overline ">
-                                    server cost
+                                    TOTAL COUPONS
                                 </div>
                             </div>
                         </div>

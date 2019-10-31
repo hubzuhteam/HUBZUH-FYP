@@ -18,10 +18,10 @@
                     <li class="menu-item active ">
                         <a href="#" class="open-dropdown menu-link">
                             <span class="menu-label">
+                                    <a href='{{ url('/factory/dashboard') }}' class=' menu-link'>
                                                     <span class="menu-name">My Dashboard
                                                         <span class="menu-arrow"></span>
                             </span>
-
                             </span>
                             <span class="menu-icon">
                                <span class="icon-badge badge-success badge badge-pill">4</span>

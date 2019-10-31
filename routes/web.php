@@ -55,6 +55,9 @@ Route::match(['get','post'],'/factory/forgetpassword','FactoryController@forgetp
 
 Route::group(['middleware'=>['factorylogin']],function(){
 
+    //factory view particular review
+    Route::match(['get','post'],'/factory/view-review/{id}','ReviewController@viewFactoriesReviews');
+
     //Factory view products review
     Route::get('/factory/products-reviews','ReviewController@viewFactoriesProductsReviews');
 

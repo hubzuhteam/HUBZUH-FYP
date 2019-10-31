@@ -1762,7 +1762,6 @@ class ProductsController extends Controller
             href='/project1/public/products/".$mainCategory->url."'>".$mainCategory->name."</a> / <a style='color:black;'
             href='/project1/public/products/".$categoryDetails->url."'>".$categoryDetails->name."</a> / ".$productDetails->product_name;
         }
-
         $total_stock = ProductsAttribute::where('product_id',$id)->sum('stock');
 
         $banners = Banner::where('status','1')->get();
@@ -1850,7 +1849,6 @@ class ProductsController extends Controller
         }
         $faqs = Faq::where('product_id',$id)->get();
         // echo "<pre>"; print_r($faqs); die;
-
 
         return view('products.detail_'.$theme_id)->with(compact('productDetails','relatedProducts','categories','supplierDetails'
         ,'productAltImages','total_stock','meta_title','meta_description','meta_keywords','banners','breadcrumb'

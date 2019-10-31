@@ -25,7 +25,7 @@
                 <table>
                         <tr>
                           <td>
-                            <input name="user_image" id="user_image" type="file" >
+                            <input style="height: 100%; margin-right: 20px" name="user_image" id="user_image" type="file" >
                             @if(!empty($userDetails->user_image))
                               <input type="hidden" name="user_image" value="{{ $userDetails->user_image }}">
                             @endif

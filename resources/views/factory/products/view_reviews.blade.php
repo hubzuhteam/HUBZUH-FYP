@@ -53,7 +53,7 @@
                                                   @endif
                                                 </td>
                                                 <td class="center">
-                                                  <a href="  {{ url('/supplier/view-review/'.$product->id) }}"
+                                                  <a href="  {{ url('/factory/view-review/'.$product->id) }}"
                                                   class="btn btn-primary btn-mini" title="View Reviews">View Reviews</a>
                                               </td>
                                               </tr>

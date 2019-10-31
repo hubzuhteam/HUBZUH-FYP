@@ -14,6 +14,26 @@ use App\Factory;
 
 class ReviewController extends Controller
 {
+    public function viewFactoriesReviews($id = null){
+
+        $factoryDetails = Factory::where(['email'=>Session::get('factorySession')])->first();
+
+
+        $product = Product::where(['id'=>$id])->first();
+
+
+        // $reviewsid=[];
+        // foreach ($products as $key => $value) {
+        //     $reviewsid[]=$value->id;
+        // }
+
+        $reviews = Review::where('product_id',$id)->orderBy('id','Desc')->get();
+
+        // echo "<pre>"; print_r($reviews); die;
+
+        return view('factory.products.view_reviews_one_product')->with(compact('product','factoryDetails','reviews'));
+    }
+
     public function viewFactoriesProductsReviews(){
 
         $factoryDetails = Factory::where(['email'=>Session::get('factorySession')])->first();

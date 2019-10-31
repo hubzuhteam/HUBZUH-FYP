@@ -18,6 +18,10 @@ class Product extends Model
     	$totalproductCount = Product::where('supplier_id',$id)->get()->count();
     	return $totalproductCount;
     }
+    public static function totalproductCountfactory($id=null){
+    	$totalproductCount = Product::where('factory_id',$id)->get()->count();
+    	return $totalproductCount;
+    }
 
     public function attributes(){
         return $this->hasMany('App\ProductsAttribute','product_id');
