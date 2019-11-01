@@ -55,6 +55,22 @@ Route::match(['get','post'],'/factory/forgetpassword','FactoryController@forgetp
 
 Route::group(['middleware'=>['factorylogin']],function(){
 
+    //Factory faqs for products
+    Route::get('/factory/products-faqs','FaqController@viewFactoriesProductsfaqs');
+    //Factory view faq
+    Route::match(['get','post'],'/factory/view-faq/{id}','FaqController@viewFactoriesfaqs');
+    //Factory edit faq
+    Route::match(['get', 'post'], '/factory/edit-faq/{id}','FaqController@editFaqAnswerFactory');
+
+    //Factory send message
+    Route::match(['get', 'post'], '/factory/send-message/user','ChatController@FactorySendMessageUser');
+
+    //Faa=ctory view specific chat
+    Route::match(['GET','POST'],'factory/view_messages/{id}','ChatController@FactoryviewChatSpecific');
+
+    // Factory View Chatting
+    Route::get('/factory/view-chats','ChatController@FactoryChats');
+
     //factory view particular review
     Route::match(['get','post'],'/factory/view-review/{id}','ReviewController@viewFactoriesReviews');
 

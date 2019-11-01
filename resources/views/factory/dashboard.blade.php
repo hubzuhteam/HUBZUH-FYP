@@ -18,7 +18,6 @@ $earningOrderTotalFactory = OrdersProduct::earningOrderTotalFactory($factoryDeta
 $reviewsCount = Review::reviewCountFactory($factoryDetails->id);
 $CouponCount = Coupon::CouponCountFactory($factoryDetails->id);
 
-
 ?>
 {{--  $userCount = User::userCount();
     $storeCount = Supplier::storeCount();
@@ -102,10 +101,8 @@ $CouponCount = Coupon::CouponCountFactory($factoryDetails->id);
                                     <div class="avatar avatar-sm ">
                                         <span class="avatar-title rounded-circle badge-soft-warning"><i
                                                 class="mdi mdi-home-currency-usd mdi-18px"></i> </span>
-
                                     </div>
                                 </div>
-
                                 <div class=" text-center">
                                     <h3>{{ $earningOrderTotalFactory }}</h3>
                                 </div>
@@ -141,7 +138,6 @@ $CouponCount = Coupon::CouponCountFactory($factoryDetails->id);
                                     <div class="avatar avatar-sm ">
                                         <span class="avatar-title rounded-circle badge-soft-danger"><i
                                                 class="mdi mdi-currency-usd-off mdi-18px"></i> </span>
-
                                     </div>
                                 </div>
                                 <div class=" text-center">

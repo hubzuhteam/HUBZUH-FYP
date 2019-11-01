@@ -24,11 +24,25 @@
                             </span>
                             </span>
                             <span class="menu-icon">
-                               <span class="icon-badge badge-success badge badge-pill">4</span>
+                               <span class="icon-badge badge-success badge badge-pill"></span>
                             <i class="icon-placeholder mdi mdi-view-dashboard "></i>
                             </span>
                         </a>
                     </li>
+                    <li class="menu-item">
+                            <a href="#" class="open-dropdown menu-link">
+                                <span class="menu-label">
+                                        <a href='{{ url('/factory/view-chats') }}' class=' menu-link'>
+                                                        <span class="menu-name">Chat Room
+                                                            <span class="menu-arrow"></span>
+                                </span>
+                                </span>
+                                <span class="menu-icon">
+                                   <span class="icon-badge badge-success badge badge-pill"></span>
+                                <i class="icon-placeholder mdi mdi-comment "></i>
+                                </span>
+                            </a>
+                        </li>
             <li class="menu-item ">
                 <a href="#" class="open-dropdown menu-link">
                         <span class="menu-label">
@@ -75,6 +89,17 @@
                                     </span>
                                 </a>
                             </li>
+                            <li class="menu-item">
+                                    <a href='{{ url('/factory/products-faqs') }}' class=' menu-link'>
+                                                    <span class="menu-label">
+                                                            <span class="menu-name">View FAQ of Products
+                                                            </span>
+                                                    </span>
+                                        <span class="menu-icon">
+                                            <i class="icon-placeholder mdi mdi-tshirt-crew  "></i>
+                                        </span>
+                                    </a>
+                                </li>
                 </ul>
             </li>
             <li class="menu-item ">

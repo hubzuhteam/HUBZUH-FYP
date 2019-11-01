@@ -12,6 +12,49 @@ use App\Supplier;
 
 class ChatController extends Controller
 {
+    public function FactorySendMessageUser(Request $request){
+
+        $data = $request->all();
+        //    echo "<pre>"; print_r($data); die;
+        $factoryDetails = Factory::where(['email'=>Session::get('factorySession')])->first();
+
+        $chat = new Chat;
+           $chat->factory_id = $factoryDetails->id;
+           $chat->user_id = $data['receiver_id'];
+           $chat->message = $data['message'];
+           $chat->sender = 'factory';
+           $chat->save();
+
+           return redirect()->back()->with('flash_message_success','Your Message has been sent to Factory Admin');
+
+    }
+    public function FactoryviewChatSpecific($id=null){
+        // echo $id; die;
+        $factoryDetails = Factory::where(['email'=>Session::get('factorySession')])->first();
+
+        $chatsWithUser = Chat::where(['factory_id'=>$factoryDetails->id])->where('user_id','!=','')->groupBy('user_id')->orderBy('created_at')->get();
+        // echo "<pre>"; print_r($chats); die;
+        $users = User::get();
+
+        $chats = Chat::where(['factory_id'=>$factoryDetails->id])->orderBy('created_at')->get();
+        //  echo "<pre>"; print_r($chats); die;
+
+        $receiver_id = $id;
+        $receiver="user";
+        return view('factory.chat_specific')->with(compact('chatsWithUser','users','chats','factoryDetails','receiver_id','receiver'));
+    }
+    public function FactoryChats(){
+        $factoryDetails = Factory::where(['email'=>Session::get('factorySession')])->first();
+
+        $chatsWithUser = Chat::where(['factory_id'=>$factoryDetails->id])->where('user_id','!=','')->groupBy('user_id')->orderBy('created_at')->get();
+        // echo "<pre>"; print_r($chats); die;
+        $users = User::get();
+
+        $chats = Chat::where(['factory_id'=>$factoryDetails->id])->orderBy('created_at','desc')->get();
+
+        return view('factory.chats')->with(compact('chatsWithUser','users','chats','factoryDetails'));
+    }
+
     public function SupplierSendMessageUser(Request $request){
 
         $data = $request->all();
