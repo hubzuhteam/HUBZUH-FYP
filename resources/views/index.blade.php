@@ -44,7 +44,7 @@
                                 <div class="carousel-inner">
                                     @foreach($banners as $key => $banner)
                                     <div class="item @if($key==0) active @endif">
-                                        <a href="{{ $banner->link }}" title="Banner 1"><img src="images/frontend_images/banners/{{ $banner->image }}"></a>
+                                        <a title="Banner 1"><img src="images/frontend_images/banners/{{ $banner->image }}"></a>
                                     </div>
                                     @endforeach
                                 </div>

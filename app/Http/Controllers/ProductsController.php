@@ -2413,6 +2413,7 @@ class ProductsController extends Controller
                 $query->where('product_name','like','%'.$search_product.'%')
                 ->orWhere('product_code','like','%'.$search_product.'%')
                 ->orWhere('description','like','%'.$search_product.'%')
+                ->orWhere('care','like','%'.$search_product.'%')
                 ->orWhere('product_color','like','%'.$search_product.'%');
             })->where('status',1)->get();
 

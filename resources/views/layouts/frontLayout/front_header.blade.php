@@ -72,7 +72,7 @@ $wishlistCount = Product::wishlistCount();
                     <div class="col-sm-4" >
                         <form action="{{ url('/search-products') }}" method="post">{{ csrf_field() }}
                             <div class="search" style="align-content: center">
-                                <input id="search" name="search" type="text" class="searchTerm" name="product" placeholder="    Search    ">
+                                <input id="search" name="search" type="text" class="searchTerm" name="product" placeholder="Search by Name, Code, Color, Description">
                                 <button type="submit" class="searchButton">
                                     <i class="fa fa-search"></i>
                                 </button>
