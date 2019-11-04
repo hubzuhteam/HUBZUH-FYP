@@ -26,7 +26,10 @@
 		    				<tr class="cart_menu">
 		    					<td class="image">Item</td>
 		    					<td class="description"></td>
-		    					<td class="price">Price</td>
+                                <td class="price">Price</td>
+                                <td class="" >
+                                    <a style="color: white;" class="cart_quantity_delete" href="{{url('/wishlist/delete-all-product/'.$userDetails->id)}}">Clear All    <i class="fa fa-times"></i></a>
+                                </td>
 		    					<td></td>
 		    				</tr>
 		    			</thead>

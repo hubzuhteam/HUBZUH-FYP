@@ -73,13 +73,13 @@
                                 <p style="color: black; font-size: 17px;">@if ($productDetails->pattern=="")@else Pattern: {{ $productDetails->pattern}} @endif</p>
                                 <p style="color: black; font-size: 17px;">@if ($productDetails->sleeve=="")@else Sleeve: {{ $productDetails->sleeve}} @endif</p>
                                 <p style="color: black; font-size: 17px;">
-										<select id="selSize" name="size" style="width:150px; border-radius: 20% " required>
-											<option value="">Select Size</option>
+										<select id="selSize" name="size" style="width:262px;" required>
+											<option value="">Select Size and Color</option>
 											@foreach($productDetails->attributes as $sizes)
 											<option value="{{ $productDetails->id }}-{{ $sizes->size }}">{{ $sizes->size }}</option>
 											@endforeach
 										</select>
-								</p>
+                                </p>
                                 <img src="images/product-details/rating.png" alt="" />
                                 <span>
 									<span style="color: {{ $main_color }};" id="getPrice">Rs. {{ $productDetails->price}}</span>
@@ -92,7 +92,13 @@
                                 </button>
                                 @endif
                                 </span>
-                                <p style="color: black; font-size: 17px;"><b>Availability:</b> <span id="Availability"> @if ($total_stock>0) In Stock @else Out of Stock @endif</p>
+                                @if ($total_stock>0)
+                                <p style="color: black; font-size: 17px;"><b>Availability:</b> <span id="Availability">
+                                     In Stock   </p>
+                                     @else
+                                     <p style="color: tomato; font-size: 17px;"><b>Availability:</b> <span id="Availability">
+                                            Out of Stock </p>
+                                     @endif
                                 <p style="color: black; font-size: 17px;"><b>Condition:</b> New</p></span>
                                 <p style="color: black; font-size: 17px;"><b>{{ $outlet_title }} </b>{{ $outlet_name }}</p>
                                 <a href=""><img src="images/product-details/share.png" class="share img-responsive" alt="" /></a>

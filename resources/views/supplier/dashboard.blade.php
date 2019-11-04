@@ -18,7 +18,7 @@ $factoryCount = Factory::factoryCount();
 $totalproductCount = Product::totalproductCountsupplier($supplierDetails->id);
 $earningOrderTotal = Order::earningOrderTotal();
 $reviewCount = Review::reviewCount();
-$reviewsCount = Review::reviewCountSupplier();
+$reviewsCount = Review::reviewCountSupplier($supplierDetails->id);
 $totalOrderCountSupplier = OrdersProduct::totalOrderCountSupplier($supplierDetails->id);
 $earningOrderTotal = OrdersProduct::earningOrderTotal($supplierDetails->id);
 
@@ -73,7 +73,7 @@ $earningOrderTotal = OrdersProduct::earningOrderTotal($supplierDetails->id);
 							<p>{{ $totalOrderCountSupplier }}</p>
 						</div>
 						<div class="stats-link">
-							<a href="javascript:;">View Detail <i class="fa fa-arrow-alt-circle-right"></i></a>
+							<a href="{{ url('/supplier/view-orders') }}">View Detail <i class="fa fa-arrow-alt-circle-right"></i></a>
 						</div>
 					</div>
 				</div>
@@ -101,7 +101,7 @@ $earningOrderTotal = OrdersProduct::earningOrderTotal($supplierDetails->id);
 							<p>{{ $reviewsCount }}</p>
 						</div>
 						<div class="stats-link">
-							<a href="javascript:;">View Detail <i class="fa fa-arrow-alt-circle-right"></i></a>
+							<a href="{{ url('/supplier/products-reviews') }}">View Detail <i class="fa fa-arrow-alt-circle-right"></i></a>
 						</div>
 					</div>
 				</div>

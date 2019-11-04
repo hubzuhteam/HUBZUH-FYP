@@ -27,6 +27,10 @@ class Product extends Model
         return $this->hasMany('App\ProductsAttribute','product_id');
     }
 
+    public function colors(){
+        return $this->hasMany('App\ProductsColour','product_id');
+    }
+
     public function supplier(){
         return $this->belongsTo(Supplier::class);
     }

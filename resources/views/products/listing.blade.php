@@ -90,10 +90,8 @@
                                 @endif
                                 ({{ count($suppliersAll) }})
                         </h2>
-                        @if($suppliers)
                             <div align="left"><?php echo $breadcrumb; ?></div>
 					        <div>&nbsp;</div>
-                        @endif
                          @foreach ($suppliersAll as $supplier)
                         <div class="col-sm-4">
                             <div class="product-image-wrapper">
@@ -107,9 +105,9 @@
                             </div>
                         </div>
                         @endforeach
-                        @if(empty($search_product))
+                        {{-- @if(empty($search_product))
 						<div align="center">{{ $suppliersAll->links() }}</div>
-					    @endif
+					    @endif --}}
                     </div>
                     <!--FACTORIES-->
                     <div class="features_items">
@@ -122,10 +120,8 @@
                                 @endif
                                 ({{ count($factoriesAll) }})
                         </h2>
-                        @if($suppliers)
                             <div align="left"><?php echo $breadcrumb; ?></div>
 					        <div>&nbsp;</div>
-                        @endif
                         @foreach ($factoriesAll as $factory)
                         <div class="col-sm-4">
                             <div class="product-image-wrapper">
@@ -139,9 +135,9 @@
                             </div>
                         </div>
                         @endforeach
-                        @if(empty($search_product))
+                        {{-- @if(empty($search_product))
 						<div align="center">{{ $suppliersAll->links() }}</div>
-					    @endif
+					    @endif --}}
                     </div>
                     <!--features_items-->
 

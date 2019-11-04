@@ -969,6 +969,8 @@ class ProductsController extends Controller
 		$large_image_path = 'images/supplierend_images/products/large/';
 		$medium_image_path = 'images/supplierend_images/products/medium/';
 		$small_image_path = 'images/supplierend_images/products/small/';
+        if(!empty($productImage)){
+
 
 		// Delete Large Image if  exists in Folder
         if(file_exists($large_image_path.$productImage->image)){
@@ -984,11 +986,14 @@ class ProductsController extends Controller
         if(file_exists($small_image_path.$productImage->image)){
             unlink($small_image_path.$productImage->image);
         }
+    }
         $productImage = ProductsImage::where('product_id',$id)->first();
         // Get Product Image Paths
         $large_image_path = 'images/supplierend_images/products/large/';
         $medium_image_path = 'images/supplierend_images/products/medium/';
         $small_image_path = 'images/supplierend_images/products/small/';
+
+        if(!empty($productImage)){
 
         // Delete Large Image if not exists in Folder
         if(file_exists($large_image_path.$productImage->image)){
@@ -1004,6 +1009,7 @@ class ProductsController extends Controller
         if(file_exists($small_image_path.$productImage->image)){
             unlink($small_image_path.$productImage->image);
         }
+    }
         ProductsImage::where(['product_id'=>$id])->delete();
 
         return redirect()->back()->with('flash_message_success', 'Product has been deleted successfully');
@@ -1041,6 +1047,8 @@ class ProductsController extends Controller
 		$medium_image_path = 'images/supplierend_images/products/medium/';
 		$small_image_path = 'images/supplierend_images/products/small/';
 
+        if(!empty($productImage)){
+
 		// Delete Large Image if not exists in Folder
         if(file_exists($large_image_path.$productImage->image)){
             unlink($large_image_path.$productImage->image);
@@ -1056,6 +1064,7 @@ class ProductsController extends Controller
             unlink($small_image_path.$productImage->image);
         }
 
+    }
         // Delete Image from Products table
         Product::where(['id'=>$id])->update(['image'=>'']);
 
@@ -1069,6 +1078,8 @@ class ProductsController extends Controller
         $large_image_path = 'images/supplierend_images/products/large/';
         $medium_image_path = 'images/supplierend_images/products/medium/';
         $small_image_path = 'images/supplierend_images/products/small/';
+
+        if(!empty($productImage)){
 
         // Delete Large Image if not exists in Folder
         if(file_exists($large_image_path.$productImage->image)){
@@ -1085,6 +1096,7 @@ class ProductsController extends Controller
             unlink($small_image_path.$productImage->image);
         }
 
+    }
         // Delete Image from Products Images table
         ProductsImage::where(['id'=>$id])->delete();
 
@@ -1101,10 +1113,14 @@ class ProductsController extends Controller
         // Get Video Path
         $video_path = 'videos/';
 
+        if(!empty($productVideo)){
+
+
         // Delete Video if exists in videos folder
         if(file_exists($video_path.$productVideo->video)){
             unlink($video_path.$productVideo->video);
         }
+    }
 
         // Delete Video from Products table
         Product::where('id',$id)->update(['video'=>'']);
@@ -1474,7 +1490,8 @@ class ProductsController extends Controller
 		$medium_image_path = 'images/supplierend_images/products/medium/';
 		$small_image_path = 'images/supplierend_images/products/small/';
 
-		// Delete Large Image if not exists in Folder
+        if(!empty($productImage)){
+            // Delete Large Image if not exists in Folder
         if(file_exists($large_image_path.$productImage->image)){
             unlink($large_image_path.$productImage->image);
         }
@@ -1488,6 +1505,9 @@ class ProductsController extends Controller
         if(file_exists($small_image_path.$productImage->image)){
             unlink($small_image_path.$productImage->image);
         }
+
+        }
+
 
         // Delete Image from Products table
         Product::where(['id'=>$id])->update(['image'=>'']);
@@ -1724,10 +1744,16 @@ class ProductsController extends Controller
             $sizesArray = ProductsAttribute::select('size')->groupBy('size')->get();
         $sizesArray = array_flatten(json_decode(json_encode($sizesArray),true));
 
+
+        $suppliersAll = Supplier::get();
+        // echo $supplierDetails;die;
+        $factoriesAll = Factory::get();
+
+
            $meta_title = $categoryDetails->meta_title;
            $meta_description = $categoryDetails->meta_description;
            $meta_keywords = $categoryDetails->meta_keywords;
-         return view('products.listing')->with(compact('categories','productsAll',
+         return view('products.listing')->with(compact('categories','productsAll','suppliersAll','factoriesAll',
          'categoryDetails','meta_title','meta_description','meta_keywords','url','colorArray',
          'sleeveArray','patternArray','banners','sizesArray','breadcrumb'));
 
@@ -1739,7 +1765,7 @@ class ProductsController extends Controller
            abort(404);
         }
         // Get Product Details
-        $productDetails = Product::with('attributes')->where('id',$id)->first();
+        $productDetails = Product::with('attributes','colors')->where('id',$id)->first();
         // echo $productDetails->supplier_id;die;
         $supplierDetails = Supplier::where('id',$productDetails->supplier_id)->first();
         // echo $supplierDetails;die;
@@ -1960,7 +1986,10 @@ class ProductsController extends Controller
         if (Auth::check()) {
             $user_email=Auth::user()->email;
             $userwishlist = DB::table('wishlist')->where(['user_email' => $user_email])->get();
+            $userDetails = User::where('email',$user_email)->first();
+
         }
+
 
         foreach($userwishlist as $key => $product){
             $productDetails = Product::where('id',$product->product_id)->first();
@@ -1970,7 +1999,7 @@ class ProductsController extends Controller
         $meta_title = "Wish List - HUBZUH Website";
         $meta_description = "View Wish List of HUBZUH Online Store Website";
         $meta_keywords = "Wish List, HUBZUH Website , e commerce, online Store";
-       return view('products.wishlist')->with(compact('userwishlist','meta_title','meta_description','meta_keywords'));
+       return view('products.wishlist')->with(compact('userwishlist','userDetails','meta_title','meta_description','meta_keywords'));
 
     }
 
@@ -1983,6 +2012,12 @@ class ProductsController extends Controller
     public function deleteWishListProduct($id=null){
         DB::table('wishlist')->where('id',$id)->delete();
         return redirect('wishlist')->with('flash_message_success','Product has been Deleted from Wish List!');
+    }
+    public function deleteWishListAllProduct($id=null){
+        $userDetails = User::where('id',$id)->first();
+
+        DB::table('wishlist')->where('user_email',$userDetails->email)->delete();
+        return redirect('wishlist')->with('flash_message_success','All Products have been Deleted from Wish List!');
     }
 
     public function updateCartQuantity($id=null,$quantity=null){
@@ -2442,7 +2477,7 @@ class ProductsController extends Controller
             }else{
                 $suppliers=false;
             }
-        // echo "<pre>"; print_r($productsAll); die;
+        //  echo "<pre>"; print_r($productsAll); die;
 
             return view('products.listing')->with(compact('suppliers','factoriesAll','categories','productsAll','suppliersAll','search_product','breadcrumb','banners'));
         }
@@ -2473,11 +2508,14 @@ class ProductsController extends Controller
         // Get Video Path
         $video_path = 'videos/';
 
+        if(!empty($productVideo)){
+
         // Delete Video if exists in videos folder
         if(file_exists($video_path.$productVideo->video)){
             unlink($video_path.$productVideo->video);
         }
 
+    }
         // Delete Video from Products table
         Product::where('id',$id)->update(['video'=>'']);
 

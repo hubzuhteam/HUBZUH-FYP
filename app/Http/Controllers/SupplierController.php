@@ -270,6 +270,8 @@ class SupplierController extends Controller
                 $Supplier->name=$data['name'];
                 $Supplier->store_name=$data['store_name'];
                 $Supplier->email=$data['email'];
+                $Supplier->store_image='store.gif';
+                $Supplier->theme_id='1';
                 $Supplier->password=md5($data['password']);
                 date_default_timezone_set('Asia/Karachi');
                 $Supplier->created_at = date("Y-m-d H:i:s");

@@ -39,7 +39,7 @@
                         <div class="row">
                             <!-- begin col-8 -->
                             {{-- begin personal information --}}
-                            <div class="col-md-8 offset-md-2">
+                            <div class="col-md-9 offset-md-2">
                                 <legend class="no-border f-w-700 p-b-0 m-t-0 m-b-20 f-s-16 text-inverse">Add Attributes</legend>
                                 <div class="form-group row m-b-10">
                                     <label class="col-md-3 text-md-right col-form-label">Product Name</label>
@@ -59,12 +59,18 @@
                                             <strong class="form-control">{{ $productDetails->product_color }}</strong>
                                     </div>
                                 </div>
+                                <div class="form-group row m-b-10">
+                                        <label class="col-md-3 text-md-right col-form-label">Product Main Price</label>
+                                        <div class="col-md-6">
+                                                <strong class="form-control">{{ $productDetails->price }}</strong>
+                                        </div>
+                                    </div>
                                 <div class="control-group">
                                         <label class="control-label"></label>
                                          <div class="field_wrapper" >
                                              <div>
                                                  <input type="text" name="sku[]" id="sku" placeholder="SKU" style="width: 140px;height: 30px" required/>
-                                                 <input type="text" name="size[]" id="size" placeholder="Size" style="width: 140px;height: 30px" required/>
+                                                 <input type="text" name="size[]" id="size" placeholder="Size And Color" style="width: 140px;height: 30px" required/>
                                                  <input type="text" name="price[]" id="price" placeholder="Price" style="width: 140px;height: 30px" required/>
                                                  <input type="text" name="stock[]" id="stock" placeholder="Stock" style="width: 140px;height: 30px" required/>
                                              <a href="javascript:void(0);" class="add_button" title="Add field">Add</a>
@@ -111,7 +117,7 @@
                     <tr>
                         <th class="text-nowrap">Attribute ID</th>
                         <th class="text-nowrap">SKU</th>
-                        <th class="text-nowrap">Size</th>
+                        <th class="text-nowrap">Size and Color</th>
                         <th class="text-nowrap">Price</th>
                         <th class="text-nowrap">Stock</th>
                         <th class="text-nowrap">Actions</th>

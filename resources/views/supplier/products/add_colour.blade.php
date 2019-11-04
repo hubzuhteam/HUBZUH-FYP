@@ -38,7 +38,7 @@
                         <div class="row">
                             <!-- begin col-8 -->
                             {{-- begin personal information --}}
-                            <div class="col-md-8 offset-md-2">
+                            <div class="col-md-10 offset-md-2">
                                 <legend class="no-border f-w-700 p-b-0 m-t-0 m-b-20 f-s-16 text-inverse">Add Colour</legend>
                                 <div class="form-group row m-b-10">
                                     <label class="col-md-3 text-md-right col-form-label">Product Name</label>
@@ -52,14 +52,26 @@
                                             <strong class="form-control">{{ $productDetails->product_code }}</strong>
                                     </div>
                                 </div>
+                                <div class="form-group row m-b-10">
+                                        <label class="col-md-3 text-md-right col-form-label">Product Color</label>
+                                        <div class="col-md-6">
+                                                <strong class="form-control">{{ $productDetails->product_color }}</strong>
+                                        </div>
+                                </div>
+                                <div class="form-group row m-b-10">
+                                        <label class="col-md-3 text-md-right col-form-label">Product Price</label>
+                                        <div class="col-md-6">
+                                                <strong class="form-control">{{ $productDetails->price }}</strong>
+                                        </div>
+                                </div>
 
-                                <div class="control-group">
+                                <div class="control-group" >
                                         <label class="control-label"></label>
                                          <div class="field_wrapper" >
                                              <div>
                                                  <input type="text" name="sku[]" id="sku" placeholder="SKU" style="width: 140px;height: 30px" required/>
                                                  <input type="text" name="colour[]" id="colour" placeholder="colour" style="width: 140px;height: 30px" required/>
-                                                 <input type="text" name="price[]" id="price" placeholder="Price" style="width: 140px;height: 30px" required/>
+                                                 {{-- <input type="text" name="price[]" id="price" placeholder="Price" style="width: 140px;height: 30px" required/> --}}
                                                  <input type="text" name="stock[]" id="stock" placeholder="Stock" style="width: 140px;height: 30px" required/>
                                              <a href="javascript:void(0);" class="add_button_color" title="Add field">Add</a>
                                              </div>
@@ -106,7 +118,6 @@
                         <th class="text-nowrap">Colour ID</th>
                         <th class="text-nowrap">SKU</th>
                         <th class="text-nowrap">colour</th>
-                        <th class="text-nowrap">Price</th>
                         <th class="text-nowrap">Stock</th>
                         <th class="text-nowrap">Actions</th>
                     </tr>
@@ -118,7 +129,6 @@
                           <td><input type="hidden" name="idAttr[]" value="{{ $colour->id }}">{{ $colour->id }}</td>
                           <td>{{ $colour->sku }}</td>
                           <td>{{ $colour->colour }}</td>
-                          <td><input type="text"  name="price[]" value="{{ $colour->price }}"></td>
                           <td><input type="text" name="stock[]" value="{{ $colour->stock }}"></td>
                           <td class="center">
                               <input type="submit" value="Update" class="btn btn-info btn-mini">
@@ -132,7 +142,6 @@
                                 <td><input type="hidden" name="idAttr[]" value="{{ $colour->id }}">{{ $colour->id }}</td>
                                 <td>{{ $colour->sku }}</td>
                                 <td>{{ $colour->colour }}</td>
-                                <td><input type="text"  name="price[]" value="{{ $colour->price }}"></td>
                                 <td><input type="text" name="stock[]" value="{{ $colour->stock }}"></td>
                                 <td class="center">
                                     <input type="submit" value="Update" class="btn btn-info btn-mini">

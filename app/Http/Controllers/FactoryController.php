@@ -298,6 +298,8 @@ class FactoryController extends Controller
                 date_default_timezone_set('Asia/Karachi');
                 $Factory->created_at = date("Y-m-d H:i:s");
                 $Factory->updated_at = date("Y-m-d H:i:s");
+                $Factory->factory_image='store.gif';
+                $Factory->theme_id='1';
                 $Factory->save();
 
                 // Send Confirmation Email
