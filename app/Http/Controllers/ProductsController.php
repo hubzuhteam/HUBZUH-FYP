@@ -2417,11 +2417,34 @@ class ProductsController extends Controller
                 ->orWhere('product_color','like','%'.$search_product.'%');
             })->where('status',1)->get();
 
+            $suppliersAll = Supplier::where(function($query) use($search_product){
+                $query->where('store_name','like','%'.$search_product.'%')
+                ->orWhere('deals_in','like','%'.$search_product.'%')
+                ->orWhere('store_email','like','%'.$search_product.'%')
+                ->orWhere('store_address','like','%'.$search_product.'%')
+                ->orWhere('store_mobile','like','%'.$search_product.'%');
+            })->where('status',1)->get();
+
+            $factoriesAll = Factory::where(function($query) use($search_product){
+                $query->where('factory_name','like','%'.$search_product.'%')
+                ->orWhere('deals_in','like','%'.$search_product.'%')
+                ->orWhere('factory_email','like','%'.$search_product.'%')
+                ->orWhere('factory_address','like','%'.$search_product.'%')
+                ->orWhere('factory_mobile','like','%'.$search_product.'%');
+            })->where('status',1)->get();
+
     		$banners = Banner::where('status','1')->get();
 
             $breadcrumb = "<a href='/project1/public'>Home</a> / ".$search_product;
 
-            return view('products.listing')->with(compact('categories','productsAll','search_product','breadcrumb','banners'));
+            if(!empty($suppliersAll)){
+                $suppliers=true;
+            }else{
+                $suppliers=false;
+            }
+        // echo "<pre>"; print_r($productsAll); die;
+
+            return view('products.listing')->with(compact('suppliers','factoriesAll','categories','productsAll','suppliersAll','search_product','breadcrumb','banners'));
         }
     }
 
