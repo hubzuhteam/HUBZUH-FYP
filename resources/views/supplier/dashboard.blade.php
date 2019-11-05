@@ -15,7 +15,9 @@ $storeCount = Supplier::storeCount();
 $orderCount = Order::orderCount();
 $pendingOrderCount = Order::pendingOrderCount();
 $factoryCount = Factory::factoryCount();
+
 $totalproductCount = Product::totalproductCountsupplier($supplierDetails->id);
+
 $earningOrderTotal = Order::earningOrderTotal();
 $reviewCount = Review::reviewCount();
 $reviewsCount = Review::reviewCountSupplier($supplierDetails->id);
@@ -56,7 +58,7 @@ $earningOrderTotal = OrdersProduct::earningOrderTotal($supplierDetails->id);
 						<div class="stats-icon"><i class="fas fa-th"></i></div>
 						<div class="stats-info">
 							<h4>YOUR TOTAL PRODUCTS</h4>
-							<p>{{ $totalproductCount }}</p>
+                            <p>{{ $totalproductCount }}</p>
 						</div>
 						<div class="stats-link">
 							<a href="{{ url('/supplier/view-products') }}">View Detail <i class="fa fa-arrow-alt-circle-right"></i></a>

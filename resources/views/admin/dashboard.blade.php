@@ -13,7 +13,9 @@ $storeCount = Supplier::storeCount();
 $orderCount = Order::orderCount();
 $pendingOrderCount = Order::pendingOrderCount();
 $factoryCount = Factory::factoryCount();
+
 $totalproductCount = Product::totalproductCount();
+
 $earningOrderTotal = Order::earningOrderTotal();
 $reviewCount = Review::reviewCount();
 ?>

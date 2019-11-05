@@ -67,7 +67,7 @@ class StoreController extends Controller
         // $store_name_color="black";
 
         $branches = Branch::where(['supplier_id'=>$supplier->id])->get();
-        //  echo "<pre>"; print_r($branches); die;
+        //   echo "<pre>"; print_r($banners); die;
 
 
         $theme_id=$supplier->theme_id;

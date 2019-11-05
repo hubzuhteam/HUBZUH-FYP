@@ -28,7 +28,10 @@
 		    					<td class="description"></td>
 		    					<td class="price">Price</td>
 		    					<td class="quantity">Quantity</td>
-		    					<td class="total">Total</td>
+                                <td class="total">Total</td>
+                                <td class="" >
+                                    <a style="color: white;" class="cart_quantity_delete" href="{{url('/cart/delete-all-product/'.$userDetails->id)}}">Clear All    <i class="fa fa-times"></i></a>
+                                </td>
 		    					<td></td>
 		    				</tr>
 		    			</thead>

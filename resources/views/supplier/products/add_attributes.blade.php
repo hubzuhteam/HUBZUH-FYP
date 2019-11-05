@@ -39,7 +39,7 @@
                         <div class="row">
                             <!-- begin col-8 -->
                             {{-- begin personal information --}}
-                            <div class="col-md-9 offset-md-2">
+                            <div class="col-md-11 offset-md-2">
                                 <legend class="no-border f-w-700 p-b-0 m-t-0 m-b-20 f-s-16 text-inverse">Add Attributes</legend>
                                 <div class="form-group row m-b-10">
                                     <label class="col-md-3 text-md-right col-form-label">Product Name</label>

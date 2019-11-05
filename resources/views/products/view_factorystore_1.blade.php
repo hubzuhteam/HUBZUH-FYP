@@ -5,34 +5,45 @@
 <div style="background-size: 100% 100%; background-color: {{ $background_color }}; background-image: url('../images/backend_images/backgrounds/large/{{$background_img}}'); background-repeat: no-repeat;">
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 	<div class="container"  >
-		<div class="fb-profile" style="margin-bottom: 40px;margin-top: 0px;" >
-			<div style="margin: 0px" id="slider-carousel" class="carousel slide" data-ride="carousel" >
-				<ol class="carousel-indicators">
-					@foreach($banners as $key => $banner)
-						<li data-target="#slider-carousel" data-slide-to="0" @if($key==0) class="active" @endif></li>
-					@endforeach
-				</ol>
+            @if ($banners->isEmpty())
+            <div class="fb-profile" style="margin-bottom: 40px;margin-top: 10%;" >
+                        <img align="left" style="border-radius: 0%;" onerror="imgError(this);"  class="fb-image-profile thumbnail" src="{{ asset('images/supplierend_images/store_images/small/'.$factory->factory_image)}} " alt="Profile image example"/>
+                    <div class="fb-profile-text">
+                        <h1 style="color: {{ $factorystore_name_color }}">{{$factory->factory_name}}</h1>
+                        <a href="#" class="my_Button">Follow +</a>
+                    </div>
+                </div>
+            @else
+            <div class="fb-profile" style="margin-bottom: 40px;margin-top: 0px;" >
+                    <div style="margin: 0px" id="slider-carousel" class="carousel slide" data-ride="carousel" >
+                        <ol class="carousel-indicators">
+                            @foreach($banners as $key => $banner)
+                                <li data-target="#slider-carousel" data-slide-to="0" @if($key==0) class="active" @endif></li>
+                            @endforeach
+                        </ol>
 
-				<div class="carousel-inner" >
-					@foreach($banners as $key => $banner)
-						<div class="item @if($key==0) active @endif">
-							<a href="{{ $banner->link }}" title="Banner 1"><img onerror="imgErrorBanner(this);"  src="{{ asset('images/frontend_images/banners/'.$banner->image )}}" alt="Image Banner"></a>
-						</div>
-					@endforeach
-				</div>
-				<a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
-					<i class="fa fa-angle-left"></i>
-				</a>
-				<a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
-					<i class="fa fa-angle-right"></i>
-				</a>
-			</div>
-				<img align="left" style="border-radius: 0%;" onerror="imgError(this);"  class="fb-image-profile thumbnail" src="{{ asset('images/supplierend_images/store_images/small/'.$factory->factory_image)}} " alt="Profile image example"/>
-			<div class="fb-profile-text">
-				<h1 style="color: {{ $factorystore_name_color }}">{{$factory->factory_name}}</h1>
-				<a href="#" class="my_Button">Follow +</a>
-			</div>
-		</div>
+                        <div class="carousel-inner" >
+                            @foreach($banners as $key => $banner)
+                                <div class="item @if($key==0) active @endif">
+                                    <a href="{{ $banner->link }}" title="Banner 1"><img onerror="imgErrorBanner(this);"  src="{{ asset('images/frontend_images/banners/'.$banner->image )}}" alt="Image Banner"></a>
+                                </div>
+                            @endforeach
+                        </div>
+                        <a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
+                            <i class="fa fa-angle-left"></i>
+                        </a>
+                        <a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    </div>
+                        <img align="left" style="border-radius: 0%;" onerror="imgError(this);"  class="fb-image-profile thumbnail" src="{{ asset('images/supplierend_images/store_images/small/'.$factory->factory_image)}} " alt="Profile image example"/>
+                    <div class="fb-profile-text">
+                        <h1 style="color: {{ $factorystore_name_color }}">{{$factory->factory_name}}</h1>
+                        <a href="#" class="my_Button">Follow +</a>
+                    </div>
+                </div>
+            @endif
+
 
 	</div> <!-- /container -->
 

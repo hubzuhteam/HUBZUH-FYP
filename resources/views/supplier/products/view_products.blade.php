@@ -57,7 +57,6 @@
                                     <th>Product Name</th>
                                     <th>Product Code</th>
                                     <th>Product Description</th>
-                                    <th>Product Color</th>
                                     <th>Price</th>
                                     <th>Image</th>
                                     {{--  <th>Feature Item</th>  --}}
@@ -73,7 +72,6 @@
                             <td>{{ $product->product_name }}</td>
                             <td>{{ $product->product_code }}</td>
                             <td>{{ $product->description }}</td>
-                            <td>{{ $product->product_color }}</td>
                             <td>{{ $product->price }}</td>
                             <td>
                               @if(!empty($product->image))
@@ -87,8 +85,6 @@
                               class="btn btn-primary btn-mini" title="Edit Product">Edit</a>
                               <a href="{{ url('/supplier/add-attributes/'.$product->id) }}"
                               class="btn btn-success btn-mini" title="Add Attributes">Add Attributes</a>
-                              <a href="{{ url('/supplier/add-colour/'.$product->id) }}"
-                                class="btn btn-success btn-mini" title="Add Colours">Add Colour</a>
                               <a href="{{ url('/supplier/add-images/'.$product->id) }}"
                                   class="btn btn-primary btn-mini" title="Add Images">Add Images</a>
                               <a id="delProduct"
@@ -105,7 +101,6 @@
                                   <p>Product ID: {{ $product->id }}</p>
                                   <p>Category ID: {{ $product->category_id }}</p>
                                   <p>Product Code: {{ $product->product_code }}</p>
-                                  <p>Product Color: {{ $product->product_color }}</p>
                                   <p>Price: {{ $product->price }}</p>
                                   <p>Fabric: </p>
                                   <p>Material: </p>

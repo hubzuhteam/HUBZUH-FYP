@@ -52,7 +52,7 @@
                                 <div class="form-group row m-b-10">
                                     <label class="col-md-3 text-md-right col-form-label">Product Name</label>
                                     <div class="col-md-6">
-                                        <input type="text" id="product_name" name="product_name" placeholder="Product Name"  class="form-control" />
+                                        <input type="text" id="product_name" name="product_name" placeholder="Product Name"  class="form-control" required/>
                                     </div>
                                 </div>
                                 <div class="form-group row m-b-10">

@@ -474,6 +474,10 @@ Route::group(['middleware'=>['frontlogin']],function(){
 
     // Delete Product from Cart Route
     Route::get('/cart/delete-product/{id}','ProductsController@deleteCartProduct');
+
+    // Delete all Product from Cart Route
+    Route::get('/cart/delete-all-product/{id}','ProductsController@deleteCartAllProduct');
+
     // Delete Product from Cart Route
     Route::get('/wishlist/delete-product/{id}','ProductsController@deleteWishListProduct');
 

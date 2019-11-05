@@ -5,7 +5,7 @@
 <div style="background-size: 100% 100%; background-color: {{ $background_color }}; background-image: url('../images/backend_images/backgrounds/large/{{$background_img}}'); background-repeat: no-repeat;">
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 	<div class="container"  >
-        @if (empty($anners))
+        @if ($banners->isEmpty())
         <div class="fb-profile" style="margin-bottom: 40px;margin-top: 10%;" >
                 {{--  <div style="margin: 0px" id="slider-carousel" class="carousel slide" data-ride="carousel" >
                     <ol class="carousel-indicators">

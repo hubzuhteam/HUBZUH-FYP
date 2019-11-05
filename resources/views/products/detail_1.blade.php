@@ -7,11 +7,18 @@
         <div class="container" style="background-color: ">
             <div class="row">
                     @if(Session::has('flash_message_error'))
-                    <div class="alert alert-error alert-block" style="background-color: #f2dfd0">
-                        <button type="button" class="close" data-dismiss="alert">×</button>
-                            <strong>{!! session('flash_message_error') !!}</strong>
-                    </div>
-                @endif
+                        <div class="alert alert-block alert-danger">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                                <strong>{!! session('flash_message_error') !!}</strong>
+                        </div>
+                    @endif
+                    @if(Session::has('flash_message_success'))
+                    <div class="alert alert-success alert-block">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                               <strong>{!! session('flash_message_success') !!}</strong>
+                      </div>
+                    @endif
+
                 <div class="col-sm-3" >
                     @include('layouts.frontLayout.front_sidebar')
                 </div>
@@ -67,7 +74,7 @@
                                 <br>
                                 <br>
                                 <p style="color: black; font-size: 17px;">Code: {{ $productDetails->product_code}}</p>
-                                <p style="color: black; font-size: 17px;">Color: {{ $productDetails->product_color}}</p>
+                                <p style="color: black; font-size: 17px;">Main Color: {{ $productDetails->product_color}}</p>
                                 <p style="color: black; font-size: 17px;">@if ($productDetails->pattern=="")@else Pattern: {{ $productDetails->pattern}} @endif</p>
                                 <p style="color: black; font-size: 17px;">@if ($productDetails->sleeve=="")@else Sleeve: {{ $productDetails->sleeve}} @endif</p>
                                 <br>

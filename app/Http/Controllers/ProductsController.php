@@ -1873,7 +1873,7 @@ class ProductsController extends Controller
                 }
             }
         }
-        $faqs = Faq::where('product_id',$id)->get();
+        $faqs = Faq::where('product_id',$id)->orderBy('created_at','DESC')->get();
         // echo "<pre>"; print_r($faqs); die;
 
         return view('products.detail_'.$theme_id)->with(compact('productDetails','relatedProducts','categories','supplierDetails'
@@ -1935,7 +1935,7 @@ class ProductsController extends Controller
                 'price' => $data['price'],'size' => $sizeArr[1],'quantity' => $data['quantity'],
                 'user_email' => $data['user_email'],'session_id' => $session_id]);
          }
-        return redirect('cart')->with('flash_message_success','Product has been added in Cart!');
+        return redirect()->back()->with('flash_message_success','Product has been added in Cart!');
 
     }
     public function addtowishlist(Request $request){
@@ -1952,7 +1952,7 @@ class ProductsController extends Controller
                 'price' => $data['price'],
                 'user_email' => $data['user_email']]);
 
-        return redirect('wishlist')->with('flash_message_success','Product has been added in Wish List!');
+        return redirect()->back()->with('flash_message_success','Product has been added in Wish List!');
 
     }
     public function cart(){
@@ -1963,6 +1963,7 @@ class ProductsController extends Controller
         if (Auth::check()) {
             $user_email=Auth::user()->email;
             $userCart = DB::table('cart')->where(['user_email' => $user_email])->get();
+            $userDetails = User::where('email',$user_email)->first();
         }else{
             $session_id = Session::get('session_id');
             $userCart = DB::table('cart')->where(['session_id' => $session_id])->get();
@@ -1978,7 +1979,7 @@ class ProductsController extends Controller
         $meta_title = "Shopping Cart - HUBZUH Website";
         $meta_description = "View Shopping Cart of HUBZUH Online Store Website";
         $meta_keywords = "shopping cart, HUBZUH Website , e commerce, online Store";
-       return view('products.cart')->with(compact('userCart','meta_title','meta_description','meta_keywords'));
+       return view('products.cart')->with(compact('userCart','meta_title','meta_description','meta_keywords','userDetails'));
         // return view('products.cart');
 
     }
@@ -2008,6 +2009,16 @@ class ProductsController extends Controller
         Session::forget('CouponCode');
         DB::table('cart')->where('id',$id)->delete();
         return redirect('cart')->with('flash_message_success','Product has been deleted in Cart!');
+    }
+    public function deleteCartAllProduct($id=null){
+        Session::forget('CouponAmount');
+        Session::forget('CouponCode');
+
+        $userDetails = User::where('id',$id)->first();
+
+        DB::table('cart')->where('user_email',$userDetails->email)->delete();
+
+        return redirect('cart')->with('flash_message_success','All Product have been deleted in Cart!');
     }
     public function deleteWishListProduct($id=null){
         DB::table('wishlist')->where('id',$id)->delete();
