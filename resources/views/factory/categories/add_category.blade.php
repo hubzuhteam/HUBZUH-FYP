@@ -44,7 +44,7 @@
                                 <div class="form-group row m-b-10">
                                     <label class="col-md-3 text-md-right col-form-label">Category Name</label>
                                     <div class="col-md-6">
-                                        <input type="text" name="category_name" id="category_name"  placeholder="Category Name" class="form-control" />
+                                        <input type="text" name="category_name" id="category_name"  placeholder="Category Name" class="form-control" required/>
                                     </div>
                                 </div>
                                 <!-- end form-group row -->
@@ -52,7 +52,7 @@
                                 <div class="form-group row m-b-10">
                                     <label class="col-md-3 text-md-right col-form-label">Category Lavel</label>
                                     <div class="col-md-6">
-                                            <select name="parent_id" class="form-control selectpicker" data-size="10" data-live-search="true" data-style="btn-info">
+                                            <select name="parent_id" class="form-control selectpicker" data-size="10" data-live-search="true" data-style="btn-info" required>
                                                     <option value="0">Main Category</option>
                                                     @foreach ($levels as $val)
                                                     <option value="{{$val->id}}">{{$val->name}}</option>
@@ -65,7 +65,7 @@
                                 <div class="form-group row m-b-10">
                                     <label class="col-md-3 text-md-right col-form-label">Discription</label>
                                     <div class="col-md-6">
-                                        <textarea cols="40" rows="6" id="description" name="description" placeholder="Description"  class="form-control" /></textarea>
+                                        <textarea cols="40" rows="6" id="description" name="description" placeholder="Description"  class="form-control" required/></textarea>
                                     </div>
                                 </div>
                                 <!-- end form-group row -->
@@ -73,13 +73,13 @@
                                 <div class="form-group row m-b-10">
                                     <label class="col-md-3 text-md-right col-form-label">URL</label>
                                     <div class="col-md-6">
-                                        <input type="text" id="rl" name="url" placeholder="Same name as category (Space not allowed)"  class="form-control" />
+                                        <input type="text" id="rl" name="url" placeholder="Same name as category (Space not allowed)"  class="form-control" required/>
                                     </div>
                                 </div>
                                 <div class="form-group row m-b-10">
                                         <label class="col-md-3 text-md-right col-form-label">Meta Title</label>
                                         <div class="col-md-6">
-                                            <input type="text" name="meta_title" id="meta_title" placeholder="Meta Title (SEO)"  class="form-control" />
+                                            <input type="text" name="meta_title" id="meta_title" placeholder="Meta Title (SEO)"  class="form-control" required/>
                                 </div>
                                 </div>
                                 <!-- end form-group row -->
