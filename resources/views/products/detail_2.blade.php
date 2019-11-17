@@ -105,6 +105,7 @@
                                      <p style="color: tomato; font-size: 17px;"><b>Availability:</b> <span id="Availability">
                                             Out of Stock </p>
                                      @endif
+                                <p style="color: black; font-size: 17px;"><b>Orders:</b> {{ $TotalOrders }}</p></span>
                                 <p style="color: black; font-size: 17px;"><b>Condition:</b> New</p></span>
                                 <p style="color: black; font-size: 17px;"><b>{{ $outlet_title }} </b>{{ $outlet_name }}</p>
                                 <a href=""><img src="images/product-details/share.png" class="share img-responsive" alt="" /></a>

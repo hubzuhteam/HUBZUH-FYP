@@ -68,6 +68,9 @@ Route::group(['middleware'=>['factorylogin']],function(){
     //Faa=ctory view specific chat
     Route::match(['GET','POST'],'factory/view_messages/{id}','ChatController@FactoryviewChatSpecific');
 
+    //Factory view specific chat Ajax
+    Route::match(['GET','POST'],'factory/view_messages_ajax/{id}','ChatController@FactoryviewChatSpecificAjax');
+
     // Factory View Chatting
     Route::get('/factory/view-chats','ChatController@FactoryChats');
 
@@ -246,6 +249,9 @@ Route::group(['middleware'=>['supplierlogin']],function(){
 
     //Supplier view specific chat
     Route::match(['GET','POST'],'supplier/view_messages/{id}','ChatController@SupplierviewChatSpecific');
+
+        //Supplier view specific chat ajax
+        Route::match(['GET','POST'],'supplier/view_messages_ajax/{id}','ChatController@SupplierviewChatSpecificAjax');
 
     // Supplier View Chatting
     Route::get('/supplier/view-chats','ChatController@SupplierChats');
@@ -534,6 +540,9 @@ Route::group(['middleware' => ['adminlogin']], function () {
 
     //Admin view specific chat
     Route::match(['GET','POST'],'admin/view_messages/{id}','ChatController@AdminviewChatSpecific');
+
+    //Admin view specific chat AJax
+    Route::match(['GET','POST'],'admin/view_messages_ajax/{id}','ChatController@AdminviewChatSpecificAjax');
 
     //for factory edit
     Route::match(['get','post'],'/admin/edit-factories/{id}','FactoryController@editfactory');

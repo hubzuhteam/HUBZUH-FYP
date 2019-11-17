@@ -1,5 +1,3 @@
-@extends('layouts.adminLayout.admin_design')
-@section('content')
 
 <div id="chat_specific">
 
@@ -106,12 +104,3 @@
   </div>
 </div>
 </div>
-<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
-<script language="javascript" type="text/javascript">
-
-    setInterval(function(){
-        $('#chat_specific').load('{{url('admin/view_messages_ajax/'.$user_id)}}');
-   },10000);  //10 seconds
-
-</script>
-@endsection

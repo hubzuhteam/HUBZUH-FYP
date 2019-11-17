@@ -43,6 +43,21 @@ class ChatController extends Controller
         $receiver="user";
         return view('factory.chat_specific')->with(compact('chatsWithUser','users','chats','factoryDetails','receiver_id','receiver'));
     }
+    public function FactoryviewChatSpecificAjax($id=null){
+        // echo $id; die;
+        $factoryDetails = Factory::where(['email'=>Session::get('factorySession')])->first();
+
+        $chatsWithUser = Chat::where(['factory_id'=>$factoryDetails->id])->where('user_id','!=','')->groupBy('user_id')->orderBy('created_at')->get();
+        // echo "<pre>"; print_r($chats); die;
+        $users = User::get();
+
+        $chats = Chat::where(['factory_id'=>$factoryDetails->id])->orderBy('created_at')->get();
+        //  echo "<pre>"; print_r($chats); die;
+
+        $receiver_id = $id;
+        $receiver="user";
+        return view('factory.chat_specific')->with(compact('chatsWithUser','users','chats','factoryDetails','receiver_id','receiver'));
+    }
     public function FactoryChats(){
         $factoryDetails = Factory::where(['email'=>Session::get('factorySession')])->first();
 
@@ -117,6 +132,21 @@ class ChatController extends Controller
         $receiver="user";
         return view('supplier.chat_specific')->with(compact('chatsWithUser','users','chats','supplierDetails','receiver_id','receiver'));
     }
+    public function SupplierviewChatSpecificAjax($id=null){
+        // echo $id; die;
+        $supplierDetails = Supplier::where(['email'=>Session::get('supplierSession')])->first();
+
+        $chatsWithUser = Chat::where(['supplier_id'=>$supplierDetails->id])->where('user_id','!=','')->groupBy('user_id')->orderBy('created_at')->get();
+        // echo "<pre>"; print_r($chats); die;
+        $users = User::get();
+
+        $chats = Chat::where(['supplier_id'=>$supplierDetails->id])->orderBy('created_at')->get();
+        //  echo "<pre>"; print_r($chats); die;
+
+        $receiver_id = $id;
+        $receiver="user";
+        return view('supplier.chat_specific_ajax')->with(compact('chatsWithUser','users','chats','supplierDetails','receiver_id','receiver'));
+    }
     public function UserSendMessageFactory(Request $request){
 
         $data = $request->all();
@@ -166,6 +196,21 @@ class ChatController extends Controller
         $receiver_id = $id;
         $receiver="user";
         return view('admin.chat_specific')->with(compact('chatsWithUser','users','chats','receiver','receiver_id'));
+    }
+    public function AdminviewChatSpecificAjax($id=null){
+        // echo $id; die;
+        $admin = Admin::where(['username'=>Session::get('adminSession')])->first();
+
+        $chatsWithUser = Chat::where(['admin_id'=>$admin->id])->where('user_id','!=','')->groupBy('user_id')->orderBy('created_at')->get();
+        // echo "<pre>"; print_r($chats); die;
+        $users = User::get();
+
+        $chats = Chat::where(['admin_id'=>$admin->id])->orderBy('created_at')->get();
+        //  echo "<pre>"; print_r($chats); die;
+
+        $receiver_id = $id;
+        $receiver="user";
+        return view('admin.chat_specific_ajax')->with(compact('chatsWithUser','users','chats','receiver','receiver_id'));
     }
     public function AdminChats(){
         $admin = Admin::where(['username'=>Session::get('adminSession')])->first();
@@ -229,6 +274,7 @@ class ChatController extends Controller
         return view('users.chat_specific')->with(compact('chatsWithAdmin','suppliers',
         'chatsWithSupplier','admins','chats','chatsWithFactory','factories','receiver_id','receiver'));
     }
+
     public function viewChatSpecificSupplier($id=null){
         // echo $id; die;
         $user = User::where(['email'=>Session::get('frontSession')])->first();

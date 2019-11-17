@@ -1876,10 +1876,13 @@ class ProductsController extends Controller
         $faqs = Faq::where('product_id',$id)->orderBy('created_at','DESC')->get();
         // echo "<pre>"; print_r($faqs); die;
 
+
+        $TotalOrders = OrdersProduct::where('product_id',$id)->count();
+
         return view('products.detail_'.$theme_id)->with(compact('productDetails','relatedProducts','categories','supplierDetails'
         ,'productAltImages','total_stock','meta_title','meta_description','meta_keywords','banners','breadcrumb'
         ,'background_img','main_color','secondary_color','store_name_color','outlet_name','outlet_title'
-        ,'outlet_id','store','factory','reviews','users','current_user','commented','commented2','userfaq','faqs'));
+        ,'outlet_id','store','factory','reviews','users','current_user','commented','commented2','userfaq','faqs','TotalOrders'));
     }
 
     public function getProductPrice(Request $request){

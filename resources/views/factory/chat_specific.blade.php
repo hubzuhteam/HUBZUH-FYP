@@ -1,5 +1,8 @@
 @extends('layouts.factoryLayout.factory_design')
 @section('content')
+
+<div id="chat_specific">
+
 <link href="{{ asset('css/frontend_css/chat.css') }}" rel="stylesheet">
 
 {{--  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">  --}}
@@ -64,7 +67,7 @@
                     @endforeach
               </div>
             </div>
-            <div class="mesgs">
+            <div class="mesgs" style="background-color: lightsteelblue;">
                     <div class="msg_history">
                 @foreach ($chats as $chat)
                 @php
@@ -107,4 +110,14 @@
   </div>
 </div>
 </main>
+
+</div>
+<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+<script language="javascript" type="text/javascript">
+
+    setInterval(function(){
+        $('#chat_specific').load('{{url('factory/view_messages_ajax/'.$user_id)}}');
+   },10000);  //10 seconds
+
+</script>
 @endsection

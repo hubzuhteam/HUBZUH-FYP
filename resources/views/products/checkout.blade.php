@@ -48,7 +48,7 @@
 							</div>
 							<div class="form-check">
 							    <input type="checkbox" class="form-check-input" id="copyAddress">
-							    <label class="form-check-label" for="copyAddress">Shipping Address same as Billing Address</label>
+							    <label class="form-check-label" style="margin-top: 20px" for="copyAddress">Shipping Address same as Billing Address</label>
 							</div>
 					</div><!--/login form-->
 				</div>
@@ -84,7 +84,7 @@
 							<div class="form-group">
 								<input name="shipping_mobile" id="shipping_mobile" @if(!empty($shippingDetails->mobile)) value="{{ $shippingDetails->mobile }}" @endif type="text" placeholder="Shipping Mobile" class="form-control" />
 							</div>
-							<button type="submit" class="btn btn-default">Check Out</button>
+							<button type="submit" class="btn btn-default btn-primary">Check Out</button>
 					</div><!--/sign up form-->
 				</div>
 			</div>
