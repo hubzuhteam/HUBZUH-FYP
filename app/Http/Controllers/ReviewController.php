@@ -66,6 +66,8 @@ class ReviewController extends Controller
            $product->user_id = $user->id;
            $product->heading = $data['heading'];
            $product->review = $data['review'];
+           $product->quality = $data['quality'];
+           $product->delivery = $data['delivery'];
            $product->save();
 
 

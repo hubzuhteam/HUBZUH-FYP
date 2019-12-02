@@ -190,6 +190,12 @@
                                             <br>
                                                 <p style="color: black; font-size: 20px; display: inline">Review:</p>
                                                 <p style="color: {{ $main_color }}; font-size: 20px; display: inline"> <strong>{{ $review->review }}</strong></p>
+                                            <br><br>
+                                            <p style="color: black; font-size: 20px; display: inline">Quality:</p>
+                                                <p style="color: {{ $main_color }}; font-size: 20px; display: inline"> <strong>{{ $review->quality }}</strong></p>
+                                            <br>
+                                            <p style="color: black; font-size: 20px; display: inline">Delivery Time:</p>
+                                                <p style="color: {{ $main_color }}; font-size: 20px; display: inline"> <strong>{{ $review->delivery }}</strong></p>
                                             <br>
                                             <br>
 
@@ -209,6 +215,22 @@
                                             <input style="width: 100%; margin-left: 0px; color: black" type="text" id="heading" name="heading" placeholder="Title of The Review" required/>
                                         </span>
                                         <textarea name="review" id="review" style="color: black" placeholder="Description for Review" required></textarea>
+                                        <p style="color: black; font-size: 17px; margin-top: 1%">
+                                            <select id="quality" name="quality" style="width:262px;" required>
+                                                <option value="">Quality of the Work</option>
+                                                <option value="Best">Best</option>
+                                                <option value="Average">Average</option>
+                                                <option value="Good">Good</option>
+                                                <option value="Not Satisfied">Not Satisfied</option>
+                                            </select>
+                                        </p>
+                                        <p style="color: black; font-size: 17px; margin-top: 1%">
+                                            <select id="delivery" name="delivery" style="width:262px;" required>
+                                                <option value="Delivery Time">Delivery Time</option>
+                                                <option value="On Time">On Time</option>
+                                                <option value="Late">Late</option>
+                                            </select>
+                                        </p>
                                         <button type="submit" class="btn btn-default pull-right">
                                             Submit
                                         </button>
