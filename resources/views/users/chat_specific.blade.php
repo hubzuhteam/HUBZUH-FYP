@@ -1,5 +1,7 @@
 @extends('layouts.frontLayout.front_design')
 @section('content')
+<div id="chat_specific">
+
 <link href="{{ asset('css/frontend_css/chat.css') }}" rel="stylesheet">
 
 {{--  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">  --}}
@@ -34,7 +36,15 @@
           </div>
           <div class="inbox_chat">
                 @foreach ($chatsWithAdmin as $chat)
-                <div class="chat_list active_chat">
+                @php
+                    $color=""
+                @endphp
+                @if ($chat->admin_id==$receiver_id)
+                @php
+                    $color="silver"
+                @endphp
+                @endif
+                <div class="chat_list active_chat" style="background-color: {{ $color }}">
                   <div class="chat_people">
                     <div class="chat_img"> <img src="{{ asset('images/backend_images/admin.png')}}" alt="Profile Image"> </div>
                     <div class="chat_ib">
@@ -52,15 +62,25 @@
                   </div>
                 </div>
                 @endforeach
+
+                {{-- ////////////////////////SUPPLIER --}}
                 @foreach ($chatsWithSupplier as $chat)
-                <div class="chat_list active_chat">
+                @php
+                    $color=""
+                @endphp
+                @if ($chat->supplier_id==$receiver_id)
+                @php
+                    $color="silver"
+                @endphp
+                @endif
+                <div class="chat_list active_chat" style="background-color: {{ $color }}">
                         <div class="chat_people">
                                 @foreach ($suppliers as $supplier)
                                 @if ($supplier->id == $chat->supplier_id)
                                     <div class="chat_img" > <img style="border-radius: 45%;" src="{{ asset('images/supplierend_images/store_images/small/'.$supplier->store_image)}}" alt="Profile Image"> </div>
                                 @endif
                                 @endforeach
-                            <div class="chat_ib">
+                        <div class="chat_ib">
                         @foreach ($suppliers as $supplier)
                         @if ($supplier->id == $chat->supplier_id)
                         @php
@@ -74,9 +94,20 @@
                     </div>
                   </div>
                 </div>
+                @php
+                    $color=""
+                @endphp
                 @endforeach
                 @foreach ($chatsWithFactory as $chat)
-                <div class="chat_list active_chat">
+                @php
+                    $color=""
+                @endphp
+                @if ($chat->factory_id==$receiver_id)
+                @php
+                    $color="silver"
+                @endphp
+                @endif
+                <div class="chat_list active_chat" style="background-color: {{ $color }}">
                         <div class="chat_people">
                                 @foreach ($factories as $factory)
                                 @if ($factory->id == $chat->factory_id)
@@ -147,5 +178,14 @@
     </div>
 </section><!--/form-->
 
+</div>
 
+<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+<script language="javascript" type="text/javascript">
+
+    setInterval(function(){
+        $('#chat_specific').load('{{url('/view_messages_'.$receiver.'_ajax/'.$receiver_id)}}');
+   },10000);  //10 seconds
+
+</script>
 @endsection

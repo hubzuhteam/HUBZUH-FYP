@@ -446,11 +446,20 @@ Route::group(['middleware'=>['frontlogin']],function(){
         //user view specific chat of Factory
         Route::match(['GET','POST'],'/view_messages_factory/{id}','ChatController@viewChatSpecificFactory');
 
+        //user view specific chat of Factory Ajax
+        Route::match(['GET','POST'],'/view_messages_factory_ajax/{id}','ChatController@viewChatSpecificFactoryAjax');
+
         //user view specific chat of supplier
         Route::match(['GET','POST'],'/view_messages_supplier/{id}','ChatController@viewChatSpecificSupplier');
 
+        //User view specific chat of Supplier ajax
+        Route::match(['GET','POST'],'/view_messages_supplier_ajax/{id}','ChatController@viewChatSpecificSupplierAjax');
+
         //user view specific chat of admin
         Route::match(['GET','POST'],'/view_messages_admin/{id}','ChatController@viewChatSpecificAdmin');
+
+        //user view specific chat of admin ajax
+        Route::match(['GET','POST'],'/view_messages_admin_ajax/{id}','ChatController@viewChatSpecificAdminAjax');
 
         //User send message to Factory
         Route::match(['get', 'post'], '/customer/send-message/factory','ChatController@UserSendMessageFactory');

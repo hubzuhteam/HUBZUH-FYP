@@ -113,11 +113,12 @@
                     </form>
                             <!--/product-information-->
                     {{-- wishlist --}}
+                    <div class="product-information" style="border-color: transparent">
+
                     <form name="addtoWishListForm" id="addtoWishListForm" action="{{ url('add-wishlist') }}" method="post">{{ csrf_field() }}
                                 <input type="hidden" name="product_id" value="{{ $productDetails->id }}">
                                 <input type="hidden" name="product_name" value="{{ $productDetails->product_name }}">
                                 <input type="hidden" name="price" id="price" value="{{ $productDetails->price }}">
-                    <div class="product-information" style="border-color: transparent">
                             @if ($store==true)
                             <button type="submit" class="btn btn-default" style="background-color: cornflowerblue;color:white; border-radius: 20%;
                         </button>" id="view_store">
@@ -137,8 +138,22 @@
                             <i class="fa fa-heart"></i>
                             Add to Wish List
                         </button>
-                    </div>
                     </form>
+                    @if ($store==true)
+                    {{-- chatting with supplier --}}
+                    <button type="submit" class="btn btn-default" style="background-color: cornflowerblue;color:white; margin-top: 5%; border-radius: 20%;" id="view_store">
+                        <i class="fa fa-eye"></i>
+                        <a href="{{url('/view_messages_supplier/'.$outlet_id)}}" style="background-color: cornflowerblue; color:white">Chat with {{ $outlet_name }}</a>
+                    </button>
+                    @else
+                    {{-- chatting with factory --}}
+                    <button type="submit" class="btn btn-default" style="background-color: cornflowerblue;color:white; margin-top: 5%; border-radius: 20%;" id="view_store">
+                        <i class="fa fa-eye"></i>
+                        <a href="{{url('/view_messages_factory/'.$outlet_id)}}" style="background-color: cornflowerblue; color:white">Chat with {{ $outlet_name }}</a>
+                    </button>
+                    @endif
+                </div>
+
                     {{-- wishlist end --}}
                     </div>
                     </div>
@@ -181,7 +196,6 @@
                                                         <span class="star-five"  style="display: inline-block; margin-left: -70px; margin-right: -95px ">
                                                         </span>
                                                 @endfor
-
                                                 </div>
 
                                             </ul>
@@ -284,7 +298,7 @@
                                     <span style="display: block;">
                                         <input style="width: 100%; margin-left: 0px; color: black;background: #F0F0E9;
                                         border: 0 none; color: black; font-family: 'Roboto', sans-serif;font-size: 14px;
-                                        outline: medium none;padding: 8px;width: 100%;" type="text" id="question" name="question" placeholder="Your Question?" required/>
+                                        outline: medium none; padding: 8px;width: 100%;" type="text" id="question" name="question" placeholder="Your Question?" required/>
                                     </span>
                                     <button type="submit" style="margin-top: 40px;background: steelblue;
                                     border: 0 none; border-radius: 0;

@@ -1,5 +1,3 @@
-@extends('layouts.factoryLayout.factory_design')
-@section('content')
 
 <div id="chat_specific">
 
@@ -63,7 +61,6 @@
                             @endif
                             @endforeach
                         <div class="chat_ib">
-
                             @foreach ($users as $user)
                             @if ($user->id == $chat->user_id)
                             @php
@@ -125,12 +122,3 @@
 </main>
 
 </div>
-<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
-<script language="javascript" type="text/javascript">
-
-    setInterval(function(){
-        $('#chat_specific').load('{{url('factory/view_messages_ajax/'.$user_id)}}');
-   },10000);  //10 seconds
-
-</script>
-@endsection

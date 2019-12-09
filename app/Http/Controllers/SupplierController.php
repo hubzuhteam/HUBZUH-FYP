@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Hash;
 use DB;
 use Mail;
 use App\Branch;
+use App\Chat;
+
 class SupplierController extends Controller
 {
 
@@ -285,6 +287,8 @@ class SupplierController extends Controller
                     $message->to($email)->subject('Confirm your HUBZUH Store Account');
                 });
 
+
+
                 return redirect()->back()->with('flash_message_success','Your Store Account has been registered now confirm your Account!');
 
                 // if (Auth::attempt(['email'=>$data['email'],'password'=>$data['password']])) {
@@ -300,6 +304,25 @@ class SupplierController extends Controller
         if($supplierCount > 0){
             $supplierDetails = Supplier::where('email',$email)->first();
             if($supplierDetails->status == 1){
+
+            $allUsers = User::get();
+
+            // $usercount = User::count();
+
+
+            foreach ($allUsers as $key => $value) {
+                $chat = new Chat;
+                $chat->supplier_id = $supplierDetails->id;
+                $chat->user_id = $value->id;
+                $chat->message = "Hey Sup! How can I Help You?";
+                $chat->sender = 'supplier';
+                $chat->save();
+
+            }
+            // for ($i=0; $i < $usercount; $i++) {
+
+            // }
+
                 return redirect('supplier')->with('flash_message_success','Your Store account is already activated. You can login now.');
             }else{
                 Supplier::where('email',$email)->update(['status'=>1]);
@@ -309,6 +332,26 @@ class SupplierController extends Controller
                 Mail::send('emails.welcome',$messageData,function($message) use($email){
                     $message->to($email)->subject('Welcome to HUBZUH Store Site');
                 });
+
+
+
+            $allUsers = User::get();
+
+            // $usercount = User::count();
+
+
+            foreach ($allUsers as $key => $value) {
+                $chat = new Chat;
+                $chat->supplier_id = $supplierDetails->id;
+                $chat->user_id = $value->id;
+                $chat->message = "Hey Sup! How can I Help You?";
+                $chat->sender = 'supplier';
+                $chat->save();
+
+            }
+            // for ($i=0; $i < $usercount; $i++) {
+
+            // }
 
                 return redirect('supplier')->with('flash_message_success','Your Store account is activated. You can login now.');
             }

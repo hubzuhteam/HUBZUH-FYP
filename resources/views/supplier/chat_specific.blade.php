@@ -45,9 +45,21 @@
               </div>
               <div class="inbox_chat">
                     @foreach ($chatsWithUser as $chat)
-                    <div class="chat_list active_chat">
+                    @php
+                    $color=""
+                    @endphp
+                    @if ($chat->user_id==$receiver_id)
+                    @php
+                        $color="silver"
+                    @endphp
+                    @endif
+                    <div class="chat_list active_chat" style="background-color: {{ $color }}">
                       <div class="chat_people">
-                        <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                            @foreach ($users as $user)
+                            @if ($user->id == $chat->user_id)
+                            <div class="chat_img"> <img style="border-radius: 45%;" src="{{ asset('images/frontend_images/users/small/'.$user->user_image)}}" alt="Profile Image"> </div>
+                            @endif
+                            @endforeach
                         <div class="chat_ib">
                             @foreach ($users as $user)
                             @if ($user->id == $chat->user_id)
@@ -69,7 +81,7 @@
                     <div class="msg_history">
                 @foreach ($chats as $chat)
                 @php
-                                $date=date('h:i a m/d/y', strtotime($chat->created_at));
+                            $date=date('h:i a m/d/y', strtotime($chat->created_at));
                             @endphp
                 @if ($chat->sender=="supplier")
                     <div class="outgoing_msg">
@@ -86,7 +98,6 @@
                         </div>
                       </div>
                 @endif
-
                 @endforeach
                     </div>
                       <form action="{{ url('/supplier/send-message/'.$receiver) }}" method="post">{{csrf_field()}}

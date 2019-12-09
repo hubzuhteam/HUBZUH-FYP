@@ -56,7 +56,7 @@ class ChatController extends Controller
 
         $receiver_id = $id;
         $receiver="user";
-        return view('factory.chat_specific')->with(compact('chatsWithUser','users','chats','factoryDetails','receiver_id','receiver'));
+        return view('factory.chat_specific_ajax')->with(compact('chatsWithUser','users','chats','factoryDetails','receiver_id','receiver'));
     }
     public function FactoryChats(){
         $factoryDetails = Factory::where(['email'=>Session::get('factorySession')])->first();
@@ -117,6 +117,7 @@ class ChatController extends Controller
 
            return redirect()->back()->with('flash_message_success','Your Message has been sent');
     }
+    //////////////////////////////////////////////////////////
     public function SupplierviewChatSpecific($id=null){
         // echo $id; die;
         $supplierDetails = Supplier::where(['email'=>Session::get('supplierSession')])->first();
@@ -125,9 +126,13 @@ class ChatController extends Controller
         // echo "<pre>"; print_r($chats); die;
         $users = User::get();
 
-        $chats = Chat::where(['supplier_id'=>$supplierDetails->id])->orderBy('created_at')->get();
+        // $chats = Chat::where(['supplier_id'=>$supplierDetails->id])->orderBy('created_at')->get();
         //  echo "<pre>"; print_r($chats); die;
 
+
+        $chats = Chat::where(['user_id'=>$id])->where(['supplier_id'=>$supplierDetails->id])->orderBy('created_at')->get();
+
+        // echo $chats;die;
         $receiver_id = $id;
         $receiver="user";
         return view('supplier.chat_specific')->with(compact('chatsWithUser','users','chats','supplierDetails','receiver_id','receiver'));
@@ -275,6 +280,29 @@ class ChatController extends Controller
         'chatsWithSupplier','admins','chats','chatsWithFactory','factories','receiver_id','receiver'));
     }
 
+    public function viewChatSpecificAdminAjax($id=null){
+        // echo $id; die;
+        $user = User::where(['email'=>Session::get('frontSession')])->first();
+
+        $chatsWithAdmin = Chat::where(['user_id'=>$user->id])->where('admin_id','!=','')->groupBy('admin_id')->orderBy('created_at')->get();
+        $chatsWithSupplier = Chat::where(['user_id'=>$user->id])->where('supplier_id','!=','')->groupBy('supplier_id')->orderBy('created_at')->get();
+        $chatsWithFactory = Chat::where(['user_id'=>$user->id])->where('factory_id','!=','')->groupBy('factory_id')->orderBy('created_at')->get();
+
+        // echo "<pre>"; print_r($chats); die;
+        $admins = Admin::get();
+        $suppliers = Supplier::get();
+        $factories = Factory::get();
+
+
+        $chats = Chat::where(['user_id'=>$user->id])->where(['admin_id'=>$id])->orderBy('created_at')->get();
+        //  echo "<pre>"; print_r($chats); die;
+
+        $receiver_id = $id;
+        $receiver="admin";
+        return view('users.chat_specific')->with(compact('chatsWithAdmin','suppliers',
+        'chatsWithSupplier','admins','chats','chatsWithFactory','factories','receiver_id','receiver'));
+    }
+
     public function viewChatSpecificSupplier($id=null){
         // echo $id; die;
         $user = User::where(['email'=>Session::get('frontSession')])->first();
@@ -295,6 +323,28 @@ class ChatController extends Controller
         $receiver_id = $id;
         $receiver="supplier";
         return view('users.chat_specific')->with(compact('chatsWithAdmin','suppliers',
+        'chatsWithSupplier','admins','chats','chatsWithFactory','factories','receiver_id','receiver'));
+    }
+    public function viewChatSpecificSupplierAjax($id=null){
+        // echo $id; die;
+        $user = User::where(['email'=>Session::get('frontSession')])->first();
+
+        $chatsWithAdmin = Chat::where(['user_id'=>$user->id])->where('admin_id','!=','')->groupBy('admin_id')->orderBy('created_at')->get();
+        $chatsWithSupplier = Chat::where(['user_id'=>$user->id])->where('supplier_id','!=','')->groupBy('supplier_id')->orderBy('created_at')->get();
+        $chatsWithFactory = Chat::where(['user_id'=>$user->id])->where('factory_id','!=','')->groupBy('factory_id')->orderBy('created_at')->get();
+
+        // echo "<pre>"; print_r($chats); die;
+        $admins = Admin::get();
+        $suppliers = Supplier::get();
+        $factories = Factory::get();
+
+
+        $chats = Chat::where(['user_id'=>$user->id])->where(['supplier_id'=>$id])->orderBy('created_at')->get();
+        //  echo "<pre>"; print_r($chats); die;
+
+        $receiver_id = $id;
+        $receiver="supplier";
+        return view('users.chat_specific_ajax')->with(compact('chatsWithAdmin','suppliers',
         'chatsWithSupplier','admins','chats','chatsWithFactory','factories','receiver_id','receiver'));
     }
 
@@ -318,6 +368,28 @@ class ChatController extends Controller
         $receiver_id = $id;
         $receiver="factory";
         return view('users.chat_specific')->with(compact('chatsWithAdmin','suppliers',
+        'chatsWithSupplier','admins','chats','chatsWithFactory','factories','receiver_id','receiver'));
+    }
+    public function viewChatSpecificFactoryAjax($id=null){
+        // echo $id; die;
+        $user = User::where(['email'=>Session::get('frontSession')])->first();
+
+        $chatsWithAdmin = Chat::where(['user_id'=>$user->id])->where('admin_id','!=','')->groupBy('admin_id')->orderBy('created_at')->get();
+        $chatsWithSupplier = Chat::where(['user_id'=>$user->id])->where('supplier_id','!=','')->groupBy('supplier_id')->orderBy('created_at')->get();
+        $chatsWithFactory = Chat::where(['user_id'=>$user->id])->where('factory_id','!=','')->groupBy('factory_id')->orderBy('created_at')->get();
+
+        // echo "<pre>"; print_r($chats); die;
+        $admins = Admin::get();
+        $suppliers = Supplier::get();
+        $factories = Factory::get();
+
+
+        $chats = Chat::where(['user_id'=>$user->id])->where(['factory_id'=>$id])->orderBy('created_at')->get();
+        //  echo "<pre>"; print_r($chats); die;
+
+        $receiver_id = $id;
+        $receiver="factory";
+        return view('users.chat_specific_ajax')->with(compact('chatsWithAdmin','suppliers',
         'chatsWithSupplier','admins','chats','chatsWithFactory','factories','receiver_id','receiver'));
     }
 }

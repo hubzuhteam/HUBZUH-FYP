@@ -46,8 +46,16 @@
                     @foreach ($chatsWithUser as $chat)
                     <div class="chat_list active_chat">
                       <div class="chat_people">
-                        {{--  <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>  --}}
                         <div class="chat_ib">
+
+                              @foreach ($users as $user)
+                            @if ($user->id == $chat->user_id)
+                            <div class="chat_img" style="width: 20%"> <img style="border-radius: 45%;" src="{{ asset('images/frontend_images/users/small/'.$user->user_image)}}" alt="Profile Image"> </div>
+                            @endif
+                            @endforeach
+                            <br>
+                            <br>
+                            <br>
                             @foreach ($users as $user)
                             @if ($user->id == $chat->user_id)
                             @php
@@ -106,12 +114,12 @@
   </div>
 </div>
 </div>
-<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+{{--  <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 <script language="javascript" type="text/javascript">
 
     setInterval(function(){
         $('#chat_specific').load('{{url('admin/view_messages_ajax/'.$user_id)}}');
    },10000);  //10 seconds
 
-</script>
+</script>  --}}
 @endsection
