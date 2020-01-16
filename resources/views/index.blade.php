@@ -98,7 +98,7 @@
                                                         <input type="hidden" name="product_id" value="{{ $product->id }}">
                                                         <input type="hidden" name="product_name" value="{{ $product->product_name }}">
                                                         <input type="hidden" name="price" id="price" value="{{ $product->price }}">
-                                            <button  type="submit" class="btn btn-default" style="background-color: tomato;color:white" id="wishlistButton">
+                                                         <button  type="submit" class="btn btn-default" style="background-color: tomato;color:white" id="wishlistButton">
                                                     <i class="fa fa-heart"></i>
                                                     Add to Wish List
                                                 </button>

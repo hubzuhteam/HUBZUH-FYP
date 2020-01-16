@@ -53,31 +53,31 @@
                                 <div class="form-group row m-b-10">
                                     <label class="col-md-3 text-md-right col-form-label">Product Name</label>
                                     <div class="col-md-6">
-                                        <input type="text" id="product_name" value="{{ $productDetails->product_name }}" name="product_name" placeholder="Product Name"  class="form-control" />
+                                        <input type="text" id="product_name" value="{{ $productDetails->product_name }}" name="product_name" placeholder="Product Name"  class="form-control" required/>
                                     </div>
                                 </div>
                                 <div class="form-group row m-b-10">
                                     <label class="col-md-3 text-md-right col-form-label">Product Code</label>
                                     <div class="col-md-6">
-                                        <input type="text" id="product_code" name="product_code" value="{{ $productDetails->product_code }}" placeholder="Product Code"  class="form-control" />
+                                        <input type="text" id="product_code" name="product_code" value="{{ $productDetails->product_code }}" placeholder="Product Code"  class="form-control" required/>
                                     </div>
                                 </div>
                                 <div class="form-group row m-b-10">
                                     <label class="col-md-3 text-md-right col-form-label">Product Color</label>
                                     <div class="col-md-6">
-                                        <input type="text" id="product_color" name="product_color" value="{{ $productDetails->product_color }}" placeholder="Product Color"  class="form-control" />
+                                        <input type="text" id="product_color" name="product_color" value="{{ $productDetails->product_color }}" placeholder="Product Color"  class="form-control" required/>
                                     </div>
                                 </div>
                                 <div class="form-group row m-b-10">
                                     <label class="col-md-3 text-md-right col-form-label">Description</label>
                                     <div class="col-md-6">
-                                        <textarea cols="40" rows="6" id="description" name="description" placeholder="Description"  class="form-control" />{{ $productDetails->description }}</textarea>
+                                        <textarea cols="40" rows="6" id="description" name="description" placeholder="Description"  class="form-control" />{{ $productDetails->description }} required</textarea>
                                     </div>
                                 </div>
                                 <div class="form-group row m-b-10">
                                     <label class="col-md-3 text-md-right col-form-label">Material and Care</label>
                                     <div class="col-md-6">
-                                        <textarea cols="40" rows="6" id="care" name="care" placeholder="Material and Care" class="form-control" />{{ $productDetails->care }}</textarea>
+                                        <textarea cols="40" rows="6" id="care" name="care" placeholder="Material and Care" class="form-control" />{{ $productDetails->care }} required</textarea>
                                     </div>
                                 </div>
                                 <div class="form-group row m-b-10">
@@ -105,7 +105,7 @@
                                 <div class="form-group row m-b-10">
                                     <label class="col-md-3 text-md-right col-form-label">Price</label>
                                     <div class="col-md-6">
-                                        <input type="text" id="price" name="price" placeholder="Price" value="{{ $productDetails->price }}" class="form-control" />
+                                        <input type="text" id="price" name="price" placeholder="Price" value="{{ $productDetails->price }}" class="form-control" required/>
                                     </div>
                                 </div>
                                 <div class="form-group row m-b-10">

@@ -46,7 +46,7 @@
                                 <div class="form-group row m-b-10">
                                     <label class="col-md-3 text-md-right col-form-label">Category Name</label>
                                     <div class="col-md-6">
-                                        <input type="text" name="category_name" value="{{ $categoryDetails->name}}" id="category_name"  placeholder="Category Name"  class="form-control" />
+                                        <input type="text" name="category_name" value="{{ $categoryDetails->name}}" id="category_name"  placeholder="Category Name"  class="form-control" required/>
                                     </div>
                                 </div>
                                 <!-- end form-group row -->
@@ -57,7 +57,7 @@
                                             <select name="parent_id" class="form-control selectpicker" data-size="10" data-live-search="true" data-style="btn-info">
                                                     <option value="0">Main Category</option>
                                                     @foreach ($levels as $val)
-                                                    <option value="{{$val->id}}" @if($val->id==$categoryDetails->parent_id) selected @endif>{{$val->name}}</option>
+                                                    <option value="{{$val->id}}" @if($val->id==$categoryDetails->parent_id) selected @endif>{{$val->name}} required</option>
                                                     @endforeach
                                             </select>
                                     </div>
@@ -67,7 +67,7 @@
                                 <div class="form-group row m-b-10">
                                     <label class="col-md-3 text-md-right col-form-label">Discription</label>
                                     <div class="col-md-6">
-                                        <textarea cols="40" rows="6" id="description"  name="description" placeholder="Description"  class="form-control" />{{ $categoryDetails->description}}</textarea>
+                                        <textarea cols="40" rows="6" id="description"  name="description" placeholder="Description"  class="form-control" />{{ $categoryDetails->description}} required</textarea>
                                     </div>
                                 </div>
                                 <!-- end form-group row -->
@@ -75,13 +75,13 @@
                                 <div class="form-group row m-b-10">
                                     <label class="col-md-3 text-md-right col-form-label">URL</label>
                                     <div class="col-md-6">
-                                        <input type="text" id="rl" name="url" value="{{ $categoryDetails->url}}" placeholder="Same name as category (Space not allowed)"  class="form-control" />
+                                        <input type="text" id="rl" name="url" value="{{ $categoryDetails->url}}" placeholder="Same name as category (Space not allowed)"  class="form-control" required/>
                                     </div>
                                 </div>
                                 <div class="form-group row m-b-10">
                                         <label class="col-md-3 text-md-right col-form-label">Meta Title</label>
                                         <div class="col-md-6">
-                                            <input type="text" name="meta_title" id="meta_title" value="{{ $categoryDetails->meta_title }}" placeholder="Meta Title (SEO)"  class="form-control" />
+                                            <input type="text" name="meta_title" id="meta_title" value="{{ $categoryDetails->meta_title }}" placeholder="Meta Title (SEO)"  class="form-control" required/>
                                 </div>
                                 </div>
                                 <!-- end form-group row -->

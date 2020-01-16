@@ -65,7 +65,7 @@
                            <strong>{!! session('flash_message_success') !!}</strong>
                   </div>
                 @endif
-                            <form class="needs-validation" action="{{url('/factory/forgetpassword')}}" method="POST" >{{ csrf_field() }}   
+                            <form class="needs-validation" action="{{url('/factory/forgetpassword')}}" method="POST" >{{ csrf_field() }}
                                 <div class="form-row">
                                     <div class="form-group floating-label col-md-12">
                                         <label>Email</label>
@@ -81,26 +81,26 @@
 
                                 <p class="text-right p-t-10">
                                     <a href="{{ url('factory/login') }}"class="text-underline" >Do you want to login again?</a>
-                                    </p> 
+                                    </p>
                                  <p class="text-right p-t-10">
                                      <a href="{{ url('/factory/register') }}"class="text-underline" >Want to Join? Sign Up Here.</a>
-                                     </p>     
+                                     </p>
 
                             </form>
-                              
-                        
+
+
                                {{-- <p class="text-right p-t-10">
                                  <a href="{{ url('factory/forgetpassword') }}"class="text-underline" >Forgot Password?</a>
-                                 </p> 
+                                 </p>
 
                                 <a href="{{ url('/factory/register')}}" >Want to Join? Sign Up Here.</a> --}}
-                            
-                          
+
+
                         </div>
 
                     </div>
                 </div>
-                <div class="col-lg-8 d-none d-md-block bg-cover" style="background-image: url('assets/static/images/pexels-photo-298863.jpeg');">
+                <div class="col-lg-8 d-none d-md-block bg-cover" style="background-image: url('assets/static/images/wool.jpg');">
 
                 </div>
             </div>

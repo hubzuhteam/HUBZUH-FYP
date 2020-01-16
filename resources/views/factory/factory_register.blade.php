@@ -45,13 +45,13 @@
             <div class="col-lg-4  bg-white">
                 <div class="row align-items-center m-h-100">
                     <div class="mx-auto col-md-8">
-                            
-                        <form class="needs-validation" action="{{ url('/factory/factory-register')}}" method="POST" >{{ csrf_field() }}    
+
+                        <form class="needs-validation" action="{{ url('/factory/factory-register')}}" method="POST" >{{ csrf_field() }}
                             <div class="p-b-20 text-center">
                                 <p>
                                     <img src="{{asset('/images/logo1.jpeg')}}" width="190" height="60" alt="">
                                 </p>
-                                <p class="admin-brand-content"> 
+                                <p class="admin-brand-content">
                                         HUBZUH Factory Site
                                 </p>
                             </div>
@@ -100,7 +100,7 @@
 
                 </div>
             </div>
-            <div class="col-lg-8 d-none d-md-block bg-cover" style="background-image: url('assets/static/images/banner_back.jpeg');">
+            <div class="col-lg-8 d-none d-md-block bg-cover" style="background-image: url('assets/static/images/tailor.jpg');">
 
             </div>
         </div>

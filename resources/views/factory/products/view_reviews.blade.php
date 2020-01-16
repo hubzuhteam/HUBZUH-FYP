@@ -15,7 +15,7 @@
                         <div class="row">
                             <div class="col-12 text-white p-t-40 p-b-90">
                                 <h4 class="">
-                                   Manage Products
+                                   Manage Reviews of Products
                                 </h4>
                                 <p class="opacity-75 ">
                                 </p>

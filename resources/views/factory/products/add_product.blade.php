@@ -78,7 +78,7 @@
                                 <div class="form-group row m-b-10">
                                     <label class="col-md-3 text-md-right col-form-label">Material and Care</label>
                                     <div class="col-md-6">
-                                        <textarea cols="40" rows="6" id="care" name="care" placeholder="Material and Care"  class="form-control" /></textarea>
+                                        <textarea cols="40" rows="6" id="care" name="care" placeholder="Material and Care"  class="form-control" required/></textarea>
                                     </div>
                                 </div>
                                 <div class="form-group row m-b-10">
@@ -106,13 +106,13 @@
                                 <div class="form-group row m-b-10">
                                     <label class="col-md-3 text-md-right col-form-label">Price</label>
                                     <div class="col-md-6">
-                                        <input type="text" id="price" name="price" placeholder="Price"  class="form-control" />
+                                        <input type="text" id="price" name="price" placeholder="Price"  class="form-control" required/>
                                     </div>
                                 </div>
                                 <div class="form-group row m-b-10">
                                     <label class="col-md-3 text-md-right col-form-label">Image</label>
                                     <div class="col-md-6" id="uniform-undefined" >
-                                         <input type="file" name="image" id="image"/>
+                                         <input type="file" name="image" id="image" required/>
                                         </div>
                                 </div>
                                 <div class="form-group row m-b-10">

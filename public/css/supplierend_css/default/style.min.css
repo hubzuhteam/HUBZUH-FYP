@@ -862,7 +862,7 @@ table.dataTable thead .sorting_desc_disabled:after {
     left: 0;
     right: 0;
     bottom: 0;
-    background: url(images/cover-sidebar-user.jpg) no-repeat;
+    background: url(images/cover-sidebar-user.jpeg) no-repeat;
     background-size: cover
 }
 

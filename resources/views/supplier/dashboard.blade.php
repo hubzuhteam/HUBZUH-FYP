@@ -27,7 +27,6 @@ $earningOrderTotal = OrdersProduct::earningOrderTotal($supplierDetails->id);
 
 
 
-
 ?>
 
     <!-- begin #page-loader -->
@@ -61,7 +60,7 @@ $earningOrderTotal = OrdersProduct::earningOrderTotal($supplierDetails->id);
                             <p>{{ $totalproductCount }}</p>
 						</div>
 						<div class="stats-link">
-							<a href="{{ url('/supplier/view-products') }}">View Detail <i class="fa fa-arrow-alt-circle-right"></i></a>
+							<a href="{{ url('/supplier/view-products') }}">View Details <i class="fa fa-arrow-alt-circle-right"></i></a>
 						</div>
 					</div>
 				</div>
@@ -75,7 +74,7 @@ $earningOrderTotal = OrdersProduct::earningOrderTotal($supplierDetails->id);
 							<p>{{ $totalOrderCountSupplier }}</p>
 						</div>
 						<div class="stats-link">
-							<a href="{{ url('/supplier/view-orders') }}">View Detail <i class="fa fa-arrow-alt-circle-right"></i></a>
+							<a href="{{ url('/supplier/view-orders') }}">View Details <i class="fa fa-arrow-alt-circle-right"></i></a>
 						</div>
 					</div>
 				</div>
@@ -89,7 +88,7 @@ $earningOrderTotal = OrdersProduct::earningOrderTotal($supplierDetails->id);
 							<p>{{ $earningOrderTotal }}</p>
 						</div>
 						<div class="stats-link">
-							<a href="javascript:;">View Detail <i class="fa fa-arrow-alt-circle-right"></i></a>
+							<a href="{{ url('/supplier/view-orders') }}">View Details <i class="fa fa-arrow-alt-circle-right"></i></a>
 						</div>
 					</div>
 				</div>
@@ -103,7 +102,7 @@ $earningOrderTotal = OrdersProduct::earningOrderTotal($supplierDetails->id);
 							<p>{{ $reviewsCount }}</p>
 						</div>
 						<div class="stats-link">
-							<a href="{{ url('/supplier/products-reviews') }}">View Detail <i class="fa fa-arrow-alt-circle-right"></i></a>
+							<a href="{{ url('/supplier/products-reviews') }}">View Details <i class="fa fa-arrow-alt-circle-right"></i></a>
 						</div>
 					</div>
 				</div>

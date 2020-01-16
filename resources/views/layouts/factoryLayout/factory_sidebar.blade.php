@@ -85,7 +85,7 @@
                                                         </span>
                                                 </span>
                                     <span class="menu-icon">
-                                        <i class="icon-placeholder mdi mdi-tshirt-crew  "></i>
+                                        <i class="icon-placeholder mdi mdi-star  "></i>
                                     </span>
                                 </a>
                             </li>
@@ -96,7 +96,7 @@
                                                             </span>
                                                     </span>
                                         <span class="menu-icon">
-                                            <i class="icon-placeholder mdi mdi-tshirt-crew  "></i>
+                                            <i class="icon-placeholder mdi mdi-file-question"></i>
                                         </span>
                                     </a>
                                 </li>
@@ -110,7 +110,7 @@
                             </span>
                         </span>
                             <span class="menu-icon">
-                                <i class="icon-placeholder mdi mdi-apps "></i>
+                                <i class="icon-placeholder mdi mdi-factory"></i>
                             </span>
                 </a>
                 <!--submenu-->
@@ -122,7 +122,7 @@
                                                 </span>
                                         </span>
                             <span class="menu-icon">
-                                <i class="icon-placeholder mdi mdi-tshirt-crew  "></i>
+                                <i class="icon-placeholder mdi mdi-eye"></i>
                             </span>
                         </a>
                     </li>
@@ -133,14 +133,14 @@
                                                     </span>
                                             </span>
                                 <span class="menu-icon">
-                                    <i class="icon-placeholder mdi mdi-tshirt-crew  "></i>
+                                    <i class="icon-placeholder mdi mdi-store  "></i>
                                 </span>
                             </a>
                         </li>
                 </ul>
             </li>
 
-            <li class="menu-item ">
+            <li class="menu-item">
                     <a href="#" class="open-dropdown menu-link">
                     <span class="menu-label">
                         <span class="menu-name">Orders
@@ -148,7 +148,7 @@
                         </span>
                     </span>
                         <span class="menu-icon">
-                            <i class="icon-placeholder mdi mdi-apps "></i>
+                            <i class="icon-placeholder mdi mdi-view-list"></i>
                         </span>
                     </a>
                     <!--submenu-->
@@ -160,7 +160,7 @@
                                             </span>
                                     </span>
                                 <span class="menu-icon">
-                            <i class="icon-placeholder mdi mdi-tshirt-crew  "></i>
+                            <i class="icon-placeholder mdi mdi-cart"></i>
                         </span>
                             </a>
                         </li>
@@ -176,7 +176,7 @@
                         </span>
                     </span>
                         <span class="menu-icon">
-                            <i class="icon-placeholder mdi mdi-apps "></i>
+                            <i class="icon-placeholder mdi mdi-image "></i>
                         </span>
                     </a>
                     <!--submenu-->
@@ -188,7 +188,7 @@
                                                     </span>
                                             </span>
                                         <span class="menu-icon">
-                                    <i class="icon-placeholder mdi mdi-tshirt-crew  "></i>
+                                    <i class="icon-placeholder mdi mdi-image-area"></i>
                                 </span>
                                     </a>
                                 </li>
@@ -199,7 +199,7 @@
                                             </span>
                                     </span>
                                 <span class="menu-icon">
-                            <i class="icon-placeholder mdi mdi-tshirt-crew  "></i>
+                            <i class="icon-placeholder mdi mdi-image-album  "></i>
                         </span>
                             </a>
                         </li>
@@ -215,7 +215,7 @@
                                 </span>
                             </span>
                                 <span class="menu-icon">
-                                    <i class="icon-placeholder mdi mdi-folder-outline "></i>
+                                    <i class="icon-placeholder mdi mdi-format-list-bulleted "></i>
                                 </span>
                     </a>
                     <!--submenu-->

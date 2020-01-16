@@ -28,7 +28,7 @@
     @endif
 
     <!-- begin #content -->
-    <div id="content" class="content">
+    <div id="content" class="content" style="margin-left: auto;margin-right: auto;">
 
         <!-- begin page-header -->
         <h1 class="page-header">Manage Banners</small></h1>

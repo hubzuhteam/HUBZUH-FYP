@@ -212,7 +212,7 @@ hr {
 }
 
 #header h1 {
-    background: url("/project1/public/images/logo.jpeg") no-repeat scroll 0 0 transparent;
+    /* background: url("/project1/public/images/logo.jpeg") no-repeat scroll 0 0 transparent; */
     height: 80px;
     left: 0px;
     line-height: 600px;

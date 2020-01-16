@@ -5,7 +5,7 @@
 				<!-- begin sidebar user -->
 				<ul class="nav">
 					<li class="nav-profile">
-						<a href="javascript:;" data-toggle="nav-profile">
+						<a href="javascript:;" data-toggle="">
 							<div class="cover with-shadow"></div>
 							<div class="image">
 								<img src="{{ asset('images/supplierend_images/store_images/small/'.$supplierDetails->store_image)}}" alt="" />

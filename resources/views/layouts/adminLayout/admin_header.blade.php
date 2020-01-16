@@ -1,6 +1,8 @@
 <!--Header-part-->
 <div id="header">
-    <h1><a href="{{ url('/admin/dashboard')}}">HUBZUH Admin</a></h1>
+    {{--  //header  --}}
+    {{--  <img style="" src="http://localhost/project1/public/images/logo.jpeg" alt="">  --}}
+    <h1><a href="{{ url('/admin/dashboard')}}">Admin</a></h1>
   </div>
   <!--close-Header-part-->
 <!--start-top-serch-->
@@ -18,8 +20,8 @@
 
 
 
-  <div id="search">
+  {{--  <div id="search">
     <input type="text" placeholder="Search here..."/>
     <button type="submit" class="tip-bottom" title="Search"><i class="icon-search icon-white"></i></button>
-  </div>
+  </div>  --}}
   <!--close-top-serch-->

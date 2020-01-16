@@ -15,7 +15,7 @@
                         <div class="row">
                             <div class="col-12 text-white p-t-40 p-b-90">
                                 <h4 class="">
-                                   Manage coupon
+                                   Manage coupons
                                 </h4>
                                 <p class="opacity-75 ">
                                 </p>
@@ -23,12 +23,12 @@
                         </div>
                     </div>
                 </div>
-        
+
                 <div class="container  pull-up">
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
-        
+
                                 <div class="card-body">
                                     <div class="table-responsive p-t-10">
                                         <table id="example" class="table   " style="width:100%">
@@ -40,17 +40,17 @@
                                                     <th class="text-nowrap">Amount Type</th>
                                                     <th class="text-nowrap">Expiry Date</th>
                                                     <th class="text-nowrap">  </th>
-                        
+
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <p hidden>{{$count=0}}</p>
                                                 @foreach ($coupons as $coupon)
-                        
+
                                                   @if($factoryDetails->id==$coupon->factory_id)
                                                     <tr class="odd gradeX">
                                                         <td>{{++$count }}</td>
-                        
+
                                                          <td>{{$coupon->coupon_code }}</td>
                                                         <td>{{$coupon->amount }}</td>
                                                         <td>{{$coupon->amount_type}}</td>
@@ -61,7 +61,7 @@
                                                         </td>
                                                     </tr>
                                                     @endif
-                        
+
                                                 @endforeach
                                                 </tbody>
                                             <tfoot>
@@ -72,7 +72,7 @@
                                                     <th class="text-nowrap">Amount Type</th>
                                                     <th class="text-nowrap">Expiry Date</th>
                                                     <th class="text-nowrap">  </th>
-                        
+
                                                 </tr>
                                             </tfoot>
                                         </table>
@@ -83,7 +83,7 @@
                     </div>
                 </div>
             </section>
-        
+
 </main>
 
 @endsection

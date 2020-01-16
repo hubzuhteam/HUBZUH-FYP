@@ -278,7 +278,7 @@ Route::group(['middleware'=>['supplierlogin']],function(){
 
 
     //profile of supplier
-    Route::get('/supplier/edit-profile','SupplierController@edit_profile');
+    // Route::get('/supplier/edit-profile','SupplierController@edit_profile');
 
     //users account page
     Route::match(['GET','POST'],'/supplier/edit-profile','SupplierController@edit_profile');

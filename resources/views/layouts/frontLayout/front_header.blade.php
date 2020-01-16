@@ -126,14 +126,13 @@ $wishlistCount = Product::wishlistCount();
                         <div class="mainmenu pull-left">
                             <ul class="nav navbar-nav collapse navbar-collapse">
                             <li><a href="{{asset('/')}}" class="active">Home</a></li>
-                                <li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
+                                <li class="dropdown"><a>Shop<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
                                         @foreach ($mainCategories as $cat)
                                         @if ($cat->status=="1")
                                            <li><a href="{{ asset('products/'.$cat->url)}}">{{$cat->name}}</a></li>
                                         @endif
                                         @endforeach
-
                                     </ul>
                                 </li>
                                 {{-- <li class="dropdown"><a href="#">Blog<i class="fa fa-angle-down"></i></a>

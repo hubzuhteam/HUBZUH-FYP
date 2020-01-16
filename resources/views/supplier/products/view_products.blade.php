@@ -1,4 +1,3 @@
-
 {{-- Supplier ADD CATGEORY  --}}
 @section('content')
 @extends('layouts.supplierLayout.supplier_design')
@@ -28,7 +27,7 @@
     @endif
 
     <!-- begin #content -->
-    <div id="content" class="content"  style="margin-left: -35px;margin-right: -55px;">
+    <div id="content" class="content"  style="margin-left: auto;margin-right: auto;">
 
         <!-- begin page-header -->
         <h1 class="page-header">Manage Products</small></h1>

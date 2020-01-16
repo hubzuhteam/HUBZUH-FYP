@@ -56,13 +56,13 @@ $reviewCount = Review::reviewCount();
                 @endif
                 @if (Session::get('adminDetails')['products_access']==1)
 
-                <li class="bg_lo"> <a href="{{url('admin/view-products')}}"><i class="icon-inbox"></i>
+                <li class="bg_lo"> <a href="{{url('admin/view-products')}}"><i class="icon-list"></i>
                     <span class="label label-success"></span> Products </a> </li>
 
                 @endif
                 @if (Session::get('adminDetails')['orders_access']==1)
 
-                <li class="bg_ls"> <a href="{{url('admin/view-orders')}}"><i class="icon-inbox"></i>
+                <li class="bg_ls"> <a href="{{url('admin/view-orders')}}"><i class="icon-money"></i>
                     <span class="label label-success"></span> Orders </a> </li>
 
                 @endif
@@ -77,10 +77,8 @@ $reviewCount = Review::reviewCount();
                 <li class="bg_db"> <a href="{{url('admin/view-suppliers')}}"><i class="icon-user"></i>
                         <span class="label label-success"></span> Suppliers </a> </li>
 
-                <li class="bg_db"> <a href="{{url('admin/view-chats')}}"><i class="icon-inbox"></i>
+                <li class="bg_db"> <a href="{{url('admin/view-chats')}}"><i class="icon-share"></i>
                     <span class="label label-success"></span> Chats </a> </li>
-
-
               </ul>
         </div>
         <!--End-Action boxes-->
@@ -89,7 +87,7 @@ $reviewCount = Review::reviewCount();
             <div class="row-fluid">
               <div class="widget-box">
                 <div class="widget-title bg_lg"><span class="icon"><i class="icon-signal"></i></span>
-                  <h5>Site Analytics</h5>
+                  <h5>Admin Site Analytics</h5>
                 </div>
                 <div class="widget-content" >
                   <div class="row-fluid">

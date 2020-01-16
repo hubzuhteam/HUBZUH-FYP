@@ -44,13 +44,13 @@
                                 <div class="form-group row m-b-10">
                                     <label class="col-md-3 text-md-right col-form-label">Email</label>
                                     <div class="col-md-6">
-                                        <input type="text"  name="email" value="{{ $supplierDetails->email }}" placeholder="Email" readonly class="form-control" />
+                                        <input type="text"  name="email" value="{{ $supplierDetails->email }}" placeholder="Email" readonly class="form-control" required/>
                                     </div>
                                 </div>
                                 <div class="form-group row m-b-10">
                                     <label class="col-md-3 text-md-right col-form-label">First Name</label>
                                     <div class="col-md-6">
-                                        <input type="text" name="name" value="{{ $supplierDetails->name }}" placeholder="First Name" class="form-control" />
+                                        <input type="text" name="name" value="{{ $supplierDetails->name }}" placeholder="First Name" class="form-control" required/>
                                     </div>
                                 </div>
                                 <!-- end form-group row -->
@@ -58,7 +58,7 @@
                                 <div class="form-group row m-b-10">
                                     <label class="col-md-3 text-md-right col-form-label">Last Name</label>
                                     <div class="col-md-6">
-                                        <input type="text" name="last_name" placeholder="Last Name" value="{{ $supplierDetails->last_name }}" class="form-control" />
+                                        <input type="text" name="last_name" placeholder="Last Name" value="{{ $supplierDetails->last_name }}" class="form-control" required/>
                                     </div>
                                 </div>
                                 <!-- end form-group row -->
@@ -66,7 +66,7 @@
                                 <div class="form-group row m-b-10">
                                     <label class="col-md-3 text-md-right col-form-label">Date of Birth</label>
                                     <div class="col-md-6">
-                                        <input type="date" id="dob_date" name="dob_date" placeholder="Year-Month-Date" value="{{ $supplierDetails->dob }}" class="form-control" />
+                                        <input type="date" id="dob_date" name="dob_date" placeholder="Year-Month-Date" value="{{ $supplierDetails->dob }}" class="form-control" required/>
                                     </div>
                                 </div>
                                 <!-- end form-group row -->
@@ -74,13 +74,13 @@
                                 <div class="form-group row m-b-10">
                                     <label class="col-md-3 text-md-right col-form-label">CNIC No</label>
                                     <div class="col-md-6">
-                                        <input type="text" name="cnic" placeholder="CNIC" value="{{ $supplierDetails->cnic }}" class="form-control" />
+                                        <input type="text" name="cnic" placeholder="CNIC" value="{{ $supplierDetails->cnic }}" class="form-control" required/>
                                     </div>
                                 </div>
                                 <div class="form-group row m-b-10">
                                         <label class="col-md-3 text-md-right col-form-label">Phone Number</label>
                                         <div class="col-md-6">
-                                            <input type="text" name="mobile" placeholder="Phone Number" value="{{ $supplierDetails->mobile }}" class="form-control" />
+                                            <input type="text" name="mobile" placeholder="Phone Number" value="{{ $supplierDetails->mobile }}" class="form-control" required/>
                                 </div>
                                 </div>
                                 <!-- end form-group row -->
@@ -88,7 +88,7 @@
                                 <div class="form-group row m-b-10">
                                     <label class="col-md-3 text-md-right col-form-label">Address</label>
                                     <div class="col-md-6">
-                                        <input type="text" name="address" placeholder="Address" value="{{ $supplierDetails->address }}" class="form-control m-b-10" />
+                                        <input type="text" name="address" placeholder="Address" value="{{ $supplierDetails->address }}" class="form-control m-b-10" required/>
                                     </div>
                                 </div>
                                 <!-- end form-group row -->

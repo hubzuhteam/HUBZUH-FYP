@@ -22,6 +22,15 @@
       </li>
       @endif
 
+
+        <li class="submenu"> <a href="#"><i class="icon icon-list-alt"></i> <span>Products</span>
+        <span class="label label-important">2</span></a>
+      <ul <?php if(preg_match("/categor/i",$url)){?> style="display: block;" <?php } ?>>
+          <li <?php if(preg_match("/view-products/i",$url)){?> class="active" <?php } ?>><a
+            href="{{ url('/admin/view-products')}}">View Products</a></li>
+        </ul>
+      </li>
+
       @if (Session::get('adminDetails')['type']=="Admin")
 
 
@@ -79,16 +88,16 @@
       @endif
 
       <li class="submenu"> <a href="#"><i class="icon icon-th-list"></i> <span>Suppliers</span>
-        <span class="label label-important">2</span></a>
+        <span class="label label-important">1</span></a>
         <ul <?php if(preg_match("/suppliers/i",$url)){?> style="display: block;" <?php } ?>>
           <li <?php if(preg_match("/view-suppliers/i",$url)){?> class="active" <?php } ?>><a
             href="{{ url('/admin/view-suppliers')}}">View Suppliers</a></li>
         </ul>
       </li>
-      @if (Session::get('adminDetails')['users_access']==1)
 
+      @if (Session::get('adminDetails')['users_access']==1)
       <li class="submenu"> <a href="#"><i class="icon icon-th-list"></i> <span>Users</span>
-        <span class="label label-important">2</span></a>
+        <span class="label label-important">1</span></a>
         <ul <?php if(preg_match("/users/i",$url)){?> style="display: block;" <?php } ?>>
           <li <?php if(preg_match("/view-users/i",$url)){?> class="active" <?php } ?>><a
             href="{{ url('/admin/view-users')}}">View Users</a></li>
@@ -127,7 +136,7 @@
       @endif
 
       <li class="submenu"> <a href="#"><i class="icon icon-th-list"></i> <span>Factories</span>
-        <span class="label label-important">2</span></a>
+        <span class="label label-important">1</span></a>
         <ul <?php if(preg_match("/factories/i",$url)){?> style="display: block;" <?php } ?>>
           <li <?php if(preg_match("/view-factories/i",$url)){?> class="active" <?php } ?>><a
             href="{{ url('/admin/view-factories')}}">View Factories</a></li>

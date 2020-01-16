@@ -35,7 +35,7 @@
                   <th>Link</th>
                   <th>Image</th>
                   <th>Supplier ID</th>
-                  <th>Store Name</th>
+                  <th>Factory ID</th>
                   <th>Actions</th>
                 </tr>
               </thead>
@@ -50,8 +50,8 @@
                     <img src="{{ asset('/images/frontend_images/banners/'.$banner->image) }}" style="width:250px;">
                     @endif
                   </td>
-                  <td class="center">{{ $supplierDetails->id }}</td>
-                  <td class="center">{{ $supplierDetails->store_name }}</td>
+                  <td class="center">{{ $banner->supplier_id }}</td>
+                  <td class="center">{{ $banner->factory_id }}</td>
                   <td class="center">
                     <a href="{{ url('/admin/edit-banner/'.$banner->id) }}" class="btn btn-primary btn-mini">Edit</a>
                     <a id="delBanner" rel="{{ $banner->id }}" rel1="delete-banner" href="javascript:" <?php /* href="{{ url('/admin/delete-banner/'.$banner->id) }}" */ ?> class="btn btn-danger btn-mini deleteRecord">Delete</a>

@@ -39,7 +39,7 @@ class IndexController extends Controller
         $categories = Category::with('categories')->where(['parent_id' => 0])->get();
         //$categories = json_decode(json_encode($categories));
     	/*echo "<pre>"; print_r($categories); die;*/
-         $categories_menu = "";
+        $categories_menu = "";
 
 
 		$banners = Banner::where('status','1')->get();

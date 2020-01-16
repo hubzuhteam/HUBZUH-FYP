@@ -39,18 +39,13 @@ $CouponCount = Coupon::CouponCountFactory($factoryDetails->id);
         <section class="admin-content">
             <div class="container-fluid bg-dark m-b-30">
                 <div class="row">
-
                     <div class="col-12 text-white p-t-40 p-b-90">
-
-                        <h4 class="  "><span class="btn btn-white-translucent"><i
-                                    class="mdi mdi-shape-circle-plus "></i></span> <span class="js-greeting"></span>,
+                        <h4 class=""><span class="js-greeting"></span>,
                         {{ $factoryDetails->name }}</h4>
                         <p class="opacity-75 ">
                             This is your dashboard where you can Manage your store. You can manage Products, Discount coupons, Sales, Customization of Store,
                             <br> Banners, Categories, Orders and much more.
                         </p>
-                        <a href="#" class="btn btn-white-translucent">View Reports</a>
-
                     </div>
                 </div>
             </div>

@@ -17,7 +17,6 @@ class BannersController extends Controller
     public function viewBannersFactory()
     {
 
-
         $factoryDetails = Factory::where(['email' => Session::get('factorySession')])->first();
 
         $banners = Banner::where(['factory_id' => $factoryDetails->id])->orderBy('id', 'Desc')->get();
@@ -100,14 +99,21 @@ class BannersController extends Controller
 
             // Upload Image
             if ($request->hasFile('image')) {
+            //echo "<pre>"; print_r($data); die;
                 $image_tmp = Input::file('image');
                 if ($image_tmp->isValid()) {
                     // Upload Images after Resize
                     $extension = $image_tmp->getClientOriginalExtension();
-                    $fileName = rand(111, 99999) . '.' . $extension;
-                    $banner_path = 'images/frontend_images/banners/' . $fileName;
-                    Image::make($image_tmp)->resize(1140, 340)->save($banner_path);
-                    $banner->image = $fileName;
+                    // echo "<pre>"; print_r($extension); die;
+                    if($extension=='png' || $extension=='jpg' || $extension=='bmp' || $extension=='gif'){
+                        $fileName = rand(111, 99999) . '.' . $extension;
+                        $banner_path = 'images/frontend_images/banners/'.$fileName;
+                        Image::make($image_tmp)->resize(1140, 340)->save($banner_path);
+                        $banner->image = $fileName;
+                    }else{
+                        return redirect()->back()->with('flash_message_error', 'Please upload only Image File');
+                    }
+
                 }
             }
 
@@ -305,10 +311,8 @@ class BannersController extends Controller
 
     public function viewBanners(){
         $banners = Banner::get();
-        $supplierDetails = Supplier::where(['email'=>Session::get('supplierSession')])->first();
 
-
-        return view('admin.banners.view_banners')->with(compact('banners','supplierDetails'));
+        return view('admin.banners.view_banners')->with(compact('banners'));
     }
 
     public function deleteBanner($id = null){
