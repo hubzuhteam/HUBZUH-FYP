@@ -79,6 +79,16 @@ The idea is related to web-based Application having friendly interface with smar
 
 ![Picture13](https://user-images.githubusercontent.com/55245952/72890901-cde2ad80-3d34-11ea-876c-b0da7c96fc0e.png)
 
+# Future Work
+<ul>
+<li>Will proceed this project as a startup.</li>
+<li>Will develop Android & iOS Application.</li>
+<li>Will enter textile market with this project.</li>
+<li>Will Expand target market with respect time.</li>
+  </ul>  
+
+
+
 
   
 
