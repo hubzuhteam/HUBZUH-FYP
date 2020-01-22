@@ -67,17 +67,19 @@ The idea is related to web-based Application having friendly interface with smar
 <li>Time saving.</li>
 <li>Customization of theme and looks individually for all.</li>
   </ul>
+
 # Implementation
+<ul>
+<li>Web Development (LARAVEL).</li>
+<li>Database (MYSQL).</li>
+<li>Frontend (HTML, CSS(bootstrap), jQuery, JS).</li>
+</ul>
 
-![Picture8](https://user-images.githubusercontent.com/55245952/72890568-01710800-3d34-11ea-9474-322408a9e744.png)
+# Architecture
 
-![Picture9](https://user-images.githubusercontent.com/55245952/72890608-16e63200-3d34-11ea-99a6-5519acd481cd.png)
+![Picture13](https://user-images.githubusercontent.com/55245952/72890901-cde2ad80-3d34-11ea-876c-b0da7c96fc0e.png)
 
-![Picture10](https://user-images.githubusercontent.com/55245952/72890637-2a919880-3d34-11ea-8efe-0d4e012e5ff1.png)
 
-![Picture11](https://user-images.githubusercontent.com/55245952/72890656-3715f100-3d34-11ea-8d67-0f34a6fa2af0.png)
-
-![Picture12](https://user-images.githubusercontent.com/55245952/72890685-485efd80-3d34-11ea-961d-413d052757f1.png)
   
 
       
