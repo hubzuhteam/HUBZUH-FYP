@@ -1,7 +1,7 @@
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
 <p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://drive.google.com/file/d/1wIyZIB8QpNPBl7o7RM403IxZ61ZlmOsZ/view" alt="Build Status"></a>
+<a href="https://travis-ci.org/laravel/framework"><img src="https://camo.githubusercontent.com/88861b709123d23a028c2fd3ee2362d4d0a74927/68747470714j6tWLMDaRp5C4GBCMUtjm3R9hBNAPbu5uMTMKrTgXs27qKMX76nHwFwpMXJeNMujSR45cbfMkE7" alt="Build Status"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
